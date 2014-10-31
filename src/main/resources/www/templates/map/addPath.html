@@ -1,0 +1,39 @@
+
+<h2>
+	<%- router.name %> <small>Add an explicit path</small>
+</h2>
+
+<div class="alert alert-danger" role="alert" id="error">
+	<strong>Error</strong> <span id="errorText"></span>
+</div>
+
+<form role="form">
+	<div class="form-group">
+		<label>Router</label>
+		<p class="form-control-static"><%- router.name %></p>
+	</div>
+	<div class="form-group">
+		<label for="pathname">Path name</label>
+		<input type="text" class="form-control" id="pathname" placeholder="Enter a name" />
+	</div>
+</form>
+
+<form class="form-horizontal" role="form" id="hops">
+	<label>Hops</label>
+</form>
+
+<form role="form">
+<button type="button" class="btn btn-default" id="addhop">
+	<span class="glyphicon glyphicon glyphicon-plus"></span> Add an hop
+</button>
+</form>
+
+
+<div class="buttonbar">
+	<button type="button" class="btn btn-primary" id="add">
+		<span class="glyphicon glyphicon glyphicon-ok-circle"></span> Add
+	</button>
+	<button type="button" class="btn btn-default" id="cancel">
+		<span class="glyphicon glyphicon glyphicon-ban-circle"></span> Cancel
+	</button>
+</div>

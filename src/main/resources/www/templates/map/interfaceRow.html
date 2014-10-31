@@ -1,0 +1,28 @@
+<tr data-interface="<%- id %>">
+	<td>
+		<%- name %>
+		<% if (shutdown) { %> <span class="label label-default">shut</span><% } %>
+	</td>
+	<td><% if (typeof(description) == "string") { %><%- description %><% } %></td>
+	<td><% if (typeof(ipv4Address) == "object") { %><%- ipv4Address.ip %>/<%- ipv4Address.prefixLength %><% } %></td>
+	<!-- <td>
+		<% if (intf.isEditable()) { %>
+		<button type="button" class="btn btn-default btn-xs edit"
+			data-toggle="tooltip" data-placement="left" title="Edit">
+			<span class="glyphicon glyphicon-wrench"></span>
+		</button>
+		<% } %>
+		<% if (intf.canHaveSubinterface()) { %>
+		<button type="button" class="btn btn-default btn-xs add"
+			data-toggle="tooltip" data-placement="left" title="Create subinterface">
+			<span class="glyphicon glyphicon-plus"></span>
+		</button>
+		<% } %>
+		<% if (intf.isDestroyable()) { %>
+		<button type="button" class="btn btn-default btn-xs destroy"
+			data-toggle="tooltip" data-placement="left" title="Destroy">
+			<span class="glyphicon glyphicon-remove"></span>
+		</button>
+		<% } %>
+	</td> -->
+</tr>

@@ -1,0 +1,27 @@
+<div class="modal-dialog">
+	<div class="modal-content">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal"
+				aria-hidden="true">&times;</button>
+			<h4 class="modal-title" id="myModalLabel">Delete User</h4>
+		</div>
+		<div class="modal-body">
+		    <div class="form-group">
+			<div>You are about to delete the user <strong><%- name %></strong>.</div>
+			</div>
+		    <form class="form-horizontal" role="form">
+			</form>
+			<div class="alert alert-danger" id="dialogError" style="display: none;">
+			<strong>Error.</strong> <span id="dialogErrorText"></span>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-danger" id="delete">
+				<span class="glyphicon glyphicon glyphicon-ok-circle"></span> Delete
+			</button>
+			<button type="button" class="btn btn-default" id="cancel" data-dismiss="modal">
+				<span class="glyphicon glyphicon glyphicon-ban-circle"></span> Cancel
+			</button>
+		</div>
+	</div>
+</div>

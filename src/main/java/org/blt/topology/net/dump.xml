@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xml-bindings xmlns="http://www.eclipse.org/eclipselink/xsds/persistence/oxm"
+	package-name="org.blt.topology.net">
+	<java-types>
+		<java-type name="Network">
+			<java-attributes>
+				<xml-elements java-attribute="routers">
+					<xml-element-wrapper name="routers" />
+					<xml-element name="router" />
+				</xml-elements>
+			</java-attributes>
+		</java-type>
+		<java-type name="Router">
+			<java-attributes>
+				<xml-transient java-attribute="lost" />
+				<xml-transient java-attribute="routerInterfaces" />
+			</java-attributes>
+		</java-type>
+	</java-types>
+</xml-bindings>

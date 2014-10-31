@@ -1,0 +1,67 @@
+<div class="panel panel-default admin-network" data-network="<%- id %>">
+	<div class="panel-heading"><span class="glyphicon glyphicon-globe"></span> <%- name %></div>
+	<div class="panel-body">
+		<div class="pull-right">
+			<button type="button" class="btn btn-danger network-delete">
+				<span class="glyphicon glyphicon-trash"></span> Delete the network
+			</button>
+		</div>
+		<table class="simple">
+			<tbody>
+				<tr>
+					<th>BGP peer AS</th>
+					<td><%- bgpAs %></td>
+				</tr>
+				<tr>
+					<th>BGP peer IP</th>
+					<td><%- bgpPeer.ip %></td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="row">
+			<div class="col-md-6">
+				<table class="table table-striped network-communities">
+					<thead>
+						<tr>
+							<th class="actions"></th>
+							<th class="subnet">Subnet</th>
+							<th>Community</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-6">
+				<button type="button"
+					class="btn btn-default btn-sm network-community-add">
+					<span class="glyphicon glyphicon-plus"></span> Add community
+				</button>
+			</div>
+		</div>
+
+		<!--div class="row">
+			<div class="col-md-6">
+				<table class="table table-striped network-accounts">
+					<thead>
+						<tr>
+							<th class="actions"></th>
+							<th class="subnet">Subnet</th>
+							<th>SSH username</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+			<div class="col-md-6">
+				<button type="button"
+					class="btn btn-default btn-sm network-account-add">
+					<span class="glyphicon glyphicon-plus"></span> Add account
+				</button>
+			</div>
+		</div-->
+
+	</div>
+</div>

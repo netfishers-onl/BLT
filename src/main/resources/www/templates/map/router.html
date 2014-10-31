@@ -1,0 +1,30 @@
+
+<div class="pull-right">
+<ul class="nav nav-pills" role="tablist" id="menu">
+	<li class="active"><a id="goto-interfaces" href="#">Interfaces</a></li>
+<!--    <li><a id="goto-tetunnels" href="#">Tunnels</a></li>-->
+<!-- 	<li><a id="goto-paths" href="#">Paths</a></li> -->
+<!-- 	<li><a id="goto-routing" href="#">Routing</a></li> -->
+</ul>
+</div>
+
+<h2><%- name %> <small><%- routerId.identifier %></small></h2>
+
+<% if (typeof(lost) != "undefined" && lost === true) { %>
+
+<div class="alert alert-warning" role="alert">
+
+<p>The router isn't seen anymore in the IGP topology.</p>
+
+<p>
+<button type="button" class="btn btn-danger" id="remove">
+  <span class="glyphicon glyphicon-remove"></span> Remove from map
+</button>
+</p>
+
+</div>
+
+<% } %>
+
+
+<div id="section"></div>

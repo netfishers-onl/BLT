@@ -1,0 +1,17 @@
+<tr data-group="<%- id %>" data-igmp="<%- cid %>"">
+	<td>
+		<%- group.ip %>
+	</td>
+	<td>
+		<% if (typeof(source) == "object") { %><%- source.ip %><% } %>
+	</td>
+	<td>
+		<%- intf.name %>
+	</td>
+	<td>
+		<button type="button" class="btn btn-default btn-xs destroy"
+			data-toggle="tooltip" data-placement="left" title="Destroy">
+			<span class="glyphicon glyphicon-remove"></span>
+		</button>
+	</td>
+</tr>

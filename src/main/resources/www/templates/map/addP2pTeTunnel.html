@@ -1,0 +1,88 @@
+
+<h2>
+	<%- router.name %> <small>Add a P2P TE Tunnel</small>
+</h2>
+
+<div class="alert alert-danger" role="alert" id="error">
+	<strong>Error</strong> <span id="errorText"></span>
+</div>
+
+<form role="form">
+	<div class="form-group">
+		<label>Router</label>
+		<p class="form-control-static"><%- router.name %></p>
+	</div>
+	<div class="form-group">
+		<label for="name">Tunnel name</label>
+		<div class="input-group">
+			<span class="input-group-addon">tunnel-te</span>
+			<input type="text" class="form-control" id='tunnelid' placeholder="Enter tunnel ID">
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="description">Description</label>
+		<input type="text" class="form-control" id="description" placeholder="Enter a description" />
+	</div>
+	<div class="form-group">
+		<label for="signalledbandwidth">Bandwidth</label>
+		<input type="text" class="form-control" id="signalledbandwidth" placeholder="Enter signalled bandwidth in Kbps" />
+	</div>
+	<div class="form-group">
+		<label for="description">Setup priority</label>
+		<div class="input-group spinner" id="setuppriority">
+			<input type="text" class="form-control" value="6">
+			<div class="input-group-btn-vertical">
+				<button class="btn btn-default dropup more"><i class="caret"></i></button>
+				<button class="btn btn-default less"><i class="caret"></i></button>
+			</div>
+		</div>
+	</div>
+	<div class="form-group">
+		<label for="description">Hold priority</label>
+		<div class="input-group spinner" id="holdpriority">
+			<input type="text" class="form-control" value="5">
+			<div class="input-group-btn-vertical">
+				<button class="btn btn-default dropup more"><i class="caret"></i></button>
+				<button class="btn btn-default less"><i class="caret"></i></button>
+			</div>
+		</div>
+	</div>
+</form>
+<form role="form">
+	<div class="form-group">
+		<label for="destination">Destination</label>
+		<input type="text" class="form-control" id="destination" placeholder="Enter the destination IP address" />
+	</div>
+</form>
+
+<form class="form-horizontal" role="form" id="paths">
+	<label>Path options</label>
+</form>
+
+<form role="form">
+<button type="button" class="btn btn-default" id="addpath">
+	<span class="glyphicon glyphicon glyphicon-plus"></span> Add a path option
+</button>
+</form>
+
+<form role="form">
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" id="multicast" /> Enable multicast
+		</label>
+	</div>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" id="shutdown" /> Shutdown
+		</label>
+	</div>
+</form>
+
+<div class="buttonbar">
+	<button type="button" class="btn btn-primary" id="add">
+		<span class="glyphicon glyphicon glyphicon-ok-circle"></span> Add
+	</button>
+	<button type="button" class="btn btn-default" id="cancel">
+		<span class="glyphicon glyphicon glyphicon-ban-circle"></span> Cancel
+	</button>
+</div>

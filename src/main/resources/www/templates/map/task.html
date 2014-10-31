@@ -1,0 +1,36 @@
+<% if (status == "NEW") { %>
+<p class="task bg-info">
+	<strong><%- description %></strong>
+	<span class="glyphicon glyphicon-asterisk"></span> New.
+</p>
+<% } %>
+<% if (status == "WAITING") { %>
+<p class="task bg-info">
+	<strong><%- description %></strong>
+	<span class="glyphicon glyphicon-time"></span> Waiting...
+</p>
+<% } %>
+<% if (status == "RUNNING") { %>
+<p class="task bg-primary">
+	<strong><%- description %></strong>
+	<span class="loader"></span> Running... 
+</p>
+<% } %>
+<% if (status == "SUCCESS") { %>
+<p class="task bg-success">
+	<strong><%- description %></strong>
+	<span class="glyphicon glyphicon-ok"></span> Success.
+</p>
+<% } %>
+<% if (status == "FAILURE") { %>
+<p class="task bg-danger">
+	<strong><%- description %></strong>
+	<span class="glyphicon glyphicon-exclamation-sign"></span> Failure.
+</p>
+<% } %>
+<% if (status == "CANCELLED") { %>
+<p class="task bg-warning">
+	<strong><%- description %></strong>
+	<span class="glyphicon glyphicon-remove-circle"></span> Cancelled.
+</p>
+<% } %>

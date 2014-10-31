@@ -1,0 +1,73 @@
+
+<h2>
+	<%- router.name %> <small>Edit a subinterface</small>
+</h2>
+
+<div class="alert alert-danger" role="alert" id="error">
+	<strong>Error</strong> <span id="errorText"></span>
+</div>
+
+
+<form role="form">
+	<div class="form-group">
+		<label>Router</label>
+		<p class="form-control-static"><%- router.name %></p>
+	</div>
+	<div class="form-group">
+		<label>Interface name</label>
+		<p class="form-control-static"><%- name %></p>
+	</div>
+	<div class="form-group">
+		<label for="description">Description</label>
+		<input type="text" class="form-control" id="description"
+			placeholder="Enter a description"
+			<% if (typeof(description) == "string") { %>value="<%- description %>"<% } %> />
+	</div>
+	<div class="form-group">
+		<label for="ipv4address">IPv4 address</label>
+		<input type="text" class="form-control" id="ipv4address" placeholder="X.X.X.X/Y"
+			<% if (typeof(ipv4Address) == "object") { %>value="<%- ipv4Address.ip %>/<%- ipv4Address.prefixLength %>"<% } %> />
+	</div>
+	<div class="form-group">
+		<label for="inacl">Inbound ACL</label>
+		<select class="form-control" id="inacl">
+			<option value="">None</option>
+			<% for (var a in ipv4AccessLists) { %>
+				<option value="<%- ipv4AccessLists[a].name %>"
+				<% if (typeof(inAccessGroup) == "string" && inAccessGroup == ipv4AccessLists[a].name) { %>selected="selected"<% } %>>
+				<%- ipv4AccessLists[a].name %>
+				</option>
+			<% } %>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="inqos">Inbound QoS service policy</label>
+		<select class="form-control" id="inqos">
+			<option value="">None</option>
+			<% for (var p in policyMaps) { %>
+				<option value="<%- policyMaps[p].value %>"
+				<% if (typeof(inServicePolicy) == "string" && inServicePolicy == policyMaps[p].value) { %>selected="selected"<% } %>>
+				<%- policyMaps[p].value %></option>
+			<% } %>
+		</select>
+	</div>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" id="multicast" <% if (multicastInterface === true) { %>checked="checked"<% } %> /> Enable multicast
+		</label>
+	</div>
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" id="shutdown" <% if (shutdown === true) { %>checked="checked"<% } %> /> Shutdown
+		</label>
+	</div>
+</form>
+
+<div class="buttonbar">
+	<button type="button" class="btn btn-info" id="save">
+		<span class="glyphicon glyphicon glyphicon-ok-circle"></span> Save
+	</button>
+	<button type="button" class="btn btn-default" id="cancel">
+		<span class="glyphicon glyphicon glyphicon-ban-circle"></span> Cancel
+	</button>
+</div>

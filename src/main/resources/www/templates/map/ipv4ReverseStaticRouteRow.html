@@ -1,0 +1,16 @@
+<tr data-route="<%- id %>">
+	<td>
+		<%- subnet.ip %>/<%- subnet.prefixLength %>
+	</td>
+	<td>
+		<% if (typeof(nextHop) != "undefined") { %><%- nextHop.ip %><% } %>
+		<% if (typeof(nextInterface) != "undefined") { %><%- nextInterface %><% } %>
+	</td>
+	<td>MPLS</td>
+	<td>
+		<button type="button" class="btn btn-default btn-xs destroy"
+			data-toggle="tooltip" data-placement="left" title="Destroy">
+			<span class="glyphicon glyphicon-remove"></span>
+		</button>
+	</td>
+</tr>

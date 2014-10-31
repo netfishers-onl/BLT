@@ -1,0 +1,79 @@
+
+<h2>Link <small>between <%- router1.name %> and <%- router2.name %></small></h2>
+
+<% if (typeof(lost) != "undefined" && lost === true) { %>
+
+<div class="alert alert-warning" role="alert">
+
+The link isn't present anymore in the IGP topology.
+
+<button type="button" class="btn btn-danger" id="remove">
+  <span class="glyphicon glyphicon-remove"></span> Remove from map
+</button>
+
+</div>
+
+<% } %>
+
+
+<table class="table table-condensed">
+<thead>
+	<tr>
+		<th></th>
+		<th><%- router1.name %></th>
+		<th><%- router2.name %></th>
+	</tr>
+</thead>
+<tbody>
+	<tr>
+		<th>Interface</th>
+		<td><%- link1.localInterfaceName %></td>
+		<td><%- link1.remoteInterfaceName %></td>
+	</tr>
+	<tr>
+		<th>IP address</th>
+		<td><%- link1.localAddress.ip %></td>
+		<td><%- link1.remoteAddress.ip %></td>
+	</tr>
+	<tr>
+		<th>Metric</th>
+		<td><%- link1.metric %></td>
+		<td><%- link2.metric %></td>
+	</tr>
+	<tr>
+		<th>TE Default Metric</th>
+		<td><%- link1.teDefaultMetric %></td>
+		<td><%- link2.teDefaultMetric %></td>
+	</tr>
+	<tr>
+		<th>Max bandwidth</th>
+		<td><%- link1.maxLinkBandwidth %></td>
+		<td><%- link2.maxLinkBandwidth %></td>
+	</tr>
+	<tr>
+		<th>Max reservable</th>
+		<td><%- link1.maxReservableLinkBandwidth %></td>
+		<td><%- link2.maxReservableLinkBandwidth %></td>
+	</tr>
+	<% for (var p = 0; p < 8; p++) { %>
+	<tr>
+		<th>Left bandwidth in pool <%- p %></th>
+		<td>
+		<% if (typeof(link1.unreservedBandwidth) == "object" && typeof(link1.unreservedBandwidth[p]) == "number") { %>
+		<%- link1.unreservedBandwidth[p] %>
+		<% } %>
+		</td>
+		<td>
+		<% if (typeof(link2.unreservedBandwidth) == "object" && typeof(link2.unreservedBandwidth[p]) == "number") { %>
+		<%- link2.unreservedBandwidth[p] %>
+		<% } %>
+		</td>
+	</tr>
+	<% } %>
+	<tr>
+		<th>Admin group</th>
+		<td><%- link1.adminGroup %></td>
+		<td><%- link2.adminGroup %></td>
+	</tr>
+</tbody>
+</table>
