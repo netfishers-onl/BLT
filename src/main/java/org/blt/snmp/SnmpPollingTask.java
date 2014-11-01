@@ -189,7 +189,12 @@ public class SnmpPollingTask extends Task {
 					logger.warn("No name for router {} ... name is UNKNOWN.", router);
 					router.setName("UNKNOWN");
 				}
-				router.setName(Name);
+				
+				if (router.isPseudoNode()) {
+					router.setName(Name+"_DR");
+				} else { 
+					router.setName(Name);
+				}
 				
 				Map<String, String> ifIndices = walk(ifIndex);
 				Map<String, String> ifNames = walk(ifName);
@@ -218,7 +223,7 @@ public class SnmpPollingTask extends Task {
 							break ;
 						}	
 					}
-					if ( itf.getName().matches("^(Et|Fa|Gig|Ten|Bun|Lo).*$") && itf.getIpv4Address() != null) {
+					if ( ! itf.getName().isEmpty() && itf.getIpv4Address() != null) {
 						if (router.getRouterInterfaceBySubnet(itf.getIpv4Address()) == null) {
 							router.addRouterInterface(itf);
 						}

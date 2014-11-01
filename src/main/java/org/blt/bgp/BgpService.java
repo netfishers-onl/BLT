@@ -197,10 +197,10 @@ public class BgpService {
 								RouterIdentifier routerId = new RouterIdentifier(
 										node.getIgpRouterId(), node.getAutonomousSystem(),
 										node.getAreaId(), node.getBgpLsIdentifier());
-								if ( node.getPseudoNodeId() != null ) {
-									node.getPseudoNodeId() ;
-								}
 								Router router = network.findOrAddRouter(routerId);
+								if ( node.getPseudoNodeId() != null ) {
+									router.setPseudoNode(true);
+								}
 								router.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
 								router.setNeedTeRefresh(true);
 								toSave = true;
@@ -228,7 +228,11 @@ public class BgpService {
 								    (Inet4Address) linkNlri.getLinkDescriptors()
 								        .getIPv4NeighborAddress(), 32));
 								Router localRouter = network.findOrAddRouter(localId);
-								if ( localRouter.findSnmpCommunity() == null) {
+								/* 
+								 * in case user has not provided any snmp community
+								 * we would like to populate router and interface names
+								 * 
+								 * if ( localRouter.findSnmpCommunity() == null) {
 									localRouter.setName(localRouter.getRouterId().toString());
 									if (localNode.getPseudoNodeId() != null ) {
 										localRouter.setName(localRouter.getName()+" is DR");
@@ -238,7 +242,7 @@ public class BgpService {
 									itf.setIpv4Address(new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors().getIPv4InterfaceAddress(),32));	
 									itf.setName(itf.getIpv4Address().toString());
 									localRouter.addRouterInterface(itf);
-								}
+								}*/
 								localRouter.setNeedTeRefresh(true);
 								Router remoteRouter = network.findOrAddRouter(remoteId);
 								remoteRouter.setNeedTeRefresh(true);

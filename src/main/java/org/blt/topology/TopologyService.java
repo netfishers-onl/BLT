@@ -22,12 +22,6 @@ import org.blt.Blt;
 import org.blt.aaa.User;
 import org.blt.tasks.TaskManager;
 import org.blt.topology.net.Ipv4Route;
-//import org.blt.licensing.License;
-//import org.blt.licensing.License.Validity;
-//import org.blt.licensing.LicenseCheckerJob;
-//import org.blt.licensing.License;
-//import org.blt.licensing.License.Validity;
-//import org.blt.topology.net.Ipv4Route;
 import org.blt.topology.net.Ipv4Subnet;
 import org.blt.topology.net.Link;
 import org.blt.topology.net.Network;
@@ -35,7 +29,6 @@ import org.blt.topology.net.Router;
 import org.blt.topology.net.RouterInterface;
 import org.blt.topology.net.SnmpCommunity;
 import org.quartz.SchedulerException;
-//import org.blt.topology.net.SshAccount;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,7 +40,6 @@ public class TopologyService {
 	private static final String[] dumpSettings = new String[] {
 		"org/blt/topology/net/dump.xml",
 		"org/blt/aaa/dump.xml",
-		//"org/blt/licensing/dump.xml"
 	};
 
 	private static TopologyService topologyService;
@@ -57,7 +49,6 @@ public class TopologyService {
 
 	public static void init() {
 		TopologyService.topologyService = TopologyService.readFromDisk();
-		//LicenseCheckerJob.schedule();
 		for (Network network : TopologyService.getService().getNetworks() ) {
 			network.init();
 		}
@@ -82,9 +73,6 @@ public class TopologyService {
 
 	private Set<Network> networks = new CopyOnWriteArraySet<Network>();
 	private Set<User> users = new CopyOnWriteArraySet<User>();
-	//private Set<License> licenses = new CopyOnWriteArraySet<License>();
-	//private boolean licensed = false;
-
 
 	@XmlElementWrapper(name = "networks")
 	@XmlElement(name = "network")
@@ -174,89 +162,6 @@ public class TopologyService {
 		this.writeToDisk();
 	}
 
-	/*public void removeSshAccount(SshAccount sshAccount) {
-		for (Network network : networks) {
-			if (network.getSshAccounts().remove(sshAccount)) {
-				this.writeToDisk();
-			}
-		}
-	}
-
-	public void addSshAccount(Network network, SshAccount sshAccount) throws TopologyException {
-		network.addAccount(sshAccount);
-		this.writeToDisk();
-	}
-	*/
-	/*@XmlElementWrapper(name = "licenses")
-	@XmlElement(name = "license")
-	public Set<License> getLicenses() {
-		return licenses;
-	}
-	
-	public License getLicenseById(long id) {
-		for (License license : this.licenses) {
-			if (license.getId() == id) {
-				return license;
-			}
-		}
-		return null;
-	}
-	
-	public void setLicenses(Set<License> licenses) {
-		this.licenses = licenses;
-	}
-	
-	public boolean containsLicense(License license) {
-		return this.licenses.contains(license);
-	}
-	
-	public void addLicense(License license) {
-		this.licenses.add(license);
-		this.verifyLicense(true);
-		this.writeToDisk();
-	}
-	
-	public void removeLicense(License license) {
-		this.licenses.remove(license);
-		this.verifyLicense(true);
-		this.writeToDisk();
-	}
-	
-	public boolean isLicensed() {
-		return verifyLicense(false);
-	}
-	
-	public boolean verifyLicense(boolean refresh) {
-		if (refresh) {
-			boolean wasLicensed = licensed;
-			licensed = false;
-			Iterator<License> l = licenses.iterator();
-			while (l.hasNext()) {
-				License license = l.next();
-				license.verify();
-				if (license.getValidity() == Validity.VALID) {
-					licensed = true;
-				}
-				else if (license.getValidity() == Validity.INCOMPLETE ||
-						license.getValidity() == Validity.NONGENUINE) {
-					logger.error("Removing invalid license {}", license);
-					l.remove();
-				}
-			}
-			if (wasLicensed && !licensed) {
-				logger.error("No more valid license! Blt will stop working normally.");
-				// Could shut down the current BGP sessions, but do we need to be so bad?
-			}
-			else if (!wasLicensed && licensed) {
-				logger.warn("A valid license has been found. Restoring activity.");
-				for (Network network : this.getNetworks()) {
-					network.init();
-				}
-			}
-		}
-		return licensed;
-	}*/
-	
 	@XmlElementWrapper(name = "users")
 	@XmlElement(name = "user")
 	public Set<User> getUsers() {

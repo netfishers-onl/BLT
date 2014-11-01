@@ -296,8 +296,6 @@ public class Blt {
 			BgpService.init();
 			logger.info("Starting the topology service");
 			TopologyService.init();
-			/*logger.info("Starting the SNMP trap receiver service");
-			SnmpTrapReceiver.init();*/
 			logger.info("Starting the REST service");
 			RestService.init();
 		}
