@@ -6,13 +6,10 @@ define([
 	'models/network/InterfaceCollection',
 	'text!templates/map/routerInterfaces.html',
 	'text!templates/map/interfaceRow.html',
-	'views/map/AddSubInterfaceView',
-	'views/map/DeleteSubInterfaceView',
-	'views/map/EditSubInterfaceView',
 	'bootstrap'
 ], function($, _, Backbone, jsPlumb, InterfaceCollection,
-		routerInterfacesTemplate, interfaceRowTemplate, AddSubInterfaceView,
-		DeleteSubInterfaceView, EditSubInterfaceView) {
+		routerInterfacesTemplate, interfaceRowTemplate
+		) {
 
 	return Backbone.View.extend({
 
@@ -64,38 +61,6 @@ define([
 			if (!window.user.isReadWrite()) {
 				this.$("#interfaces button").remove();
 			}
-			this.$("#interfaces button.add").off().on("click", function() {
-				var id = $(this).closest("tr").data("interface");
-				var addView = new AddSubInterfaceView({
-					network: that.network,
-					router: that.router,
-					mapView: that.mapView,
-					mother: that.interfaces.get(id)
-				});
-				return false;
-			});
-			this.$("#interfaces button.destroy").off().on("click", function() {
-				var id = $(this).closest("tr").data("interface");
-				var deleteView = new DeleteSubInterfaceView({
-					network: that.network,
-					router: that.router,
-					mapView: that.mapView,
-					model: that.interfaces.get(id)
-				});
-				return false;
-			});
-			this.$("#interfaces button.edit").off().on("click", function() {
-				var id = $(this).closest("tr").data("interface");
-				var editView = new EditSubInterfaceView({
-					network: that.network,
-					router: that.router,
-					mapView: that.mapView,
-					model: that.interfaces.get(id)
-				});
-				return false;
-			});
 		}
-		
-
 	});
 });

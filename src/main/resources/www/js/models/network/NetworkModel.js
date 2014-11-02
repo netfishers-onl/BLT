@@ -2,8 +2,7 @@ define([
 	'underscore',
 	'backbone',
 	'models/network/SnmpCommunityCollection',
-	'models/network/SshAccountCollection'
-], function(_, Backbone, SnmpCommunityCollection, SshAccountCollection) {
+], function(_, Backbone, SnmpCommunityCollection) {
 
 	return Backbone.Model.extend({
 
@@ -16,10 +15,6 @@ define([
 			return new SnmpCommunityCollection(this.get('snmpCommunities'), { network: this.get('id') });
 		},
 		
-		getSshAccounts: function() {
-			return new SshAccountCollection(this.get('sshAccounts'), { network: this.get('id') });
-		}
-
 	});
 
 });

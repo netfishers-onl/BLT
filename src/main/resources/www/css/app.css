@@ -75,6 +75,10 @@ body {
 	display: none;
 }
 
+.table-condensed {
+	font-size: 11px;
+}
+
 table.simple th {
 	padding-right: 20px;
 }
@@ -107,8 +111,8 @@ table.simple th {
 
 #diagrambox {
 	position: absolute;
-	/*width: 600px;*/
-	width: 1000px;
+	width: 600px;
+	/*width: 1000px;*/
 	bottom: 10px;
 	left: 10px;
 	top: 65px;
@@ -197,7 +201,7 @@ table.simple th {
 	opacity: 0.8;
 	filter: alpha(opacity = 80);
 	background-color: white;
-	font-size: 13px;
+	font-size: 10px;
 	font-weight: bold;
 	-webkit-transition: background-color 0.25s ease-in;
 	-moz-transition: background-color 0.25s ease-in;
@@ -411,8 +415,7 @@ table.simple th {
 #routerbox {
 	position: absolute;
 	bottom: 10px;
-	/* left: 664px; */
-	left: 1100px;
+	left: 664px;
 	top: 65px;
 	right: 10px;
 	overflow: auto;
@@ -421,8 +424,7 @@ table.simple th {
 #editbox {
 	position: absolute;
 	bottom: 10px;
-	/* left: 664px; */
-	left: 1000px;
+	left: 664px;
 	top: 65px;
 	right: 10px;
 	overflow: auto;

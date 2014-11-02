@@ -3,90 +3,6 @@
    <networks>
       <network id="1">
          <routers>
-            <router id="1">
-               <name>169.254.0.87</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>169.254.0.87</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
-               </routerId>
-               <x>812</x>
-               <y>724</y>
-            </router>
-            <router id="2">
-               <name>169.254.0.88</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>169.254.0.88</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
-               </routerId>
-               <x>850</x>
-               <y>532</y>
-            </router>
-            <router id="3">
-               <name>R377</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>169.254.0.77</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
-               </routerId>
-               <x>479</x>
-               <y>473</y>
-            </router>
-            <router id="4">
-               <name>169.254.0.78</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>169.254.0.78</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
-               </routerId>
-               <x>602</x>
-               <y>745</y>
-            </router>
-            <router id="5">
-               <name>R385</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>169.254.0.85</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
-               </routerId>
-               <x>455</x>
-               <y>41</y>
-            </router>
-            <router id="6">
-               <name>169.254.0.79</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>169.254.0.79</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
-               </routerId>
-               <x>220</x>
-               <y>89</y>
-            </router>
-            <router id="7">
-               <name>R390</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>169.254.0.90</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
-               </routerId>
-               <x>608</x>
-               <y>332</y>
-            </router>
             <router id="8">
                <name>xrv1</name>
                <needTeRefresh>true</needTeRefresh>
@@ -99,113 +15,41 @@
                <x>21</x>
                <y>171</y>
             </router>
-            <router id="9">
-               <name>169.254.0.86 is DR</name>
+            <router id="18">
+               <name>Unknown</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
                   <autonomousSystem>65000</autonomousSystem>
-                  <identifier>169.254.0.86</identifier>
+                  <identifier>10.0.0.3</identifier>
                   <lsIdentifier>167772161</lsIdentifier>
                </routerId>
-               <x>599</x>
-               <y>180</y>
+               <x>0</x>
+               <y>0</y>
             </router>
-            <router id="10">
-               <name>169.254.0.80</name>
+            <router id="19">
+               <name>Unknown</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
                   <autonomousSystem>65000</autonomousSystem>
-                  <identifier>169.254.0.80</identifier>
+                  <identifier>10.0.0.4</identifier>
                   <lsIdentifier>167772161</lsIdentifier>
                </routerId>
-               <x>59</x>
-               <y>576</y>
+               <x>0</x>
+               <y>0</y>
             </router>
-            <router id="11">
-               <name>R381</name>
+            <router id="20">
+               <name>Unknown</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
                   <autonomousSystem>65000</autonomousSystem>
-                  <identifier>169.254.0.81</identifier>
+                  <identifier>10.0.0.2</identifier>
                   <lsIdentifier>167772161</lsIdentifier>
                </routerId>
-               <x>28</x>
-               <y>380</y>
-            </router>
-            <router id="12">
-               <name>R389</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>169.254.0.89</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
-               </routerId>
-               <x>855</x>
-               <y>363</y>
-            </router>
-            <router id="13">
-               <name>R384</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>169.254.0.84</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
-               </routerId>
-               <x>785</x>
-               <y>26</y>
-            </router>
-            <router id="14">
-               <name>R383</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>169.254.0.83</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
-               </routerId>
-               <x>26</x>
-               <y>774</y>
-            </router>
-            <router id="15">
-               <name>R382</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>169.254.0.82</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
-               </routerId>
-               <x>186</x>
-               <y>780</y>
-            </router>
-            <router id="16">
-               <name>R376</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>169.254.0.76</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
-               </routerId>
-               <x>363</x>
-               <y>724</y>
-            </router>
-            <router id="17">
-               <name>R375</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>169.254.0.75</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
-               </routerId>
-               <x>230</x>
-               <y>356</y>
+               <x>0</x>
+               <y>0</y>
             </router>
          </routers>
          <bgpAs>65000</bgpAs>

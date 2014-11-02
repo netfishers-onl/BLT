@@ -19,6 +19,7 @@ define([
 				return "?";
 			}
 			else {
+				name = name.replace(/^Ethernet/, "Eth");
 				name = name.replace(/GigabitEthernet/, "Gi");
 				name = name.replace(/Bundle-Ether/, "BE");
 				name = name.replace(/TenGigE/, "Te");

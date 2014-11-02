@@ -5,12 +5,8 @@ define([
 	'jsplumb',
 	'text!templates/map/router.html',
 	'views/map/RouterInterfacesView',
-	'views/map/RouterPathsView',
-	'views/map/RouterTeTunnelsView',
-	'views/map/RouterRoutingView',
 	'bootstrap'
-], function($, _, Backbone, jsPlumb, routerTemplate, RouterInterfacesView, RouterPathsView,
-		RouterTeTunnelsView, RouterRoutingView) {
+], function($, _, Backbone, jsPlumb, routerTemplate, RouterInterfacesView) {
 
 	return Backbone.View.extend({
 
@@ -63,39 +59,6 @@ define([
 				that.saveTab();
 				return false;
 			});
-			this.$("#goto-paths").off('click').on('click', function() {
-				that.sectionView = new RouterPathsView({
-					network: that.network,
-					router: that.router,
-					mapView: that.mapView
-				});
-				$(this).closest('li').siblings().removeClass("active");
-				$(this).closest('li').addClass("active");
-				that.saveTab();
-				return false;
-			});
-			this.$("#goto-tetunnels").off('click').on('click', function() {
-				that.sectionView = new RouterTeTunnelsView({
-					network: that.network,
-					router: that.router,
-					mapView: that.mapView
-				});
-				$(this).closest('li').siblings().removeClass("active");
-				$(this).closest('li').addClass("active");
-				that.saveTab();
-				return false;
-			});
-			this.$("#goto-routing").off('click').on('click', function() {
-				that.sectionView = new RouterRoutingView({
-					network: that.network,
-					router: that.router,
-					mapView: that.mapView
-				});
-				$(this).closest('li').siblings().removeClass("active");
-				$(this).closest('li').addClass("active");
-				that.saveTab();
-				return false;
-			});
 			this.$("#remove").off().on("click", function() {
 				that.router.destroy().done(function() {
 					that.onDelete();
@@ -110,7 +73,5 @@ define([
 		close: function() {
 			this.$el.html("");
 		}
-		
-
 	});
 });

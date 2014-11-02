@@ -257,13 +257,11 @@ define([
 			}).prop('disabled', false);
 			
 			this.$("#map-toolbar #zoomin").click(function() {
-//				that.setZoom(that.zoom * 2);
 				that.setZoom(that.zoom * 1.1);
 				return false;
 			});
 			
 			this.$("#map-toolbar #zoomout").click(function() {
-//				that.setZoom(that.zoom * 0.5);
 				that.setZoom(that.zoom * 0.9);
 				return false;
 			});

@@ -52,11 +52,6 @@ define([
 				return false;
 			});
 			this.globalStatus = new ServerStatusModel();
-			/*this.globalStatus.fetch().done(function() {
-				if (that.globalStatus.get("licensed") === false) {
-					that.$("#licenseissue").show();
-				}
-			});*/
 			return this;
 		},
 		
