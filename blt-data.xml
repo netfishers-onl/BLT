@@ -3,49 +3,49 @@
    <networks>
       <network id="1">
          <routers>
-            <router id="8">
-               <name>xrv1</name>
+            <router id="21">
+               <name>0904</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
                   <autonomousSystem>65000</autonomousSystem>
-                  <identifier>10.0.0.1</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
-               </routerId>
-               <x>21</x>
-               <y>171</y>
-            </router>
-            <router id="18">
-               <name>Unknown</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>10.0.0.3</identifier>
+                  <identifier>0000.0000.0904</identifier>
                   <lsIdentifier>167772161</lsIdentifier>
                </routerId>
                <x>0</x>
                <y>0</y>
             </router>
-            <router id="19">
-               <name>Unknown</name>
+            <router id="22">
+               <name>0903</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
                   <autonomousSystem>65000</autonomousSystem>
-                  <identifier>10.0.0.4</identifier>
+                  <identifier>0000.0000.0903</identifier>
                   <lsIdentifier>167772161</lsIdentifier>
                </routerId>
                <x>0</x>
                <y>0</y>
             </router>
-            <router id="20">
-               <name>Unknown</name>
+            <router id="23">
+               <name>0902</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
                   <autonomousSystem>65000</autonomousSystem>
-                  <identifier>10.0.0.2</identifier>
+                  <identifier>0000.0000.0902</identifier>
+                  <lsIdentifier>167772161</lsIdentifier>
+               </routerId>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="24">
+               <name>0901</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>0000.0000.0901</identifier>
                   <lsIdentifier>167772161</lsIdentifier>
                </routerId>
                <x>0</x>
