@@ -11,6 +11,7 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import onl.netfishers.blt.bgp.BgpService;
+import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsProtocolId;
 import onl.netfishers.blt.topology.TopologyService.TopologyException;
 import onl.netfishers.blt.topology.net.Router.RouterIdentifier;
 
@@ -34,7 +35,6 @@ public class Network {
 	private Set<Link> links = new CopyOnWriteArraySet<Link>();
 
 	private Set<SnmpCommunity> snmpCommunities = new CopyOnWriteArraySet<SnmpCommunity>();
-	//private Set<SshAccount> sshAccounts = new CopyOnWriteArraySet<SshAccount>();
 
 	private Ipv4Subnet bgpPeer;
 	private int bgpAs;
@@ -122,33 +122,6 @@ public class Network {
 		}
 		return null;
 	}
-
-	/*@XmlElementWrapper
-	@XmlElement(name = "sshAccount")
-	public Set<SshAccount> getSshAccounts() {
-		return sshAccounts;
-	}
-
-	public void setSshAccounts(Set<SshAccount> accounts) {
-		this.sshAccounts = accounts;
-	}
-
-	public void addAccount(SshAccount account) throws TopologyException {
-		if (!this.sshAccounts.add(account)) {
-			throw new TopologyException(
-					String.format("An account already exists for this subnet %s.",
-							account.getSubnet().toString()));
-		}
-	}
-
-	public SshAccount getAccountById(long id) {
-		for (SshAccount account : sshAccounts) {
-			if (account.getId() == id) {
-				return account;
-			}
-		}
-		return null;
-	}*/
 
 	@XmlElementWrapper
 	@XmlElement(name = "snmpCommunity")
@@ -241,15 +214,21 @@ public class Network {
 		for (Link link : links) {
 			for (Router router : routers) {
 				if (router.getRouterId().equals(link.getLocalRouter())) {
-					RouterInterface routerInterface = router.getRouterInterfaceBySubnet(link.getLocalAddress());
-					if (routerInterface != null) {
-						link.setLocalInterfaceName(routerInterface.getName());
+					if (link.getProtocolId() == BgpLsProtocolId.OSPF) {
+						OspfLink ospfLink = (OspfLink) link;
+						RouterInterface routerInterface = router.getRouterInterfaceBySubnet(ospfLink.getLocalAddress());
+						if (routerInterface != null) {
+							ospfLink.setLocalInterfaceName(routerInterface.getName());
+						}
 					}
 				}
 				if (router.getRouterId().equals(link.getRemoteRouter())) {
-					RouterInterface routerInterface = router.getRouterInterfaceBySubnet(link.getRemoteAddress());
-					if (routerInterface != null) {
-						link.setRemoteInterfaceName(routerInterface.getName());
+					if (link.getProtocolId() == BgpLsProtocolId.OSPF) {
+						OspfLink ospfLink = (OspfLink) link;
+						RouterInterface routerInterface = router.getRouterInterfaceBySubnet(ospfLink.getRemoteAddress());
+						if (routerInterface != null) {
+							ospfLink.setRemoteInterfaceName(routerInterface.getName());
+						}
 					}
 				}
 			}

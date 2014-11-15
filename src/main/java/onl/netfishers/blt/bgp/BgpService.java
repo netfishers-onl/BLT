@@ -22,9 +22,11 @@ import onl.netfishers.blt.bgp.net.attributes.MultiProtocolNLRIInformation;
 import onl.netfishers.blt.bgp.net.attributes.PathAttribute;
 import onl.netfishers.blt.bgp.net.attributes.PathAttributeType;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsIPTopologyPrefixNLRI;
+import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsLinkDescriptor;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsLinkNLRI;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsNodeDescriptor;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsNodeNLRI;
+import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsProtocolId;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.IPPrefix;
 import onl.netfishers.blt.bgp.net.capabilities.Capability;
 import onl.netfishers.blt.bgp.net.capabilities.MultiProtocolCapability;
@@ -37,10 +39,11 @@ import onl.netfishers.blt.tasks.TaskManager;
 import onl.netfishers.blt.topology.TopologyService;
 import onl.netfishers.blt.topology.net.Ipv4Route;
 import onl.netfishers.blt.topology.net.Ipv4Subnet;
+import onl.netfishers.blt.topology.net.IsisLink;
 import onl.netfishers.blt.topology.net.Link;
 import onl.netfishers.blt.topology.net.Network;
+import onl.netfishers.blt.topology.net.OspfLink;
 import onl.netfishers.blt.topology.net.Router;
-import onl.netfishers.blt.topology.net.RouterInterface;
 import onl.netfishers.blt.topology.net.Router.RouterIdentifier;
 
 import org.quartz.ObjectAlreadyExistsException;
@@ -209,6 +212,8 @@ public class BgpService {
 								 */
 								router.setName(router.getRouterId().toString().replace("0000.", ""));
 								
+								/*System.out.println("local node descriptor: "+routerId.getIdentifier().toString());
+								System.out.println("local node name: "+router.getName());*/
 								router.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
 								router.setNeedTeRefresh(true);
 								toSave = true;
@@ -221,26 +226,63 @@ public class BgpService {
 							BgpLsLinkNLRI linkNlri = (BgpLsLinkNLRI) nlri;
 							BgpLsNodeDescriptor localNode = linkNlri.getLocalNodeDescriptors();
 							BgpLsNodeDescriptor remoteNode = linkNlri.getRemoteNodeDescriptors();
+							//--> provoque une erreur 
+							/*BgpLsLinkDescriptor linkDescr = linkNlri.getLinkDescriptors();
+							System.out.println(linkDescr.getLinkLocalIdentifier()+"/"+linkDescr.getLinkRemoteIdentifier());*/
+							//System.out.println(linkNlri.getLinkDescriptors().getLinkLocalIdentifier());
+							//System.out.println(linkNlri.getLocalNodeDescriptors().getBgpLsIdentifier());
 							try {
 								RouterIdentifier localId = new RouterIdentifier(
 								    localNode.getIgpRouterId(),
 								    localNode.getAutonomousSystem(), localNode.getAreaId(),
 								    localNode.getBgpLsIdentifier());
-								//System.out.println("local node descriptor: "+localId.getIdentifier().toString());
+								//System.out.println("Protocol Id: "+linkNlri.getProtocolId().toString());
 								RouterIdentifier remoteId = new RouterIdentifier(
 								    remoteNode.getIgpRouterId(),
 								    remoteNode.getAutonomousSystem(), remoteNode.getAreaId(),
 								    remoteNode.getBgpLsIdentifier());
-								Link link = new Link(localId, remoteId, 
-											new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors().getIPv4InterfaceAddress(),32),
-										    new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors().getIPv4NeighborAddress(), 32));
+								//System.out.println("remote node descriptor: "+remoteId.getIdentifier().toString());
+								Link link = new Link(localId, remoteId); 
+								/*		new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors().getIPv4InterfaceAddress(),32),
+									    new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors().getIPv4NeighborAddress(), 32));*/
 								Router localRouter = network.findOrAddRouter(localId);
 								localRouter.setNeedTeRefresh(true);
 								Router remoteRouter = network.findOrAddRouter(remoteId);
 								remoteRouter.setNeedTeRefresh(true);
-								link = network.findOrAddLink(link);
-								link.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
+								/*link = network.findOrAddLink(link);
+								link.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);*/
+								/*if (localNode.getIgpRouterId().length == BgpLsNodeDescriptor.IGPROUTERID_OSPFROUTERID_LENGTH || 
+								localNode.getIgpRouterId().length == BgpLsNodeDescriptor.IGPROUTERID_OSPFPSEUDONODE_LENGTH) {
+								 */
+								if (linkNlri.getProtocolId() == BgpLsProtocolId.OSPF ) {
+									OspfLink ospfLink = (OspfLink) link;
+									ospfLink.setLocalAddress(new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors().getIPv4InterfaceAddress(),32));
+									ospfLink.setRemoteAddress(new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors().getIPv4NeighborAddress(), 32));
+									ospfLink = (OspfLink) network.findOrAddLink(ospfLink);
 
+							
+							
+								} else if (linkNlri.getProtocolId() == BgpLsProtocolId.ISIS_Level1 || linkNlri.getProtocolId() == BgpLsProtocolId.ISIS_Level2) {
+								/*localNode.getIgpRouterId().length == BgpLsNodeDescriptor.IGPROUTERID_ISISISONODEID_LENGTH ||
+								localNode.getIgpRouterId().length == BgpLsNodeDescriptor.IGPROUTERID_ISISPSEUDONODE_LENGTH) {*/
+									/*System.out.println("c'est bien de l'ISIS...");
+									System.out.println("zéro...");*/
+									IsisLink isisLink = new IsisLink(); 
+//									System.out.println("et un...");
+									isisLink.setLocalRouter(link.getLocalRouter());
+									isisLink.setRemoteRouter(link.getRemoteRouter());
+//									System.out.println("et deux...");
+									//==> provoque une erreur : System.out.println(linkNlri.getLinkDescriptors().getLinkLocalIdentifier());
+									//isisLink.setLocalIdentifier(linkDescriptors.getLinkLocalIdentifier());
+//									System.out.println("et trois...");
+									/*isisLink.setRemoteIdentifier(linkNlri.getLinkDescriptors().getLinkRemoteIdentifier());
+									isisLink.setProtocolId(linkNlri.getProtocolId());
+									System.out.println("et quatre...");*/
+									isisLink = (IsisLink) network.findOrAddLink(isisLink);
+
+									/*System.out.println("Local link Id: "+isisLink.getLocalIdentifier());
+								System.out.println("Remote link Id: "+isisLink.getRemoteIdentifier());*/
+								}
 								if (lsAttribute != null) {
 									if (lsAttribute.isValidAdminGroup()) {
 										link.setAdminGroup(lsAttribute.getAdminGroup());
@@ -267,9 +309,11 @@ public class BgpService {
 										link.getSharedRiskLinkGroups().addAll(lsAttribute.getSharedRiskLinkGroups());
 									}
 								}
+								
 							}
 							catch (Exception e) {
-								logger.warn("Invalid node, referenced by a link");
+								logger.warn("Doesn't know how to handle this link Id :");
+								e.printStackTrace();
 							}
 						}
 						else if (nlri instanceof BgpLsIPTopologyPrefixNLRI) {

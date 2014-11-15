@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsProtocolId;
 import onl.netfishers.blt.topology.net.Router.RouterIdentifier;
 
 @XmlRootElement
@@ -21,9 +22,8 @@ public class Link {
 	private RouterIdentifier localRouter;
 	private RouterIdentifier remoteRouter;
 	private String localInterfaceName;
-	private Ipv4Subnet localAddress;
-	private Ipv4Subnet remoteAddress;
 	private String remoteInterfaceName;
+	private BgpLsProtocolId protocolId;
 
 	private boolean lost = true;
 
@@ -31,7 +31,6 @@ public class Link {
 	private float maxLinkBandwidth;
 	private float maxReservableLinkBandwidth;
 	private float[] unreservedBandwidth;
-	//add support for TE metric
 	private int teDefaultMetric;
 	private int metric;
 	
@@ -40,14 +39,19 @@ public class Link {
 	protected Link() {
 
 	}
-
-	public Link(RouterIdentifier localRouter, RouterIdentifier remoteRouter,
+	
+	/*public Link(RouterIdentifier localRouter, RouterIdentifier remoteRouter,
 			Ipv4Subnet localAddress, Ipv4Subnet remoteAddress) {
 		super();
 		this.localRouter = localRouter;
 		this.remoteRouter = remoteRouter;
 		this.localAddress = localAddress;
 		this.remoteAddress = remoteAddress;
+	}*/
+	public Link(RouterIdentifier localRouter, RouterIdentifier remoteRouter) {
+		super();
+		this.localRouter = localRouter;
+		this.remoteRouter = remoteRouter;
 	}
 	
 	@XmlAttribute
@@ -80,7 +84,7 @@ public class Link {
 		this.remoteRouter = remoteRouter;
 	}
 
-	@XmlElement
+	/*@XmlElement
 	public Ipv4Subnet getLocalAddress() {
 		return localAddress;
 	}
@@ -97,7 +101,7 @@ public class Link {
 	public void setRemoteAddress(Ipv4Subnet remoteAddress) {
 		this.remoteAddress = remoteAddress;
 	}
-
+*/
 
 	@XmlElement
 	public boolean isLost() {
@@ -113,17 +117,16 @@ public class Link {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((localAddress == null) ? 0 : localAddress.hashCode());
+		/*result = prime * result
+				+ ((localAddress == null) ? 0 : localAddress.hashCode());*/
 		result = prime * result
 				+ ((localRouter == null) ? 0 : localRouter.hashCode());
-		result = prime * result
-				+ ((remoteAddress == null) ? 0 : remoteAddress.hashCode());
+		/*result = prime * result
+				+ ((remoteAddress == null) ? 0 : remoteAddress.hashCode());*/
 		result = prime * result
 				+ ((remoteRouter == null) ? 0 : remoteRouter.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -134,24 +137,26 @@ public class Link {
 		if (getClass() != obj.getClass())
 			return false;
 		Link other = (Link) obj;
-		if (localAddress == null) {
+		/*if (localAddress == null) {
 			if (other.localAddress != null)
 				return false;
 		}
 		else if (!localAddress.equals(other.localAddress))
 			return false;
+		*/
 		if (localRouter == null) {
 			if (other.localRouter != null)
 				return false;
 		}
 		else if (!localRouter.equals(other.localRouter))
 			return false;
-		if (remoteAddress == null) {
+		/*if (remoteAddress == null) {
 			if (other.remoteAddress != null)
 				return false;
 		}
 		else if (!remoteAddress.equals(other.remoteAddress))
 			return false;
+		*/
 		if (remoteRouter == null) {
 			if (other.remoteRouter != null)
 				return false;
@@ -160,7 +165,7 @@ public class Link {
 			return false;
 		return true;
 	}
-
+	
 	@XmlElement
 	public long getAdminGroup() {
 		return adminGroup;
@@ -240,4 +245,17 @@ public class Link {
 		this.remoteInterfaceName = remoteInterfaceName;
 	}
 
+	/**
+	 * @return the protocolId
+	 */
+	public BgpLsProtocolId getProtocolId() {
+		return protocolId;
+	}
+
+	/**
+	 * @param protocolId the protocolId to set
+	 */
+	public void setProtocolId(BgpLsProtocolId protocolId) {
+		this.protocolId = protocolId;
+	}
 }

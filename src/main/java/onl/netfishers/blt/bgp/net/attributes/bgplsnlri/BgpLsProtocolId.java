@@ -28,7 +28,8 @@ public enum BgpLsProtocolId {
 	ISIS_Level2,
 	OSPF,
 	Direct,
-	Static;
+	Static,
+	OSPFv3;
 	
 	/**
 	 * Coverts the protocol id to an integer value
@@ -48,6 +49,8 @@ public enum BgpLsProtocolId {
 			return 4;
 		case Static:
 			return 5;
+		case OSPFv3:
+			return 6;
 		default:
 			throw new IllegalArgumentException("unknown protocol-id : " + this);
 		}
@@ -72,6 +75,8 @@ public enum BgpLsProtocolId {
 			return Direct;
 		case 5:
 			return Static;
+		case 6:
+			return OSPFv3;
 		default:
 			throw new IllegalArgumentException("unknown protocol id : " + code);
 		}
@@ -95,6 +100,8 @@ public enum BgpLsProtocolId {
 			return "Direct";
 		case Static:
 			return "Static";
+		case OSPFv3:
+			return "OSPFv3";
 		default:
 			throw new IllegalArgumentException("invalid protocol id : " + this);
 		}

@@ -1,15 +1,10 @@
 package onl.netfishers.blt.topology.net;
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSeeAlso;
-
 import org.eclipse.persistence.oxm.annotations.XmlDiscriminatorNode;
 import org.eclipse.persistence.oxm.annotations.XmlDiscriminatorValue;
 
@@ -17,7 +12,6 @@ import org.eclipse.persistence.oxm.annotations.XmlDiscriminatorValue;
 @XmlDiscriminatorValue("Ethernet")
 @XmlRootElement()
 @XmlAccessorType(value = XmlAccessType.NONE)
-//@XmlSeeAlso({ TeTunnel.class, P2pTeTunnel.class, P2mpTeTunnel.class })
 public class RouterInterface {
 
 	public static enum RouterInterfaceType {

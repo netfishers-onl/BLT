@@ -1,79 +1,256 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <topology>
    <networks>
-      <network id="1">
+      <network id="2">
          <routers>
-            <router id="21">
-               <name>0904</name>
+            <router id="1">
+               <name>1692.5400.0015</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>0000.0000.0904</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0015</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
                <x>0</x>
                <y>0</y>
             </router>
-            <router id="22">
-               <name>0903</name>
+            <router id="2">
+               <name>1692.5400.0017</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>0000.0000.0903</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0017</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
                <x>0</x>
                <y>0</y>
             </router>
-            <router id="23">
-               <name>0902</name>
+            <router id="3">
+               <name>1692.5400.0012</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>0000.0000.0902</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0012</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
                <x>0</x>
                <y>0</y>
             </router>
-            <router id="24">
-               <name>0901</name>
+            <router id="4">
+               <name>1692.5400.0001</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>0000.0000.0901</identifier>
-                  <lsIdentifier>167772161</lsIdentifier>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0001</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
+               </routerId>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="5">
+               <name>1692.5400.0004</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0004</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
+               </routerId>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="6">
+               <name>1692.5400.0018</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0018</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
+               </routerId>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="7">
+               <name>1692.5400.0019</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0019</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
+               </routerId>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="8">
+               <name>1692.5400.0002</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0002</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
+               </routerId>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="9">
+               <name>1692.5400.0014</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0014</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
+               </routerId>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="10">
+               <name>1692.5400.0016</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0016</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
+               </routerId>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="11">
+               <name>1692.5400.0007</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0007</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
+               </routerId>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="12">
+               <name>1692.5400.0008</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0008</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
+               </routerId>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="13">
+               <name>1692.5400.0011</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0011</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
+               </routerId>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="14">
+               <name>1692.5400.0020</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0020</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
+               </routerId>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="15">
+               <name>1692.5400.0006</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0006</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
+               </routerId>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="16">
+               <name>1692.5400.0003</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0003</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
+               </routerId>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="17">
+               <name>1692.5400.0009</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0009</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
+               </routerId>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="18">
+               <name>1692.5400.0005</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0005</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
+               </routerId>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="19">
+               <name>1692.5400.0013</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0013</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
+               </routerId>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="20">
+               <name>1692.5400.0010</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>1692.5400.0010</identifier>
+                  <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
                <x>0</x>
                <y>0</y>
             </router>
          </routers>
-         <bgpAs>65000</bgpAs>
+         <bgpAs>1</bgpAs>
          <bgpPeer>
-            <ip>192.168.100.101</ip>
+            <ip>10.60.0.228</ip>
             <prefixLength>32</prefixLength>
          </bgpPeer>
-         <name>Universal Network</name>
-         <snmpCommunities>
-            <snmpCommunity id="1">
-               <community>PLUMBER</community>
-               <subnet>
-                  <ip>10.0.0.0</ip>
-                  <prefixLength>29</prefixLength>
-               </subnet>
-            </snmpCommunity>
-            <snmpCommunity id="2">
-               <community>PLUMBER</community>
-               <subnet>
-                  <ip>169.254.0.0</ip>
-                  <prefixLength>24</prefixLength>
-               </subnet>
-            </snmpCommunity>
-         </snmpCommunities>
+         <name>CML Lab</name>
+         <snmpCommunities/>
       </network>
    </networks>
    <users>

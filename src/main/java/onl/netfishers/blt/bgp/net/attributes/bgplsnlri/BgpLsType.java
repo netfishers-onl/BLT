@@ -21,7 +21,9 @@ package onl.netfishers.blt.bgp.net.attributes.bgplsnlri;
  * attributes associated with BGP link-state data. 
  * The TLV/sub-tlv types are based on draft-ietf-idr-ls-distribution-01
  * @author nitinb
- *
+ * 
+ * add some definitions coming from up to date draft-ietf-idr-ls-distribution-06
+ * @author amoretti
  */
 public enum BgpLsType {
 	LocalNodeDescriptors,
@@ -115,6 +117,8 @@ public enum BgpLsType {
 			return 1030;
 		case RemoteNodeIPv6RouterID:
 			return 1031;
+		//case LinkLocalRemoteIdentifiers:
+			//return 1032;
 		case AdministrativeGroup:
 			return 1088;
 		case MaximumLinkBandwith:
