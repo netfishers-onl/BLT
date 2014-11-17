@@ -43,7 +43,7 @@ public enum BgpLsType {
 	NodeFlagBits,
 	OpaqueNodeProperties,
 	NodeName,
-	ISISAreaIdentifier,
+	IsisAreaIdentifier,
 	LocalNodeIPv4RouterID,
 	LocalNodeIPv6RouterID,
 	RemoteNodeIPv4RouterID,
@@ -107,7 +107,7 @@ public enum BgpLsType {
 			return 1025;
 		case NodeName:
 			return 1026;
-		case ISISAreaIdentifier:
+		case IsisAreaIdentifier:
 			return 1027;
 		case LocalNodeIPv4RouterID:
 			return 1028;
@@ -200,7 +200,7 @@ public enum BgpLsType {
 		case 1026:
 			return NodeName;
 		case 1027:
-			return ISISAreaIdentifier;
+			return IsisAreaIdentifier;
 		case 1028:
 			return LocalNodeIPv4RouterID;
 		case 1029:
@@ -288,7 +288,7 @@ public enum BgpLsType {
 			return "Opaque Router Properties";
 		case NodeName:
 			return "Router Name";
-		case ISISAreaIdentifier:
+		case IsisAreaIdentifier:
 			return "IS-IS Area Identifier";
 		case LocalNodeIPv4RouterID:
 			return "IPv4 Router-ID of Local Router";

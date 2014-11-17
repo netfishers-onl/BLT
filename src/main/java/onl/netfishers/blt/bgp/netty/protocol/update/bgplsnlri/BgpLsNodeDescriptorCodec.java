@@ -68,8 +68,6 @@ public class BgpLsNodeDescriptorCodec {
 		}
 	}
 	
-
-
 	/**
 	 * Decodes autonomous system sub-tlv
 	 * @param buffer Data stream containing the sub-tlv

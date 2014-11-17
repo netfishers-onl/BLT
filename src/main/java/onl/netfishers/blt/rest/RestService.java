@@ -8,10 +8,6 @@ import java.util.Set;
 //import java.util.regex.Matcher;
 //import java.util.regex.Pattern;
 
-
-
-
-
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
 import javax.servlet.http.HttpServletRequest;
@@ -46,7 +42,7 @@ import onl.netfishers.blt.topology.net.Link;
 import onl.netfishers.blt.topology.net.Network;
 import onl.netfishers.blt.topology.net.Router;
 import onl.netfishers.blt.topology.net.RouterInterface;
-import onl.netfishers.blt.topology.net.SnmpCommunity;
+//import onl.netfishers.blt.topology.net.SnmpCommunity;
 
 import org.eclipse.persistence.jaxb.JAXBContextProperties;
 import org.glassfish.grizzly.http.server.CLStaticHttpHandler;
@@ -481,7 +477,7 @@ public class RestService extends Thread {
 
 
 
-	@XmlRootElement
+	/*@XmlRootElement
 	@XmlAccessorType(XmlAccessType.NONE)
 	public static class RsSnmpCommunity {
 		private String subnet;
@@ -500,10 +496,10 @@ public class RestService extends Thread {
 		public void setCommunity(String community) {
 			this.community = community;
 		}
-	}
+	}*/
 
 
-	@POST
+	/*@POST
 	@Path("networks/{nid}/communities")
 	@RolesAllowed("admin")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -539,11 +535,11 @@ public class RestService extends Thread {
 			throw new BltBadRequestException(e.getMessage(),
 					BltBadRequestException.INVALID_SNMP_COMMUNITY);
 		}
-	}
+	}*/
 
 
 
-	@DELETE
+	/*@DELETE
 	@Path("networks/{nid}/communities/{id}")
 	@RolesAllowed("admin")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -559,7 +555,7 @@ public class RestService extends Thread {
 					BltBadRequestException.UNKNOWN_SNMP_COMMUNITY);
 		}
 		TopologyService.getService().removeSnmpCommunity(community);
-	}	
+	}	*/
 
 	@GET
 	@Path("networks/{nid}/routers/{rid}")
@@ -823,7 +819,7 @@ public class RestService extends Thread {
 		return router.getIpv4IgpRoutes();
 	}
 
-	@GET
+	/*@GET
 	@Path("networks/{nid}/routers/{rid}/ipv4staticroutes")
 	@RolesAllowed("readonly")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -863,7 +859,7 @@ public class RestService extends Thread {
 		public void setNext(String next) {
 			this.next = next;
 		}
-	}
+	}*/
 
 	@GET
 	@Path("tasks/{id}")

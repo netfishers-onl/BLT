@@ -76,7 +76,7 @@ public class LinkStateAttribute extends PathAttribute {
 	private boolean validRouteTag = false;
 	private boolean validPrefixMetric = false;
 
-	private boolean validISISAreaIdentifiers = false;
+	private boolean validIsisAreaIdentifiers = false;
 	private boolean validLocalNodeIPv4RouterIDs = false;
 	private boolean validLocalNodeIPv6RouterIDs = false;
 	private boolean validRemoteNodeIPv4RouterIDs = false;
@@ -111,10 +111,10 @@ public class LinkStateAttribute extends PathAttribute {
 	public String getNodeName() {
 		return nodeName;
 	}
-
 	public void setNodeName(String nodeName) {
 		this.nodeName = nodeName;
 	}
+
 
 	public List<byte[]> getIsisAreaIdentifiers() {
 		return isisAreaIdentifiers;
@@ -122,7 +122,12 @@ public class LinkStateAttribute extends PathAttribute {
 
 	public void setIsisAreaIdentifiers(List<byte[]> isisAreaIdentifiers) {
 		this.isisAreaIdentifiers = isisAreaIdentifiers;
-		this.validISISAreaIdentifiers = true;
+		this.validIsisAreaIdentifiers = true;
+	}
+
+	public void addIsisAreaIdentifier(byte[] isisAreaIdentifier) {
+		this.isisAreaIdentifiers.add(isisAreaIdentifier);
+		this.validIsisAreaIdentifiers = true;
 	}
 
 
@@ -631,8 +636,8 @@ public class LinkStateAttribute extends PathAttribute {
 		this.validSharedRiskLinkGroups = true;
 	}
 
-	public boolean isValidISISAreaIdentifiers() {
-		return validISISAreaIdentifiers;
+	public boolean isValidIsisAreaIdentifiers() {
+		return validIsisAreaIdentifiers;
 	}
 
 	public boolean isValidLocalNodeIPv4RouterIDs() {

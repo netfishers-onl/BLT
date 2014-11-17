@@ -33,15 +33,12 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-//import javax.enterprise.event.Event;
-
-
-
-import onl.netfishers.blt.bgp.config.Configuration;
 import onl.netfishers.blt.bgp.config.ModifiableConfiguration;
 import onl.netfishers.blt.bgp.config.nodes.PeerConfiguration;
 import onl.netfishers.blt.bgp.config.nodes.RoutingProcessorConfiguration;
 import onl.netfishers.blt.bgp.config.nodes.ServerConfiguration;
+//import javax.enterprise.event.Event;
+import onl.netfishers.blt.bgp.config.Configuration;
 
 /**
  * @author Rainer Bieniek (Rainer.Bieniek@web.de)

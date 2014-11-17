@@ -17,8 +17,6 @@
  */
 package onl.netfishers.blt.bgp.config.nodes;
 
-import onl.netfishers.blt.bgp.config.nodes.Capabilities;
-
 import org.apache.commons.configuration.ConfigurationException;
 
 /**

@@ -221,4 +221,5 @@ public class BgpLsLinkDescriptorCodec {
 			throw new OptionalAttributeErrorException();
 		}
 	}
+	
 }

@@ -18,9 +18,9 @@ package onl.netfishers.blt.bgp.netty.protocol.update.bgplsnlri;
 
 import onl.netfishers.blt.bgp.net.AddressFamily;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsPrefixDescriptor;
+import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsPrefixDescriptor.OspfRouteType;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsType;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.IPPrefix;
-import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsPrefixDescriptor.OspfRouteType;
 import onl.netfishers.blt.bgp.netty.protocol.update.OptionalAttributeErrorException;
 
 import org.jboss.netty.buffer.ChannelBuffer;

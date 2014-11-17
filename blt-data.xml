@@ -4,7 +4,7 @@
       <network id="2">
          <routers>
             <router id="1">
-               <name>1692.5400.0015</name>
+               <name>iosxrv-2</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -12,11 +12,11 @@
                   <identifier>1692.5400.0015</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>277</x>
+               <y>88</y>
             </router>
             <router id="2">
-               <name>1692.5400.0017</name>
+               <name>iosxrv-4</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -24,11 +24,11 @@
                   <identifier>1692.5400.0017</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>462</x>
+               <y>95</y>
             </router>
             <router id="3">
-               <name>1692.5400.0012</name>
+               <name>iosv-10</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -36,11 +36,11 @@
                   <identifier>1692.5400.0012</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>71</x>
+               <y>125</y>
             </router>
             <router id="4">
-               <name>1692.5400.0001</name>
+               <name>iosv-12</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -48,11 +48,11 @@
                   <identifier>1692.5400.0001</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>11</x>
+               <y>330</y>
             </router>
             <router id="5">
-               <name>1692.5400.0004</name>
+               <name>iosv-15</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -60,11 +60,11 @@
                   <identifier>1692.5400.0004</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>418</x>
+               <y>276</y>
             </router>
             <router id="6">
-               <name>1692.5400.0018</name>
+               <name>iosv-1</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -72,11 +72,11 @@
                   <identifier>1692.5400.0018</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>221</x>
+               <y>336</y>
             </router>
             <router id="7">
-               <name>1692.5400.0019</name>
+               <name>iosv-2</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -84,11 +84,11 @@
                   <identifier>1692.5400.0019</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>100</x>
+               <y>550</y>
             </router>
             <router id="8">
-               <name>1692.5400.0002</name>
+               <name>iosv-13</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -96,11 +96,11 @@
                   <identifier>1692.5400.0002</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>250</x>
+               <y>625</y>
             </router>
             <router id="9">
-               <name>1692.5400.0014</name>
+               <name>iosxrv-1</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -108,11 +108,11 @@
                   <identifier>1692.5400.0014</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>100</x>
+               <y>700</y>
             </router>
             <router id="10">
-               <name>1692.5400.0016</name>
+               <name>iosxrv-3</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -120,11 +120,11 @@
                   <identifier>1692.5400.0016</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>250</x>
+               <y>775</y>
             </router>
             <router id="11">
-               <name>1692.5400.0007</name>
+               <name>iosv-5</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -132,11 +132,11 @@
                   <identifier>1692.5400.0007</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>100</x>
+               <y>850</y>
             </router>
             <router id="12">
-               <name>1692.5400.0008</name>
+               <name>iosv-6</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -144,11 +144,11 @@
                   <identifier>1692.5400.0008</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>250</x>
+               <y>925</y>
             </router>
             <router id="13">
-               <name>1692.5400.0011</name>
+               <name>iosv-9</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -156,11 +156,11 @@
                   <identifier>1692.5400.0011</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>100</x>
+               <y>1000</y>
             </router>
             <router id="14">
-               <name>1692.5400.0020</name>
+               <name>iosv-3</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -168,11 +168,11 @@
                   <identifier>1692.5400.0020</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>250</x>
+               <y>1075</y>
             </router>
             <router id="15">
-               <name>1692.5400.0006</name>
+               <name>iosv-4</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -180,11 +180,11 @@
                   <identifier>1692.5400.0006</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>100</x>
+               <y>1150</y>
             </router>
             <router id="16">
-               <name>1692.5400.0003</name>
+               <name>iosv-14</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -192,11 +192,11 @@
                   <identifier>1692.5400.0003</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>250</x>
+               <y>1225</y>
             </router>
             <router id="17">
-               <name>1692.5400.0009</name>
+               <name>iosv-7</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -204,11 +204,11 @@
                   <identifier>1692.5400.0009</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>100</x>
+               <y>1300</y>
             </router>
             <router id="18">
-               <name>1692.5400.0005</name>
+               <name>iosv-16</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -216,11 +216,11 @@
                   <identifier>1692.5400.0005</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>250</x>
+               <y>1375</y>
             </router>
             <router id="19">
-               <name>1692.5400.0013</name>
+               <name>iosv-11</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -228,11 +228,11 @@
                   <identifier>1692.5400.0013</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>100</x>
+               <y>1450</y>
             </router>
             <router id="20">
-               <name>1692.5400.0010</name>
+               <name>iosv-8</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -240,8 +240,8 @@
                   <identifier>1692.5400.0010</identifier>
                   <lsIdentifier>2851995749</lsIdentifier>
                </routerId>
-               <x>0</x>
-               <y>0</y>
+               <x>250</x>
+               <y>1525</y>
             </router>
          </routers>
          <bgpAs>1</bgpAs>

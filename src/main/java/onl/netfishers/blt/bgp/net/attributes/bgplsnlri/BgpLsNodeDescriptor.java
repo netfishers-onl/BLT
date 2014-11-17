@@ -39,7 +39,6 @@ public class BgpLsNodeDescriptor {
 	private boolean validAutonomousSystem = false;
 	private boolean validBgpLsIdentifier = false;
 	private boolean validAreaId = false;
-	private boolean isPseudoNode = false;
 	
 	/**
 	 * Sets the type (local or remote) of node descriptor
@@ -141,7 +140,6 @@ public class BgpLsNodeDescriptor {
 	}
 	
 	public void setPseudoNode(boolean isPseudoNode) {
-		this.isPseudoNode = isPseudoNode;
 	}
 
 	public boolean isValidAutonomousSystem() {
@@ -155,4 +153,5 @@ public class BgpLsNodeDescriptor {
 	public boolean isValidAreaId() {
 		return validAreaId;
 	}
+	
 }

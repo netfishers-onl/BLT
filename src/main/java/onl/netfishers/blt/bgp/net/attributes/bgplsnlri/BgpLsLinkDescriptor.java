@@ -30,7 +30,9 @@ public class BgpLsLinkDescriptor {
 	private InetAddress ipv4NeighborAddress;
 	private InetAddress ipv6InterfaceAddress;
 	private InetAddress ipv6NeighborAddress;
+	
 	private int multiTopologyId = 0;
+	
 	
 	private boolean validLinkLocalIdentifier = false;
 	private boolean validLinkRemoteIdentifier = false;

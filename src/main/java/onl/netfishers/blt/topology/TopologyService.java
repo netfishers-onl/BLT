@@ -3,7 +3,6 @@ package onl.netfishers.blt.topology;
 import java.io.File;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -19,17 +18,14 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import onl.netfishers.blt.Blt;
 import onl.netfishers.blt.aaa.User;
-import onl.netfishers.blt.tasks.TaskManager;
 import onl.netfishers.blt.topology.net.Ipv4Route;
 import onl.netfishers.blt.topology.net.Ipv4Subnet;
 import onl.netfishers.blt.topology.net.Link;
 import onl.netfishers.blt.topology.net.Network;
 import onl.netfishers.blt.topology.net.Router;
 import onl.netfishers.blt.topology.net.RouterInterface;
-import onl.netfishers.blt.topology.net.SnmpCommunity;
 
 import org.eclipse.persistence.jaxb.JAXBContextProperties;
-import org.quartz.SchedulerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -150,7 +146,7 @@ public class TopologyService {
 		}
 	}
 
-	public void removeSnmpCommunity(SnmpCommunity community) {
+	/*public void removeSnmpCommunity(SnmpCommunity community) {
 		for (Network network : networks) {
 			if (network.getSnmpCommunities().remove(community)) {
 				this.writeToDisk();
@@ -161,7 +157,7 @@ public class TopologyService {
 	public void addSnmpCommunity(Network network, SnmpCommunity community) throws TopologyException {
 		network.addCommunity(community);
 		this.writeToDisk();
-	}
+	}*/
 
 	@XmlElementWrapper(name = "users")
 	@XmlElement(name = "user")

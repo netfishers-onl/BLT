@@ -47,8 +47,10 @@ public class LinkStateAttributeCodec {
 			attr.setOpaqueNodeProperties(decodeOpaqueAttribute(buffer));
 			break;
 		case NodeName:
+			decodeNodeName(attr, buffer);
 			break;
-		case ISISAreaIdentifier:
+		case IsisAreaIdentifier:
+			decodeIsisAreaIdentifier(attr, buffer);
 			break;
 		case LocalNodeIPv4RouterID:
 			decodeLocalNodeIPv4RouterID(attr, buffer);
@@ -564,5 +566,36 @@ public class LinkStateAttributeCodec {
 			throw new OptionalAttributeErrorException();
 		}		
 	}
-	
+	private void decodeIsisAreaIdentifier(LinkStateAttribute attr,
+			ChannelBuffer buffer) {
+		try {
+			int length = buffer.readableBytes();
+			byte[] isisAreaIdentifier = new byte[length];
+			
+			buffer.readBytes(isisAreaIdentifier);
+			attr.addIsisAreaIdentifier(isisAreaIdentifier);
+			
+		} catch(RuntimeException e) {
+			log.error("Failed to decode Isis Area Identifier attribute", e);
+			throw new OptionalAttributeErrorException();
+		}
+		
+	}
+
+	private void decodeNodeName(LinkStateAttribute attr, ChannelBuffer buffer) {
+		try {
+			int length = buffer.readableBytes();
+			byte[] bytes = new byte[length];
+			
+			buffer.readBytes(bytes);
+			String nodeName = new String(bytes);
+			attr.setNodeName(nodeName);
+			
+		} catch(RuntimeException e) {
+			log.error("Failed to decode Node Name attribute", e);
+			throw new OptionalAttributeErrorException();
+		}
+		
+	}
+
 }

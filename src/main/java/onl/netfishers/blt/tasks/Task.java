@@ -11,8 +11,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import onl.netfishers.blt.topology.TopologyService;
-
 import org.quartz.Job;
 import org.quartz.JobBuilder;
 import org.quartz.JobDetail;
