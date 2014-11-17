@@ -344,9 +344,9 @@ public class Router {
 		return lastNetconfTime;
 	}
 
-	public void setLastSnmpPollingTime() {
+	/*public void setLastSnmpPollingTime() {
 		this.lastSnmpPollingTime = System.currentTimeMillis();
-	}
+	}*/
 
 	public void setNeedTeRefresh(boolean needTeRefresh) {
 		this.needTeRefresh = needTeRefresh;
@@ -369,7 +369,7 @@ public class Router {
 		this.network = network;
 	}
 
-	public SnmpCommunity findSnmpCommunity() {
+	/*public SnmpCommunity findSnmpCommunity() {
 		List<SnmpCommunity> communities = new ArrayList<SnmpCommunity>(network.getSnmpCommunities());
 		Collections.sort(communities);
 		for (SnmpCommunity community : communities) {
@@ -380,7 +380,7 @@ public class Router {
 			}
 		}
 		return null;
-	}
+	}*/
 
 	@XmlElement
 	public int getX() {

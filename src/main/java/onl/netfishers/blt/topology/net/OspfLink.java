@@ -1,6 +1,6 @@
 /**
  * 
- */
+ *//*
 package onl.netfishers.blt.topology.net;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -8,10 +8,10 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
-/**
+*//**
  * @author amoretti
  *
- */
+ *//*
 @XmlRootElement
 @XmlAccessorType(value = XmlAccessType.NONE)
 public class OspfLink extends Link {
@@ -67,27 +67,28 @@ public class OspfLink extends Link {
 		}
 		else if (!localAddress.equals(other.localAddress))
 			return false;
-		/*if (localRouter == null) {
+		if (localRouter == null) {
 			if (other.localRouter != null)
 				return false;
 		}
 		else if (!localRouter.equals(other.localRouter))
 			return false;
-		*/
+		
 		if (remoteAddress == null) {
 			if (other.remoteAddress != null)
 				return false;
 		}
 		else if (!remoteAddress.equals(other.remoteAddress))
 			return false;
-		/*if (remoteRouter == null) {
+		if (remoteRouter == null) {
 			if (other.remoteRouter != null)
 				return false;
 		}
 		else if (!remoteRouter.equals(other.remoteRouter))
 			return false;
-		*/
+		
 		return true;
 	}
 
 }
+*/

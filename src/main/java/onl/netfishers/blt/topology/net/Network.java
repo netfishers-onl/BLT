@@ -123,7 +123,7 @@ public class Network {
 		return null;
 	}
 
-	@XmlElementWrapper
+	/*@XmlElementWrapper
 	@XmlElement(name = "snmpCommunity")
 	public Set<SnmpCommunity> getSnmpCommunities() {
 		return snmpCommunities;
@@ -149,7 +149,7 @@ public class Network {
 		}
 		return null;
 	}
-
+*/
 	public Set<Link> getLinks() {
 		return links;
 	}
@@ -215,20 +215,24 @@ public class Network {
 			for (Router router : routers) {
 				if (router.getRouterId().equals(link.getLocalRouter())) {
 					if (link.getProtocolId() == BgpLsProtocolId.OSPF) {
-						OspfLink ospfLink = (OspfLink) link;
-						RouterInterface routerInterface = router.getRouterInterfaceBySubnet(ospfLink.getLocalAddress());
+						RouterInterface routerInterface = router.getRouterInterfaceBySubnet(link.getLocalAddress());
 						if (routerInterface != null) {
-							ospfLink.setLocalInterfaceName(routerInterface.getName());
+							link.setLocalInterfaceName(routerInterface.getName());
 						}
+					}  else if (link.getProtocolId() == BgpLsProtocolId.ISIS_Level1 
+							|| link.getProtocolId() == BgpLsProtocolId.ISIS_Level2) {
+						link.setLocalInterfaceName(link.getProtocolId().toString());
 					}
 				}
 				if (router.getRouterId().equals(link.getRemoteRouter())) {
 					if (link.getProtocolId() == BgpLsProtocolId.OSPF) {
-						OspfLink ospfLink = (OspfLink) link;
-						RouterInterface routerInterface = router.getRouterInterfaceBySubnet(ospfLink.getRemoteAddress());
+						RouterInterface routerInterface = router.getRouterInterfaceBySubnet(link.getRemoteAddress());
 						if (routerInterface != null) {
-							ospfLink.setRemoteInterfaceName(routerInterface.getName());
+							link.setRemoteInterfaceName(routerInterface.getName());
 						}
+					}  else if (link.getProtocolId() == BgpLsProtocolId.ISIS_Level1 
+							|| link.getProtocolId() == BgpLsProtocolId.ISIS_Level2) {
+						link.setLocalInterfaceName(link.getProtocolId().toString());						
 					}
 				}
 			}

@@ -34,6 +34,9 @@ public class Link {
 	private int teDefaultMetric;
 	private int metric;
 	
+	private Ipv4Subnet localAddress ;
+	private Ipv4Subnet remoteAddress ;
+	
 	private List<Long> sharedRiskLinkGroups = new LinkedList<Long>();
 
 	protected Link() {
@@ -84,7 +87,7 @@ public class Link {
 		this.remoteRouter = remoteRouter;
 	}
 
-	/*@XmlElement
+	@XmlElement
 	public Ipv4Subnet getLocalAddress() {
 		return localAddress;
 	}
@@ -101,7 +104,7 @@ public class Link {
 	public void setRemoteAddress(Ipv4Subnet remoteAddress) {
 		this.remoteAddress = remoteAddress;
 	}
-*/
+
 
 	@XmlElement
 	public boolean isLost() {
@@ -117,12 +120,12 @@ public class Link {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		/*result = prime * result
-				+ ((localAddress == null) ? 0 : localAddress.hashCode());*/
+		result = prime * result
+				+ ((localAddress == null) ? 0 : localAddress.hashCode());
 		result = prime * result
 				+ ((localRouter == null) ? 0 : localRouter.hashCode());
-		/*result = prime * result
-				+ ((remoteAddress == null) ? 0 : remoteAddress.hashCode());*/
+		result = prime * result
+				+ ((remoteAddress == null) ? 0 : remoteAddress.hashCode());
 		result = prime * result
 				+ ((remoteRouter == null) ? 0 : remoteRouter.hashCode());
 		return result;
@@ -137,26 +140,26 @@ public class Link {
 		if (getClass() != obj.getClass())
 			return false;
 		Link other = (Link) obj;
-		/*if (localAddress == null) {
+		if (localAddress == null) {
 			if (other.localAddress != null)
 				return false;
 		}
 		else if (!localAddress.equals(other.localAddress))
 			return false;
-		*/
+		
 		if (localRouter == null) {
 			if (other.localRouter != null)
 				return false;
 		}
 		else if (!localRouter.equals(other.localRouter))
 			return false;
-		/*if (remoteAddress == null) {
+		if (remoteAddress == null) {
 			if (other.remoteAddress != null)
 				return false;
 		}
 		else if (!remoteAddress.equals(other.remoteAddress))
 			return false;
-		*/
+		
 		if (remoteRouter == null) {
 			if (other.remoteRouter != null)
 				return false;

@@ -112,7 +112,7 @@ table.simple th {
 #diagrambox {
 	position: absolute;
 	width: 600px;
-	width: 1000px;
+	//width: 1000px;
 	bottom: 10px;
 	left: 10px;
 	top: 65px;
@@ -187,7 +187,8 @@ table.simple th {
 }
 
 #diagram .router {
-	padding: 16px;
+	/*padding: 16px;*/
+	padding: 10px;
 	position: absolute;
 	border: 1px solid black;
 	z-index: 4;
@@ -202,7 +203,7 @@ table.simple th {
 	filter: alpha(opacity = 80);
 	background-color: white;
 	font-size: 8px;
-	//font-weight: bold;
+	/*font-weight: bold;*/
 	-webkit-transition: background-color 0.25s ease-in;
 	-moz-transition: background-color 0.25s ease-in;
 	transition: background-color 0.25s ease-in;

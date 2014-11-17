@@ -250,7 +250,6 @@
             <prefixLength>32</prefixLength>
          </bgpPeer>
          <name>CML Lab</name>
-         <snmpCommunities/>
       </network>
    </networks>
    <users>

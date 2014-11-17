@@ -25,13 +25,14 @@ import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsIPTopologyPrefixNLRI
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsLinkNLRI;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsNodeDescriptor;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsNodeNLRI;
+import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsProtocolId;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.IPPrefix;
 import onl.netfishers.blt.bgp.net.capabilities.Capability;
 import onl.netfishers.blt.bgp.net.capabilities.MultiProtocolCapability;
 import onl.netfishers.blt.bgp.netty.FSMState;
 import onl.netfishers.blt.bgp.netty.fsm.BGPv4FSM;
 import onl.netfishers.blt.bgp.netty.protocol.update.UpdatePacket;
-import onl.netfishers.blt.snmp.SnmpPollingTask;
+//import onl.netfishers.blt.snmp.SnmpPollingTask;
 import onl.netfishers.blt.tasks.Task;
 import onl.netfishers.blt.tasks.TaskManager;
 import onl.netfishers.blt.topology.TopologyService;
@@ -41,6 +42,7 @@ import onl.netfishers.blt.topology.net.Link;
 import onl.netfishers.blt.topology.net.Network;
 import onl.netfishers.blt.topology.net.Router;
 import onl.netfishers.blt.topology.net.Router.RouterIdentifier;
+import onl.netfishers.blt.topology.net.RouterInterface;
 
 import org.quartz.ObjectAlreadyExistsException;
 import org.quartz.Scheduler;
@@ -232,9 +234,9 @@ public class BgpService {
 								    remoteNode.getBgpLsIdentifier());
 								Link link = new Link(localId, remoteId); 
 								Router localRouter = network.findOrAddRouter(localId);
-								//localRouter.setNeedTeRefresh(true);
+								localRouter.setNeedTeRefresh(true);
 								Router remoteRouter = network.findOrAddRouter(remoteId);
-								//remoteRouter.setNeedTeRefresh(true);
+								remoteRouter.setNeedTeRefresh(true);
 								
 								if (lsAttribute != null) {
 									if (lsAttribute.isValidAdminGroup()) {
@@ -263,24 +265,22 @@ public class BgpService {
 									}
 								}
 
-								link = network.findOrAddLink(link);
 								/*link.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);*/
 								/*if (localNode.getIgpRouterId().length == BgpLsNodeDescriptor.IGPROUTERID_OSPFROUTERID_LENGTH || 
 								localNode.getIgpRouterId().length == BgpLsNodeDescriptor.IGPROUTERID_OSPFPSEUDONODE_LENGTH) {
 								 */
-								/*if (linkNlri.getProtocolId() == BgpLsProtocolId.OSPF ) {
-									OspfLink ospfLink = (OspfLink) link;
-									ospfLink.setLocalAddress(new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors().getIPv4InterfaceAddress(),32));
-									ospfLink.setRemoteAddress(new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors().getIPv4NeighborAddress(), 32));
-									ospfLink = (OspfLink) network.findOrAddLink(ospfLink);
+								if (linkNlri.getProtocolId() == BgpLsProtocolId.OSPF ) {
+									link.setLocalAddress(new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors().getIPv4InterfaceAddress(),32));
+									link.setRemoteAddress(new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors().getIPv4NeighborAddress(), 32));
 							
 								} else if (linkNlri.getProtocolId() == BgpLsProtocolId.ISIS_Level1 || linkNlri.getProtocolId() == BgpLsProtocolId.ISIS_Level2) {
-									IsisLink isisLink = new IsisLink(); 
-									isisLink.setLocalRouter(link.getLocalRouter());
-									isisLink.setRemoteRouter(link.getRemoteRouter());
-									isisLink = (IsisLink) network.findOrAddLink(isisLink);
+									link.setLocalRouter(link.getLocalRouter());
+									link.setRemoteRouter(link.getRemoteRouter());
 
-								}	*/							
+								}	
+
+								link = network.findOrAddLink(link);
+
 							}
 							catch (Exception e) {
 								logger.warn("Doesn't know how to handle this link Id :");
@@ -311,7 +311,7 @@ public class BgpService {
 											        (Inet4Address) Inet4Address.getByAddress(prefix),
 											        ipPrefix.getPrefixLength()), prefixMetric, null,
 											        null));
-											//router.setNeedTeRefresh(true);
+											router.setNeedTeRefresh(true);
 										}
 										catch (Exception e) {
 											logger.warn("Unable to parse the IP prefix");
@@ -337,7 +337,7 @@ public class BgpService {
 			}
 			for (Router router : network.getRouters()) {
 				if (!router.isVirtual() && router.isNeedTeRefresh()) {
-					if ( router.findSnmpCommunity() != null) {
+					/*if ( router.findSnmpCommunity() != null) {
 						Task task = new SnmpPollingTask("Refresh router state via SNMP (after BGP update)", router); 
 						try {
 							task.schedule(1000);
@@ -348,7 +348,21 @@ public class BgpService {
 						catch (SchedulerException e) {
 							logger.error("Unable to schedule task '{}' following BGP-LS update.", task, e);
 						}
-					} 
+					}*/ 
+					
+					
+					/*
+					 * TODO : creer les interfaces dans ce bloc
+					 * sans utiliser SNMP
+					 * 
+					 * RouterInterface itf = new RouterInterface() ;
+					if ( ! itf.getName().isEmpty() && itf.getIpv4Address() != null) {
+						if (router.getRouterInterfaceBySubnet(itf.getIpv4Address()) == null) {
+							router.addRouterInterface(itf);
+						}
+					}*/
+					
+					
 				}
 			}
 			if (toSave) {
