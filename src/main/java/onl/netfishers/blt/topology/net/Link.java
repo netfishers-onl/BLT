@@ -37,24 +37,20 @@ public class Link {
 	private Ipv4Subnet localAddress ;
 	private Ipv4Subnet remoteAddress ;
 	
+	
 	private List<Long> sharedRiskLinkGroups = new LinkedList<Long>();
 
 	protected Link() {
 
 	}
 	
-	/*public Link(RouterIdentifier localRouter, RouterIdentifier remoteRouter,
+	public Link(RouterIdentifier localRouter, RouterIdentifier remoteRouter,
 			Ipv4Subnet localAddress, Ipv4Subnet remoteAddress) {
 		super();
 		this.localRouter = localRouter;
 		this.remoteRouter = remoteRouter;
 		this.localAddress = localAddress;
 		this.remoteAddress = remoteAddress;
-	}*/
-	public Link(RouterIdentifier localRouter, RouterIdentifier remoteRouter) {
-		super();
-		this.localRouter = localRouter;
-		this.remoteRouter = remoteRouter;
 	}
 	
 	@XmlAttribute

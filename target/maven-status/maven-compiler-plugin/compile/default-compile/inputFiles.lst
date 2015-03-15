@@ -172,7 +172,6 @@
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/net/attributes/bgplsnlri/package-info.java
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/netty/fsm/CapabilitesNegotiator.java
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/netty/protocol/BadMessageTypeException.java
-/Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/topology/net/OspfLink.java
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/net/capabilities/RouteRefreshCapability.java
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/aaa/User.java
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/netty/protocol/AdministrativeShutdownNotificationPacket.java
@@ -189,8 +188,8 @@
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/netty/protocol/open/UnsupportedVersionNumberNotificationPacket.java
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/config/nodes/impl/ClientConfigurationImpl.java
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/config/nodes/impl/RoutingProcessorConfigurationParser.java
-/Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/net/ORFAction.java
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/netty/protocol/update/bgplsnlri/BgpLsLinkDescriptorCodec.java
+/Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/net/ORFAction.java
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/netty/protocol/update/PathAttributeCodec.java
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/config/nodes/impl/BgpServerConfigurationParser.java
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/net/attributes/MultiProtocolNLRIInformation.java
@@ -227,7 +226,6 @@
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/netty/protocol/refresh/package-info.java
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/netty/protocol/update/AttributeLengthNotificationPacket.java
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/netty/service/ClientFactory.java
-/Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/topology/net/IsisLink.java
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/net/capabilities/package-info.java
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/net/attributes/NextHopPathAttribute.java
 /Users/amoretti/Documents/workspace/blt/src/main/java/onl/netfishers/blt/bgp/net/SubsequentAddressFamily.java

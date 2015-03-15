@@ -150,7 +150,7 @@ public class BgpLsNodeDescriptorCodec {
 				buffer.readBytes(igpRouterId);
 				nd.setIgpRouterId(igpRouterId);
 				buffer.readBytes(pseudoNodeId);
-				nd.setPseudoNodeId(pseudoNodeId);
+				//nd.setPseudoNodeId(pseudoNodeId);
 			} else if (buffer.readableBytes() == BgpLsNodeDescriptor.IGPROUTERID_ISISISONODEID_LENGTH) {
 				byte[] igpRouterId = new byte[buffer.readableBytes()];
 				buffer.readBytes(igpRouterId);
@@ -161,7 +161,7 @@ public class BgpLsNodeDescriptorCodec {
 				buffer.readBytes(igpRouterId);
 				nd.setIgpRouterId(igpRouterId);
 				buffer.readBytes(pseudoNodeId);
-				nd.setPseudoNodeId(pseudoNodeId);
+				//nd.setPseudoNodeId(pseudoNodeId);
 			}
 		}
 		catch (RuntimeException e) {

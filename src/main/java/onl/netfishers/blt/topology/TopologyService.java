@@ -24,6 +24,7 @@ import onl.netfishers.blt.topology.net.Link;
 import onl.netfishers.blt.topology.net.Network;
 import onl.netfishers.blt.topology.net.Router;
 import onl.netfishers.blt.topology.net.RouterInterface;
+import onl.netfishers.blt.topology.net.SnmpCommunity;
 
 import org.eclipse.persistence.jaxb.JAXBContextProperties;
 import org.slf4j.Logger;
@@ -133,7 +134,7 @@ public class TopologyService {
 	public void removeRouter(Router router) {
 		for (Network network : networks) {
 			if (network.getRouters().remove(router)) {
-				//router.kill();
+				router.kill();
 				this.writeToDisk();
 			}
 		}
@@ -146,7 +147,7 @@ public class TopologyService {
 		}
 	}
 
-	/*public void removeSnmpCommunity(SnmpCommunity community) {
+	public void removeSnmpCommunity(SnmpCommunity community) {
 		for (Network network : networks) {
 			if (network.getSnmpCommunities().remove(community)) {
 				this.writeToDisk();
@@ -157,7 +158,7 @@ public class TopologyService {
 	public void addSnmpCommunity(Network network, SnmpCommunity community) throws TopologyException {
 		network.addCommunity(community);
 		this.writeToDisk();
-	}*/
+	}
 
 	@XmlElementWrapper(name = "users")
 	@XmlElement(name = "user")

@@ -130,9 +130,6 @@ define([
 							_.isEqual(connection.getParameter('dstIp'), link.get('localAddress'))) {
 						found = true;
 						connection.addOverlay(
-							[ "Arrow", { id: 1, location: 0.9, direction: -1, width: 15, length: 15, cssClass: "linkarrow" } ]
-						);
-						connection.addOverlay(
 							[ "Label", { id: 11, label: link.getShortName(), location: 0.95, cssClass: "linklabel" } ]
 						);
 						connection.setParameter("link2Id", link.get("id"));
@@ -147,7 +144,6 @@ define([
 						anchor: "Continuous",
 						connector: [ "StateMachine", { curviness: 10 } ],
 						overlays: [
-						  [ "Arrow", { id: 0, location: 0.1, direction: 1, width: 15, length: 15, cssClass: "linkarrow" } ],
 						  [ "Label", { id: 10, label: link.getShortName(), location: 0.05, cssClass: "linklabel" } ],
 						],
 						cssClass: "link" + (link.isLost() ? " lost" : ""),
@@ -402,7 +398,7 @@ define([
 						anchor: "Continuous",
 						connector: [ "StateMachine", { curviness: 10 } ],
 						overlays: [
-							[ "Arrow", { id: 0, location: 0.5, direction: 1, width: 25, length: 25, cssClass: "patharrow" } ],
+							[ "Arrow", { id: 0, location: 0.5, direction: 1, width: 12, length: 12, cssClass: "patharrow" } ],
 							[ "Label", {
 								id: 10,
 								label: (options.index == 0 ? "" : options.index.toString() + ".") + sortedHops[h].key.toString(),

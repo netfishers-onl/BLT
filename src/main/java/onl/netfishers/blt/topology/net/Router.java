@@ -18,6 +18,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import onl.netfishers.blt.topology.net.RouterInterface.RouterInterfaceType;
+import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsNodeDescriptor;
+
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,12 +49,16 @@ public class Router {
 		private long lsIdentifier = 0;
 
 		protected RouterIdentifier() {
-
+			
 		}
 
 		public RouterIdentifier(byte[] data, long autonomousSystem, long areaId,
 				long lsIdentifier) throws InvalidRouterIdException {
-			if (data.length != 4 && data.length != 8 && data.length != 6 && data.length != 7) {
+			if (data.length != BgpLsNodeDescriptor.IGPROUTERID_ISISISONODEID_LENGTH &&
+				data.length != BgpLsNodeDescriptor.IGPROUTERID_ISISPSEUDONODE_LENGTH &&
+				data.length != BgpLsNodeDescriptor.IGPROUTERID_OSPFPSEUDONODE_LENGTH &&
+				data.length != BgpLsNodeDescriptor.IGPROUTERID_OSPFROUTERID_LENGTH) {
+				
 				throw new InvalidRouterIdException("Invalid router id, wrong length");
 			}
 			this.data = data.clone();
@@ -93,19 +99,19 @@ public class Router {
 		}
 
 		public String toString() {
-			if (data.length == 4) {
+			if (data.length == BgpLsNodeDescriptor.IGPROUTERID_OSPFROUTERID_LENGTH) {
 				return String.format("%d.%d.%d.%d", data[0] & 0xFF, data[1] & 0xFF,
 						data[2] & 0xFF, data[3] & 0xFF);
 			}
-			else if (data.length == 6) {
+			else if (data.length == BgpLsNodeDescriptor.IGPROUTERID_ISISISONODEID_LENGTH) {
 				return String.format("%02x%02x.%02x%02x.%02x%02x", data[0] & 0xFF, data[1] & 0xFF,
 						data[2] & 0xFF, data[3] & 0xFF, data[4] & 0xFF, data[5] & 0xFF);
 			}
-			else if (data.length == 7) {
+			else if (data.length == BgpLsNodeDescriptor.IGPROUTERID_ISISPSEUDONODE_LENGTH) {
 				return String.format("%02x%02x.%02x%02x.%02x%02x-%02x", data[0] & 0xFF, data[1] & 0xFF,
 						data[2] & 0xFF, data[3] & 0xFF, data[4] & 0xFF, data[5] & 0xFF, data[6] & 0xFF);
 			}
-			else if (data.length == 8) {
+			else if (data.length == BgpLsNodeDescriptor.IGPROUTERID_OSPFPSEUDONODE_LENGTH) {
 				return String.format("%d.%d.%d.%d-%d.%d.%d.%d", data[0] & 0xFF, data[1] & 0xFF,
 						data[2] & 0xFF, data[3] & 0xFF, data[4] & 0xFF, data[5] & 0xFF,
 						data[6] & 0xFF, data[7] & 0xFF);
@@ -181,7 +187,8 @@ public class Router {
 		}
 
 		public boolean isVirtual() {
-			return (data.length != 4 && data.length != 6);
+			return (data.length != BgpLsNodeDescriptor.IGPROUTERID_ISISISONODEID_LENGTH &&
+					data.length != BgpLsNodeDescriptor.IGPROUTERID_OSPFROUTERID_LENGTH);
 		}
 		
 	}
@@ -220,7 +227,7 @@ public class Router {
 	private boolean lost = true;
 	private boolean deleted = false;
 	private boolean needTeRefresh = false;
-	private boolean pseudonode = false ;
+	//private boolean pseudonode = false ;
 
 	private String name = "Unknown";
 
@@ -311,14 +318,6 @@ public class Router {
 		this.lost = lost;
 	}
 	
-	public boolean isPseudoNode() {
-		return pseudonode ;
-	}
-	
-	public void setPseudoNode(boolean pseudonode) {
-		this.pseudonode = pseudonode;
-	}
-
 	public boolean isDeleted() {
 		return deleted || network.isDeleted();
 	}
@@ -344,9 +343,9 @@ public class Router {
 		return lastNetconfTime;
 	}
 
-	/*public void setLastSnmpPollingTime() {
+	public void setLastSnmpPollingTime() {
 		this.lastSnmpPollingTime = System.currentTimeMillis();
-	}*/
+	}
 
 	public void setNeedTeRefresh(boolean needTeRefresh) {
 		this.needTeRefresh = needTeRefresh;
@@ -369,7 +368,7 @@ public class Router {
 		this.network = network;
 	}
 
-	/*public SnmpCommunity findSnmpCommunity() {
+	public SnmpCommunity findSnmpCommunity() {
 		List<SnmpCommunity> communities = new ArrayList<SnmpCommunity>(network.getSnmpCommunities());
 		Collections.sort(communities);
 		for (SnmpCommunity community : communities) {
@@ -380,7 +379,7 @@ public class Router {
 			}
 		}
 		return null;
-	}*/
+	}
 
 	@XmlElement
 	public int getX() {
@@ -494,9 +493,13 @@ public class Router {
 
 	public void init() {
 	}
-
+	
+	public void kill() {
+	}
+	
 	public String toString() {
-		return String.format("Router %s (router-id %s)", name, (routerId == null ? "null" : routerId));
+		return String.format("Router %s (router-id %s)", 
+				name, (routerId == null ? "null" : routerId));
 	}
 
 	@Override

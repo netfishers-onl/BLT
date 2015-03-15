@@ -1,3 +1,4 @@
+
 package onl.netfishers.blt.topology.net;
 
 import java.util.Set;
@@ -123,7 +124,7 @@ public class Network {
 		return null;
 	}
 
-	/*@XmlElementWrapper
+	@XmlElementWrapper
 	@XmlElement(name = "snmpCommunity")
 	public Set<SnmpCommunity> getSnmpCommunities() {
 		return snmpCommunities;
@@ -149,7 +150,7 @@ public class Network {
 		}
 		return null;
 	}
-*/
+
 	public Set<Link> getLinks() {
 		return links;
 	}
@@ -210,7 +211,7 @@ public class Network {
 		}
 	}
 	
-	public void fillLinkInterfaceNames() {
+	/*public void fillLinkInterfaceNames() {
 		for (Link link : links) {
 			for (Router router : routers) {
 				if (router.getRouterId().equals(link.getLocalRouter())) {
@@ -237,13 +238,32 @@ public class Network {
 				}
 			}
 		}
+	}*/
+
+	public void fillLinkInterfaceNames() {
+		for (Link link : links) {
+			for (Router router : routers) {
+				if (router.getRouterId().equals(link.getLocalRouter())) {
+					RouterInterface routerInterface = router.getRouterInterfaceBySubnet(link.getLocalAddress());
+					if (routerInterface != null) {
+						link.setLocalInterfaceName(routerInterface.getName());
+					}
+				}
+				if (router.getRouterId().equals(link.getRemoteRouter())) {
+					RouterInterface routerInterface = router.getRouterInterfaceBySubnet(link.getRemoteAddress());
+					if (routerInterface != null) {
+						link.setRemoteInterfaceName(routerInterface.getName());
+					}
+				}
+			}
+		}
 	}
 
 	public void kill() {
 		this.stopBgpSession();
-		/*for (Router router : routers) {
+		for (Router router : routers) {
 			router.kill();
-		}*/
+		}
 	}
 
 	@Override

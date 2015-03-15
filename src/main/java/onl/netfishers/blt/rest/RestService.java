@@ -42,7 +42,7 @@ import onl.netfishers.blt.topology.net.Link;
 import onl.netfishers.blt.topology.net.Network;
 import onl.netfishers.blt.topology.net.Router;
 import onl.netfishers.blt.topology.net.RouterInterface;
-//import onl.netfishers.blt.topology.net.SnmpCommunity;
+import onl.netfishers.blt.topology.net.SnmpCommunity;
 
 import org.eclipse.persistence.jaxb.JAXBContextProperties;
 import org.glassfish.grizzly.http.server.CLStaticHttpHandler;
@@ -477,7 +477,7 @@ public class RestService extends Thread {
 
 
 
-	/*@XmlRootElement
+	@XmlRootElement
 	@XmlAccessorType(XmlAccessType.NONE)
 	public static class RsSnmpCommunity {
 		private String subnet;
@@ -496,10 +496,10 @@ public class RestService extends Thread {
 		public void setCommunity(String community) {
 			this.community = community;
 		}
-	}*/
+	}
 
 
-	/*@POST
+	@POST
 	@Path("networks/{nid}/communities")
 	@RolesAllowed("admin")
 	@Consumes({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -535,11 +535,11 @@ public class RestService extends Thread {
 			throw new BltBadRequestException(e.getMessage(),
 					BltBadRequestException.INVALID_SNMP_COMMUNITY);
 		}
-	}*/
+	}
 
 
 
-	/*@DELETE
+	@DELETE
 	@Path("networks/{nid}/communities/{id}")
 	@RolesAllowed("admin")
 	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
@@ -555,7 +555,7 @@ public class RestService extends Thread {
 					BltBadRequestException.UNKNOWN_SNMP_COMMUNITY);
 		}
 		TopologyService.getService().removeSnmpCommunity(community);
-	}	*/
+	}
 
 	@GET
 	@Path("networks/{nid}/routers/{rid}")
@@ -670,7 +670,7 @@ public class RestService extends Thread {
 					BltBadRequestException.UNKNOWN_ROUTER);
 		}
 		if (!router.isLost()) {
-			throw new BltBadRequestException("The is still detected in the IGP topology.",
+			throw new BltBadRequestException("The router is still detected in the IGP topology.",
 					BltBadRequestException.UNKNOWN_ROUTER);
 		}
 		TopologyService.getService().removeRouter(router);

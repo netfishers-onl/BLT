@@ -1,13 +1,12 @@
-/*package onl.netfishers.blt.snmp;
+package onl.netfishers.blt.snmp;
 
-//import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 //import java.util.regex.Matcher;
 //import java.util.regex.Pattern;
-
 import onl.netfishers.blt.Blt;
 import onl.netfishers.blt.tasks.Task;
 import onl.netfishers.blt.topology.net.Ipv4Subnet;
@@ -32,17 +31,7 @@ import org.snmp4j.transport.DefaultUdpTransportMapping;
 import org.snmp4j.util.DefaultPDUFactory;
 import org.snmp4j.util.TreeEvent;
 import org.snmp4j.util.TreeUtils;
-//import onl.netfishers.blt.topology.net.P2mpTeTunnel;
-//import onl.netfishers.blt.topology.net.P2pTeTunnel;
-//import onl.netfishers.blt.topology.net.RouterInterface.RouterInterfaceType;
-//import onl.netfishers.blt.topology.net.Ipv4Subnet.MalformedIpv4SubnetException;
-import onl.netfishers.blt.topology.net.TePath;
-import onl.netfishers.blt.topology.net.TePath.TeHop;
-import onl.netfishers.blt.topology.net.TePath.TeHopType;
-import onl.netfishers.blt.topology.net.TePath.TePathType;
-import onl.netfishers.blt.topology.net.TeTunnel;
-import onl.netfishers.blt.topology.net.TeTunnel.RouterRole;
-import onl.netfishers.blt.topology.net.TeTunnel.TeDestination;
+
 import org.quartz.SchedulerException;
 
 public class SnmpPollingTask extends Task {
@@ -126,9 +115,9 @@ public class SnmpPollingTask extends Task {
 		}
 		return results;
 	}
-
-	private static final String sysName                     = "1.3.6.1.2.1.1.5.0";
 	
+	
+	private static final String sysName                     = "1.3.6.1.2.1.1.5.0";
 	private static final String ifIndex                     = "1.3.6.1.2.1.2.2.1.1";
 	private static final String ifName                      = "1.3.6.1.2.1.31.1.1.1.1";
 	private static final String ifAlias                     = "1.3.6.1.2.1.31.1.1.1.18";
@@ -182,18 +171,27 @@ public class SnmpPollingTask extends Task {
 				transport = new DefaultUdpTransportMapping();
 				snmp = new Snmp(transport);
 				transport.listen();
-
-				String Name = get(sysName);
-				if (Name == null) {
-					logger.warn("No name for router {} ... name is UNKNOWN.", router);
-					router.setName("UNKNOWN");
-				}
 				
-				if (router.isPseudoNode()) {
-					router.setName(Name+"_DR");
-				} else { 
-					router.setName(Name);
+				String Name = null;
+				try {
+					Name = get(sysName);
+					if (Name != null) {
+						if (router.isVirtual()) {Name += "_PseudoNode";} 
+					} else {
+						logger.warn("No name for router {} ... name is UNKNOWN.", router);
+						Name = "UNKNOWN";
+					}
+				} catch (Exception e1) {
+					logger.warn("Error when polling router {} sysName", router);
+					e1.printStackTrace();
 				}
+				router.setName(Name);
+				router.setNeedTeRefresh(true);
+				
+				/*System.out.println("name: "+router.getName()+
+						" en réponse de: "+snmpTarget.getAddress().toString()+
+						" pour: "+router.getRouterId()+ 
+						" dont les pfx sont: "+router.getIpv4IgpRoutes().toString());*/
 				
 				Map<String, String> ifIndices = walk(ifIndex);
 				Map<String, String> ifNames = walk(ifName);
@@ -242,6 +240,7 @@ public class SnmpPollingTask extends Task {
 			}
 			
 			router.setLiveRouterInterfaces(routerInterfaces);
+
 		}
 	}
 
@@ -252,4 +251,3 @@ public class SnmpPollingTask extends Task {
 	}
 
 }
-*/

@@ -1,255 +1,72 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <topology>
    <networks>
-      <network id="2">
+      <network id="7">
          <routers>
-            <router id="1">
-               <name>iosxrv-2</name>
+            <router id="65">
+               <name>xrv2</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0015</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>277</x>
-               <y>88</y>
-            </router>
-            <router id="2">
-               <name>iosxrv-4</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0017</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>462</x>
-               <y>95</y>
-            </router>
-            <router id="3">
-               <name>iosv-10</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0012</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>71</x>
-               <y>125</y>
-            </router>
-            <router id="4">
-               <name>iosv-12</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0001</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>11</x>
-               <y>330</y>
-            </router>
-            <router id="5">
-               <name>iosv-15</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0004</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>418</x>
-               <y>276</y>
-            </router>
-            <router id="6">
-               <name>iosv-1</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0018</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>221</x>
-               <y>336</y>
-            </router>
-            <router id="7">
-               <name>iosv-2</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0019</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>0400.0000.0004</identifier>
+                  <lsIdentifier>0</lsIdentifier>
                </routerId>
                <x>100</x>
-               <y>550</y>
+               <y>100</y>
             </router>
-            <router id="8">
-               <name>iosv-13</name>
+            <router id="66">
+               <name>xrv2</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0002</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>0200.0000.0002</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <x>350</x>
+               <y>71</y>
+            </router>
+            <router id="67">
+               <name>xrv1</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>0100.0000.0001</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <x>457</x>
+               <y>190</y>
+            </router>
+            <router id="68">
+               <name>xrv2</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>0300.0000.0003</identifier>
+                  <lsIdentifier>0</lsIdentifier>
                </routerId>
                <x>250</x>
-               <y>625</y>
-            </router>
-            <router id="9">
-               <name>iosxrv-1</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0014</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>100</x>
-               <y>700</y>
-            </router>
-            <router id="10">
-               <name>iosxrv-3</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0016</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>250</x>
-               <y>775</y>
-            </router>
-            <router id="11">
-               <name>iosv-5</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0007</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>100</x>
-               <y>850</y>
-            </router>
-            <router id="12">
-               <name>iosv-6</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0008</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>250</x>
-               <y>925</y>
-            </router>
-            <router id="13">
-               <name>iosv-9</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0011</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>100</x>
-               <y>1000</y>
-            </router>
-            <router id="14">
-               <name>iosv-3</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0020</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>250</x>
-               <y>1075</y>
-            </router>
-            <router id="15">
-               <name>iosv-4</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0006</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>100</x>
-               <y>1150</y>
-            </router>
-            <router id="16">
-               <name>iosv-14</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0003</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>250</x>
-               <y>1225</y>
-            </router>
-            <router id="17">
-               <name>iosv-7</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0009</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>100</x>
-               <y>1300</y>
-            </router>
-            <router id="18">
-               <name>iosv-16</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0005</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>250</x>
-               <y>1375</y>
-            </router>
-            <router id="19">
-               <name>iosv-11</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0013</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>100</x>
-               <y>1450</y>
-            </router>
-            <router id="20">
-               <name>iosv-8</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>1692.5400.0010</identifier>
-                  <lsIdentifier>2851995749</lsIdentifier>
-               </routerId>
-               <x>250</x>
-               <y>1525</y>
+               <y>325</y>
             </router>
          </routers>
-         <bgpAs>1</bgpAs>
+         <bgpAs>65000</bgpAs>
          <bgpPeer>
-            <ip>10.60.0.228</ip>
+            <ip>192.168.2.101</ip>
             <prefixLength>32</prefixLength>
          </bgpPeer>
-         <name>CML Lab</name>
+         <name>XRv 4 routeurs</name>
+         <snmpCommunities>
+            <snmpCommunity id="7">
+               <community>BLT</community>
+               <subnet>
+                  <ip>10.0.0.0</ip>
+                  <prefixLength>29</prefixLength>
+               </subnet>
+            </snmpCommunity>
+         </snmpCommunities>
       </network>
    </networks>
    <users>

@@ -6,6 +6,7 @@ onl/netfishers/blt/bgp/config/Configuration.class
 onl/netfishers/blt/bgp/net/capabilities/MultiProtocolCapability.class
 onl/netfishers/blt/bgp/netty/protocol/ConnectionCollisionResolutionNotificationPacket.class
 onl/netfishers/blt/bgp/netty/PeerConnectionInformationAware.class
+onl/netfishers/blt/rest/RestService$RsSnmpCommunity.class
 onl/netfishers/blt/bgp/netty/protocol/update/ASPathAttributeCodecHandler$PathSegmentCodec.class
 onl/netfishers/blt/tasks/TaskManager.class
 onl/netfishers/blt/topology/net/Router.class
@@ -126,6 +127,7 @@ onl/netfishers/blt/rest/RestService$RsRouterPosition.class
 onl/netfishers/blt/bgp/net/ORFAction$1.class
 onl/netfishers/blt/bgp/netty/service/BGPv4Server$1.class
 onl/netfishers/blt/bgp/netty/protocol/update/InvalidNextHopException.class
+onl/netfishers/blt/snmp/SnmpPollingTask.class
 onl/netfishers/blt/bgp/netty/protocol/update/AttributeFlagsNotificationPacket.class
 onl/netfishers/blt/bgp/config/nodes/impl/CapabilitiesParser.class
 onl/netfishers/blt/bgp/netty/handlers/BgpEventFireChannelFutureListener.class

@@ -9,6 +9,7 @@ import java.util.List;
 import onl.netfishers.blt.bgp.BgpService;
 import onl.netfishers.blt.bgp.config.nodes.AddressFamilyRoutingConfiguration;
 import onl.netfishers.blt.bgp.config.nodes.RouteConfiguration;
+import onl.netfishers.blt.bgp.config.nodes.impl.AddressFamilyRoutingConfigurationImpl;
 import onl.netfishers.blt.bgp.net.AddressFamily;
 import onl.netfishers.blt.bgp.net.AddressFamilyKey;
 import onl.netfishers.blt.bgp.net.SubsequentAddressFamily;

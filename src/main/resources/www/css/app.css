@@ -14,14 +14,14 @@ body {
 	display: none;
 }
 
-/* #licenseissue {
+#licenseissue {
 	position: absolute;
 	left: 5px;
 	top: 60px;
 	width: 300px;
 	display: none;
 }
- */
+
 .form-signin {
 	
 }
@@ -99,10 +99,8 @@ table.simple th {
 #map-toolbar {
 	position: absolute;
 	top: 72px;
-	/*left: 570px;*/
-	left:20px;
-	/*width: 32px;*/
-	width: 400px;
+	left: 570px;
+	width: 32px;
 }
 
 #map-toolbar .btn-group-vertical {
@@ -112,13 +110,11 @@ table.simple th {
 #diagrambox {
 	position: absolute;
 	width: 600px;
-	//width: 1000px;
 	bottom: 10px;
 	left: 10px;
 	top: 65px;
 	border: 1px solid #DDD;
 	overflow: auto;
-	background-color: #ffffff;
 }
 
 #diagram {
@@ -127,15 +123,15 @@ table.simple th {
 
 #diagrambox #legend {
 	position: absolute;
-	width: 200px;
+	width: 500px;
 	bottom: 20px;
-	left: 200px;
-	background-color: #000000;
+	left: 50px;
+	background-color: #2c3e50;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
 	padding: 5px;
 	color: white;
-	text-align: center;
+	text-align: left;
 	-webkit-transition: background-color 0.25s ease-in;
 	-moz-transition: background-color 0.25s ease-in;
 	display: none;
@@ -155,19 +151,19 @@ table.simple th {
 }
 
 #diagrambox #legend .legend0 {
-	color: #2020E0;
+	color: #3498db;
 }
 
 #diagrambox #legend .legend1 {
-	color: #2020E0;
+	color: #3498db;
 }
 
 #diagrambox #legend .legend2 {
-	color: #E02020;
+	color: #8e44ad;
 }
 
 #diagrambox #legend .legend3 {
-	color: #20E020;
+	color: #16a085;
 }
 
 #diagrambox #legend .legend4 {
@@ -187,8 +183,7 @@ table.simple th {
 }
 
 #diagram .router {
-	/*padding: 16px;*/
-	padding: 10px;
+	padding: 12px;
 	position: absolute;
 	border: 1px solid black;
 	z-index: 4;
@@ -202,7 +197,7 @@ table.simple th {
 	opacity: 0.8;
 	filter: alpha(opacity = 80);
 	background-color: white;
-	font-size: 8px;
+	font-size: 11px;
 	/*font-weight: bold;*/
 	-webkit-transition: background-color 0.25s ease-in;
 	-moz-transition: background-color 0.25s ease-in;
@@ -211,7 +206,7 @@ table.simple th {
 }
 
 #diagram .router.lost {
-	font-color: red;
+	font-color: #c0392b;	
 	border-width: 2px;
 }
 
@@ -225,24 +220,24 @@ table.simple th {
 }
 
 #diagram .router.selected {
-	background-color: #ffff50;
+	background-color: #f39c12;
 }
 
 #diagram .router.target {
-	border: 3px solid red;
+	border: 3px solid #e74c3c;	
 }
 
 #diagram .router.lost {
-	border: 3px solid red;
+	border: 3px solid #c0392b,
 }
 
 #diagram .link path {
 	stroke: #678;
-	stroke-width: 4;
+	stroke-width: 2;
 }
 
 #diagram .link.lost path {
-	stroke-dasharray: 5, 5;
+	stroke-dasharray: 6, 2;
 	stroke: #B78;
 }
 
@@ -251,7 +246,7 @@ table.simple th {
 }
 
 #diagram .link.selected path {
-	stroke: #ffff50;
+	stroke: #f39c12;
 }
 
 #diagram .link path.linkarrow {
@@ -261,6 +256,7 @@ table.simple th {
 
 #diagram .link.selected path.linkarrow {
 	fill: #ffff50;
+	stroke: none
 }
 
 #diagram .linklabel._jsPlumb_hover,#diagram ._jsPlumb_source_hover,#diagram ._jsPlumb_target_hover
@@ -290,8 +286,8 @@ table.simple th {
 }
 
 #diagram .path path {
-	stroke-dasharray: 5, 5;
-	stroke-width: 6;
+	stroke-dasharray: 5, 1;
+	stroke-width: 2;
 }
 
 #diagram .path.loose path {
@@ -299,19 +295,19 @@ table.simple th {
 }
 
 #diagram .path0 path {
-	stroke: #2020E0;
+	stroke: #3498db;
 }
 
 #diagram .path1 path {
-	stroke: #2020E0;
+	stroke: #3498db;
 }
 
 #diagram .path2 path {
-	stroke: #E02020;
+	stroke: #8e44ad;
 }
 
 #diagram .path3 path {
-	stroke: #20E020;
+	stroke: #16a085;
 }
 
 #diagram .path4 path {
@@ -327,23 +323,24 @@ table.simple th {
 }
 
 #diagram .path path.patharrow {
+	stroke-width: 2;
 	stroke: none
 }
 
 #diagram .path0 path.patharrow {
-	fill: #2020E0;
+	fill: #3498db;
 }
 
 #diagram .path1 path.patharrow {
-	fill: #2020E0;
+	fill: #3498db;
 }
 
 #diagram .path2 path.patharrow {
-	fill: #E02020;
+	fill: #8e44ad;
 }
 
 #diagram .path3 path.patharrow {
-	fill: #20E020;
+	fill: #16a085;
 }
 
 #diagram .path4 path.patharrow {
@@ -367,23 +364,23 @@ table.simple th {
 }
 
 #diagram .pathlabel0 {
-	background-color: #2020E0;
-	border: 1px solid #2020E0;
+	background-color: #3498db;
+	border: 1px solid #3498db;
 }
 
 #diagram .pathlabel1 {
-	background-color: #2020E0;
-	border: 1px solid #2020E0;
+	background-color: #3498db;
+	border: 1px solid #3498db;
 }
 
 #diagram .pathlabel2 {
-	background-color: #E02020;
-	border: 1px solid #E02020;
+	background-color: #8e44ad;
+	border: 1px solid #8e44ad;
 }
 
 #diagram .pathlabel3 {
-	background-color: #20E020;
-	border: 1px solid #20E020;
+	background-color: #16a085;
+	border: 1px solid #16a085;
 }
 
 #diagram .pathlabel4 {
@@ -535,11 +532,11 @@ table#users th.actions {
 	padding: 10px;
 }
 
-/* textarea#license {
+textarea#license {
 	font-family: monospace;
 	font-size: 11px;
 	margin-bottom: 15px;
-} */
+}
 
 /* Base styles (regardless of theme) */
 .bs-callout {
