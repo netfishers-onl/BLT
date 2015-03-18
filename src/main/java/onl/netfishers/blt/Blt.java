@@ -1,6 +1,5 @@
 package onl.netfishers.blt;
 
-
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.util.Enumeration;
@@ -28,7 +27,6 @@ import ch.qos.logback.core.OutputStreamAppender;
 import ch.qos.logback.core.rolling.FixedWindowRollingPolicy;
 import ch.qos.logback.core.rolling.RollingFileAppender;
 import ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy;
-
 
 public class Blt {
 

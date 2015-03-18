@@ -16,7 +16,8 @@ define([
 		getShortName: function() {
 			var name = this.get('localInterfaceName');
 			if (typeof(name) == "undefined") {
-				return "?";
+				//return "?";
+				return "n/a";
 			}
 			else {
 				name = name.replace(/^Ethernet/, "Eth");

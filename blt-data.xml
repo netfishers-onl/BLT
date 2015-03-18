@@ -4,7 +4,7 @@
       <network id="7">
          <routers>
             <router id="65">
-               <name>xrv2</name>
+               <name>xrv4</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -40,7 +40,7 @@
                <y>190</y>
             </router>
             <router id="68">
-               <name>xrv2</name>
+               <name>xrv3</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>

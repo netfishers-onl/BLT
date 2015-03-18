@@ -211,35 +211,6 @@ public class Network {
 		}
 	}
 	
-	/*public void fillLinkInterfaceNames() {
-		for (Link link : links) {
-			for (Router router : routers) {
-				if (router.getRouterId().equals(link.getLocalRouter())) {
-					if (link.getProtocolId() == BgpLsProtocolId.OSPF) {
-						RouterInterface routerInterface = router.getRouterInterfaceBySubnet(link.getLocalAddress());
-						if (routerInterface != null) {
-							link.setLocalInterfaceName(routerInterface.getName());
-						}
-					}  else if (link.getProtocolId() == BgpLsProtocolId.ISIS_Level1 
-							|| link.getProtocolId() == BgpLsProtocolId.ISIS_Level2) {
-						link.setLocalInterfaceName(link.getProtocolId().toString());
-					}
-				}
-				if (router.getRouterId().equals(link.getRemoteRouter())) {
-					if (link.getProtocolId() == BgpLsProtocolId.OSPF) {
-						RouterInterface routerInterface = router.getRouterInterfaceBySubnet(link.getRemoteAddress());
-						if (routerInterface != null) {
-							link.setRemoteInterfaceName(routerInterface.getName());
-						}
-					}  else if (link.getProtocolId() == BgpLsProtocolId.ISIS_Level1 
-							|| link.getProtocolId() == BgpLsProtocolId.ISIS_Level2) {
-						link.setLocalInterfaceName(link.getProtocolId().toString());						
-					}
-				}
-			}
-		}
-	}*/
-
 	public void fillLinkInterfaceNames() {
 		for (Link link : links) {
 			for (Router router : routers) {

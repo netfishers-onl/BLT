@@ -226,16 +226,19 @@ public class BgpService {
 								    remoteNode.getAutonomousSystem(), remoteNode.getAreaId(),
 								    remoteNode.getBgpLsIdentifier());
 								Link link = null ; 
-								if ( linkNlri.getProtocolId() != BgpLsProtocolId.ISIS_Level1 &&
-									 linkNlri.getProtocolId() != BgpLsProtocolId.ISIS_Level2 &&
-									 linkNlri.getProtocolId() != BgpLsProtocolId.OSPF) {
-									logger.warn("Unknown IGP protocol :"+linkNlri.getProtocolId().toString());
-								} else {
-								link = new Link(localId, remoteId, 
-									    new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors()
-									    .getIPv4InterfaceAddress(), 32), 
-									    new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors()
-									    .getIPv4NeighborAddress(), 32));
+								if ( linkNlri.getProtocolId() == BgpLsProtocolId.ISIS_Level2 ||
+										linkNlri.getProtocolId() == BgpLsProtocolId.OSPF) {
+									link = new Link(localId, remoteId, 
+											new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors()
+											.getIPv4InterfaceAddress(), 32), 
+											new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors()
+											.getIPv4NeighborAddress(), 32));
+								//no local/remote ip addresses in ISIS L1 BGP LS link NLRI 
+								} else if (linkNlri.getProtocolId() == BgpLsProtocolId.ISIS_Level1 ){
+									link = new Link(localId, remoteId,
+											new Ipv4Subnet(0,32),new Ipv4Subnet(0,32));
+								} else {	
+										logger.warn("Unknown IGP protocol :"+linkNlri.getProtocolId().toString());
 								}
 								
 								/*System.out.println(
@@ -304,9 +307,14 @@ public class BgpService {
 											    && lsAttribute.isValidPrefixMetric()) {
 												prefixMetric = lsAttribute.getPrefixMetric();
 											}
-											router.addIpv4IgpRoute(new Ipv4Route(new Ipv4Subnet(
+											if ( ipNlri.getProtocolId() == BgpLsProtocolId.ISIS_Level2 ) {
+												//do nothing since We don't know yet how to handle
+												//same IP in multiple L2 LSP
+											} else {
+												router.addIpv4IgpRoute(new Ipv4Route(new Ipv4Subnet(
 											        (Inet4Address) Inet4Address.getByAddress(prefix),
 											        ipPrefix.getPrefixLength()), prefixMetric, null,null));
+											}
 											//
 											/*System.out.println("Un prefixe supplementaire : "+
 													Inet4Address.getByAddress(prefix)+"/"+
