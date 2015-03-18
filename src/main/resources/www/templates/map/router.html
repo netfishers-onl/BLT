@@ -8,8 +8,10 @@
 </ul>
 </div>
 
-<h4><%- name %> <small><%- routerId.identifier %></small></h4>
-
+<h4><%- name %> </h4>
+<h5>router id : <%- routerId.identifier %></h5>
+<h5>autonomous system : <%- routerId.autonomousSystem %></h5>
+<h5>area id : <%- routerId.areaId %></h5>
 <% if (typeof(lost) != "undefined" && lost === true) { %>
 
 <div class="alert alert-warning" role="alert">

@@ -232,21 +232,18 @@ public class BgpService {
 											new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors()
 											.getIPv4InterfaceAddress(), 32), 
 											new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors()
-											.getIPv4NeighborAddress(), 32));
-								//no local/remote ip addresses in ISIS L1 BGP LS link NLRI 
+											.getIPv4NeighborAddress(), 32),
+											linkNlri.getProtocolId());
 								} else if (linkNlri.getProtocolId() == BgpLsProtocolId.ISIS_Level1 ){
+									//no local/remote ip addresses in ISIS L1 BGP LS link NLRI 
 									link = new Link(localId, remoteId,
-											new Ipv4Subnet(0,32),new Ipv4Subnet(0,32));
+											new Ipv4Subnet(0,32),new Ipv4Subnet(0,32),
+											linkNlri.getProtocolId());
 								} else {	
 										logger.warn("Unknown IGP protocol :"+linkNlri.getProtocolId().toString());
 								}
 								
-								/*System.out.println(
-										"name:"+localNode.getIgpRouterId()+
-										" src:"+linkNlri.getLinkDescriptors().getIPv4InterfaceAddress()+
-										" dst:"+linkNlri.getLinkDescriptors().getIPv4NeighborAddress());*/
-								
-								
+
 								Router localRouter = network.findOrAddRouter(localId);
 								localRouter.setNeedTeRefresh(true);
 								Router remoteRouter = network.findOrAddRouter(remoteId);

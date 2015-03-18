@@ -12,7 +12,6 @@ import onl.netfishers.blt.rest.RestService;
 import onl.netfishers.blt.tasks.TaskManager;
 import onl.netfishers.blt.topology.TopologyService;
 
-//import onl.netfishers.blt.snmp.SnmpTrapReceiver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MarkerFactory;

@@ -45,12 +45,13 @@ public class Link {
 	}
 	
 	public Link(RouterIdentifier localRouter, RouterIdentifier remoteRouter,
-			Ipv4Subnet localAddress, Ipv4Subnet remoteAddress) {
+			Ipv4Subnet localAddress, Ipv4Subnet remoteAddress, BgpLsProtocolId protocolId) {
 		super();
 		this.localRouter = localRouter;
 		this.remoteRouter = remoteRouter;
 		this.localAddress = localAddress;
 		this.remoteAddress = remoteAddress;
+		this.protocolId = protocolId;
 	}
 	
 	@XmlAttribute
@@ -110,6 +111,8 @@ public class Link {
 	public void setLost(boolean lost) {
 		this.lost = lost;
 	}
+	
+	
 
 
 	@Override
@@ -247,6 +250,7 @@ public class Link {
 	/**
 	 * @return the protocolId
 	 */
+	@XmlElement
 	public BgpLsProtocolId getProtocolId() {
 		return protocolId;
 	}
