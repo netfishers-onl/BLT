@@ -26,6 +26,7 @@ The link isn't present anymore in the IGP topology.
 </thead>
 <tbody>
 	<tr>
+	<% if ( link1.localInterfaceName != undefined ) { %>
 		<th>Interface</th>
 		<td><%- link1.localInterfaceName %></td>
 		<td><%- link1.remoteInterfaceName %></td>
@@ -40,6 +41,7 @@ The link isn't present anymore in the IGP topology.
 		<td><%- link1.metric %></td>
 		<td><%- link2.metric %></td>
 	</tr>
+	<% } %>
 	<tr>
 		<th>TE Default Metric</th>
 		<td><%- link1.teDefaultMetric %></td>

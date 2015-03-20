@@ -9,9 +9,9 @@
 </div>
 
 <h4><%- name %> </h4>
-<h5>router id : <%- routerId.identifier %></h5>
-<h5>autonomous system : <%- routerId.autonomousSystem %></h5>
-<h5>area id : <%- routerId.areaId %></h5>
+<h4><small>router id : <%- routerId.identifier %></small></h4>
+<h4><small>autonomous system : <%- routerId.autonomousSystem %></small></h4>
+<h4><small>area id : <%- routerId.areaId %></small></h4>
 <% if (typeof(lost) != "undefined" && lost === true) { %>
 
 <div class="alert alert-warning" role="alert">
