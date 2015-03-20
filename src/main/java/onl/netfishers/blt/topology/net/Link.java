@@ -38,6 +38,7 @@ public class Link {
 	private Ipv4Subnet remoteAddress ;
 	
 	
+	
 	private List<Long> sharedRiskLinkGroups = new LinkedList<Long>();
 
 	protected Link() {
@@ -101,7 +102,6 @@ public class Link {
 	public void setRemoteAddress(Ipv4Subnet remoteAddress) {
 		this.remoteAddress = remoteAddress;
 	}
-
 
 	@XmlElement
 	public boolean isLost() {

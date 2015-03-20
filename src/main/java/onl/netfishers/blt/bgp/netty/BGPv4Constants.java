@@ -170,7 +170,9 @@ public class BGPv4Constants {
 	public static final int BGP_PATH_ATTRIBUTE_TYPE_AS4_AGGREGATOR = 18;
 	
 	/** PATH ATTRIBUTE LINK_STATE type code (draft-ietf-idr-ls-distribution) */
-	public static final int BGP_PATH_ATTRIBUTE_TYPE_LINK_STATE = 99;
+	//public static final int BGP_PATH_ATTRIBUTE_TYPE_LINK_STATE = 99;
+	/** PATH ATTRIBUTE LINK_STATE type code (draft-ietf-idr-ls-distribution-10) */
+	public static final int BGP_PATH_ATTRIBUTE_TYPE_LINK_STATE = 29;
 	
 	/** PATH ATTRIBUTE FLAG for OPTIONAL bit (based on 16 bit flags / type code value) */
 	public static  final int BGP_PATH_ATTRIBUTE_OPTIONAL_BIT = 1<<15;

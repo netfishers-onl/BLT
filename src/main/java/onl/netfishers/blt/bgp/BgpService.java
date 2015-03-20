@@ -251,30 +251,31 @@ public class BgpService {
 								link = network.findOrAddLink(link);
 								link.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
 								
-								if (lsAttribute != null) {
-									if (lsAttribute.isValidAdminGroup()) {
-										link.setAdminGroup(lsAttribute.getAdminGroup());
-									}
-									if (lsAttribute.isValidMaxLinkBandwidth()) {
-										link.setMaxLinkBandwidth(lsAttribute.getMaxLinkBandwidth());
-									}
-									if (lsAttribute.isValidMaxReservableLinkBandwidth()) {
-										link.setMaxReservableLinkBandwidth(lsAttribute
-										    .getMaxReservableLinkBandwidth());
-									}
-									if (lsAttribute.getUnreservedBandwidth() != null) {
-										link.setUnreservedBandwidth(lsAttribute
-										    .getUnreservedBandwidth().clone());
-									}
-									if (lsAttribute.isValidTeDefaultMetric()) {
-										link.setTeDefaultMetric(lsAttribute.getTeDefaultMetric());
-									}
-									if (lsAttribute.isValidMetric()) {
-										link.setMetric(lsAttribute.getMetric());
-									}
-									if (lsAttribute.isValidSharedRiskLinkGroups()) {
-										link.getSharedRiskLinkGroups().clear();
-										link.getSharedRiskLinkGroups().addAll(lsAttribute.getSharedRiskLinkGroups());
+								if ( linkNlri.getProtocolId() == BgpLsProtocolId.ISIS_Level2 || 
+										linkNlri.getProtocolId() == BgpLsProtocolId.OSPF) {
+									if (lsAttribute != null) {
+										if (lsAttribute.isValidAdminGroup()) {
+											link.setAdminGroup(lsAttribute.getAdminGroup());
+										}
+										if (lsAttribute.isValidMaxLinkBandwidth()) {
+											link.setMaxLinkBandwidth(lsAttribute.getMaxLinkBandwidth());
+										}
+										if (lsAttribute.isValidMaxReservableLinkBandwidth()) {
+											link.setMaxReservableLinkBandwidth(lsAttribute.getMaxReservableLinkBandwidth());
+										}
+										if (lsAttribute.getUnreservedBandwidth() != null) {
+											link.setUnreservedBandwidth(lsAttribute.getUnreservedBandwidth().clone());
+										}
+										if (lsAttribute.isValidTeDefaultMetric()) {
+											link.setTeDefaultMetric(lsAttribute.getTeDefaultMetric());
+										}
+										if (lsAttribute.isValidMetric()) {
+											link.setMetric(lsAttribute.getMetric());
+										}
+										if (lsAttribute.isValidSharedRiskLinkGroups()) {
+											link.getSharedRiskLinkGroups().clear();
+											link.getSharedRiskLinkGroups().addAll(lsAttribute.getSharedRiskLinkGroups());
+										}
 									}
 								}
 
