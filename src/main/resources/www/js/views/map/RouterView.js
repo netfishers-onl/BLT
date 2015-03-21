@@ -5,8 +5,9 @@ define([
 	'jsplumb',
 	'text!templates/map/router.html',
 	'views/map/RouterInterfacesView',
+	'views/map/RouterIpv4IgpRoutesView',
 	'bootstrap'
-], function($, _, Backbone, jsPlumb, routerTemplate, RouterInterfacesView) {
+], function($, _, Backbone, jsPlumb, routerTemplate, RouterInterfacesView, RouterIpv4IgpRoutesView) {
 
 	return Backbone.View.extend({
 
@@ -50,6 +51,17 @@ define([
 			
 			this.$("#goto-interfaces").off('click').on('click', function() {
 				that.sectionView = new RouterInterfacesView({
+					network: that.network,
+					router: that.router,
+					mapView: that.mapView
+				});
+				$(this).closest('li').siblings().removeClass("active");
+				$(this).closest('li').addClass("active");
+				that.saveTab();
+				return false;
+			});
+			this.$("#goto-prefixes").off('click').on('click', function() {
+				that.sectionView = new RouterIpv4IgpRoutesView({
 					network: that.network,
 					router: that.router,
 					mapView: that.mapView

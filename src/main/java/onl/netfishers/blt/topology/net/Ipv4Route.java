@@ -6,6 +6,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsProtocolId;
+
 @XmlRootElement(name = "ipv4Route")
 @XmlAccessorType(value = XmlAccessType.NONE)
 public class Ipv4Route {
@@ -18,17 +20,19 @@ public class Ipv4Route {
 	private long metric;
 	private Ipv4Subnet nextHop;
 	private String nextInterface;
+	private BgpLsProtocolId protocolId;
 
 	protected Ipv4Route() {
 
 	}
 
 	public Ipv4Route(Ipv4Subnet subnet, long metric, Ipv4Subnet nextHop,
-			String nextInterface) {
+			String nextInterface, BgpLsProtocolId protocolId) {
 		this.subnet = subnet;
 		this.metric = metric;
 		this.nextHop = nextHop;
 		this.nextInterface = nextInterface;
+		this.protocolId = protocolId;
 	}
 	
 
@@ -81,6 +85,15 @@ public class Ipv4Route {
 	public void setNextInterface(String nextInterface) {
 		this.nextInterface = nextInterface;
 	}
+	
+	@XmlElement
+	public BgpLsProtocolId getProtocolId() {
+		return protocolId;
+	}
+
+	public void setProtocolId(BgpLsProtocolId protocolId) {
+		this.protocolId = protocolId;
+	}
 
 	@Override
 	public int hashCode() {
@@ -88,9 +101,9 @@ public class Ipv4Route {
 		int result = 1;
 		result = prime * result + (int) (metric ^ (metric >>> 32));
 		result = prime * result + ((nextHop == null) ? 0 : nextHop.hashCode());
-		result = prime * result
-				+ ((nextInterface == null) ? 0 : nextInterface.hashCode());
+		result = prime * result + ((nextInterface == null) ? 0 : nextInterface.hashCode());
 		result = prime * result + ((subnet == null) ? 0 : subnet.hashCode());
+		result = prime * result + ((protocolId == null) ? 0 : protocolId.hashCode());
 		return result;
 	}
 
@@ -120,6 +133,12 @@ public class Ipv4Route {
 				return false;
 		}
 		else if (!subnet.equals(other.subnet))
+			return false;
+		if (protocolId == null) {
+			if (other.protocolId != null)
+				return false;
+		}
+		else if (!protocolId.equals(other.protocolId))
 			return false;
 		return true;
 	}

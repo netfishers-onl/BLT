@@ -281,7 +281,7 @@ public class BgpService {
 									try {
 										link = new Link(localId, remoteId,new Ipv4Subnet(0,32),new Ipv4Subnet(0,32),linkNlri.getProtocolId());
 									} catch (MalformedIpv4SubnetException e) {
-										logger.warn("This link Id does not seem to have any Id or IP:");
+										logger.warn("This link NLRI does not seem to have any Id or IP:");
 										e.printStackTrace();
 									}
 								}
@@ -307,22 +307,11 @@ public class BgpService {
 											    && lsAttribute.isValidPrefixMetric()) {
 												prefixMetric = lsAttribute.getPrefixMetric();
 											}
-											//if ( ipNlri.getProtocolId() == BgpLsProtocolId.ISIS_Level2 ) {
-												//do nothing since We don't know yet how to handle
-												//same IP in multiple L2 LSP
-											//} else {
-												router.addIpv4IgpRoute(new Ipv4Route(new Ipv4Subnet(
-											        (Inet4Address) Inet4Address.getByAddress(prefix),
-											        ipPrefix.getPrefixLength()), prefixMetric, null,null));
-											//}
-											//
-											/*System.out.println("Un prefixe supplementaire : "+
-													Inet4Address.getByAddress(prefix)+"/"+
-													ipPrefix.getPrefixLength()+" pour: "+
-													router.getRouterId().toString()+" métrique: "
-													+lsAttribute.getMetric());*/
-											//
 											
+											router.addIpv4IgpRoute(new Ipv4Route(new Ipv4Subnet(
+													(Inet4Address) Inet4Address.getByAddress(prefix),
+											        ipPrefix.getPrefixLength()), prefixMetric, null,null,ipNlri.getProtocolId()));
+																				
 											router.setNeedTeRefresh(true);
 										}
 										catch (Exception e) {
