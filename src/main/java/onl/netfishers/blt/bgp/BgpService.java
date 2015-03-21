@@ -38,6 +38,7 @@ import onl.netfishers.blt.tasks.TaskManager;
 import onl.netfishers.blt.topology.TopologyService;
 import onl.netfishers.blt.topology.net.Ipv4Route;
 import onl.netfishers.blt.topology.net.Ipv4Subnet;
+import onl.netfishers.blt.topology.net.Ipv4Subnet.MalformedIpv4SubnetException;
 import onl.netfishers.blt.topology.net.Link;
 import onl.netfishers.blt.topology.net.Network;
 import onl.netfishers.blt.topology.net.Router;
@@ -216,33 +217,27 @@ public class BgpService {
 							BgpLsNodeDescriptor localNode = linkNlri.getLocalNodeDescriptors();
 							BgpLsNodeDescriptor remoteNode = linkNlri.getRemoteNodeDescriptors();
 
+							Link link = null ;
+							RouterIdentifier localId = null ;
+							RouterIdentifier remoteId = null ;
+							
 							try {
-								RouterIdentifier localId = new RouterIdentifier(
+								localId = new RouterIdentifier (
 								    localNode.getIgpRouterId(),
-								    localNode.getAutonomousSystem(), localNode.getAreaId(),
+								    localNode.getAutonomousSystem(), 
+								    localNode.getAreaId(),
 								    localNode.getBgpLsIdentifier());
-								RouterIdentifier remoteId = new RouterIdentifier(
+								remoteId = new RouterIdentifier (
 								    remoteNode.getIgpRouterId(),
-								    remoteNode.getAutonomousSystem(), remoteNode.getAreaId(),
+								    remoteNode.getAutonomousSystem(), 
+								    remoteNode.getAreaId(),
 								    remoteNode.getBgpLsIdentifier());
-								Link link = null ; 
-								if ( linkNlri.getProtocolId() == BgpLsProtocolId.ISIS_Level2 ||
-										linkNlri.getProtocolId() == BgpLsProtocolId.OSPF) {
-									link = new Link(localId, remoteId, 
-											new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors()
-											.getIPv4InterfaceAddress(), 32), 
-											new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors()
-											.getIPv4NeighborAddress(), 32),
-											linkNlri.getProtocolId());
-								} else if (linkNlri.getProtocolId() == BgpLsProtocolId.ISIS_Level1 ){
-									//no local/remote ip addresses in ISIS L1 BGP LS link NLRI 
-									link = new Link(localId, remoteId,
-											new Ipv4Subnet(0,32),new Ipv4Subnet(0,32),
-											linkNlri.getProtocolId());
-								} else {	
-										logger.warn("Unknown IGP protocol :"+linkNlri.getProtocolId().toString());
-								}
-								
+								link = new Link(localId, remoteId, 
+									new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors()
+										.getIPv4InterfaceAddress(), 32), 
+										new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors()
+										.getIPv4NeighborAddress(), 32),
+										linkNlri.getProtocolId());
 
 								Router localRouter = network.findOrAddRouter(localId);
 								localRouter.setNeedTeRefresh(true);
@@ -251,9 +246,7 @@ public class BgpService {
 								link = network.findOrAddLink(link);
 								link.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
 								
-								if ( linkNlri.getProtocolId() == BgpLsProtocolId.ISIS_Level2 || 
-										linkNlri.getProtocolId() == BgpLsProtocolId.OSPF) {
-									if (lsAttribute != null) {
+								if (lsAttribute != null) {
 										if (lsAttribute.isValidAdminGroup()) {
 											link.setAdminGroup(lsAttribute.getAdminGroup());
 										}
@@ -276,13 +269,22 @@ public class BgpService {
 											link.getSharedRiskLinkGroups().clear();
 											link.getSharedRiskLinkGroups().addAll(lsAttribute.getSharedRiskLinkGroups());
 										}
-									}
 								}
 
 							}
 							catch (Exception e) {
 								logger.warn("Don't know how to handle this link Id :");
 								e.printStackTrace();
+							}
+							finally {
+								if (! linkNlri.getLinkDescriptors().isValidIPv4InterfaceAddress()){
+									try {
+										link = new Link(localId, remoteId,new Ipv4Subnet(0,32),new Ipv4Subnet(0,32),linkNlri.getProtocolId());
+									} catch (MalformedIpv4SubnetException e) {
+										logger.warn("This link Id does not seem to have any Id or IP:");
+										e.printStackTrace();
+									}
+								}
 							}
 						}
 						else if (nlri instanceof BgpLsIPTopologyPrefixNLRI) {
@@ -305,14 +307,14 @@ public class BgpService {
 											    && lsAttribute.isValidPrefixMetric()) {
 												prefixMetric = lsAttribute.getPrefixMetric();
 											}
-											if ( ipNlri.getProtocolId() == BgpLsProtocolId.ISIS_Level2 ) {
+											//if ( ipNlri.getProtocolId() == BgpLsProtocolId.ISIS_Level2 ) {
 												//do nothing since We don't know yet how to handle
 												//same IP in multiple L2 LSP
-											} else {
+											//} else {
 												router.addIpv4IgpRoute(new Ipv4Route(new Ipv4Subnet(
 											        (Inet4Address) Inet4Address.getByAddress(prefix),
 											        ipPrefix.getPrefixLength()), prefixMetric, null,null));
-											}
+											//}
 											//
 											/*System.out.println("Un prefixe supplementaire : "+
 													Inet4Address.getByAddress(prefix)+"/"+

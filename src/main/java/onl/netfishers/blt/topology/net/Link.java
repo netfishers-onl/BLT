@@ -102,6 +102,15 @@ public class Link {
 	public void setRemoteAddress(Ipv4Subnet remoteAddress) {
 		this.remoteAddress = remoteAddress;
 	}
+	
+	@XmlElement
+	public BgpLsProtocolId getProtocolId() {
+		return protocolId;
+	}
+
+	public void setProtocolId(BgpLsProtocolId protocolId) {
+		this.protocolId = protocolId;
+	}
 
 	@XmlElement
 	public boolean isLost() {
@@ -127,6 +136,8 @@ public class Link {
 				+ ((remoteAddress == null) ? 0 : remoteAddress.hashCode());
 		result = prime * result
 				+ ((remoteRouter == null) ? 0 : remoteRouter.hashCode());
+		result = prime * result
+				+ ((protocolId == null) ? 0 : protocolId.hashCode());
 		return result;
 	}
 
@@ -139,6 +150,13 @@ public class Link {
 		if (getClass() != obj.getClass())
 			return false;
 		Link other = (Link) obj;
+		if (protocolId == null) {
+			if (other.protocolId != null)
+				return false;
+		}
+		else if (!protocolId.equals(other.protocolId))
+			return false;
+		
 		if (localAddress == null) {
 			if (other.localAddress != null)
 				return false;
@@ -247,18 +265,4 @@ public class Link {
 		this.remoteInterfaceName = remoteInterfaceName;
 	}
 
-	/**
-	 * @return the protocolId
-	 */
-	@XmlElement
-	public BgpLsProtocolId getProtocolId() {
-		return protocolId;
-	}
-
-	/**
-	 * @param protocolId the protocolId to set
-	 */
-	public void setProtocolId(BgpLsProtocolId protocolId) {
-		this.protocolId = protocolId;
-	}
 }
