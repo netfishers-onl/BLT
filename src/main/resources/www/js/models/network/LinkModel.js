@@ -17,7 +17,7 @@ define([
 			var name = this.get('localInterfaceName');
 			if (typeof(name) == "undefined") {
 				//return "?";
-				return "";
+				return this.get('protocolId');
 			}
 			else {
 				name = name.replace(/^Ethernet/, "Eth");

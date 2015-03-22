@@ -373,8 +373,11 @@ public class Router {
 		Collections.sort(communities);
 		for (SnmpCommunity community : communities) {
 			for (Ipv4Route prefix : ipv4IgpRoutes) {
-				if (prefix.getMetric() <= 1 && community.getSubnet().contains(prefix.getSubnet())) {
-					return new SnmpCommunity(prefix.getSubnet(), community.getCommunity());
+				if (community.getSubnet().contains(prefix.getSubnet())) {
+					if ((prefix.getMetric() <= 1 && prefix.getProtocolId().toString() == "OSPF" ) ||
+						(prefix.getMetric() <= 10 && prefix.getProtocolId().toString() == "ISIS_Level1" )) {
+						return new SnmpCommunity(prefix.getSubnet(), community.getCommunity());
+					}
 				}
 			}
 		}

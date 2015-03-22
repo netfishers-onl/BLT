@@ -144,7 +144,12 @@ define([
 						anchor: "Continuous",
 						connector: [ "StateMachine", { curviness: 10 } ],
 						overlays: [
-						  [ "Label", { id: 10, label: link.getShortName(), location: 0.05, cssClass: "linklabel" } ],
+						  [ "Label", { 
+							  id: 10,
+							  label: link.getShortName(),
+							  location: 0.1,
+							  cssClass: "linklabel" 
+						   } ],
 						],
 						cssClass: "link" + (link.isLost() ? " lost" : ""),
 						paintStyle: { },

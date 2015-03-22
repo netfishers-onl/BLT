@@ -10,6 +10,27 @@ define([
 			this.router = options.router;
 		},
 		
+		isIsisL1: function() {
+			return typeof (this.get("protocolId") == "ISIS_Level1");
+		},
+		
+		isIsisL2: function() {
+			return typeof (this.get("protocolId") == "ISIS_Level2");
+		},
+		
+		isOspf: function() {
+			return typeof (this.get("protocolId") == "OSPF");
+		},
+		
+		/*getIpv4NetworkAddressToInt: function() {
+	        var d = this.get('subnet.ip').split('.');
+	        return ((((((+d[0])*256)+(+d[1]))*256)+(+d[2]))*256)+(+d[3]);
+		},
+
+		getPrefixLength: function() {
+			return this.get('subnet.prefixLength');
+		},*/
+		
 		urlRoot: function() {
 			return "api/networks/" + this.network + "/routers/" + this.router + "/ipv4igproutes";
 		}

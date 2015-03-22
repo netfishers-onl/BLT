@@ -120,9 +120,6 @@ public class Link {
 	public void setLost(boolean lost) {
 		this.lost = lost;
 	}
-	
-	
-
 
 	@Override
 	public int hashCode() {
