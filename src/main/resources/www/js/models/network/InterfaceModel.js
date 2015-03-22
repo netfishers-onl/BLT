@@ -17,7 +17,7 @@ define([
 		
 		isEthernet: function() {
 			return typeof(this.get('name')) == "string" &&
-					this.get('name').match(/Eth(er|)|TenGigE/);
+					this.get('name').match(/Et(her|)|TenGigE/);
 		},
 		
 		isLoopback: function() {

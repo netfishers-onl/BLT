@@ -238,6 +238,22 @@ public class BgpService {
 										new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors()
 										.getIPv4NeighborAddress(), 32),
 										linkNlri.getProtocolId());
+							}	
+							catch (Exception e) {
+									logger.warn("Cannot handle properly this link Id because it has no valid IP address attached\n"+
+											"will fall back to BGP LS only mode:"+
+											"\n\tlocalId: "+localId.getIdentifier().toString()+
+											"\n\tremoteId: "+remoteId.getIdentifier().toString()+
+											"\n\tprotocolId: "+linkNlri.getProtocolId());
+									//e.printStackTrace();
+									try {
+										link = new Link(localId, remoteId,new Ipv4Subnet(0,32),new Ipv4Subnet(0,32),linkNlri.getProtocolId());
+									}
+									catch (MalformedIpv4SubnetException err) {
+										logger.warn("This link NLRI does not seem to have any valid descriptor or IP:");
+										err.printStackTrace();
+									}
+							}	
 
 								Router localRouter = network.findOrAddRouter(localId);
 								localRouter.setNeedTeRefresh(true);
@@ -272,21 +288,8 @@ public class BgpService {
 								}
 
 							}
-							catch (Exception e) {
-								logger.warn("Don't know how to handle this link Id :");
-								e.printStackTrace();
-							}
-							finally {
-								if (! linkNlri.getLinkDescriptors().isValidIPv4InterfaceAddress()){
-									try {
-										link = new Link(localId, remoteId,new Ipv4Subnet(0,32),new Ipv4Subnet(0,32),linkNlri.getProtocolId());
-									} catch (MalformedIpv4SubnetException e) {
-										logger.warn("This link NLRI does not seem to have any Id or IP:");
-										e.printStackTrace();
-									}
-								}
-							}
-						}
+							
+						
 						else if (nlri instanceof BgpLsIPTopologyPrefixNLRI) {
 							BgpLsIPTopologyPrefixNLRI ipNlri = (BgpLsIPTopologyPrefixNLRI) nlri;
 							BgpLsNodeDescriptor node = ipNlri.getLocalNodeDescriptors();
