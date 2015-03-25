@@ -17,9 +17,10 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import onl.netfishers.blt.Blt;
 import onl.netfishers.blt.topology.net.RouterInterface.RouterInterfaceType;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsNodeDescriptor;
-
+import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsProtocolId;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,17 @@ import org.slf4j.LoggerFactory;
 public class Router {
 
 	static Logger logger = LoggerFactory.getLogger(Router.class);	
+	
+	String localIgpMaxMetric = Blt.getConfig("blt.router.localIgpMaxMetric", "10");
+	
+	private int igpLocalMetric = 10;{
+		try {
+			igpLocalMetric = Integer.parseInt(localIgpMaxMetric);
+		}
+		catch (NumberFormatException e1) {
+			logger.error("Invalid localIgpMaxMetric parameter, not an integer (blt.router.localIgpMaxMetric config line). Using {}.", igpLocalMetric);
+		}
+	}
 	
 	private static long idGenerator = 0;
 
@@ -47,7 +59,7 @@ public class Router {
 		private long autonomousSystem = 0;
 		private long areaId = 0;
 		private long lsIdentifier = 0;
-
+		
 		protected RouterIdentifier() {
 			
 		}
@@ -325,7 +337,8 @@ public class Router {
 	public void setDeleted(boolean deleted) {
 		this.deleted = deleted;
 	}
-
+	
+	@XmlElement
 	public boolean isVirtual() {
 		return (routerId.isVirtual());
 	}
@@ -374,8 +387,7 @@ public class Router {
 		for (SnmpCommunity community : communities) {
 			for (Ipv4Route prefix : ipv4IgpRoutes) {
 				if (community.getSubnet().contains(prefix.getSubnet())) {
-					if ((prefix.getMetric() <= 1 && prefix.getProtocolId().toString() == "OSPF" ) ||
-						(prefix.getMetric() <= 10 && prefix.getProtocolId().toString() == "ISIS_Level1" )) {
+					if (prefix.getMetric() <= igpLocalMetric ){
 						return new SnmpCommunity(prefix.getSubnet(), community.getCommunity());
 					}
 				}

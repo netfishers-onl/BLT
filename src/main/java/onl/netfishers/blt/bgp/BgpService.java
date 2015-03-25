@@ -198,19 +198,24 @@ public class BgpService {
 							
 							try {
 								RouterIdentifier routerId = new RouterIdentifier(
-										node.getIgpRouterId(), node.getAutonomousSystem(),
-										node.getAreaId(), node.getBgpLsIdentifier());
-									
-								Router router = network.findOrAddRouter(routerId);
-
-								router.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
-								router.setNeedTeRefresh(true);
+									node.getIgpRouterId(), node.getAutonomousSystem(),
+									node.getAreaId(), node.getBgpLsIdentifier());
 								
+								Router router = network.findOrAddRouter(routerId);
+								
+								router.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
+								
+								if ( routerId.isVirtual()) {
+									router.setName("PseudoNode");
+								}
+								
+								router.setNeedTeRefresh(true);
 								toSave = true;
 							}
 							catch (Exception e) {
 								logger.warn("Invalid node");
 							}
+							
 						}
 						else if (nlri instanceof BgpLsLinkNLRI) {
 							BgpLsLinkNLRI linkNlri = (BgpLsLinkNLRI) nlri;
@@ -240,54 +245,54 @@ public class BgpService {
 										linkNlri.getProtocolId());
 							}	
 							catch (Exception e) {
-									logger.warn("Cannot handle properly this link Id because it has no valid IP address attached\n"+
-											"will fall back to BGP LS only mode:"+
-											"\n\tlocalId: "+localId.getIdentifier().toString()+
-											"\n\tremoteId: "+remoteId.getIdentifier().toString()+
-											"\n\tprotocolId: "+linkNlri.getProtocolId());
+								logger.warn("Cannot handle properly this link Id because it has no valid IP address attached\n"+
+									"will fall back to BGP LS only mode:"+
+									"\n\tlocalId: "+localId.getIdentifier().toString()+
+									"\n\tremoteId: "+remoteId.getIdentifier().toString()+
+									"\n\tprotocolId: "+linkNlri.getProtocolId());
 									//e.printStackTrace();
-									try {
+								try {
 										link = new Link(localId, remoteId,new Ipv4Subnet(0,32),new Ipv4Subnet(0,32),linkNlri.getProtocolId());
-									}
-									catch (MalformedIpv4SubnetException err) {
-										logger.warn("This link NLRI does not seem to have any valid descriptor or IP:");
-										err.printStackTrace();
-									}
+								}
+								catch (MalformedIpv4SubnetException err) {
+									logger.warn("This link NLRI does not seem to have any valid descriptor or IP:");
+									err.printStackTrace();
+								}
 							}	
 
-								Router localRouter = network.findOrAddRouter(localId);
-								localRouter.setNeedTeRefresh(true);
-								Router remoteRouter = network.findOrAddRouter(remoteId);
-								remoteRouter.setNeedTeRefresh(true);
-								link = network.findOrAddLink(link);
-								link.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
+							Router localRouter = network.findOrAddRouter(localId);
+							localRouter.setNeedTeRefresh(true);
+							Router remoteRouter = network.findOrAddRouter(remoteId);
+							remoteRouter.setNeedTeRefresh(true);
+							link = network.findOrAddLink(link);
+							link.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
 								
-								if (lsAttribute != null) {
-										if (lsAttribute.isValidAdminGroup()) {
-											link.setAdminGroup(lsAttribute.getAdminGroup());
-										}
-										if (lsAttribute.isValidMaxLinkBandwidth()) {
-											link.setMaxLinkBandwidth(lsAttribute.getMaxLinkBandwidth());
-										}
-										if (lsAttribute.isValidMaxReservableLinkBandwidth()) {
-											link.setMaxReservableLinkBandwidth(lsAttribute.getMaxReservableLinkBandwidth());
-										}
-										if (lsAttribute.getUnreservedBandwidth() != null) {
-											link.setUnreservedBandwidth(lsAttribute.getUnreservedBandwidth().clone());
-										}
-										if (lsAttribute.isValidTeDefaultMetric()) {
-											link.setTeDefaultMetric(lsAttribute.getTeDefaultMetric());
-										}
-										if (lsAttribute.isValidMetric()) {
-											link.setMetric(lsAttribute.getMetric());
-										}
-										if (lsAttribute.isValidSharedRiskLinkGroups()) {
-											link.getSharedRiskLinkGroups().clear();
-											link.getSharedRiskLinkGroups().addAll(lsAttribute.getSharedRiskLinkGroups());
-										}
+							if (lsAttribute != null) {
+								if (lsAttribute.isValidAdminGroup()) {
+									link.setAdminGroup(lsAttribute.getAdminGroup());
 								}
-
+								if (lsAttribute.isValidMaxLinkBandwidth()) {
+									link.setMaxLinkBandwidth(lsAttribute.getMaxLinkBandwidth());
+								}
+								if (lsAttribute.isValidMaxReservableLinkBandwidth()) {
+									link.setMaxReservableLinkBandwidth(lsAttribute.getMaxReservableLinkBandwidth());
+								}
+								if (lsAttribute.getUnreservedBandwidth() != null) {
+									link.setUnreservedBandwidth(lsAttribute.getUnreservedBandwidth().clone());
+								}
+								if (lsAttribute.isValidTeDefaultMetric()) {
+									link.setTeDefaultMetric(lsAttribute.getTeDefaultMetric());
+								}
+								if (lsAttribute.isValidMetric()) {
+									link.setMetric(lsAttribute.getMetric());
+								}
+								if (lsAttribute.isValidSharedRiskLinkGroups()) {
+									link.getSharedRiskLinkGroups().clear();
+									link.getSharedRiskLinkGroups().addAll(lsAttribute.getSharedRiskLinkGroups());
+								}
 							}
+
+						}
 							
 						
 						else if (nlri instanceof BgpLsIPTopologyPrefixNLRI) {
@@ -314,6 +319,7 @@ public class BgpService {
 											router.addIpv4IgpRoute(new Ipv4Route(new Ipv4Subnet(
 													(Inet4Address) Inet4Address.getByAddress(prefix),
 											        ipPrefix.getPrefixLength()), prefixMetric, null,null,ipNlri.getProtocolId()));
+											//System.out.println("pfx: "+Inet4Address.getByAddress(prefix)+" metric: "+prefixMetric);
 																				
 											router.setNeedTeRefresh(true);
 										}

@@ -174,25 +174,15 @@ public class SnmpPollingTask extends Task {
 				
 				String Name = null;
 				try {
-					Name = get(sysName);
-					if (Name != null) {
-						if (router.isVirtual()) {Name += "_PseudoNode";} 
-					} else {
-						logger.warn("No name for router {} ... name is UNKNOWN.", router);
-						Name = "UNKNOWN";
-					}
+					Name = get(sysName); 
 				} catch (Exception e1) {
 					logger.warn("Error when polling router {} sysName", router);
 					e1.printStackTrace();
 				}
 				router.setName(Name);
 				router.setNeedTeRefresh(true);
-				
-				/*System.out.println("name: "+router.getName()+
-						" en réponse de: "+snmpTarget.getAddress().toString()+
-						" pour: "+router.getRouterId()+ 
-						" dont les pfx sont: "+router.getIpv4IgpRoutes().toString());*/
-				
+				//System.out.println("name: "+router.getName());
+							
 				Map<String, String> ifIndices = walk(ifIndex);
 				Map<String, String> ifNames = walk(ifName);
 				Map<String, String> ifDescriptions = walk(ifAlias);
