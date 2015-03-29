@@ -123,7 +123,16 @@ public class Network {
 		}
 		return null;
 	}
-
+	
+	public Router getPseudonode(Router r) {
+		for (Router router : routers) {
+			if (router.isPseudonodeOf(r)) {
+				return router;
+			}
+		}
+		return null;
+	}
+	
 	@XmlElementWrapper
 	@XmlElement(name = "snmpCommunity")
 	public Set<SnmpCommunity> getSnmpCommunities() {

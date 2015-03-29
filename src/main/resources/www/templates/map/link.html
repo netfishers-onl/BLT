@@ -1,7 +1,7 @@
 
 <h4><%- link1.protocolId %> Link <small>between <%- router1.name %> and <%- router2.name %></small></h4>
 
-<% if (typeof(lost) != "undefined" && lost === true) { %>
+<% if ( link1.lost === true) { %>
 
 <div class="alert alert-warning" role="alert">
 

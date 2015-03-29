@@ -22,14 +22,19 @@ define([
 			return typeof (this.get("protocolId") == "OSPF");
 		},
 		
-		/*getIpv4NetworkAddressToInt: function() {
-	        var d = this.get('subnet.ip').split('.');
+		getIpv4NetworkAddressToInt: function() {
+	        var ip = this.get("subnet").ip;
+	        var d = ip.split(".");
 	        return ((((((+d[0])*256)+(+d[1]))*256)+(+d[2]))*256)+(+d[3]);
 		},
 
 		getPrefixLength: function() {
-			return this.get('subnet.prefixLength');
-		},*/
+			return this.get('subnet').prefixLength;
+		},
+		
+		getMetric: function() {
+			return this.get('metric');
+		},
 		
 		urlRoot: function() {
 			return "api/networks/" + this.network + "/routers/" + this.router + "/ipv4igproutes";

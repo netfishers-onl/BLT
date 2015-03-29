@@ -1,3 +1,8 @@
-<div class="router<% if (typeof(lost) != "undefined" && lost === true) { %> lost<% } %>" id="router<%- id%>" data-router="<%- id %>">
+<div class="router
+<!-- <% if (typeof(lost) != "undefined" && lost === true) { %> lost<% } %>
+ -->
+ <% if (typeof(lost) != "undefined" && lost === true) { %> lost<% } %>
+ <% if (typeof(virtual) != "undefined" && virtual === true) { %> psn<% } %> 
+ " id="router<%- id%>" data-router="<%- id %>">
 <%- name.replace(/\.domain/, "") %>
 </div>

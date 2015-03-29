@@ -140,30 +140,10 @@ public class BgpLsNodeDescriptorCodec {
 				    + ") for IGP Router ID");
 				throw new OptionalAttributeErrorException();
 			}
-			if (buffer.readableBytes() == BgpLsNodeDescriptor.IGPROUTERID_OSPFROUTERID_LENGTH) {
-				byte[] igpRouterId = new byte[buffer.readableBytes()];
-				buffer.readBytes(igpRouterId);
-				nd.setIgpRouterId(igpRouterId);	
-			} else if (buffer.readableBytes() == BgpLsNodeDescriptor.IGPROUTERID_OSPFPSEUDONODE_LENGTH) {
-				byte[] igpRouterId = new byte[4];
-				byte[] pseudoNodeId = new byte[4];
-				buffer.readBytes(igpRouterId);
-				nd.setIgpRouterId(igpRouterId);
-				buffer.readBytes(pseudoNodeId);
-				//nd.setPseudoNodeId(pseudoNodeId);
-			} else if (buffer.readableBytes() == BgpLsNodeDescriptor.IGPROUTERID_ISISISONODEID_LENGTH) {
-				byte[] igpRouterId = new byte[buffer.readableBytes()];
-				buffer.readBytes(igpRouterId);
-				nd.setIgpRouterId(igpRouterId);	
-			} else if (buffer.readableBytes() == BgpLsNodeDescriptor.IGPROUTERID_ISISPSEUDONODE_LENGTH) {
-				byte[] igpRouterId = new byte[BgpLsNodeDescriptor.IGPROUTERID_ISISPSEUDONODE_LENGTH];
-				//byte[] pseudoNodeId = new byte[buffer.readableBytes()];
-				
-				buffer.readBytes(igpRouterId);
-				nd.setIgpRouterId(igpRouterId);
-				//buffer.readBytes(pseudoNodeId);
-				//nd.setPseudoNodeId(pseudoNodeId);
-			}
+			byte[] igpRouterId = new byte[buffer.readableBytes()];
+			buffer.readBytes(igpRouterId);
+			nd.setIgpRouterId(igpRouterId);
+			
 		}
 		catch (RuntimeException e) {
 			log.error("failed to decode IGP Router ID for node descriptor", e);

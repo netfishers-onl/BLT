@@ -1,12 +1,18 @@
 
+<% if (typeof(virtual) != "undefined" && virtual === false) { %>
 <div class="pull-right">
 <ul class="nav nav-pills" role="tablist" id="menu">
     <li class="active"><a id="goto-interfaces" href="#">Interfaces</a></li>
     <li><a id="goto-prefixes" href="#">Prefixes</a></li>
 </ul>
 </div>
+<% } %>
 
+<% if (typeof(virtual) != "undefined" && virtual === true) { %>
+<h4><i>This router is a pseudonode</i></h4>
+<% } else { %>
 <h4><%- name %></h4>
+<% } %>
 <h4><small>router id : <%- routerId.identifier %><br>
 autonomous system : <%- routerId.autonomousSystem %><br>
 area id : <%- routerId.areaId %></small></h4>
@@ -27,5 +33,6 @@ area id : <%- routerId.areaId %></small></h4>
 
 <% } %>
 
-
+<% if (typeof(virtual) != "undefined" && virtual === false) { %>
 <div id="section"></div>
+<% } %>

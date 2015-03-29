@@ -181,7 +181,6 @@ public class SnmpPollingTask extends Task {
 				}
 				router.setName(Name);
 				router.setNeedTeRefresh(true);
-				//System.out.println("name: "+router.getName());
 							
 				Map<String, String> ifIndices = walk(ifIndex);
 				Map<String, String> ifNames = walk(ifName);

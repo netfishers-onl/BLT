@@ -3,183 +3,7 @@
    <networks>
       <network id="9">
          <routers>
-            <router id="92">
-               <ipv4Interfaces id="307">
-                  <description>--- out of band mgmt ---</description>
-                  <ipv4Address>
-                     <ip>192.168.2.202</ip>
-                     <prefixLength>24</prefixLength>
-                  </ipv4Address>
-                  <name>MgmtEth0/0/CPU0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="308">
-                  <description>--- vers xrv1 Gi0/0/0/0 ---</description>
-                  <ipv4Address>
-                     <ip>192.168.1.2</ip>
-                     <prefixLength>24</prefixLength>
-                  </ipv4Address>
-                  <name>GigabitEthernet0/0/0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="309">
-                  <description>--- vers xrv4 Gi0/0/0/0 ---</description>
-                  <ipv4Address>
-                     <ip>192.168.4.2</ip>
-                     <prefixLength>24</prefixLength>
-                  </ipv4Address>
-                  <name>GigabitEthernet0/0/0/1</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="310">
-                  <description>--- RID et inband mgmt ---</description>
-                  <ipv4Address>
-                     <ip>10.0.0.2</ip>
-                     <prefixLength>32</prefixLength>
-                  </ipv4Address>
-                  <name>Loopback0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="311">
-                  <description>test plumber</description>
-                  <ipv4Address>
-                     <ip>169.255.255.4</ip>
-                     <prefixLength>31</prefixLength>
-                  </ipv4Address>
-                  <name>GigabitEthernet0/0/0/0.1234</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <name>xrv2</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>2222.2222.2222</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>353</x>
-               <y>161</y>
-            </router>
-            <router id="93">
-               <ipv4Interfaces id="251">
-                  <description></description>
-                  <ipv4Address>
-                     <ip>192.168.100.101</ip>
-                     <prefixLength>24</prefixLength>
-                  </ipv4Address>
-                  <name>MgmtEth0/0/CPU0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="252">
-                  <description>--- to xrv2 ---</description>
-                  <ipv4Address>
-                     <ip>192.168.1.1</ip>
-                     <prefixLength>24</prefixLength>
-                  </ipv4Address>
-                  <name>GigabitEthernet0/0/0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="253">
-                  <description></description>
-                  <ipv4Address>
-                     <ip>192.168.20.1</ip>
-                     <prefixLength>24</prefixLength>
-                  </ipv4Address>
-                  <name>GigabitEthernet0/0/0/1</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="254">
-                  <description></description>
-                  <ipv4Address>
-                     <ip>192.168.2.101</ip>
-                     <prefixLength>24</prefixLength>
-                  </ipv4Address>
-                  <name>GigabitEthernet0/0/0/2</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="255">
-                  <description></description>
-                  <ipv4Address>
-                     <ip>192.168.200.1</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>tunnel-ip200</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="256">
-                  <description></description>
-                  <ipv4Address>
-                     <ip>10.0.0.1</ip>
-                     <prefixLength>32</prefixLength>
-                  </ipv4Address>
-                  <name>Loopback0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <name>xrv1</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>1111.1111.1111</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>80</x>
-               <y>120</y>
-            </router>
-            <router id="94">
-               <ipv4Interfaces id="295">
-                  <description>--- out of band mgmt ---</description>
-                  <ipv4Address>
-                     <ip>192.168.2.204</ip>
-                     <prefixLength>24</prefixLength>
-                  </ipv4Address>
-                  <name>MgmtEth0/0/CPU0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="296">
-                  <description>--- vers xrv2 Gi0/0/0/1 ---</description>
-                  <ipv4Address>
-                     <ip>192.168.4.4</ip>
-                     <prefixLength>24</prefixLength>
-                  </ipv4Address>
-                  <name>GigabitEthernet0/0/0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="297">
-                  <description>--- vers xrv3 Gi0/0/0/1 ---</description>
-                  <ipv4Address>
-                     <ip>192.168.3.4</ip>
-                     <prefixLength>24</prefixLength>
-                  </ipv4Address>
-                  <name>GigabitEthernet0/0/0/1</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="298">
-                  <description>--- RID et inband mgmt ---</description>
-                  <ipv4Address>
-                     <ip>10.0.0.4</ip>
-                     <prefixLength>32</prefixLength>
-                  </ipv4Address>
-                  <name>Loopback0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
+            <router id="27">
                <name>xrv4</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
@@ -189,90 +13,10 @@
                   <lsIdentifier>0</lsIdentifier>
                </routerId>
                <virtual>false</virtual>
-               <x>396</x>
-               <y>352</y>
+               <x>295</x>
+               <y>42</y>
             </router>
-            <router id="95">
-               <ipv4Interfaces id="299">
-                  <description>--- RID et inband mgmt ---</description>
-                  <ipv4Address>
-                     <ip>10.0.0.3</ip>
-                     <prefixLength>32</prefixLength>
-                  </ipv4Address>
-                  <name>Loopback0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="300">
-                  <description>test classement</description>
-                  <ipv4Address>
-                     <ip>1.1.1.1</ip>
-                     <prefixLength>31</prefixLength>
-                  </ipv4Address>
-                  <name>GigabitEthernet0/0/0/0.10</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="301">
-                  <description>test classement</description>
-                  <ipv4Address>
-                     <ip>2.2.2.2</ip>
-                     <prefixLength>31</prefixLength>
-                  </ipv4Address>
-                  <name>GigabitEthernet0/0/0/0.20</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="302">
-                  <description>test classement</description>
-                  <ipv4Address>
-                     <ip>4.4.4.4</ip>
-                     <prefixLength>31</prefixLength>
-                  </ipv4Address>
-                  <name>GigabitEthernet0/0/0/0.200</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="303">
-                  <description>test classement</description>
-                  <ipv4Address>
-                     <ip>9.9.9.9</ip>
-                     <prefixLength>31</prefixLength>
-                  </ipv4Address>
-                  <name>GigabitEthernet0/0/0/0.1020</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="304">
-                  <description>--- out of band mgmt ---</description>
-                  <ipv4Address>
-                     <ip>192.168.2.203</ip>
-                     <prefixLength>24</prefixLength>
-                  </ipv4Address>
-                  <name>MgmtEth0/0/CPU0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="305">
-                  <description>--- vers xrv1 Gi0/0/0/1 ---</description>
-                  <ipv4Address>
-                     <ip>192.168.20.3</ip>
-                     <prefixLength>24</prefixLength>
-                  </ipv4Address>
-                  <name>GigabitEthernet0/0/0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="306">
-                  <description>--- vers xrv4 Gi0/0/0/1 ---</description>
-                  <ipv4Address>
-                     <ip>192.168.3.3</ip>
-                     <prefixLength>24</prefixLength>
-                  </ipv4Address>
-                  <name>GigabitEthernet0/0/0/1</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
+            <router id="28">
                <name>xrv3</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
@@ -282,552 +26,36 @@
                   <lsIdentifier>0</lsIdentifier>
                </routerId>
                <virtual>false</virtual>
-               <x>73</x>
-               <y>319</y>
+               <x>487</x>
+               <y>14</y>
             </router>
-            <router id="100">
-               <name>xrv1</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>10.0.0.1</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>23</x>
-               <y>61</y>
-            </router>
-            <router id="101">
-               <name>xrv4</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>10.0.0.4</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>469</x>
-               <y>382</y>
-            </router>
-            <router id="102">
-               <name>xrv3</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>10.0.0.3</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>8</x>
-               <y>358</y>
-            </router>
-            <router id="103">
+            <router id="29">
                <name>xrv2</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
                   <autonomousSystem>65000</autonomousSystem>
-                  <identifier>10.0.0.2</identifier>
+                  <identifier>2222.2222.2222</identifier>
                   <lsIdentifier>0</lsIdentifier>
                </routerId>
                <virtual>false</virtual>
-               <x>415</x>
-               <y>118</y>
+               <x>309</x>
+               <y>148</y>
             </router>
-            <router id="104">
-               <ipv4Interfaces id="277">
-                  <description>--- vers R376 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.5</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="278">
-                  <description>--- vers R380 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.13</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/1</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="279">
-                  <description>--- vers R379 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.9</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/2</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="280">
-                  <description>--- vers R377 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.1</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/3</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="281">
-                  <description></description>
-                  <ipv4Address>
-                     <ip>169.254.0.75</ip>
-                     <prefixLength>32</prefixLength>
-                  </ipv4Address>
-                  <name>Lo0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <name>R375</name>
+            <router id="30">
+               <name>xrv1</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
                   <autonomousSystem>65000</autonomousSystem>
-                  <identifier>0000.0000.0375</identifier>
+                  <identifier>1111.1111.1111</identifier>
                   <lsIdentifier>0</lsIdentifier>
                </routerId>
                <virtual>false</virtual>
-               <x>33</x>
-               <y>413</y>
+               <x>485</x>
+               <y>127</y>
             </router>
-            <router id="107">
-               <ipv4Interfaces id="257">
-                  <description>--- vers R380 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.46</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="258">
-                  <description></description>
-                  <ipv4Address>
-                     <ip>169.254.0.82</ip>
-                     <prefixLength>32</prefixLength>
-                  </ipv4Address>
-                  <name>Lo0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <name>R382</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>0000.0000.0382</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>480</x>
-               <y>461</y>
-            </router>
-            <router id="108">
-               <name>R380</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>0000.0000.0380</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>232</x>
-               <y>450</y>
-            </router>
-            <router id="109">
-               <ipv4Interfaces id="259">
-                  <description></description>
-                  <ipv4Address>
-                     <ip>192.168.200.2</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Tu200</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="260">
-                  <description>--- vers R380 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.42</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="261">
-                  <description></description>
-                  <ipv4Address>
-                     <ip>192.168.2.202</ip>
-                     <prefixLength>24</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/1</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="262">
-                  <description></description>
-                  <ipv4Address>
-                     <ip>169.254.0.81</ip>
-                     <prefixLength>32</prefixLength>
-                  </ipv4Address>
-                  <name>Lo0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <name>R381</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>0000.0000.0381</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>217</x>
-               <y>238</y>
-            </router>
-            <router id="110">
-               <ipv4Interfaces id="263">
-                  <description>--- vers R375 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.2</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="264">
-                  <description>--- vers R376 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.18</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/1</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="265">
-                  <description>--- vers R378 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.33</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/2</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="266">
-                  <description>--- vers R379 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.21</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/3</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="267">
-                  <description></description>
-                  <ipv4Address>
-                     <ip>169.254.0.77</ip>
-                     <prefixLength>32</prefixLength>
-                  </ipv4Address>
-                  <name>Lo0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <name>R377</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>0000.0000.0377</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>8</x>
-               <y>779</y>
-            </router>
-            <router id="111">
-               <name>R378</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>0000.0000.0378</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>84</x>
-               <y>945</y>
-            </router>
-            <router id="112">
-               <ipv4Interfaces id="282">
-                  <description>--- vers R375 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.6</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="283">
-                  <description>--- vers R377 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.17</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/1</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="284">
-                  <description>--- vers R378 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.37</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/2</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="285">
-                  <description>--- vers R380 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.25</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/3</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="286">
-                  <description></description>
-                  <ipv4Address>
-                     <ip>169.254.0.76</ip>
-                     <prefixLength>32</prefixLength>
-                  </ipv4Address>
-                  <name>Lo0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <name>R376</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>0000.0000.0376</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>92</x>
-               <y>597</y>
-            </router>
-            <router id="113">
-               <ipv4Interfaces id="268">
-                  <description>--- vers R378 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.70</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="269">
-                  <description>--- vers R388 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.65</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/1</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="270">
-                  <description></description>
-                  <ipv4Address>
-                     <ip>169.254.0.87</ip>
-                     <prefixLength>32</prefixLength>
-                  </ipv4Address>
-                  <name>Lo0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <name>R387</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>0000.0000.0387</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>170</x>
-               <y>968</y>
-            </router>
-            <router id="114">
-               <ipv4Interfaces id="287">
-                  <description>--- vers R375 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.10</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="288">
-                  <description>--- vers R377 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.22</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/1</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="289">
-                  <description>--- vers R380 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.29</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/2</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="290">
-                  <description>--- LAN R384/5/6 ---</description>
-                  <ipv4Address>
-                     <ip>10.200.0.1</ip>
-                     <prefixLength>24</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/3</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="291">
-                  <description>--- vers R390 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.53</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et1/1</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="292">
-                  <description></description>
-                  <ipv4Address>
-                     <ip>169.254.0.79</ip>
-                     <prefixLength>32</prefixLength>
-                  </ipv4Address>
-                  <name>Lo0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <name>R379</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>0000.0000.0379</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>219</x>
-               <y>612</y>
-            </router>
-            <router id="115">
-               <ipv4Interfaces id="271">
-                  <description>--- vers R387 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.66</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="272">
-                  <description>--- vers R389 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.61</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/1</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="273">
-                  <description></description>
-                  <ipv4Address>
-                     <ip>169.254.0.88</ip>
-                     <prefixLength>32</prefixLength>
-                  </ipv4Address>
-                  <name>Lo0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <name>R388</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>65000</autonomousSystem>
-                  <identifier>0000.0000.0388</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>278</x>
-               <y>937</y>
-            </router>
-            <router id="116">
-               <ipv4Interfaces id="274">
-                  <description>--- vers R379 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.54</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="275">
-                  <description>--- vers R389 ---</description>
-                  <ipv4Address>
-                     <ip>10.100.0.58</ip>
-                     <prefixLength>30</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/1</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="276">
-                  <description></description>
-                  <ipv4Address>
-                     <ip>169.254.0.90</ip>
-                     <prefixLength>32</prefixLength>
-                  </ipv4Address>
-                  <name>Lo0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
+            <router id="31">
                <name>R390</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
@@ -837,10 +65,10 @@
                   <lsIdentifier>0</lsIdentifier>
                </routerId>
                <virtual>false</virtual>
-               <x>202</x>
-               <y>774</y>
+               <x>273</x>
+               <y>258</y>
             </router>
-            <router id="117">
+            <router id="32">
                <name>R389</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
@@ -850,10 +78,36 @@
                   <lsIdentifier>0</lsIdentifier>
                </routerId>
                <virtual>false</virtual>
-               <x>305</x>
-               <y>854</y>
+               <x>204</x>
+               <y>163</y>
             </router>
-            <router id="118">
+            <router id="33">
+               <name>R388</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>0000.0000.0388</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>99</x>
+               <y>176</y>
+            </router>
+            <router id="34">
+               <name>R387</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>0000.0000.0387</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>18</x>
+               <y>268</y>
+            </router>
+            <router id="35">
                <name>R386</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
@@ -863,10 +117,10 @@
                   <lsIdentifier>0</lsIdentifier>
                </routerId>
                <virtual>false</virtual>
-               <x>295</x>
-               <y>747</y>
+               <x>262</x>
+               <y>350</y>
             </router>
-            <router id="119">
+            <router id="36">
                <name>R385</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
@@ -876,30 +130,10 @@
                   <lsIdentifier>0</lsIdentifier>
                </routerId>
                <virtual>false</virtual>
-               <x>501</x>
-               <y>749</y>
+               <x>153</x>
+               <y>313</y>
             </router>
-            <router id="120">
-               <ipv4Interfaces id="293">
-                  <description>--- LAN R384/5/6 ---</description>
-                  <ipv4Address>
-                     <ip>10.200.0.2</ip>
-                     <prefixLength>24</prefixLength>
-                  </ipv4Address>
-                  <name>Et0/0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
-               <ipv4Interfaces id="294">
-                  <description></description>
-                  <ipv4Address>
-                     <ip>169.254.0.84</ip>
-                     <prefixLength>32</prefixLength>
-                  </ipv4Address>
-                  <name>Lo0</name>
-                  <shutdown>false</shutdown>
-                  <type>CONFIGURED</type>
-               </ipv4Interfaces>
+            <router id="37">
                <name>R384</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
@@ -909,10 +143,10 @@
                   <lsIdentifier>0</lsIdentifier>
                </routerId>
                <virtual>false</virtual>
-               <x>385</x>
-               <y>757</y>
+               <x>155</x>
+               <y>396</y>
             </router>
-            <router id="121">
+            <router id="38">
                <name>R383</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
@@ -922,11 +156,115 @@
                   <lsIdentifier>0</lsIdentifier>
                </routerId>
                <virtual>false</virtual>
-               <x>455</x>
-               <y>573</y>
+               <x>254</x>
+               <y>698</y>
             </router>
-            <router id="122">
-               <name>Unknown</name>
+            <router id="39">
+               <name>R382</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>0000.0000.0382</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>326</x>
+               <y>637</y>
+            </router>
+            <router id="40">
+               <name>R381</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>0000.0000.0381</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>462</x>
+               <y>762</y>
+            </router>
+            <router id="41">
+               <name>R380</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>0000.0000.0380</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>76</x>
+               <y>720</y>
+            </router>
+            <router id="42">
+               <name>R379</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>0000.0000.0379</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>378</x>
+               <y>518</y>
+            </router>
+            <router id="43">
+               <name>R378</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>0000.0000.0378</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>44</x>
+               <y>353</y>
+            </router>
+            <router id="44">
+               <name>R377</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>0000.0000.0377</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>129</x>
+               <y>509</y>
+            </router>
+            <router id="45">
+               <name>R376</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>0000.0000.0376</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>36</x>
+               <y>498</y>
+            </router>
+            <router id="46">
+               <name>R375</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>0000.0000.0375</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>98</x>
+               <y>601</y>
+            </router>
+            <router id="47">
+               <name>DIS</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -935,8 +273,133 @@
                   <lsIdentifier>0</lsIdentifier>
                </routerId>
                <virtual>true</virtual>
-               <x>353</x>
-               <y>638</y>
+               <x>246</x>
+               <y>447</y>
+            </router>
+            <router id="48">
+               <name>xrv3</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>10.0.0.3</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="49">
+               <ipv4Interfaces id="1">
+                  <description></description>
+                  <ipv4Address>
+                     <ip>10.0.0.1</ip>
+                     <prefixLength>32</prefixLength>
+                  </ipv4Address>
+                  <name>Loopback0</name>
+                  <shutdown>false</shutdown>
+                  <type>CONFIGURED</type>
+               </ipv4Interfaces>
+               <ipv4Interfaces id="2">
+                  <description></description>
+                  <ipv4Address>
+                     <ip>192.168.100.101</ip>
+                     <prefixLength>24</prefixLength>
+                  </ipv4Address>
+                  <name>MgmtEth0/0/CPU0/0</name>
+                  <shutdown>false</shutdown>
+                  <type>CONFIGURED</type>
+               </ipv4Interfaces>
+               <ipv4Interfaces id="3">
+                  <description>--- to xrv2 ---</description>
+                  <ipv4Address>
+                     <ip>192.168.1.1</ip>
+                     <prefixLength>24</prefixLength>
+                  </ipv4Address>
+                  <name>GigabitEthernet0/0/0/0</name>
+                  <shutdown>false</shutdown>
+                  <type>CONFIGURED</type>
+               </ipv4Interfaces>
+               <ipv4Interfaces id="4">
+                  <description></description>
+                  <ipv4Address>
+                     <ip>192.168.20.1</ip>
+                     <prefixLength>24</prefixLength>
+                  </ipv4Address>
+                  <name>GigabitEthernet0/0/0/1</name>
+                  <shutdown>false</shutdown>
+                  <type>CONFIGURED</type>
+               </ipv4Interfaces>
+               <ipv4Interfaces id="5">
+                  <description></description>
+                  <ipv4Address>
+                     <ip>192.168.2.101</ip>
+                     <prefixLength>24</prefixLength>
+                  </ipv4Address>
+                  <name>GigabitEthernet0/0/0/2</name>
+                  <shutdown>false</shutdown>
+                  <type>CONFIGURED</type>
+               </ipv4Interfaces>
+               <ipv4Interfaces id="6">
+                  <description></description>
+                  <ipv4Address>
+                     <ip>192.168.200.1</ip>
+                     <prefixLength>30</prefixLength>
+                  </ipv4Address>
+                  <name>tunnel-ip200</name>
+                  <shutdown>false</shutdown>
+                  <type>CONFIGURED</type>
+               </ipv4Interfaces>
+               <name>xrv1</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>10.0.0.1</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="50">
+               <name>xrv4</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>10.0.0.4</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="51">
+               <name>DR</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>10.0.0.2-192.168.4.2</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>true</virtual>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="52">
+               <name>xrv2</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>65000</autonomousSystem>
+                  <identifier>10.0.0.2</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>0</x>
+               <y>0</y>
             </router>
          </routers>
          <bgpAs>65000</bgpAs>

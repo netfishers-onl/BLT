@@ -27,6 +27,7 @@ body {
 }
 
 .form-signin .form-signin-heading {
+	/*TODO : find a nice icon for BLT*/
 	background: url("../img/blt.png") no-repeat;
 	padding-left: 90px;
 	padding-top: 5px;
@@ -88,6 +89,7 @@ table.simple th {
 }
 
 .blt-brand {
+	/*TODO : find a nice icon for BLT*/
 	background: url("../img/blt-inv.png") no-repeat;
 	color: white;
 	padding-left: 40px;
@@ -99,8 +101,10 @@ table.simple th {
 #map-toolbar {
 	position: absolute;
 	top: 72px;
-	left: 570px;
-	width: 32px;
+	/*left: 570px;
+	width: 32px;*/
+	left: 20px;
+	width: 150px;
 }
 
 #map-toolbar .btn-group-vertical {
@@ -113,7 +117,15 @@ table.simple th {
 	bottom: 10px;
 	left: 10px;
 	top: 65px;
-	border: 1px solid #DDD;
+	/*border: 1px solid #DDD;*/
+	border: 0px;
+	-moz-box-shadow: 2px 2px 3px 0px #656565;
+	-webkit-box-shadow: 2px 2px 3px 0px #656565;
+	-o-box-shadow: 2px 2px 3px 0px #656565;
+	box-shadow: 2px 2px 3px 0px #656565;
+	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=3);
+	resize: both;
+	/**/
 	overflow: auto;
 }
 
@@ -231,18 +243,31 @@ table.simple th {
 	border: 3px solid #c0392b,
 }
 
+#diagram .router.psn {
+	background-color: #c0c0c0;
+	color: white;
+	z-index: 5;
+}
+
 #diagram .link path {
 	stroke: #678;
-	stroke-width: 2;
+	stroke-width: 1;
+}
+
+#diagram .link.psn path {
+	stroke: #678;
+	stroke-width: 3;
 }
 
 #diagram .link.lost path {
 	stroke-dasharray: 6, 2;
 	stroke: #B78;
+	stroke-width: 1;
 }
 
 #diagram .link._jsPlumb_hover path {
 	stroke: #1e8151;
+	stroke-width: 3;
 }
 
 #diagram .link.selected path {
@@ -287,7 +312,7 @@ table.simple th {
 
 #diagram .path path {
 	stroke-dasharray: 5, 1;
-	stroke-width: 2;
+	stroke-width: 1;
 }
 
 #diagram .path.loose path {

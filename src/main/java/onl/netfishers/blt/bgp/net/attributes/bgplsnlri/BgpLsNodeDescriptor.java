@@ -29,7 +29,6 @@ public class BgpLsNodeDescriptor {
 	private long bgpLsIdentifier = 0;
 	private long areaId = 0;
 	private byte[] igpRouterId;
-	//private byte[] pseudoNodeId;
 	
 	public static final int IGPROUTERID_ISISISONODEID_LENGTH = 6;
 	public static final int IGPROUTERID_ISISPSEUDONODE_LENGTH = 7;
@@ -119,29 +118,6 @@ public class BgpLsNodeDescriptor {
 		this.igpRouterId = igpRouterId;
 	}
 	
-/*	public byte[] getPseudoNodeId() {
-		return pseudoNodeId;
-	}
-
-	public void setPseudoNodeId(byte[] pseudoNodeId) {
-		this.pseudoNodeId = pseudoNodeId;
-	}
-
-	*//**
-	 * Checks if the node is a Pseudo Node
-	 * 
-	 * @return
-	 *//*
-	public boolean isPseudoNode() {
-		if (pseudoNodeId == null) {
-			return false;
-		}
-		return true;
-	}
-	
-	public void setPseudoNode(boolean isPseudoNode) {
-	}*/
-
 	public boolean isValidAutonomousSystem() {
 		return validAutonomousSystem;
 	}

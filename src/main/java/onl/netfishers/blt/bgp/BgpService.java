@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 import onl.netfishers.blt.bgp.config.nodes.Capabilities;
 import onl.netfishers.blt.bgp.config.nodes.CapabilitiesList;
@@ -202,14 +203,10 @@ public class BgpService {
 									node.getAreaId(), node.getBgpLsIdentifier());
 								
 								Router router = network.findOrAddRouter(routerId);
-								
-								router.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
-								
-								if ( routerId.isVirtual()) {
-									router.setName("PseudoNode");
-								}
-								
+															
 								router.setNeedTeRefresh(true);
+								router.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
+															
 								toSave = true;
 							}
 							catch (Exception e) {
@@ -245,14 +242,14 @@ public class BgpService {
 										linkNlri.getProtocolId());
 							}	
 							catch (Exception e) {
-								logger.warn("Cannot handle properly this link Id because it has no valid IP address attached\n"+
-									"will fall back to BGP LS only mode:"+
-									"\n\tlocalId: "+localId.getIdentifier().toString()+
-									"\n\tremoteId: "+remoteId.getIdentifier().toString()+
-									"\n\tprotocolId: "+linkNlri.getProtocolId());
+								logger.warn("no valid IP address attached to this link\n"+
+									"will fall back to BGP LS only mode for the following link:"+
+									"\n<-- localId: "+localId.getIdentifier().toString()+
+									"\n--> remoteId: "+remoteId.getIdentifier().toString()+
+									" protocolId: "+linkNlri.getProtocolId());
 									//e.printStackTrace();
 								try {
-										link = new Link(localId, remoteId,new Ipv4Subnet(0,32),new Ipv4Subnet(0,32),linkNlri.getProtocolId());
+									link = new Link(localId, remoteId,new Ipv4Subnet(0,32),new Ipv4Subnet(0,32),linkNlri.getProtocolId());
 								}
 								catch (MalformedIpv4SubnetException err) {
 									logger.warn("This link NLRI does not seem to have any valid descriptor or IP:");
@@ -264,7 +261,12 @@ public class BgpService {
 							localRouter.setNeedTeRefresh(true);
 							Router remoteRouter = network.findOrAddRouter(remoteId);
 							remoteRouter.setNeedTeRefresh(true);
+							//TODO : handle properly virtual link between pseudonode and actual router
+							/*if (!(localRouter.isPseudonodeOf(remoteRouter) || remoteRouter.isPseudonodeOf(localRouter))) {
+								link = network.findOrAddLink(link);
+							}*/
 							link = network.findOrAddLink(link);
+							
 							link.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
 								
 							if (lsAttribute != null) {
@@ -316,17 +318,27 @@ public class BgpService {
 												prefixMetric = lsAttribute.getPrefixMetric();
 											}
 											
-											router.addIpv4IgpRoute(new Ipv4Route(new Ipv4Subnet(
-													(Inet4Address) Inet4Address.getByAddress(prefix),
-											        ipPrefix.getPrefixLength()), prefixMetric, null,null,ipNlri.getProtocolId()));
-											//System.out.println("pfx: "+Inet4Address.getByAddress(prefix)+" metric: "+prefixMetric);
-																				
+											//try {
+												if (mpNlriAttribute.getPathAttributeType() != PathAttributeType.MULTI_PROTOCOL_UNREACHABLE) {
+													router.addIpv4IgpRoute(new Ipv4Route(new Ipv4Subnet(
+															(Inet4Address) Inet4Address.getByAddress(prefix),
+													        ipPrefix.getPrefixLength()), prefixMetric, null,null,ipNlri.getProtocolId()));
+												} else {
+											//} 
+											//catch (Exception e) {
+												logger.warn("router "+router.getName()+" has just withdrawn "+
+														Inet4Address.getByAddress(prefix).toString()+"/"+ipPrefix.getPrefixLength());
+												router.clearIpv4IgpRoute(new Ipv4Route(new Ipv4Subnet(
+														(Inet4Address) Inet4Address.getByAddress(prefix),
+												        ipPrefix.getPrefixLength()), prefixMetric, null,null,ipNlri.getProtocolId()));	
+												}
+											//}
+																															
 											router.setNeedTeRefresh(true);
 										}
 										catch (Exception e) {
 											logger.warn("Unable to parse the IP prefix");
 										}
-
 									}
 									else {
 										logger.warn("Ignoring non IPv4 prefix");
@@ -346,7 +358,15 @@ public class BgpService {
 				}
 			}
 			for (Router router : network.getRouters()) {
-				if (!router.isVirtual() && router.isNeedTeRefresh()) {
+				if (router.isVirtual()) {
+					//System.out.println("router: "+router.getRouterId()+" is virtual...");
+					if ( router.getRouterId().getData().length == BgpLsNodeDescriptor.IGPROUTERID_ISISPSEUDONODE_LENGTH) {
+						router.setName("DIS");
+					} else if ( router.getRouterId().getData().length == BgpLsNodeDescriptor.IGPROUTERID_OSPFPSEUDONODE_LENGTH) {
+						router.setName("DR");
+					}
+				}
+				else if ( router.isNeedTeRefresh()) {
 					if ( router.findSnmpCommunity() != null) {
 						Task task = new SnmpPollingTask("Refresh router state via SNMP (after BGP update)", router); 
 						try {

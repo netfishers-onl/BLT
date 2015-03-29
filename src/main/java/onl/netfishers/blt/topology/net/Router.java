@@ -136,8 +136,7 @@ public class Router {
 			final int prime = 31;
 			int result = 1;
 			result = prime * result + (int) (areaId ^ (areaId >>> 32));
-			result = prime * result
-					+ (int) (autonomousSystem ^ (autonomousSystem >>> 32));
+			result = prime * result + (int) (autonomousSystem ^ (autonomousSystem >>> 32));
 			result = prime * result + Arrays.hashCode(data);
 			result = prime * result + (int) (lsIdentifier ^ (lsIdentifier >>> 32));
 			return result;
@@ -162,7 +161,7 @@ public class Router {
 				return false;
 			return true;
 		}
-
+		
 		public byte[] getData() {
 			return data;
 		}
@@ -203,6 +202,31 @@ public class Router {
 					data.length != BgpLsNodeDescriptor.IGPROUTERID_OSPFROUTERID_LENGTH);
 		}
 		
+		public boolean isPseudonodeOf(RouterIdentifier rid) {
+			if (rid == null) {
+				return false;
+			}
+			if (this.getClass() != rid.getClass()) {
+				return false;
+			}
+			if (!this.isVirtual()) {
+				return false;
+			}
+			RouterIdentifier other = rid;
+			if (this.data.length == BgpLsNodeDescriptor.IGPROUTERID_ISISPSEUDONODE_LENGTH){
+				if (! Arrays.equals(Arrays.copyOfRange(data, 0, 
+						BgpLsNodeDescriptor.IGPROUTERID_ISISISONODEID_LENGTH), other.data)) { 
+					return false;
+				}
+			} else if (this.data.length == BgpLsNodeDescriptor.IGPROUTERID_OSPFPSEUDONODE_LENGTH){
+				if (! Arrays.equals(Arrays.copyOfRange(data, 0, 
+						BgpLsNodeDescriptor.IGPROUTERID_OSPFROUTERID_LENGTH), other.data)) { 
+					return false;
+				}
+			}
+			return true;
+		}
+		
 	}
 
 	private long id = 0;
@@ -239,10 +263,8 @@ public class Router {
 	private boolean lost = true;
 	private boolean deleted = false;
 	private boolean needTeRefresh = false;
-	//private boolean pseudonode = false ;
 
 	private String name = "Unknown";
-
 
 	public Set<Ipv4Route> getIpv4StaticRoutes() {
 		return ipv4StaticRoutes;
@@ -299,6 +321,14 @@ public class Router {
 
 	public void clearIpv4IgpRoutes() {
 		this.ipv4IgpRoutes.clear();
+	}
+	
+	public void clearIpv4IgpRoute(Ipv4Route route2delete) {
+		for (Ipv4Route route : this.ipv4IgpRoutes) {
+			if ( route.equals(route2delete)) {
+				this.ipv4IgpRoutes.remove(route);
+			}
+		}
 	}
 
 	public void addIpv4IgpRoute(Ipv4Route ipv4Route) {
@@ -439,7 +469,6 @@ public class Router {
 				for (RouterInterface oldRouterInterface : this.routerInterfaces) {
 					if (oldRouterInterface.equals(routerInterface)) {
 						routerInterface.setId(oldRouterInterface.getId());
-						//routerInterface.setIgmpStaticGroups(oldRouterInterface.getIgmpStaticGroups());
 						break;
 					}
 				}
@@ -542,4 +571,9 @@ public class Router {
 			return false;
 		return true;
 	}
+	
+	public boolean isPseudonodeOf(Router r) {
+		return this.getRouterId().isPseudonodeOf(r.getRouterId());
+	}
+	
 }

@@ -36,7 +36,7 @@ define([
 			this.$el.html(this.template(data));
 
 			this.$("#remove").off().on("click", function() {
-				that.router.destroy().done(function() {
+				that.link1.destroy().done(function() {
 					that.onDelete();
 				});
 				return false;

@@ -30,7 +30,6 @@ public class ConnectionNotSynchronizedException extends
 	private static final long serialVersionUID = 988239317361192202L;
 
 	public ConnectionNotSynchronizedException() {
-		// TODO Auto-generated constructor stub
 	}
 
 	public ConnectionNotSynchronizedException(String message, Throwable cause) {

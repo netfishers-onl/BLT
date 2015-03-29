@@ -107,7 +107,6 @@ define([
 			var item = this.$("#diagram #router" + router.get('id'));
 			item.remove();
 		},
-		
 		onAddedLink: function(link, links) {
 			var that = this;
 			var source = null;
@@ -127,7 +126,8 @@ define([
 					target: "router" + source.get('id')
 				}).each(function(connection) {
 					if (_.isEqual(connection.getParameter('srcIp'), link.get('remoteAddress')) &&
-							_.isEqual(connection.getParameter('dstIp'), link.get('localAddress'))) {
+							_.isEqual(connection.getParameter('dstIp'), link.get('localAddress')) &&
+							_.isEqual(connection.getParameter('protocolId'), link.get('protocolId'))) {
 						found = true;
 						connection.addOverlay(
 							[ "Label", { id: 11, label: link.getShortName(), location: 0.95, cssClass: "linklabel" } ]
@@ -157,7 +157,8 @@ define([
 						parameters: {
 							srcIp: link.get('localAddress'),
 							dstIp: link.get('remoteAddress'),
-							link1Id: link.get('id')
+							link1Id: link.get('id'),
+							protocolId: link.get('protocolId')
 						}
 					});
 					connection.bind("click", function(c) {
@@ -198,7 +199,8 @@ define([
 					target: "router" + target.get('id')
 				}).each(function(connection) {
 					if (_.isEqual(connection.getParameter('srcIp'), link.get('localAddress')) &&
-							_.isEqual(connection.getParameter('dstIp'), link.get('remoteAddress'))) {
+							_.isEqual(connection.getParameter('dstIp'), link.get('remoteAddress')) &&
+							_.isEqual(connection.getParameter('protocolId'), link.get('protocolId'))) {
 						if (link.isLost()) {
 							connection.addClass("lost");
 						}
@@ -228,7 +230,8 @@ define([
 					target: "router" + target.get('id')
 				}).each(function(connection) {
 					if (_.isEqual(connection.getParameter('srcIp'), link.get('localAddress')) &&
-							_.isEqual(connection.getParameter('dstIp'), link.get('remoteAddress'))) {
+							_.isEqual(connection.getParameter('dstIp'), link.get('remoteAddress')) &&
+							_.isEqual(connection.getParameter('protocolId'), link.get('protocolId'))) {
 						that.instance.detach(connection);
 					}
 				});
