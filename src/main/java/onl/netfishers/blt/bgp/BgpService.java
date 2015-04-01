@@ -204,9 +204,9 @@ public class BgpService {
 								
 								Router router = network.findOrAddRouter(routerId);
 															
-								router.setNeedTeRefresh(true);
 								router.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
-															
+								router.setNeedTeRefresh(true);
+							
 								toSave = true;
 							}
 							catch (Exception e) {
