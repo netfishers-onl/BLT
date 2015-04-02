@@ -15,9 +15,11 @@
 <% } %>
 <h4><small>router-id: <%- routerId.identifier %><br>
 autonomous system: <%- routerId.autonomousSystem %><br>
+<!-- TODO : proper handling of area id TLV, whether it is OSPF (514) or ISIS (1027) 
 <% if (typeof(routerId.areaId) != "undefined") { %>
 area id: <%- routerId.areaId %>
 <% } %>
+-->
 </small></h4>
 
 <% if (typeof(lost) != "undefined" && lost === true) { %>

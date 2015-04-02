@@ -27,11 +27,10 @@ body {
 }
 
 .form-signin .form-signin-heading {
-	/*TODO : find a nice icon for BLT*/
 	background: url("../img/blt.png") no-repeat;
-	padding-left: 90px;
+	padding-left: 100px;
 	padding-top: 5px;
-	height: 90px;
+	height: 100px;
 }
 
 .form-signin .form-signin-heading,.form-signin .checkbox {
@@ -89,13 +88,12 @@ table.simple th {
 }
 
 .blt-brand {
-	/*TODO : find a nice icon for BLT*/
 	background: url("../img/blt-inv.png") no-repeat;
 	color: white;
 	padding-left: 40px;
 	padding-top: 3px;
 	display: block;
-	height: 26px;
+	height: 32px;
 }
 
 #map-toolbar {
