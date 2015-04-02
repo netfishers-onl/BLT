@@ -538,6 +538,9 @@ public class UpdatePacketDecoder {
 				case BGPv4Constants.BGP_PATH_ATTRIBUTE_TYPE_LINK_STATE:
 					attr = decodeLinkStateAttribute(valueBuffer);
 					break;
+				case BGPv4Constants.OLD_BGP_PATH_ATTRIBUTE_TYPE_LINK_STATE:
+					attr = decodeLinkStateAttribute(valueBuffer);
+					break;	
 				default: 
 				    {
 						byte[] value = new byte[valueBuffer.readableBytes()];

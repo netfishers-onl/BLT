@@ -24,6 +24,10 @@
 package onl.netfishers.blt.bgp.netty;
 
 import onl.netfishers.blt.Blt;
+import onl.netfishers.blt.topology.net.Router;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Constant value defined in various protocol RFC documents
@@ -171,11 +175,12 @@ public class BGPv4Constants {
 	/** PATH ATTRIBUTE AGGREGATOR type code (RFC 4893) */
 	public static final int BGP_PATH_ATTRIBUTE_TYPE_AS4_AGGREGATOR = 18;
 	
-	/** PATH ATTRIBUTE LINK_STATE type code (draft-ietf-idr-ls-distribution) */
-	//public static final int BGP_PATH_ATTRIBUTE_TYPE_LINK_STATE = 99;
+	/** PATH ATTRIBUTE LINK_STATE type code (early implementations) */
+	public static final int OLD_BGP_PATH_ATTRIBUTE_TYPE_LINK_STATE = 99;
+	
 	/** PATH ATTRIBUTE LINK_STATE type code (draft-ietf-idr-ls-distribution-10) */
 	public static final int BGP_PATH_ATTRIBUTE_TYPE_LINK_STATE = 29;
-		
+	
 	/** PATH ATTRIBUTE FLAG for OPTIONAL bit (based on 16 bit flags / type code value) */
 	public static  final int BGP_PATH_ATTRIBUTE_OPTIONAL_BIT = 1<<15;
 	
