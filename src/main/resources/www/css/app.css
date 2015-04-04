@@ -111,19 +111,11 @@ table.simple th {
 
 #diagrambox {
 	position: absolute;
-	width: 600px;
+	right: 10px;
 	bottom: 10px;
 	left: 10px;
 	top: 65px;
-	/*border: 1px solid #DDD;*/
-	border: 0px;
-	-moz-box-shadow: 2px 2px 3px 0px #656565;
-	-webkit-box-shadow: 2px 2px 3px 0px #656565;
-	-o-box-shadow: 2px 2px 3px 0px #656565;
-	box-shadow: 2px 2px 3px 0px #656565;
-	filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=134, Strength=3);
-	resize: both;
-	/**/
+	border: 1px solid #DDD;
 	overflow: auto;
 }
 
@@ -435,11 +427,24 @@ table.simple th {
 
 #routerbox {
 	position: absolute;
-	bottom: 10px;
-	left: 664px;
-	top: 65px;
-	right: 10px;
+	width: 500px;
+	top: 20px;
+	right: 20px;
+	height: 400px;
 	overflow: auto;
+	border: 1px solid #2e6f9a;
+	box-shadow: 2px 2px 19px #e0e0e0;
+	-o-box-shadow: 2px 2px 19px #e0e0e0;
+	-webkit-box-shadow: 2px 2px 19px #e0e0e0;
+	-moz-box-shadow: 2px 2px 19px #e0e0e0;
+	padding: 15px;
+	display: none;
+	background-color: #FFFFFF;
+	z-index: 100;
+}
+
+#routerbox h4 {
+	cursor: move;
 }
 
 #editbox {

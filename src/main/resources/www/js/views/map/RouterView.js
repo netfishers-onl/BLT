@@ -79,11 +79,17 @@ define([
 			});
 			
 			this.loadTab();
+			this.$el.show();
+			this.$el.draggable({ handle: "h4", containment: "#diagrambox" });
+			this.$el.on('click', function() {
+				return false;
+			});
 			return this;
 		},
 		
 		close: function() {
 			this.$el.html("");
+			this.$el.hide();
 		}
 	});
 });

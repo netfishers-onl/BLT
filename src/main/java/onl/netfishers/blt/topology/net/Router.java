@@ -20,7 +20,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 import onl.netfishers.blt.Blt;
 import onl.netfishers.blt.topology.net.RouterInterface.RouterInterfaceType;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsNodeDescriptor;
-import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsProtocolId;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,11 +30,10 @@ public class Router {
 
 	static Logger logger = LoggerFactory.getLogger(Router.class);	
 	
-	String localIgpMaxMetric = Blt.getConfig("blt.router.localIgpMaxMetric", "10");
-	
-	private int igpLocalMetric = 10;{
+	static int igpLocalMetric = 10;
+	{
 		try {
-			igpLocalMetric = Integer.parseInt(localIgpMaxMetric);
+			igpLocalMetric = Integer.parseInt(Blt.getConfig("blt.router.localIgpMaxMetric", "10"));
 		}
 		catch (NumberFormatException e1) {
 			logger.error("Invalid localIgpMaxMetric parameter, not an integer (blt.router.localIgpMaxMetric config line). Using {}.", igpLocalMetric);
@@ -237,6 +235,8 @@ public class Router {
 	private long lastNetconfTime = 0;
 	private int x = 0;
 	private int y = 0;
+	
+	private Set<byte[]> isisAreas = new HashSet<byte[]>();
 
 	protected Router() {
 
@@ -323,12 +323,8 @@ public class Router {
 		this.ipv4IgpRoutes.clear();
 	}
 	
-	public void clearIpv4IgpRoute(Ipv4Route route2delete) {
-		for (Ipv4Route route : this.ipv4IgpRoutes) {
-			if ( route.equals(route2delete)) {
-				this.ipv4IgpRoutes.remove(route);
-			}
-		}
+	public void removeIpv4IgpRoute(Ipv4Route route) {
+		this.ipv4IgpRoutes.remove(route);
 	}
 
 	public void addIpv4IgpRoute(Ipv4Route ipv4Route) {
@@ -574,6 +570,38 @@ public class Router {
 	
 	public boolean isPseudonodeOf(Router r) {
 		return this.getRouterId().isPseudonodeOf(r.getRouterId());
+	}
+
+	@XmlElement
+	public Set<String> getIsisAreaIds() {
+		Set<String> areas = new HashSet<String>();
+		for (byte[] isisArea : isisAreas) {
+			StringBuffer area = new StringBuffer();
+			for (int i = 0; i < isisArea.length; i++) {
+				area.append(String.format("%02x", isisArea[i]));
+				if ((isisArea.length - i) % 2 == 1 && i < isisArea.length - 1) {
+					area.append(".");
+				}
+			}
+			areas.add(area.toString());
+		}
+		return areas;
+	}
+	
+	public Set<byte[]> getIsisAreas() {
+		return isisAreas;
+	}
+
+	public void setIsisAreas(Set<byte[]> isisAreas) {
+		this.isisAreas = isisAreas;
+	}
+	
+	public void addIsisArea(byte[] isisArea) {
+		this.isisAreas.add(isisArea);
+	}
+	
+	public void clearIsisAreas() {
+		this.isisAreas.clear();
 	}
 	
 }

@@ -25,11 +25,16 @@ The link isn't present anymore in the IGP topology.
 	</tr>
 </thead>
 <tbody>
+	<% if (typeof(link1.localInterfaceName) != "undefined") { %>
 	<tr>
-	<% if ( link1.localInterfaceName != undefined ) { %>
 		<th>Interface</th>
 		<td><%- link1.localInterfaceName %></td>
 		<td><%- link1.remoteInterfaceName %></td>
+	</tr>
+	<tr>
+		<th>Description</th>
+		<td><%- link1.localInterfaceDescription %></td>
+		<td><%- link1.remoteInterfaceDescription %></td>
 	</tr>
 	<tr>
 		<th>IP address</th>

@@ -12,7 +12,6 @@ import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import onl.netfishers.blt.bgp.BgpService;
-import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsProtocolId;
 import onl.netfishers.blt.topology.TopologyService.TopologyException;
 import onl.netfishers.blt.topology.net.Router.RouterIdentifier;
 
@@ -227,12 +226,14 @@ public class Network {
 					RouterInterface routerInterface = router.getRouterInterfaceBySubnet(link.getLocalAddress());
 					if (routerInterface != null) {
 						link.setLocalInterfaceName(routerInterface.getName());
+						link.setLocalInterfaceDescription(routerInterface.getDescription());
 					}
 				}
 				if (router.getRouterId().equals(link.getRemoteRouter())) {
 					RouterInterface routerInterface = router.getRouterInterfaceBySubnet(link.getRemoteAddress());
 					if (routerInterface != null) {
 						link.setRemoteInterfaceName(routerInterface.getName());
+						link.setRemoteInterfaceDescription(routerInterface.getDescription());
 					}
 				}
 			}

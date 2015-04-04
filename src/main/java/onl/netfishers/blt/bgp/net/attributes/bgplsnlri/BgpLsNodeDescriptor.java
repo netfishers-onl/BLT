@@ -27,7 +27,7 @@ public class BgpLsNodeDescriptor {
 	private BgpLsType type;
 	private long autonomousSystem = 0;
 	private long bgpLsIdentifier = 0;
-	private long areaId = 0;
+	private long ospfAreaId = 0;
 	private byte[] igpRouterId;
 	
 	public static final int IGPROUTERID_ISISISONODEID_LENGTH = 6;
@@ -101,12 +101,12 @@ public class BgpLsNodeDescriptor {
 		this.validBgpLsIdentifier = true;
 	}
 
-	public long getAreaId() {
-		return areaId;
+	public long getOspfAreaId() {
+		return ospfAreaId;
 	}
 
-	public void setAreaId(long areaId) {
-		this.areaId = areaId;
+	public void setOspfAreaId(long areaId) {
+		this.ospfAreaId = areaId;
 		this.validAreaId = true;
 	}
 

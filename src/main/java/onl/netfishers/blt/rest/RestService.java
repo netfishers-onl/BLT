@@ -2,11 +2,8 @@ package onl.netfishers.blt.rest;
 
 import java.net.URI;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Set;
-//import java.util.regex.Matcher;
-//import java.util.regex.Pattern;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
@@ -62,61 +59,6 @@ import org.glassfish.jersey.server.ServerProperties;
 import org.glassfish.jersey.server.filter.RolesAllowedDynamicFeature;
 import org.glassfish.jersey.servlet.ServletContainer;
 import org.glassfish.jersey.servlet.ServletProperties;
-//import onl.netfishers.blt.aaa.Radius;
-//import onl.netfishers.blt.licensing.License;
-//import onl.netfishers.blt.licensing.License.Validity;
-//import onl.netfishers.blt.licensing.License;
-//import onl.netfishers.blt.licensing.License.Validity;
-/*import onl.netfishers.blt.netconf.NetconfConfigurationTask;
-import onl.netfishers.blt.netconf.message.IPExplicitPaths;
-import onl.netfishers.blt.netconf.message.InterfaceConfiguration;
-import onl.netfishers.blt.netconf.message.Ipv4AclsPrefixLists;
-import onl.netfishers.blt.netconf.message.Ipv4AclsPrefixLists.Ipv4AccessListEntry.Ipv4AceRule;
-import onl.netfishers.blt.netconf.message.MulticastRouting;
-import onl.netfishers.blt.netconf.message.MulticastRouting.MulticastDefaultVrf;
-import onl.netfishers.blt.netconf.message.MulticastRouting.MulticastInterface;
-import onl.netfishers.blt.netconf.message.MulticastRouting.MulticastVrfIpv4;
-import onl.netfishers.blt.netconf.message.MulticastRouting.StaticRpfRule;
-import onl.netfishers.blt.netconf.message.RouterIgmp;
-import onl.netfishers.blt.netconf.message.InterfaceConfiguration.Ipv4PacketFilter;
-import onl.netfishers.blt.netconf.message.InterfaceConfiguration.PathOption;
-import onl.netfishers.blt.netconf.message.InterfaceConfiguration.PathOption.IgpType;
-import onl.netfishers.blt.netconf.message.InterfaceConfiguration.PathOption.Lockdown;
-import onl.netfishers.blt.netconf.message.InterfaceConfiguration.PathOption.PathType;
-import onl.netfishers.blt.netconf.message.InterfaceConfiguration.PathOption.Verbatim;
-import onl.netfishers.blt.netconf.message.InterfaceConfiguration.PathOptionProtect;
-import onl.netfishers.blt.netconf.message.InterfaceConfiguration.PathOptionProtectTable;
-import onl.netfishers.blt.netconf.message.InterfaceConfiguration.Qos;
-import onl.netfishers.blt.netconf.message.InterfaceConfiguration.TeAutoBandwidth;
-import onl.netfishers.blt.netconf.message.InterfaceConfiguration.TeAutoBandwidth.AdjustmentThreshold;
-import onl.netfishers.blt.netconf.message.InterfaceConfiguration.TeAutoBandwidth.BandwidthLimits;
-import onl.netfishers.blt.netconf.message.InterfaceConfiguration.TeDestination;
-import onl.netfishers.blt.netconf.message.InterfaceConfiguration.TeDestinationLeaf;
-import onl.netfishers.blt.netconf.message.InterfaceConfiguration.TeDestinationTable;
-import onl.netfishers.blt.netconf.message.InterfaceConfiguration.TeLogging;
-import onl.netfishers.blt.netconf.message.InterfaceConfigurationTable;
-import onl.netfishers.blt.netconf.message.Path.Hop;
-import onl.netfishers.blt.netconf.message.Path.Hop.HopType;
-import onl.netfishers.blt.netconf.message.RouterIgmp.IgmpInterface;
-import onl.netfishers.blt.netconf.message.RouterIgmp.IgmpStaticGroup;
-import onl.netfishers.blt.netconf.message.RouterStatic;
-import onl.netfishers.blt.netconf.message.RouterStatic.DefaultVrf;
-import onl.netfishers.blt.netconf.message.RouterStatic.VrfIpv4;
-import onl.netfishers.blt.netconf.message.RouterStatic.VrfUnicast;
-import onl.netfishers.blt.netconf.message.VrfPrefix;*/
-//import onl.netfishers.blt.topology.net.Ipv4AccessList;
-//import onl.netfishers.blt.topology.net.Ipv4AccessList.AclProtocol;
-//import onl.netfishers.blt.topology.net.Ipv4AccessList.Ipv4AccessListEntry;
-//import onl.netfishers.blt.topology.net.Ipv4Route;
-//import onl.netfishers.blt.topology.net.Ipv4StaticGroup;
-//import onl.netfishers.blt.topology.net.Ipv4Subnet.MalformedIpv4SubnetException;
-//import onl.netfishers.blt.topology.net.P2mpTeTunnel;
-//import onl.netfishers.blt.topology.net.P2pTeTunnel;
-//import onl.netfishers.blt.topology.net.TeTunnel;
-//import onl.netfishers.blt.topology.net.RouterInterface.RouterInterfaceType;
-//import onl.netfishers.blt.topology.net.SshAccount;
-//import onl.netfishers.blt.topology.net.TePath;
-//import org.quartz.SchedulerException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MarkerFactory;
@@ -353,14 +295,6 @@ public class RestService extends Thread {
 		public void setText(String text) {
 			this.text = text;
 		}
-	}
-
-	private static List<RsText> wrapTextList(Collection<String> list) {
-		List<RsText> result = new ArrayList<RsText>();
-		for (String item : list) {
-			result.add(new RsText(item));
-		}
-		return result;
 	}
 
 

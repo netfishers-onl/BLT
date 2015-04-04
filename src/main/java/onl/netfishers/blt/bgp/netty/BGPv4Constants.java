@@ -23,12 +23,6 @@
  */
 package onl.netfishers.blt.bgp.netty;
 
-import onl.netfishers.blt.Blt;
-import onl.netfishers.blt.topology.net.Router;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Constant value defined in various protocol RFC documents
  * 

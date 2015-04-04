@@ -23,6 +23,8 @@ public class Link {
 	private RouterIdentifier remoteRouter;
 	private String localInterfaceName;
 	private String remoteInterfaceName;
+	private String localInterfaceDescription;
+	private String remoteInterfaceDescription;
 	private BgpLsProtocolId protocolId;
 
 	private boolean lost = true;
@@ -260,6 +262,24 @@ public class Link {
 	}
 	public void setRemoteInterfaceName(String remoteInterfaceName) {
 		this.remoteInterfaceName = remoteInterfaceName;
+	}
+
+	@XmlElement
+	public String getLocalInterfaceDescription() {
+		return localInterfaceDescription;
+	}
+
+	public void setLocalInterfaceDescription(String localInterfaceDescription) {
+		this.localInterfaceDescription = localInterfaceDescription;
+	}
+
+	@XmlElement
+	public String getRemoteInterfaceDescription() {
+		return remoteInterfaceDescription;
+	}
+
+	public void setRemoteInterfaceDescription(String remoteInterfaceDescription) {
+		this.remoteInterfaceDescription = remoteInterfaceDescription;
 	}
 
 }

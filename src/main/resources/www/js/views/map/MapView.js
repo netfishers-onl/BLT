@@ -34,13 +34,13 @@ define([
 			});
 			this.routers.on("add", this.onAddedRouter, this);
 			this.routers.on("change", this.onChangedRouter, this);
-			this.routers.on("destroy", this.onDestroyedRouter, this);
+			this.routers.on("remove", this.onDestroyedRouter, this);
 			this.links = new LinkCollection([], {
 				network: this.id
 			});
 			this.links.on("add", this.onAddedLink, this);
 			this.links.on("change", this.onChangedLink, this);
-			this.links.on("destroy", this.onDestroyedLink, this);
+			this.links.on("remove", this.onDestroyedLink, this);
 			this.network.fetch().done(function() {
 				jsPlumb.ready(function() {
 					that.render();
@@ -67,9 +67,9 @@ define([
 			var item = this.routerTemplate(router.toJSON());
 			var i = routers.indexOf(router);
 			var x = (typeof(router.get('x')) == "undefined" || router.get('x') == 0 ?
-					100 + (i % 2) * 150 : router.get('x'));
+					100 + (i % 3) * 150 : router.get('x'));
 			var y = (typeof(router.get('y')) == "undefined" || router.get('y') == 0 ?
-					100 + (i / 2) * 150 : router.get('y'));
+					100 + (i / 3) * 150 : router.get('y'));
 			item = $(item).css({
 				left: x + 'px',
 				top: y + 'px'
@@ -79,6 +79,7 @@ define([
 			this.$("#diagram .router").unbind('click').click(function() {
 				that.$("#diagram .router").removeClass("selected");
 				that.instance.select().removeClass("selected");
+				that.$('#routerbox').hide();
 				$(this).addClass("selected");
 				that.routerView = new RouterView({
 					network: that.network,
@@ -86,6 +87,7 @@ define([
 					mapView: that,
 					onDelete: function() {
 						that.routerView.close();
+						delete that.routerView;
 						that.refresh();
 					}
 				});
@@ -161,9 +163,10 @@ define([
 							protocolId: link.get('protocolId')
 						}
 					});
-					connection.bind("click", function(c) {
+					connection.bind("click", function(c, e) {
 						that.$("#diagram .router").removeClass("selected");
 						that.instance.select().removeClass("selected");
+						that.$('#routerbox').hide();
 						c.addClass("selected");
 						that.routerView = new LinkView({
 							network: that.network,
@@ -175,8 +178,10 @@ define([
 								that.refresh();
 							}
 						});
+						e.stopPropagation();
+						e.preventDefault();
 						return false;
-					});
+					}, true);
 				}
 			}
 		},
@@ -224,11 +229,15 @@ define([
 					target = router;
 				}
 			});
-			if (source != null && target != null) {
-				that.instance.select({
-					source: "router" + source.get('id'),
-					target: "router" + target.get('id')
-				}).each(function(connection) {
+			if (source != null || target != null) {
+				var criteria = {};
+				if (source != null) {
+					criteria.source = "router" + source.get('id'); 
+				}
+				if (target != null) {
+					criteria.target = "router" + target.get('id');
+				}
+				that.instance.select(criteria).each(function(connection) {
 					if (_.isEqual(connection.getParameter('srcIp'), link.get('localAddress')) &&
 							_.isEqual(connection.getParameter('dstIp'), link.get('remoteAddress')) &&
 							_.isEqual(connection.getParameter('protocolId'), link.get('protocolId'))) {
@@ -242,6 +251,12 @@ define([
 			var that = this;
 
 			this.$el.show().html(this.template(this.network.toJSON()));
+			this.$el.on('click', function() {
+				that.$("#diagram .router").removeClass("selected");
+				that.instance.select().removeClass("selected");
+				that.$('#routerbox').hide();
+				return false;
+			})
 			this.instance = jsPlumb.getInstance({
 				Endpoint: [
 					"Dot", { radius: 2 }

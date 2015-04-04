@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
-
 import onl.netfishers.blt.bgp.config.nodes.Capabilities;
 import onl.netfishers.blt.bgp.config.nodes.CapabilitiesList;
 import onl.netfishers.blt.bgp.config.nodes.ClientConfiguration;
@@ -26,7 +24,6 @@ import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsIPTopologyPrefixNLRI
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsLinkNLRI;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsNodeDescriptor;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsNodeNLRI;
-import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsProtocolId;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.IPPrefix;
 import onl.netfishers.blt.bgp.net.capabilities.Capability;
 import onl.netfishers.blt.bgp.net.capabilities.MultiProtocolCapability;
@@ -200,9 +197,18 @@ public class BgpService {
 							try {
 								RouterIdentifier routerId = new RouterIdentifier(
 									node.getIgpRouterId(), node.getAutonomousSystem(),
-									node.getAreaId(), node.getBgpLsIdentifier());
+									node.getOspfAreaId(), node.getBgpLsIdentifier());
 								
 								Router router = network.findOrAddRouter(routerId);
+								
+								if (lsAttribute != null) {
+									router.clearIsisAreas();
+									for (byte[] isisAreaIdentifier : lsAttribute.getIsisAreaIdentifiers()) {
+										if (isisAreaIdentifier != null && isisAreaIdentifier.length > 0) {
+											router.addIsisArea(isisAreaIdentifier);
+										}
+									}
+								}
 															
 								router.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
 								router.setNeedTeRefresh(true);
@@ -227,12 +233,12 @@ public class BgpService {
 								localId = new RouterIdentifier (
 								    localNode.getIgpRouterId(),
 								    localNode.getAutonomousSystem(), 
-								    localNode.getAreaId(),
+								    localNode.getOspfAreaId(),
 								    localNode.getBgpLsIdentifier());
 								remoteId = new RouterIdentifier (
 								    remoteNode.getIgpRouterId(),
 								    remoteNode.getAutonomousSystem(), 
-								    remoteNode.getAreaId(),
+								    remoteNode.getOspfAreaId(),
 								    remoteNode.getBgpLsIdentifier());
 								link = new Link(localId, remoteId, 
 									new Ipv4Subnet((Inet4Address) linkNlri.getLinkDescriptors()
@@ -303,7 +309,7 @@ public class BgpService {
 							try {
 								RouterIdentifier routerId = new RouterIdentifier(
 								    node.getIgpRouterId(), node.getAutonomousSystem(),
-								    node.getAreaId(), node.getBgpLsIdentifier());
+								    node.getOspfAreaId(), node.getBgpLsIdentifier());
 								Router router = network.findOrAddRouter(routerId);
 								for (IPPrefix ipPrefix : ipNlri.getPrefixDescriptor().getPrefixList()) {
 									if (ipPrefix.getPrefix().length <= 4) {
@@ -318,26 +324,22 @@ public class BgpService {
 												prefixMetric = lsAttribute.getPrefixMetric();
 											}
 											
-											//try {
-												if (mpNlriAttribute.getPathAttributeType() != PathAttributeType.MULTI_PROTOCOL_UNREACHABLE) {
-													router.addIpv4IgpRoute(new Ipv4Route(new Ipv4Subnet(
-															(Inet4Address) Inet4Address.getByAddress(prefix),
-													        ipPrefix.getPrefixLength()), prefixMetric, null,null,ipNlri.getProtocolId()));
-												} else {
-											//} 
-											//catch (Exception e) {
-												logger.warn("router "+router.getName()+" has just withdrawn "+
-														Inet4Address.getByAddress(prefix).toString()+"/"+ipPrefix.getPrefixLength());
-												router.clearIpv4IgpRoute(new Ipv4Route(new Ipv4Subnet(
-														(Inet4Address) Inet4Address.getByAddress(prefix),
-												        ipPrefix.getPrefixLength()), prefixMetric, null,null,ipNlri.getProtocolId()));	
-												}
-											//}
+											if (mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE) {
+												logger.info("Router " + router.getName() + " has just withdrawn " +
+													new Ipv4Subnet(prefix, ipPrefix.getPrefixLength()));
+												router.removeIpv4IgpRoute(
+														new Ipv4Route(new Ipv4Subnet(prefix, ipPrefix.getPrefixLength()),
+												        prefixMetric, null, null, ipNlri.getProtocolId()));
+											}
+											else {
+												router.addIpv4IgpRoute(new Ipv4Route(new Ipv4Subnet(prefix, ipPrefix.getPrefixLength()),
+														prefixMetric, null ,null, ipNlri.getProtocolId()));
+											}
 																															
 											router.setNeedTeRefresh(true);
 										}
 										catch (Exception e) {
-											logger.warn("Unable to parse the IP prefix");
+											logger.error("Unable to parse the IP prefix.", e);
 										}
 									}
 									else {

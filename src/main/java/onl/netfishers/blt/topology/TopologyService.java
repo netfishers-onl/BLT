@@ -1,8 +1,10 @@
 package onl.netfishers.blt.topology;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -134,6 +136,14 @@ public class TopologyService {
 	public void removeRouter(Router router) {
 		for (Network network : networks) {
 			if (network.getRouters().remove(router)) {
+				List<Link> rLinks = new ArrayList<Link>();
+				for (Link link : network.getLinks()) {
+					if (router.getRouterId().equals(link.getRemoteRouter()) ||
+							router.getRouterId().equals(link.getLocalRouter())) {
+						rLinks.add(link);
+					}
+				}
+				network.getLinks().removeAll(rLinks);
 				router.kill();
 				this.writeToDisk();
 			}

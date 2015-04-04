@@ -137,6 +137,16 @@ public class Ipv4Subnet implements Comparable<Ipv4Subnet> {
 		this.address = address;
 		this.setPrefixLength(prefixLength);
 	}
+	
+	public Ipv4Subnet(byte[] address, int prefixLength)
+			throws MalformedIpv4SubnetException {
+		if (address == null || address.length != 4) {
+			throw new MalformedIpv4SubnetException("Invalid address bytes");
+		}
+		this.address = address[0] << 24 | address[1] << 16 | address[2] << 8
+				| address[3];
+		this.setPrefixLength(prefixLength);
+	}
 
 	public Ipv4Subnet(String address, int prefixLength)
 			throws MalformedIpv4SubnetException {

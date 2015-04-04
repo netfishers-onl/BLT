@@ -56,7 +56,7 @@ public class BgpLsNodeDescriptorCodec {
 				decodeBgpLsIdentifier(valueBuffer, nd);
 				break;
 			case AreaID:
-				decodeAreaId(valueBuffer, nd);
+				decodeOspfAreaId(valueBuffer, nd);
 				break;
 			case IGPRouterID:
 				decodeIgpRouterId(valueBuffer, nd);
@@ -110,7 +110,7 @@ public class BgpLsNodeDescriptorCodec {
 
 
 
-	private static void decodeAreaId(ChannelBuffer buffer,
+	private static void decodeOspfAreaId(ChannelBuffer buffer,
 	    BgpLsNodeDescriptor nd) {
 		try {
 			if (buffer.readableBytes() != 4) {
@@ -119,7 +119,7 @@ public class BgpLsNodeDescriptorCodec {
 				throw new OptionalAttributeErrorException();
 			}
 			long areaId = buffer.readUnsignedInt();
-			nd.setAreaId(areaId);
+			nd.setOspfAreaId(areaId);
 
 		}
 		catch (RuntimeException e) {
