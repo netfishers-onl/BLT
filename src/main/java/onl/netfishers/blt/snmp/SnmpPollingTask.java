@@ -176,8 +176,7 @@ public class SnmpPollingTask extends Task {
 				try {
 					Name = get(sysName); 
 				} catch (Exception e1) {
-					logger.warn("Error when polling router {} sysName", router);
-					e1.printStackTrace();
+					logger.warn("Error when polling router {} sysName", router, e1);
 				}
 				router.setName(Name);
 				router.setNeedTeRefresh(true);
