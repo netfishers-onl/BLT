@@ -324,16 +324,16 @@ public class BgpService {
 												prefixMetric = lsAttribute.getPrefixMetric();
 											}
 											
+											Ipv4Subnet subnet = new Ipv4Subnet(prefix, ipPrefix.getPrefixLength());
+											Ipv4Route route = new Ipv4Route(subnet,
+											        prefixMetric, null, null, ipNlri.getProtocolId());
 											if (mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE) {
-												logger.info("Router " + router.getName() + " has just withdrawn " +
-													new Ipv4Subnet(prefix, ipPrefix.getPrefixLength()));
-												router.removeIpv4IgpRoute(
-														new Ipv4Route(new Ipv4Subnet(prefix, ipPrefix.getPrefixLength()),
-												        prefixMetric, null, null, ipNlri.getProtocolId()));
+												logger.info("Router {} has just withdrawn {}", router.getName(),
+													subnet.toString());
+												router.removeIpv4IgpRoute(route);
 											}
 											else {
-												router.addIpv4IgpRoute(new Ipv4Route(new Ipv4Subnet(prefix, ipPrefix.getPrefixLength()),
-														prefixMetric, null ,null, ipNlri.getProtocolId()));
+												router.addIpv4IgpRoute(route);
 											}
 																															
 											router.setNeedTeRefresh(true);

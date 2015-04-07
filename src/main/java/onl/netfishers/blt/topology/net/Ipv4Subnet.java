@@ -146,7 +146,7 @@ public class Ipv4Subnet implements Comparable<Ipv4Subnet> {
 		this.address = (address[0] & 0xFF) << 24 |
 					   (address[1] & 0xFF) << 16 |
 					   (address[2] & 0xFF) << 8  |
-					   address[3];
+					   (address[3] & 0xFF);
 		this.setPrefixLength(prefixLength);
 	}
 

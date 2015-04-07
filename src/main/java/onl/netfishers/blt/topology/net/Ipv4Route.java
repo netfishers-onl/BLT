@@ -99,11 +99,12 @@ public class Ipv4Route {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (metric ^ (metric >>> 32));
 		result = prime * result + ((nextHop == null) ? 0 : nextHop.hashCode());
-		result = prime * result + ((nextInterface == null) ? 0 : nextInterface.hashCode());
+		result = prime * result
+				+ ((nextInterface == null) ? 0 : nextInterface.hashCode());
+		result = prime * result
+				+ ((protocolId == null) ? 0 : protocolId.hashCode());
 		result = prime * result + ((subnet == null) ? 0 : subnet.hashCode());
-		result = prime * result + ((protocolId == null) ? 0 : protocolId.hashCode());
 		return result;
 	}
 
@@ -119,28 +120,28 @@ public class Ipv4Route {
 		if (nextHop == null) {
 			if (other.nextHop != null)
 				return false;
-		}
-		else if (!nextHop.equals(other.nextHop))
+		} else if (!nextHop.equals(other.nextHop))
 			return false;
 		if (nextInterface == null) {
 			if (other.nextInterface != null)
 				return false;
-		}
-		else if (!nextInterface.equals(other.nextInterface))
+		} else if (!nextInterface.equals(other.nextInterface))
+			return false;
+		if (protocolId != other.protocolId)
 			return false;
 		if (subnet == null) {
 			if (other.subnet != null)
 				return false;
-		}
-		else if (!subnet.equals(other.subnet))
-			return false;
-		if (protocolId == null) {
-			if (other.protocolId != null)
-				return false;
-		}
-		else if (!protocolId.equals(other.protocolId))
+		} else if (!subnet.equals(other.subnet))
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "IPv4 route " + subnet + " via " + nextInterface + " next hop " +
+				nextHop + ", metric " + metric + " (" + protocolId + ")";
+	}
+	
 
 }
