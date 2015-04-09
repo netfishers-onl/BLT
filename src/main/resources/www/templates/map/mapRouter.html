@@ -2,5 +2,5 @@
  <% if (typeof(lost) != "undefined" && lost === true) { %> lost<% } %>
  <% if (typeof(virtual) != "undefined" && virtual === true) { %> psn<% } %> 
  " id="router<%- id%>" data-router="<%- id %>">
-<%- name.replace(/\.domain/, "") %>
+<%- name.replace(/\.\w+$/, "") %>
 </div>

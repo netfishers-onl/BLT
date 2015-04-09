@@ -39,6 +39,9 @@ define([
 				that.link1.destroy().done(function() {
 					that.onDelete();
 				});
+				that.link2.destroy().done(function() {
+					that.onDelete();
+				});
 				return false;
 			});
 
