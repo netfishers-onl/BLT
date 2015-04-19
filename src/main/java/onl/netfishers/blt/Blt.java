@@ -30,7 +30,7 @@ import ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy;
 public class Blt {
 
 	/** Blt version. */
-	public static final String VERSION = "0.3.2";
+	public static final String VERSION = "0.3.3";
 	
 	public static final String FEATURES = "Basic";
 
@@ -117,6 +117,7 @@ public class Blt {
 
 		String logFile = Blt.getConfig("blt.log.file", "/var/log/blt/blt.log");
 		String aaaLogFile = Blt.getConfig("blt.log.auditfile");
+		String pfxLogFile = Blt.getConfig("blt.log.prefixActivityFile");
 		String logLevelCfg = Blt.getConfig("blt.log.level", "INFO");
 		String logCountCfg = Blt.getConfig("blt.log.count", "5");
 		String logMaxSizeCfg = Blt.getConfig("blt.log.maxsize", "2");
@@ -260,6 +261,45 @@ public class Blt {
 			}
 			catch (Exception e) {
 				logger.error("Unable to log AAA data into file {}. Exiting.", aaaLogFile, e);
+			}
+		}
+		
+		if (pfxLogFile != null) {
+			try {
+				ch.qos.logback.classic.Logger pfxLogger = (ch.qos.logback.classic.Logger)
+						LoggerFactory.getLogger("PFX");
+				LoggerContext pfxLoggerContext = pfxLogger.getLoggerContext();
+				pfxLogger.setLevel(Level.ALL);
+				RollingFileAppender<ILoggingEvent> pfxRfAppender = new RollingFileAppender<ILoggingEvent>();
+				pfxRfAppender.setContext(pfxLoggerContext);
+				pfxRfAppender.setFile(pfxLogFile);
+
+				FixedWindowRollingPolicy fwRollingPolicy = new FixedWindowRollingPolicy();
+				fwRollingPolicy.setContext(pfxLoggerContext);
+				fwRollingPolicy.setFileNamePattern(pfxLogFile + ".%i.gz");
+				fwRollingPolicy.setMinIndex(1);
+				fwRollingPolicy.setMaxIndex(logCount);
+				fwRollingPolicy.setParent(pfxRfAppender);
+				fwRollingPolicy.start();
+
+				SizeBasedTriggeringPolicy<ILoggingEvent> triggeringPolicy = new 
+						SizeBasedTriggeringPolicy<ILoggingEvent>();
+				triggeringPolicy.setMaxFileSize(String.format("%dMB", logMaxSize));
+				triggeringPolicy.start();
+
+				pfxRfAppender.setRollingPolicy(fwRollingPolicy);
+				pfxRfAppender.setTriggeringPolicy(triggeringPolicy);
+
+				PatternLayoutEncoder pfxEncoder = new PatternLayoutEncoder();
+				pfxEncoder.setContext(loggerContext);
+				pfxEncoder.setPattern("%d %-5level [%thread] %logger{0}: %msg%n");
+				pfxEncoder.start();
+				pfxRfAppender.setEncoder(pfxEncoder);
+				pfxRfAppender.start();
+				pfxLogger.addAppender(pfxRfAppender);
+			}
+			catch (Exception e) {
+				logger.error("Unable to log pfx data into file {}. Exiting.", pfxLogFile, e);
 			}
 		}
 

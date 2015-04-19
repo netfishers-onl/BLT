@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
+
+import onl.netfishers.blt.Blt;
 import onl.netfishers.blt.bgp.config.nodes.Capabilities;
 import onl.netfishers.blt.bgp.config.nodes.CapabilitiesList;
 import onl.netfishers.blt.bgp.config.nodes.ClientConfiguration;
@@ -63,6 +65,7 @@ public class BgpService {
 	}
 
 	private static Logger logger = LoggerFactory.getLogger(BgpService.class);
+	private static Logger pfxLogger = LoggerFactory.getLogger("PFX");
 
 	private static HashMap<String, Object> instanceMap = new HashMap<String, Object>();
 	private static List<BGPv4FSM> fsmList = new ArrayList<BGPv4FSM>();
@@ -328,11 +331,19 @@ public class BgpService {
 											Ipv4Route route = new Ipv4Route(subnet,
 											        prefixMetric, null, null, ipNlri.getProtocolId());
 											if (mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE) {
-												logger.info("Router {} has just withdrawn {}", router.getName(),
-													subnet.toString());
+												logger.info("Router {} ({}) has just withdrawn {}",router.getRouterId(),
+														router.getName(),subnet.toString());
+												if (pfxLogger != null) {
+													pfxLogger.info("Router {} ({}) has just withdrawn {}",router.getRouterId(), 
+														router.getName(),subnet.toString());
+												}
 												router.removeIpv4IgpRoute(route);
 											}
 											else {
+												if (pfxLogger != null) {
+													pfxLogger.info("Router {} ({}) has just announced {}",router.getRouterId(),
+														router.getName(),subnet.toString());
+												}
 												router.addIpv4IgpRoute(route);
 											}
 																															
