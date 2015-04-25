@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
-import onl.netfishers.blt.Blt;
 import onl.netfishers.blt.bgp.config.nodes.Capabilities;
 import onl.netfishers.blt.bgp.config.nodes.CapabilitiesList;
 import onl.netfishers.blt.bgp.config.nodes.ClientConfiguration;
