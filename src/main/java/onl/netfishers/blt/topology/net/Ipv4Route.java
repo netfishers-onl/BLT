@@ -21,18 +21,20 @@ public class Ipv4Route {
 	private Ipv4Subnet nextHop;
 	private String nextInterface;
 	private BgpLsProtocolId protocolId;
+	private long dateTicks;
 
 	protected Ipv4Route() {
 
 	}
 
 	public Ipv4Route(Ipv4Subnet subnet, long metric, Ipv4Subnet nextHop,
-			String nextInterface, BgpLsProtocolId protocolId) {
+			String nextInterface, BgpLsProtocolId protocolId, long dateTicks) {
 		this.subnet = subnet;
 		this.metric = metric;
 		this.nextHop = nextHop;
 		this.nextInterface = nextInterface;
 		this.protocolId = protocolId;
+		this.dateTicks = dateTicks;
 	}
 	
 
@@ -95,6 +97,15 @@ public class Ipv4Route {
 		this.protocolId = protocolId;
 	}
 
+	@XmlElement
+	public long getDate() {
+		return dateTicks;
+	}
+
+	public void setDate(long dateTicks) {
+		this.dateTicks = dateTicks;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -140,7 +151,7 @@ public class Ipv4Route {
 	@Override
 	public String toString() {
 		return "IPv4 route " + subnet + " via " + nextInterface + " next hop " +
-				nextHop + ", metric " + metric + " (" + protocolId + ")";
+				nextHop + ", metric " + metric + " age in ticks " + dateTicks + " (" + protocolId + ")";
 	}
 	
 

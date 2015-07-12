@@ -4,6 +4,7 @@ import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -308,6 +309,7 @@ public class BgpService {
 						else if (nlri instanceof BgpLsIPTopologyPrefixNLRI) {
 							BgpLsIPTopologyPrefixNLRI ipNlri = (BgpLsIPTopologyPrefixNLRI) nlri;
 							BgpLsNodeDescriptor node = ipNlri.getLocalNodeDescriptors();
+							long dateTicks = new Date().getTime();
 							try {
 								RouterIdentifier routerId = new RouterIdentifier(
 								    node.getIgpRouterId(), node.getAutonomousSystem(),
@@ -328,7 +330,7 @@ public class BgpService {
 											
 											Ipv4Subnet subnet = new Ipv4Subnet(prefix, ipPrefix.getPrefixLength());
 											Ipv4Route route = new Ipv4Route(subnet,
-											        prefixMetric, null, null, ipNlri.getProtocolId());
+											        prefixMetric, null, null, ipNlri.getProtocolId(), dateTicks);
 											if (mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE) {
 												logger.info("Router {} ({}) has just withdrawn {}",router.getRouterId(),
 														router.getName(),subnet.toString());

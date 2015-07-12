@@ -42,7 +42,7 @@ public class SnmpPollingTask extends Task {
 	protected static final int PORT = 161;
 
 	private static long THROTTLE_TIME = 20000L;
-	private static int SNMP_RETRIES = 3;
+	private static int SNMP_RETRIES = 10;
 	private static int SNMP_TIMEOUT = 2000;
 
 	static {
