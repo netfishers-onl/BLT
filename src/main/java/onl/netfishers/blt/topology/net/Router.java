@@ -263,6 +263,8 @@ public class Router {
 	private boolean lost = true;
 	private boolean deleted = false;
 	private boolean needTeRefresh = false;
+	private boolean justAnnouncedAPrefix = false;
+	private boolean justWithdrawnAPrefix = false;
 
 	private String name = "Unknown";
 
@@ -373,6 +375,28 @@ public class Router {
 	public boolean isNeedTeRefresh() {
 		return needTeRefresh;
 	}
+	
+	public void setNeedTeRefresh(boolean needTeRefresh) {
+		this.needTeRefresh = needTeRefresh;
+	}
+
+	@XmlElement
+	public boolean isJustAnnouncedAPrefix() {
+		return justAnnouncedAPrefix;
+	}
+
+	public void setJustAnnouncedAPrefix(boolean justAnnouncedAPrefix) {
+		this.justAnnouncedAPrefix = justAnnouncedAPrefix;
+	}
+
+	@XmlElement
+	public boolean isJustWithdrawnAPrefix() {
+		return justWithdrawnAPrefix;
+	}
+
+	public void setJustWithdrawnAPrefix(boolean justWithdrawnAPrefix) {
+		this.justWithdrawnAPrefix = justWithdrawnAPrefix;
+	}
 
 	public long getLastSnmpPollingTime() {
 		return lastSnmpPollingTime;
@@ -384,10 +408,6 @@ public class Router {
 
 	public void setLastSnmpPollingTime() {
 		this.lastSnmpPollingTime = System.currentTimeMillis();
-	}
-
-	public void setNeedTeRefresh(boolean needTeRefresh) {
-		this.needTeRefresh = needTeRefresh;
 	}
 
 	@XmlElement

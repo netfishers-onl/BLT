@@ -3,23 +3,11 @@
    <networks>
       <network id="11">
          <routers>
-            <router id="109">
+            <router id="113">
                <isisAreaIds>49</isisAreaIds>
-               <name>xrv3</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>0001.0002.0131</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>75</x>
-               <y>131</y>
-            </router>
-            <router id="110">
-               <isisAreaIds>49</isisAreaIds>
-               <name>xrv1</name>
+               <justAnnouncedAPrefix>false</justAnnouncedAPrefix>
+               <justWithdrawnAPrefix>false</justWithdrawnAPrefix>
+               <name>Unknown</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
                   <areaId>0</areaId>
@@ -28,11 +16,45 @@
                   <lsIdentifier>0</lsIdentifier>
                </routerId>
                <virtual>false</virtual>
-               <x>76</x>
-               <y>402</y>
+               <x>0</x>
+               <y>0</y>
             </router>
-            <router id="111">
+            <router id="114">
                <isisAreaIds>49</isisAreaIds>
+               <justAnnouncedAPrefix>false</justAnnouncedAPrefix>
+               <justWithdrawnAPrefix>false</justWithdrawnAPrefix>
+               <name>Unknown</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>0001.0002.0130</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="115">
+               <isisAreaIds>49</isisAreaIds>
+               <justAnnouncedAPrefix>false</justAnnouncedAPrefix>
+               <justWithdrawnAPrefix>false</justWithdrawnAPrefix>
+               <name>Unknown</name>
+               <needTeRefresh>true</needTeRefresh>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>0001.0002.0131</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>0</x>
+               <y>0</y>
+            </router>
+            <router id="116">
+               <isisAreaIds>49</isisAreaIds>
+               <justAnnouncedAPrefix>false</justAnnouncedAPrefix>
+               <justWithdrawnAPrefix>false</justWithdrawnAPrefix>
                <name>Unknown</name>
                <needTeRefresh>true</needTeRefresh>
                <routerId>
@@ -42,22 +64,8 @@
                   <lsIdentifier>0</lsIdentifier>
                </routerId>
                <virtual>false</virtual>
-               <x>384</x>
-               <y>108</y>
-            </router>
-            <router id="112">
-               <isisAreaIds>49</isisAreaIds>
-               <name>xrv2</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>0001.0002.0130</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>444</x>
-               <y>417</y>
+               <x>0</x>
+               <y>0</y>
             </router>
          </routers>
          <bgpAs>1</bgpAs>

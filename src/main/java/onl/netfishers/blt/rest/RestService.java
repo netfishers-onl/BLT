@@ -2,6 +2,7 @@ package onl.netfishers.blt.rest;
 
 import java.net.URI;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -72,6 +73,8 @@ public class RestService extends Thread {
 	private String httpSslKeystoreFile;
 	private String httpSslKeystorePass;
 	private int httpBasePort;
+	private int deltaLostIgpRoute = 360;
+	private int deltaNewIgpRoute = 180;
 	@Context private HttpServletRequest request;
 
 	private static RestService restService;
@@ -100,6 +103,20 @@ public class RestService extends Thread {
 		catch (Exception e) {
 			logger.warn("Unable to understand the HTTP base port configuration, using {}.",
 					httpBasePort);
+		}
+		
+		try {
+			deltaLostIgpRoute = Integer.parseInt(Blt.getConfig("blt.bgp.deltaLostIgpRoute", "360"));
+		}
+		catch (NumberFormatException e1) {
+			logger.error("Invalid deltaLostIgpRoute parameter, not an integer (blt.bgp.deltaLostIgpRoute config line). Using {} seconds.", deltaLostIgpRoute);
+		}
+		
+		try {
+			deltaNewIgpRoute = Integer.parseInt(Blt.getConfig("blt.bgp.deltaNewIgpRoute", "180"));
+		}
+		catch (NumberFormatException e1) {
+			logger.error("Invalid deltaNewIgpRoute parameter, not an integer (blt.bgp.deltaNewIgpRoute config line). Using {} seconds.", deltaNewIgpRoute);
 		}
 
 	}
@@ -507,6 +524,34 @@ public class RestService extends Thread {
 			throw new BltBadRequestException("The router doesn't exist.",
 					BltBadRequestException.UNKNOWN_ROUTER);
 		}
+		
+		long now = new Date().getTime();
+
+		router.setJustWithdrawnAPrefix(false);
+		router.setJustAnnouncedAPrefix(false);
+
+		//first loop to avoid ConcurrentModificationException
+		for (Ipv4Route r : router.getIpv4IgpRoutes()) {
+			if (r.isLost() == true && (now - r.getDate()) / 1000 > deltaLostIgpRoute) {
+				router.removeIpv4IgpRoute(r);
+			}
+		}
+		
+		for (Ipv4Route r : router.getIpv4IgpRoutes()) {
+			if (r.isLost() == true) {
+				router.setJustWithdrawnAPrefix(true);
+			}
+			else if (r.isNew() == true) {
+				if ((now - r.getDate()) / 1000 > deltaNewIgpRoute) {
+					r.setNew(false);
+				}
+				else {
+					router.setJustAnnouncedAPrefix(true);
+				}
+				
+			}
+		}
+		
 		return router;
 	}
 
@@ -519,6 +564,34 @@ public class RestService extends Thread {
 		if (network == null) {
 			throw new BltBadRequestException("The network doesn't exist.",
 					BltBadRequestException.UNKNOWN_NETWORK);
+		}
+		long now = new Date().getTime();
+		for (Router router : network.getRouters()){
+			
+			router.setJustWithdrawnAPrefix(false);
+			router.setJustAnnouncedAPrefix(false);
+			
+			//first loop to avoid ConcurrentModificationException
+			for (Ipv4Route r : router.getIpv4IgpRoutes()) {
+				if (r.isLost() == true && (now - r.getDate()) / 1000 > deltaLostIgpRoute) {
+					router.removeIpv4IgpRoute(r);
+				}
+			}
+			
+			for (Ipv4Route r : router.getIpv4IgpRoutes()) {
+				if (r.isLost() == true) {
+					router.setJustWithdrawnAPrefix(true);
+				}
+				else if (r.isNew() == true) {
+					if ((now - r.getDate()) / 1000 > deltaNewIgpRoute) {
+						r.setNew(false);
+					}
+					else {
+						router.setJustAnnouncedAPrefix(true);
+					}
+					
+				}
+			}
 		}
 
 		return network.getRouters();
@@ -750,50 +823,17 @@ public class RestService extends Thread {
 			throw new BltBadRequestException("The router doesn't exist.",
 					BltBadRequestException.UNKNOWN_ROUTER);
 		}
+		long now = new Date().getTime();
+		for (Ipv4Route r : router.getIpv4IgpRoutes()) {
+			if (r.isLost() && (now - r.getDate()) / 1000 > deltaLostIgpRoute) {
+				router.removeIpv4IgpRoute(r);
+			}
+			else if (r.isNew() && (now - r.getDate()) / 1000 > deltaNewIgpRoute) {
+				r.setNew(false);
+			}
+		}
 		return router.getIpv4IgpRoutes();
 	}
-
-	/*@GET
-	@Path("networks/{nid}/routers/{rid}/ipv4staticroutes")
-	@RolesAllowed("readonly")
-	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
-	public Set<Ipv4Route> getRouterIpv4StaticRoutes(@PathParam("nid") Long nid,
-			@PathParam("rid") Long rid) throws WebApplicationException {
-		Network network = TopologyService.getService().getNetworkById(nid);
-		if (network == null) {
-			throw new BltBadRequestException("The network doesn't exist.",
-					BltBadRequestException.UNKNOWN_NETWORK);
-		}
-		Router router = network.getRouterById(rid);
-		if (router == null) {
-			throw new BltBadRequestException("The router doesn't exist.",
-					BltBadRequestException.UNKNOWN_ROUTER);
-		}
-		return router.getIpv4StaticRoutes();
-	}
-
-	@XmlRootElement
-	@XmlAccessorType(XmlAccessType.NONE)	
-	public static class RsIpv4StaticRoute {
-
-		private String subnet;
-		private String next;
-
-		@XmlElement
-		public String getSubnet() {
-			return subnet;
-		}
-		public void setSubnet(String subnet) {
-			this.subnet = subnet;
-		}
-		@XmlElement
-		public String getNext() {
-			return next;
-		}
-		public void setNext(String next) {
-			this.next = next;
-		}
-	}*/
 
 	@GET
 	@Path("tasks/{id}")

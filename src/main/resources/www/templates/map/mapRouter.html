@@ -1,6 +1,10 @@
-<div class="router"
+<div class="router
  <% if (typeof(lost) != "undefined" && lost === true) { %> lost<% } %>
  <% if (typeof(virtual) != "undefined" && virtual === true) { %> psn<% } %> 
+ <% if (typeof(justAnnouncedAPrefix) != "undefined" && justAnnouncedAPrefix === true) { %> hasanewprefix<% } %>
+ <% if (typeof(justWithdrawnAPrefix) != "undefined" && justWithdrawnAPrefix === true) { %> haslostaprefix<% } %>
+ <% if ((typeof(justWithdrawnAPrefix) != "undefined" && justWithdrawnAPrefix === true) 
+ && (typeof(justAnnouncedAPrefix) != "undefined" && justAnnouncedAPrefix === true)) { %> haslossandnewpfx<% } %>
  " id="router<%- id%>" data-router="<%- id %>">
 <%- name.replace(/\.\w+$/, "") %>
 </div>

@@ -66,10 +66,11 @@ define([
 			var that = this;
 			var item = this.routerTemplate(router.toJSON());
 			var i = routers.indexOf(router);
+			var step = 2*Math.PI / routers.length;
 			var x = (typeof(router.get('x')) == "undefined" || router.get('x') == 0 ?
-					100 + (i % 3) * 150 : router.get('x'));
+					600 + 500 * Math.cos(step*i) : router.get('x'));
 			var y = (typeof(router.get('y')) == "undefined" || router.get('y') == 0 ?
-					100 + (i / 3) * 150 : router.get('y'));
+					300 - 0.25 * 500 * Math.sin(step*i) : router.get('y'));
 			item = $(item).css({
 				left: x + 'px',
 				top: y + 'px'
@@ -102,6 +103,24 @@ define([
 			}
 			else {
 				item.removeClass("lost");
+			}
+			if (router.get("justAnnouncedAPrefix") && router.get("justWithdrawnAPrefix")) {
+				item.addClass("haslossandnewpfx");
+			}
+			else {
+				item.removeClass("haslossandnewpfx");
+			}
+			if (router.get("justAnnouncedAPrefix")) {
+				item.addClass("hasanewprefix");
+			}
+			else {
+				item.removeClass("hasanewprefix");
+			}
+			if (router.get("justWithdrawnAPrefix")) {
+				item.addClass("haslostaprefix");
+			}
+			else {
+				item.removeClass("haslostaprefix");
 			}
 		},
 		

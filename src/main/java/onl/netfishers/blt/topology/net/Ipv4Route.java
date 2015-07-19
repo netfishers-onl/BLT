@@ -22,19 +22,23 @@ public class Ipv4Route {
 	private String nextInterface;
 	private BgpLsProtocolId protocolId;
 	private long dateTicks;
+	private boolean isNew;
+	private boolean isLost;
 
 	protected Ipv4Route() {
 
 	}
 
 	public Ipv4Route(Ipv4Subnet subnet, long metric, Ipv4Subnet nextHop,
-			String nextInterface, BgpLsProtocolId protocolId, long dateTicks) {
+			String nextInterface, BgpLsProtocolId protocolId, long dateTicks, boolean isLost, boolean isNew) {
 		this.subnet = subnet;
 		this.metric = metric;
 		this.nextHop = nextHop;
 		this.nextInterface = nextInterface;
 		this.protocolId = protocolId;
 		this.dateTicks = dateTicks;
+		this.isLost = isLost;
+		this.isNew = isNew;
 	}
 	
 
@@ -104,6 +108,24 @@ public class Ipv4Route {
 
 	public void setDate(long dateTicks) {
 		this.dateTicks = dateTicks;
+	}
+
+	@XmlElement
+	public boolean isLost() {
+		return isLost;
+	}
+	
+	public void setLost(boolean isLost) {
+		this.isLost = isLost;
+	}
+
+	@XmlElement
+	public boolean isNew() {
+		return isNew;
+	}
+	
+	public void setNew(boolean isNew) {
+		this.isNew = isNew;
 	}
 
 	@Override

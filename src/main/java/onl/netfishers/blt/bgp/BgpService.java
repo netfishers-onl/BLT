@@ -329,8 +329,7 @@ public class BgpService {
 											}
 											
 											Ipv4Subnet subnet = new Ipv4Subnet(prefix, ipPrefix.getPrefixLength());
-											Ipv4Route route = new Ipv4Route(subnet,
-											        prefixMetric, null, null, ipNlri.getProtocolId(), dateTicks);
+											Ipv4Route route = new Ipv4Route(subnet, prefixMetric, null, null, ipNlri.getProtocolId(), dateTicks, false, false);
 											if (mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE) {
 												logger.info("Router {} ({}) has just withdrawn {}",router.getRouterId(),
 														router.getName(),subnet.toString());
@@ -338,16 +337,22 @@ public class BgpService {
 													pfxLogger.info("Router {} ({}) has just withdrawn {}",router.getRouterId(), 
 														router.getName(),subnet.toString());
 												}
-												router.removeIpv4IgpRoute(route);
+												route.setLost(true);
 											}
 											else {
 												if (pfxLogger != null) {
 													pfxLogger.info("Router {} ({}) has just announced {}",router.getRouterId(),
 														router.getName(),subnet.toString());
 												}
-												router.addIpv4IgpRoute(route);
+												route.setNew(true);
 											}
-																															
+											for (Ipv4Route r : router.getIpv4IgpRoutes()) {
+												if (r.equals(route)) {
+													router.removeIpv4IgpRoute(r);
+													break;
+												}
+											}
+											router.addIpv4IgpRoute(route);
 											router.setNeedTeRefresh(true);
 										}
 										catch (Exception e) {

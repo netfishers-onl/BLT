@@ -239,6 +239,21 @@ table.simple th {
 	z-index: 5;
 }
 
+#diagram .router.hasanewprefix {
+	background-color: #a2dfa3;
+	color: white;
+}
+
+#diagram .router.haslostaprefix {
+	background-color: #ffaeae;
+	color: white;
+}
+
+#diagram .router.haslossandnewpfx {
+	background-color: #ffbe7d;
+	color: white;
+}
+
 #diagram .link path {
 	stroke: #678;
 	stroke-width: 1;

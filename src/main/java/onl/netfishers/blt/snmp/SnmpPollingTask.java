@@ -55,7 +55,7 @@ public class SnmpPollingTask extends Task {
 					THROTTLE_TIME);
 		}
 		try {
-			SNMP_RETRIES = Integer.parseInt(Blt.getConfig("blt.snmp.retries", "2"));
+			SNMP_RETRIES = Integer.parseInt(Blt.getConfig("blt.snmp.retries", "10"));
 		}
 		catch (Exception e) {
 			logger.error("Unable to parse the SNMP retries option in configuration, using {}.", SNMP_RETRIES);
