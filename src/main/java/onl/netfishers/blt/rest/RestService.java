@@ -577,6 +577,8 @@ public class RestService extends Thread {
 					router.removeIpv4IgpRoute(r);
 				}
 			}
+		}
+		for (Router router : network.getRouters()){
 			
 			for (Ipv4Route r : router.getIpv4IgpRoutes()) {
 				if (r.isLost() == true) {
