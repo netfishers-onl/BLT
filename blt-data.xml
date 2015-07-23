@@ -1,101 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <topology>
-   <networks>
-      <network id="11">
-         <routers>
-            <router id="113">
-               <isisAreaIds>49</isisAreaIds>
-               <justAnnouncedAPrefix>false</justAnnouncedAPrefix>
-               <justWithdrawnAPrefix>false</justWithdrawnAPrefix>
-               <name>Unknown</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>0001.0002.0129</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>0</x>
-               <y>0</y>
-            </router>
-            <router id="114">
-               <isisAreaIds>49</isisAreaIds>
-               <justAnnouncedAPrefix>false</justAnnouncedAPrefix>
-               <justWithdrawnAPrefix>false</justWithdrawnAPrefix>
-               <name>Unknown</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>0001.0002.0130</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>0</x>
-               <y>0</y>
-            </router>
-            <router id="115">
-               <isisAreaIds>49</isisAreaIds>
-               <justAnnouncedAPrefix>false</justAnnouncedAPrefix>
-               <justWithdrawnAPrefix>false</justWithdrawnAPrefix>
-               <name>Unknown</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>0001.0002.0131</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>0</x>
-               <y>0</y>
-            </router>
-            <router id="116">
-               <isisAreaIds>49</isisAreaIds>
-               <justAnnouncedAPrefix>false</justAnnouncedAPrefix>
-               <justWithdrawnAPrefix>false</justWithdrawnAPrefix>
-               <name>Unknown</name>
-               <needTeRefresh>true</needTeRefresh>
-               <routerId>
-                  <areaId>0</areaId>
-                  <autonomousSystem>1</autonomousSystem>
-                  <identifier>0001.0002.0132</identifier>
-                  <lsIdentifier>0</lsIdentifier>
-               </routerId>
-               <virtual>false</virtual>
-               <x>0</x>
-               <y>0</y>
-            </router>
-         </routers>
-         <bgpAs>1</bgpAs>
-         <bgpPeer>
-            <ip>192.168.2.218</ip>
-            <prefixLength>32</prefixLength>
-         </bgpPeer>
-         <name>HomeNet</name>
-         <snmpCommunities>
-            <snmpCommunity id="14">
-               <community>IOX531</community>
-               <subnet>
-                  <ip>10.0.0.0</ip>
-                  <prefixLength>26</prefixLength>
-               </subnet>
-            </snmpCommunity>
-         </snmpCommunities>
-      </network>
-   </networks>
    <users>
       <user id="1">
          <hashedPassword>51PYRYYR1/xUeA86NjYdNn0TuAHCD6+9</hashedPassword>
          <level>15</level>
          <name>admin</name>
-         <remote>false</remote>
-      </user>
-      <user id="2">
-         <hashedPassword>pZMVj2LaPjJSzs9pqMrMtpIO/ai/b3Nb</hashedPassword>
-         <level>10</level>
-         <name>alain</name>
          <remote>false</remote>
       </user>
    </users>

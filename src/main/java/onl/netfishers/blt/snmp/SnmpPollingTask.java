@@ -172,13 +172,18 @@ public class SnmpPollingTask extends Task {
 				snmp = new Snmp(transport);
 				transport.listen();
 				
-				String Name = null;
-				try {
-					Name = get(sysName); 
-				} catch (Exception e1) {
-					logger.warn("Error when polling router {} sysName", router, e1);
+				if (router.getName().length() == 0) {
+					String Name = null;
+					try {
+						Name = get(sysName); 
+					} catch (Exception e1) {
+						logger.warn("Error when polling router {} sysName", router, e1);
+					}
+					router.setName(Name);
 				}
-				router.setName(Name);
+				else {
+					logger.warn("We already know {} NodeName, no need to SNMP Get for it...", router);
+				}
 				router.setNeedTeRefresh(true);
 							
 				Map<String, String> ifIndices = walk(ifIndex);

@@ -181,6 +181,8 @@ public class BgpService {
 					lsAttribute = (LinkStateAttribute) attribute;
 				}
 			}
+			
+			
 			for (PathAttribute attribute : message.getPathAttributes()) {
 				if (attribute instanceof MultiProtocolNLRI) {
 					MultiProtocolNLRI mpNlriAttribute = (MultiProtocolNLRI) attribute;
@@ -212,8 +214,20 @@ public class BgpService {
 										}
 									}
 								}
+								
 															
 								router.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
+								
+								if (router.getRouterId().getData().length == BgpLsNodeDescriptor.IGPROUTERID_ISISISONODEID_LENGTH) {
+									try {
+										router.setName(lsAttribute.getNodeName());
+									}	
+									catch (Exception e) {
+											logger.warn("NodeName of router: "
+													+router.getRouterId().toString()+" cannot been found in LS Attribute");
+									}
+								}
+								
 								router.setNeedTeRefresh(true);
 							
 								toSave = true;
