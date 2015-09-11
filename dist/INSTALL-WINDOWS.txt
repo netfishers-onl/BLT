@@ -1,0 +1,46 @@
+
+If you are in a hurry, you should first open the generic "INSTALL.txt" file. 
+This one will show you how to launch BLT in a single run instance. 
+
+Otherwise, if you prefer to spend some time having BLT cleanly installed, 
+on your Windows machine (only tested on Windows 7 so far),
+then you came to the right place :-)
+
+
+#####
+### 0. Unzip the BLT package
+You must have downloaded it from the NetFishers web site.
+Extract the compressed archive to an installation directory, 
+let's say blt-x.y.z
+
+skip to step 2 if you already have Oracle JRE 8 or 7 installed
+
+#####
+### 1. Download and install Oracle JRE 8
+Pick the proper version here : http://www.oracle.com/technetwork/java/javase/downloads/jre8-downloads-2133155.html
+Install and check the running Java version in a command line:
+ java -version
+ This should give : java version "1.8.x"
+
+
+#####
+### 2. Create the SSL certificate
+Go to Java RE bin directory : "Program Files" > Java > jre1.8.x > bin
+Execute keytool program in command line as follows :
+ keytool -genkeypair -keyalg RSA -alias selfsigned -keystore blt.jks -storepass password -validity 3600 -keysize 2048
+ Press Enter when asked for a password.
+
+
+#####
+### 3. Install the files to their proper location
+Copy the certificate (blt.jks file) into your installation directory.
+Adapt your "blt.conf" file as needed : you may want to store the log messages in a dedicated file.
+To do so, just change the "blt.log.file = CONSOLE" to provide the name of a log file in your install dir.
+
+#####
+### 4. Start BLT service
+The easy way : Double click on "blt.bat"
+The suspicious way : Start a Windows command line, go to your install dir, and enter : java -jar blt.jar
+Now you should be able to log into BLT at: https://localhost:8443/
+Use the account admin (password admin) for the initial login
+then you can create more users in the Admin section. 

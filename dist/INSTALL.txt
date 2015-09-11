@@ -1,0 +1,37 @@
+
+If you are in a hurry, this is the right place.
+Otherwise, please consider reading the INSTALL file related to your platform. 
+
+### 0. Unzip the BLT package
+You must have downloaded it from the NetFishers web site.
+Unzip the file and go to the newly created directory.
+
+ unzip blt-x.y.z.zip
+ cd blt-x.y.z
+
+### 1. Install Java 8 if you do not have it yet
+Check the running Java version:
+
+ java -version 2>&1 | grep version
+
+This should give 1.8.x or 1.7.x at least
+
+### 2. Create a SSL certificate
+
+ keytool -genkey -keyalg RSA -alias selfsigned -keystore blt.jks -storepass password -validity 3600 -keysize 2048
+ then press Enter when asked for a password.
+
+### 3. launch BLT in single run mode, see messages in the console
+
+ java -jar blt.jar
+
+### 4. Go to the web interface
+
+ https://localhost:8443
+
+Now you can : 
+- Create a new user from the GUI
+- Add a BGP speaker : IP, AS number
+- Add at least a subnet containing IP addresses of the routers, SNMP RO reachables
+- Add a snmp community string, associated to each subnet
+- Say how you like BLT :-) contact@netfishers.onl

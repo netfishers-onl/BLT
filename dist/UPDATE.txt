@@ -1,0 +1,17 @@
+HOW TO UPDATE A WORKING INSTALLATION
+
+### 1. You should always backup your data:
+  * Your installation folder, e.g. /usr/local/blt
+  * Your configuration file, e.g. /etc/blt.conf
+
+### 2. Stop BLT
+
+$ sudo service blt stop
+
+### 3. Copy the updated package and overwrite the old version.
+
+$ sudo cp blt.jar /usr/local/blt/blt.jar
+
+### 4. Start BLT
+
+$ sudo service blt start

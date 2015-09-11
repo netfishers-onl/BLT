@@ -1,0 +1,89 @@
+
+If you are in a hurry, you should first open the generic "INSTALL.txt" file. 
+This one will show you how to launch BLT in a single run instance. 
+
+Otherwise, if you prefer to spend some time having BLT cleanly installed, 
+on your Linux machine (Debian and Ubuntu have been tested so far), 
+then you came to the right place :-)
+
+
+#####
+### 0. Unzip the BLT package
+You must have downloaded it from the NetFishers web site.
+Uncompress/untar the file.
+ unzip blt-x.y.z.zip
+ cd blt-x.y.z
+
+skip to step 2 if you already have Oracle JRE 8 or 7 installed
+
+#####
+### 1. Download and install Oracle JRE 8
+Using the PPA is probably the easiest way to go.
+
+ sudo add-apt-repository ppa:webupd8team/java
+ sudo apt-get update
+ sudo apt-get install oracle-java8-installer
+
+If these commands are not available on your system (Debian), manually add the
+source list and import the key. Follow the instructions on this page:
+http://www.webupd8.org/2014/03/how-to-install-oracle-java-8-in-debian.html.
+
+Check the running Java version:
+ java -version 2>&1 | grep version
+This should give 1.8.x
+
+
+#####
+### 2. Create the SSL certificate and a dedicated user without homedir
+
+ sudo keytool -genkey -keyalg RSA -alias selfsigned -keystore blt.jks -storepass password -validity 3600 -keysize 2048
+ 
+ !!! Press Enter when asked for a password !!!
+
+ sudo useradd -M blt
+
+#####
+### 3. Install the files to their proper location
+
+ Create the install dir and copy the certificate into it:
+
+ sudo mkdir /usr/local/blt
+ sudo mv blt.jks /usr/local/blt/
+
+ sudo cp blt.jar /usr/local/blt
+ sudo chmod 666 blt-data.xml
+ sudo cp blt-data.xml /usr/local/blt
+ 
+ sudo chown -R blt /usr/local/blt
+
+ # if you don't want your data to be stored in /usr/local/blt
+ # you can move "blt-data.xml" anywhere,
+ # and then update "blt.dump.filename" entry in "blt.conf"
+
+ sudo cp blt.init /etc/init.d/blt
+ sudo chown root:root /etc/init.d/blt
+ sudo chmod +x /etc/init.d/blt
+ sudo mkdir /var/log/blt
+
+ # Inside "blt.conf":
+ # a lot of options can be changed in "blt.conf", just have a look into it.
+ # You can create your personal "blt.conf" in your homedir
+ # This takes precedence over /etc/blt.conf
+ 
+ sudo cp blt.conf /etc/
+ sudo chown root:root /etc/blt.conf
+
+#####
+### 4. Start BLT service
+
+ sudo service blt start
+
+Now you should be able to log into BLT at: https://localhost:8443/
+Use the account admin (password admin) for the initial login
+then you can create more users in the Admin section.
+
+#####
+### 5. Optional - Start BLT at bootup
+
+ sudo update-rc.d blt defaults
+
