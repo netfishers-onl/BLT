@@ -60,9 +60,12 @@ This should give 1.8.x
  # you can move "blt-data.xml" anywhere,
  # and then update "blt.dump.filename" entry in "blt.conf"
 
+ #a sample working init script is provided if you want to use Upstart on your system 
  sudo cp blt.init /etc/init.d/blt
  sudo chown root:root /etc/init.d/blt
  sudo chmod +x /etc/init.d/blt
+ 
+ #create the log homedir
  sudo mkdir /var/log/blt
 
  # Inside "blt.conf":
@@ -74,7 +77,7 @@ This should give 1.8.x
  sudo chown root:root /etc/blt.conf
 
 #####
-### 4. Start BLT service
+### 4. Start BLT service using Upstart
 
  sudo service blt start
 
