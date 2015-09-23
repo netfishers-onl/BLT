@@ -1,5 +1,5 @@
 /*
- * Copyright Sylvain Cadilhac 2013
+ * Copyright Sylvain Cadilhac 2013, 2015
  */
 package onl.netfishers.blt.topology.net;
 
