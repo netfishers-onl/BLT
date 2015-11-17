@@ -175,7 +175,7 @@ public class SnmpPollingTask extends Task {
 				snmp = new Snmp(transport);
 				transport.listen();
 				
-				if (router.getName().length() == 0) {
+				if (router.getName().length() == 0 || router.getName().equals("Unknown")) {
 					String Name = null;
 					try {
 						Name = get(sysName); 
