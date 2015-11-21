@@ -28,6 +28,7 @@ define([
 
 		initialize: function() {
 			var that = this;
+			var autoRefreshInt = false;
 			this.pathConnections = [];
 			this.network = new NetworkModel({
 				id: this.id
