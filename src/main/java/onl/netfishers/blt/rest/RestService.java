@@ -664,6 +664,7 @@ public class RestService extends Thread {
 				router.setY(position.getY());
 			}
 		}
+		TopologyService.getService().writeToDisk();
 	}
 
 	@DELETE

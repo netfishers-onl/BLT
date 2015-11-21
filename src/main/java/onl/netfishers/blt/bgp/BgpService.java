@@ -72,6 +72,7 @@ public class BgpService {
 
 	private static HashMap<String, Object> instanceMap = new HashMap<String, Object>();
 	private static List<BGPv4FSM> fsmList = new ArrayList<BGPv4FSM>();
+	
 
 	public static void init() {
 		// Use the global Quartz scheduler (owned by TaskManager)
@@ -273,7 +274,6 @@ public class BgpService {
 									"\n<-- localId: "+localId.getIdentifier().toString()+
 									"\n--> remoteId: "+remoteId.getIdentifier().toString()+
 									" protocolId: "+linkNlri.getProtocolId());
-									//e.printStackTrace();
 								try {
 									link = new Link(localId, remoteId,new Ipv4Subnet(0,32),new Ipv4Subnet(0,32),linkNlri.getProtocolId());
 								}
@@ -395,7 +395,6 @@ public class BgpService {
 			}
 			for (Router router : network.getRouters()) {
 				if (router.isVirtual()) {
-					//System.out.println("router: "+router.getRouterId()+" is virtual...");
 					if ( router.getRouterId().getData().length == BgpLsNodeDescriptor.IGPROUTERID_ISISPSEUDONODE_LENGTH) {
 						router.setName("DIS");
 					} else if ( router.getRouterId().getData().length == BgpLsNodeDescriptor.IGPROUTERID_OSPFPSEUDONODE_LENGTH) {

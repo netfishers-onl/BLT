@@ -17,8 +17,6 @@
 autonomous system: <%- routerId.autonomousSystem %><br>
 <% if (typeof(isisAreaIds) == "object" && isisAreaIds.length > 0) { %>
 area id: <%- isisAreaIds.join(", ") %>
-<% } else if (typeof(routerId.areaId) != "undefined") { %>
-area id: <%- routerId.areaId %>
 <% } %>
 </small></h4>
 

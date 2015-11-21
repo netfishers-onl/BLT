@@ -16,3 +16,9 @@ RELEASE HISTORY:
                      - customizable timers in "blt.conf" blt.bgp.deltaNewIgpRoute and blt.bgp.deltaLostIgpRoute
                      Add age of routes in "prefix" tab
                      Elliptic layout of routers at launch
+0.3.5 - 2015-11-21 - Add an auto refresh feature, that can be toggle on/off from the main window - convenient for monitoring
+                   - Fix some bugs:
+                     - now routers positions are saved in XML dumpfile as soon as the layout is updated
+                     - SnmpPollingTask : we need to retrieve SNMP router hostname at least once when IGP is OSPF
+                     - no need to print router area Id for OSPF
+                     

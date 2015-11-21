@@ -16,6 +16,8 @@
 		</java-type>
 		<java-type name="Router">
 			<java-attributes>
+				<xml-transient java-attribute="ipv4IgpRoutes" />
+				<xml-transient java-attribute="needTeRefresh" />
 				<xml-transient java-attribute="lost" />
 				<xml-transient java-attribute="routerInterfaces" />
 			</java-attributes>

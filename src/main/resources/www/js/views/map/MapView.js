@@ -65,6 +65,19 @@ define([
 			});
 		},
 		
+		autoRefresh: function() {
+			var that = this;
+			if (this.autoRefreshInt === false) {
+				this.autoRefreshInt = setInterval(function() {
+				  that.$("#map-toolbar #refresh").prop('disabled', true);
+				  that.refresh();
+				}, 1000 * 3);
+			} else {
+				clearInterval(this.autoRefreshInt);
+				this.autoRefreshInt = false;
+			}
+		},
+		
 		onAddedRouter: function(router, routers) {
 			var that = this;
 			var item = this.routerTemplate(router.toJSON());
@@ -290,10 +303,16 @@ define([
 				Container: this.$("#diagram")
 			});
 
-
 			this.$("#map-toolbar #refresh").click(function() {
 				that.$("#map-toolbar #refresh").prop('disabled', true);
 				that.refresh();
+				return false;
+			}).prop('disabled', false);
+			
+			this.$("#map-toolbar #autorefresh").click(function() {
+				that.$("#map-toolbar #autorefresh").prop('disabled', true);
+				that.autoRefresh();
+				that.$("#map-toolbar #autorefresh").prop('disabled', false);
 				return false;
 			}).prop('disabled', false);
 			
@@ -312,10 +331,12 @@ define([
 			}
 			this.$("#map-toolbar #editmap").click(function() {
 				that.enableDragging();
+				if (this.autoRefreshInt !== false) {
+					that.autoRefresh();
+				}
 				that.$("#map-toolbar #group-refresh").hide();
 				that.$("#map-toolbar #group-savemap").show();
 				that.$("#map-toolbar #group-editmap").hide();
-				that.$("#map-toolbar #group-tunnels").hide();
 				return false;
 			});
 			
@@ -324,13 +345,12 @@ define([
 				that.$("#map-toolbar #group-refresh").show();
 				that.$("#map-toolbar #group-savemap").hide();
 				that.$("#map-toolbar #group-editmap").show();
-				that.$("#map-toolbar #group-tunnels").show();
 				var positions = [];
 				that.$("#diagram .router").each(function(i, item) {
-					var x = $(item).css('left').replace(/px/, "");
-					var y = $(item).css('top').replace(/px/, "");
-					var id = $(item).data('router');
-					positions.push({ router: id, x: x, y: y });
+					var x = $(item).css('left').replace(/(\.\d+|)px/, "");
+					var y = $(item).css('top').replace(/(\.\d+|)px/, "");
+					var r = $(item).data('router');
+					positions.push({ router: r, x: x, y: y });
 				});
 				var routerPositions = new RouterPositions({
 					positions: positions
