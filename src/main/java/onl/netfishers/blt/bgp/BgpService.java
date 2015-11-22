@@ -199,6 +199,7 @@ public class BgpService {
 					}
 					mpNlriAttribute.getPathAttributeType();
 					for (MultiProtocolNLRIInformation nlri : mpNlriAttribute.getNlris()) {
+						
 						if (nlri instanceof BgpLsNodeNLRI) {
 							BgpLsNodeNLRI nodeNlri = (BgpLsNodeNLRI) nlri;
 							BgpLsNodeDescriptor node = nodeNlri.getLocalNodeDescriptor();
@@ -218,7 +219,6 @@ public class BgpService {
 										}
 									}
 								}
-								
 															
 								router.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
 								
@@ -291,6 +291,7 @@ public class BgpService {
 							/*if (!(localRouter.isPseudonodeOf(remoteRouter) || remoteRouter.isPseudonodeOf(localRouter))) {
 								link = network.findOrAddLink(link);
 							}*/
+							
 							link = network.findOrAddLink(link);
 							
 							link.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);

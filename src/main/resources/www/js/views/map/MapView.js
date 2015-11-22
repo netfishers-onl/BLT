@@ -28,7 +28,6 @@ define([
 
 		initialize: function() {
 			var that = this;
-			var autoRefreshInt = false;
 			this.pathConnections = [];
 			this.network = new NetworkModel({
 				id: this.id
@@ -68,7 +67,7 @@ define([
 		
 		autoRefresh: function() {
 			var that = this;
-			if (this.autoRefreshInt === false) {
+			if (this.autoRefreshInt === false || this.autoRefreshInt == null) {
 				this.autoRefreshInt = setInterval(function() {
 				  that.$("#map-toolbar #refresh").prop('disabled', true);
 				  that.refresh();
@@ -397,7 +396,7 @@ define([
 			this.zoom = z;
 		},
 		
-		drawPath: function(params) {
+		/*drawPath: function(params) {
 			var that = this;
 			var options = _.extend({
 				name: "",
@@ -520,7 +519,7 @@ define([
 		
 		clearTarget: function() {
 			this.$("#diagrambox .router.target").removeClass("target");
-		}
+		}*/
 
 	});
 });
