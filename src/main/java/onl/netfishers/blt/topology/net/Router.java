@@ -39,7 +39,7 @@ public class Router {
 			igpLocalMetric = Integer.parseInt(Blt.getConfig("blt.router.localIgpMaxMetric", "10"));
 		}
 		catch (NumberFormatException e1) {
-			logger.error("Invalid localIgpMaxMetric parameter, not an integer (blt.router.localIgpMaxMetric config line). Using {}.", igpLocalMetric);
+			logger.error("Invalid localIgpMaxMetric parameter, not an integer. Using {}.", igpLocalMetric);
 		}
 	}
 	

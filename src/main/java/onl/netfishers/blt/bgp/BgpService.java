@@ -233,7 +233,6 @@ public class BgpService {
 								}
 								
 								router.setNeedTeRefresh(true);
-							
 								toSave = true;
 							}
 							catch (Exception e) {
@@ -287,6 +286,7 @@ public class BgpService {
 							localRouter.setNeedTeRefresh(true);
 							Router remoteRouter = network.findOrAddRouter(remoteId);
 							remoteRouter.setNeedTeRefresh(true);
+							toSave = true;
 							//TODO : handle properly virtual link between pseudonode and actual router
 							/*if (!(localRouter.isPseudonodeOf(remoteRouter) || remoteRouter.isPseudonodeOf(localRouter))) {
 								link = network.findOrAddLink(link);
@@ -404,7 +404,7 @@ public class BgpService {
 				}
 				else if ( router.isNeedTeRefresh()) {
 					if ( router.findSnmpCommunity() != null) {
-						Task task = new SnmpPollingTask("Refresh router state via SNMP (after BGP update)", router); 
+						Task task = new SnmpPollingTask("Refresh router '{}' state via SNMP (after BGP update)", router); 
 						try {
 							task.schedule(1000);
 						}
