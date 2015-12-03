@@ -18,14 +18,14 @@ define([
 ], function($, _, Backbone, jsPlumb, NetworkModel, RouterCollection, LinkCollection,
 		RouterPositions, mapTemplate, routerTemplate, RouterView,
 		LinkView) {
-
+	
 	return Backbone.View.extend({
 
 		el: "#page",
 
 		template: _.template(mapTemplate),
 		routerTemplate: _.template(routerTemplate),
-
+		
 		initialize: function() {
 			var that = this;
 			this.pathConnections = [];
@@ -72,6 +72,14 @@ define([
 				  that.$("#map-toolbar #refresh").prop('disabled', true);
 				  that.refresh();
 				}, 1000 * 3);
+				// here below a dirty hack useful when user change view without 
+				// properly clearing the interval from the view he just left. 
+				// hypothesis is that interval number is slightly incrementing each time
+				// and clearing 50 of them below the actual one will do the job... 
+				var step;
+				for (step = this.autoRefreshInt - 1; step > this.autoRefreshInt - 50 ; step--) {
+					clearInterval(step);
+				}
 			} else {
 				clearInterval(this.autoRefreshInt);
 				this.autoRefreshInt = false;
@@ -331,7 +339,12 @@ define([
 			}
 			this.$("#map-toolbar #editmap").click(function() {
 				that.enableDragging();
-				if (this.autoRefreshInt !== false && this.autoRefreshInt != null) {
+				if (that.autoRefreshInt !== false && that.autoRefreshInt != null) {
+					that.autoRefresh();
+				}
+				else {
+					// in order to erase phantom interval (see function above)
+					that.autoRefresh();
 					that.autoRefresh();
 				}
 				that.$("#map-toolbar #group-refresh").hide();
@@ -394,6 +407,7 @@ define([
 			});
 			jsPlumb.setZoom(z);
 			this.zoom = z;
-		},
+		}
+		
 	});
 });

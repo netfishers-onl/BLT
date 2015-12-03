@@ -36,7 +36,7 @@ define([
 		if (!window.user.isAdmin()) {
 			delete routes.admin;
 		}
-
+		
 		var AppRouter = Backbone.Router.extend({
 			currentView: null,
 			routes: routes,
