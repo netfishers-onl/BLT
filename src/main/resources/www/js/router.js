@@ -36,11 +36,11 @@ define([
 		if (!window.user.isAdmin()) {
 			delete routes.admin;
 		}
-		
+				
 		var AppRouter = Backbone.Router.extend({
 			currentView: null,
 			routes: routes,
-			headerView: new HeaderView()
+			headerView: new HeaderView(), 
 		});
 		window.appRouter = new AppRouter;
 		
@@ -50,7 +50,7 @@ define([
 				this.headerView.select(-1);
 			}
 			else {
-				this.currentView = new MapView({ id: id });
+				this.currentView = new MapView({ id: id});
 				this.headerView.select(id);
 			}
 		});
@@ -59,8 +59,11 @@ define([
 			this.headerView.select("admin");
 		});
 		
+		
 		Backbone.history.start();
-
+		/*Backbone.history.on("route", function (route, router) {
+			console.log(window.location.hash);
+		});*/
 	};
 
 	var initialize = function() {

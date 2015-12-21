@@ -239,6 +239,9 @@ public class Router {
 	private int x = 0;
 	private int y = 0;
 	
+	private double latitude = 0;
+	private double longitude = 0;
+	
 	private Set<byte[]> isisAreas = new HashSet<byte[]>();
 
 	protected Router() {
@@ -270,6 +273,7 @@ public class Router {
 	private boolean justWithdrawnAPrefix = false;
 
 	private String name = "Unknown";
+	private String location = "Somewhere...";
 
 	public Set<Ipv4Route> getIpv4StaticRoutes() {
 		return ipv4StaticRoutes;
@@ -421,6 +425,15 @@ public class Router {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	@XmlElement
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
 
 	public Network getNetwork() {
 		return network;
@@ -436,7 +449,7 @@ public class Router {
 		for (SnmpCommunity community : communities) {
 			for (Ipv4Route prefix : ipv4IgpRoutes) {
 				if (community.getSubnet().contains(prefix.getSubnet())) {
-					if (prefix.getMetric() <= igpLocalMetric ){
+					if (prefix.getMetric() <= igpLocalMetric && prefix.getSubnet().getPrefixLength() == 32){
 						return new SnmpCommunity(prefix.getSubnet(), community.getCommunity());
 					}
 				}
@@ -461,6 +474,24 @@ public class Router {
 
 	public void setY(int y) {
 		this.y = y;
+	}
+
+	@XmlElement
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	@XmlElement
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
 	}
 
 	public List<RouterInterface> getRouterInterfaces() {

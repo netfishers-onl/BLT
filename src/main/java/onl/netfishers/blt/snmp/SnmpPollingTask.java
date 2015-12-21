@@ -8,8 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//import java.util.regex.Matcher;
-//import java.util.regex.Pattern;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import onl.netfishers.blt.Blt;
 import onl.netfishers.blt.tasks.Task;
 import onl.netfishers.blt.topology.net.Ipv4Subnet;
@@ -47,6 +47,8 @@ public class SnmpPollingTask extends Task {
 	private static long THROTTLE_TIME = 20000L;
 	private static int SNMP_RETRIES = 10;
 	private static int SNMP_TIMEOUT = 2000;
+	private static boolean LATLONG_ENABLE = false;
+	private static String LATLONG_LOOKUP = "snmp";
 
 	static {
 		try {
@@ -69,7 +71,20 @@ public class SnmpPollingTask extends Task {
 		catch (Exception e) {
 			logger.error("Unable to parse the SNMP timeout option in configuration, using {}.", SNMP_TIMEOUT);
 		}
-
+		try {
+			LATLONG_ENABLE = Boolean.parseBoolean(Blt.getConfig("blt.coordinates.lookfor"));
+		}
+		catch (Exception e) {
+			logger.error("Unable to parse the Google Maps layout option in configuration, using '{}'.", LATLONG_ENABLE);
+		}
+		if (LATLONG_ENABLE) {
+			try {
+				LATLONG_LOOKUP = String.format(Blt.getConfig("blt.coordinates.collect"));
+			}
+			catch (Exception e) {
+				logger.error("Unable to parse the GPS coordinates fetch method in configuration, using '{}'.", LATLONG_LOOKUP);
+			}
+		}
 	}
 
 	private Router router;
@@ -121,6 +136,7 @@ public class SnmpPollingTask extends Task {
 	
 	
 	private static final String sysName                     = "1.3.6.1.2.1.1.5.0";
+	private static final String sysLocation                 = "1.3.6.1.2.1.1.6.0";
 	private static final String ifIndex                     = "1.3.6.1.2.1.2.2.1.1";
 	private static final String ifName                      = "1.3.6.1.2.1.31.1.1.1.1";
 	private static final String ifAlias                     = "1.3.6.1.2.1.31.1.1.1.18";
@@ -187,6 +203,47 @@ public class SnmpPollingTask extends Task {
 				else {
 					logger.warn("We already know {} NodeName, no need to SNMP Get for it...", router);
 				}
+				
+				String Location = null ;
+				try {
+					Location = get(sysLocation);
+				} catch (Exception e1) {
+					logger.warn("Error when polling router {} sysLocation using {}", router, snmpTarget, e1);
+				}
+				router.setLocation(Location);
+				
+				if ( LATLONG_ENABLE) {
+					
+					Double Latitude = null;
+					Double Longitude = null;
+					
+					if (LATLONG_LOOKUP == "snmp") {
+					   
+						Pattern p = Pattern.compile("((-|)\\d+\\.\\d+)[^\\d-]+((-|)\\d+\\.\\d+)");
+					    Matcher m = p.matcher(Location);
+				        
+					    if ( m.find() && m.groupCount() == 4 ) {
+				        	Latitude = Double.parseDouble(m.group(1));
+							Longitude = Double.parseDouble(m.group(3));
+				        	router.setLatitude(Latitude);
+				        	router.setLongitude(Longitude);
+				        }  else {
+				        	logger.warn("I cannot read valid GPS coordinates from '{}', I pick a random location",Location); 
+				        }
+					}
+					else if (LATLONG_LOOKUP == "dns"){
+						logger.warn("'{}' method not implemented yet for 'blt.coordinates.collect'",LATLONG_LOOKUP);
+						//TODO: try to resolve IP with LOC records 
+					}
+					else if (LATLONG_LOOKUP == "file"){
+						logger.warn("'{}' method not implemented yet for 'blt.coordinates.collect'",LATLONG_LOOKUP);
+						//TODO: try to parse loactions.txt
+					}
+					else {
+						logger.error("'{}' is not a valid option for 'blt.coordinates.collect', please check blt.conf",LATLONG_LOOKUP);
+					}	
+				}
+				
 				router.setNeedTeRefresh(true);
 							
 				Map<String, String> ifIndices = walk(ifIndex);
@@ -225,7 +282,7 @@ public class SnmpPollingTask extends Task {
 				this.setStatus(TaskStatus.SUCCESS);
 			}
 			catch (Exception e) {
-				logger.warn("Error while polling router {}.", router, e);
+				logger.warn("Error while polling router {} using {}", router, snmpTarget, e);
 			}
 			finally {
 				try {

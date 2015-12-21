@@ -10,7 +10,8 @@ require.config({
 		templates: '../templates',
 		bootstrap: 'libs/bootstrap/bootstrap',
 		jsplumb: 'libs/jsplumb/jquery.jsPlumb',
-		typeahead: 'libs/typeahead/typeahead'
+		typeahead: 'libs/typeahead/typeahead',
+		gmaps: 'https://maps.googleapis.com/maps/api/js'
 	},
 	shim: {
 		underscore: {
@@ -32,6 +33,9 @@ require.config({
 		},
 		typeahead: {
 			deps: [ 'jquery' ]
+		},
+		gmaps: {
+			exports: ['gmaps']
 		}
 	}
 });
