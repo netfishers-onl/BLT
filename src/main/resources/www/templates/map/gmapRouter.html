@@ -1,0 +1,35 @@
+
+<% if (typeof(virtual) != "undefined" && virtual === true) { %>
+<h6><i>This router is a pseudonode</i></h6>
+<% } else { %>
+<h6><%- name %></h6>
+<% } %>
+<p>router-id: <%- routerId.identifier %><br>
+autonomous system: <%- routerId.autonomousSystem %><br>
+<% if (typeof(isisAreaIds) == "object" && isisAreaIds.length > 0) { %>
+area id: <%- isisAreaIds.join(", ") %><br>
+<% } %>
+<% if (typeof(location) != "undefined" && location.length > 0) { %>
+location: <%- location %>
+<% } %>
+</small></p>
+
+<% if (typeof(lost) != "undefined" && lost === true) { %>
+
+<div class="alert alert-warning" role="alert">
+
+<p>The router isn't seen anymore in the IGP topology.</p>
+
+<p>
+<button type="button" class="btn btn-danger" id="remove">
+  <span class="glyphicon glyphicon-remove"></span> Remove from map
+</button>
+</p>
+
+</div>
+
+<% } %>
+
+<% if (typeof(virtual) != "undefined" && virtual === false) { %>
+<div id="section"></div>
+<% } %>
