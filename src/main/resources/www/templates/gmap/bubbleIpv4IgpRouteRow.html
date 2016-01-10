@@ -1,0 +1,5 @@
+<tr data-route="<%- id %>">
+	<td ><%- subnet.ip %>/<%- subnet.prefixLength %></td>
+	<td><% if (typeof(metric) != "undefined") { %><%- metric %><% } %></td>
+	<td><% if (typeof(protocolId) != "undefined") { %><%- protocolId %><% } %></td>
+</tr>
