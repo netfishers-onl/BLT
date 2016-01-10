@@ -99,14 +99,19 @@ table.simple th {
 #map-toolbar {
 	position: absolute;
 	top: 72px;
-	/*left: 570px;
-	width: 32px;*/
 	left: 20px;
-	width: 200px;
+	width: 250px;
 }
 
 #map-toolbar .btn-group-vertical {
 	margin-bottom: 5px;
+}
+
+#gmap-toolbar {
+	position: absolute;
+	top: 68px;
+	left: 150px;
+	width: 250px;
 }
 
 #diagrambox {
@@ -115,6 +120,16 @@ table.simple th {
 	bottom: 10px;
 	left: 10px;
 	top: 65px;
+	border: 1px solid #DDD;
+	overflow: auto;
+}
+
+#gmap {
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+	left: 5px;
+	top: 57px;
 	border: 1px solid #DDD;
 	overflow: auto;
 }

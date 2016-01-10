@@ -535,16 +535,16 @@ public class RestService extends Thread {
 
 		//first loop to avoid ConcurrentModificationException
 		for (Ipv4Route r : router.getIpv4IgpRoutes()) {
-			if (r.isLost() == true && (now - r.getDate()) / 1000 > deltaLostIgpRoute) {
+			if (r.isJustLost() == true && (now - r.getDate()) / 1000 > deltaLostIgpRoute) {
 				router.removeIpv4IgpRoute(r);
 			}
 		}
 		
 		for (Ipv4Route r : router.getIpv4IgpRoutes()) {
-			if (r.isLost() == true) {
+			if (r.isJustLost() == true) {
 				router.setJustWithdrawnAPrefix(true);
 			}
-			else if (r.isNew() == true) {
+			else if (r.isJustNew() == true) {
 				if ((now - r.getDate()) / 1000 > deltaNewIgpRoute) {
 					r.setNew(false);
 				}
@@ -576,7 +576,7 @@ public class RestService extends Thread {
 			
 			//first loop to avoid ConcurrentModificationException
 			for (Ipv4Route r : router.getIpv4IgpRoutes()) {
-				if (r.isLost() == true && (now - r.getDate()) / 1000 > deltaLostIgpRoute) {
+				if (r.isJustLost() == true && (now - r.getDate()) / 1000 > deltaLostIgpRoute) {
 					router.removeIpv4IgpRoute(r);
 				}
 			}
@@ -584,10 +584,10 @@ public class RestService extends Thread {
 		for (Router router : network.getRouters()){
 			
 			for (Ipv4Route r : router.getIpv4IgpRoutes()) {
-				if (r.isLost() == true) {
+				if (r.isJustLost() == true) {
 					router.setJustWithdrawnAPrefix(true);
 				}
-				else if (r.isNew() == true) {
+				else if (r.isJustNew() == true) {
 					if ((now - r.getDate()) / 1000 > deltaNewIgpRoute) {
 						r.setNew(false);
 					}
@@ -831,10 +831,10 @@ public class RestService extends Thread {
 		}
 		long now = new Date().getTime();
 		for (Ipv4Route r : router.getIpv4IgpRoutes()) {
-			if (r.isLost() && (now - r.getDate()) / 1000 > deltaLostIgpRoute) {
+			if (r.isJustLost() && (now - r.getDate()) / 1000 > deltaLostIgpRoute) {
 				router.removeIpv4IgpRoute(r);
 			}
-			else if (r.isNew() && (now - r.getDate()) / 1000 > deltaNewIgpRoute) {
+			else if (r.isJustNew() && (now - r.getDate()) / 1000 > deltaNewIgpRoute) {
 				r.setNew(false);
 			}
 		}

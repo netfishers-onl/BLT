@@ -28,7 +28,7 @@ define([
 		
 		initialize: function() {
 			var that = this;
-			this.pathConnections = [];
+			// this.pathConnections = [];
 			this.network = new NetworkModel({
 				id: this.id
 			});
@@ -51,7 +51,6 @@ define([
 				that.refresh();
 			});
 			Backbone.history.on("route", function (route, router) {
-				console.log(window.location.hash);
 				if (that.autoRefreshInt !== false && that.autoRefreshInt != null) {
 					that.autoRefresh();
 				}
@@ -78,10 +77,8 @@ define([
 				  that.$("#map-toolbar #refresh").prop('disabled', true);
 				  that.refresh();
 				}, 1000 * 3);
-				// console.log("interval "+this.autoRefreshInt+" cleared...");
 			} else {
-				// console.log("now clearing interval "+this.autoRefreshInt+" ...");
-				clearInterval(this.autoRefreshInt);
+			clearInterval(this.autoRefreshInt);
 				this.autoRefreshInt = false;
 			}
 		},
@@ -370,6 +367,12 @@ define([
 				return false;
 			});
 			that.$("#map-toolbar #group-savemap").hide();
+			
+			this.$("#map-toolbar #gotogmaps").click(function() {
+				that.$("#map-toolbar #gotogmaps").prop('disabled', true);
+				window.appRouter.navigate("gmaps/" + that.network.id, { trigger: true });
+				return false;
+			}).prop('disabled', false);
 
 			return this;
 		},

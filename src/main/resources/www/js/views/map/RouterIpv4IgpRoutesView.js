@@ -78,7 +78,7 @@ define([
 				data.age = age;
 				
 				var bgColor = '';
-				if (data.new === true) {
+				if (data.justNew === true) {
 					bgColor = 'bgcolor=#a2dfa3';
 				}
 				else if (data.lost === true) {
