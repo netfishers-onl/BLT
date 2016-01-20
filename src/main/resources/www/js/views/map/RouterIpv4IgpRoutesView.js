@@ -63,7 +63,6 @@ define([
 				
 				var ageMonths = typeof(data.date) != 'undefined' ? parseInt(((now - data.date)/(1000*60*60*24*30))%12) : 0;
 				var ageDays = typeof(data.date) != 'undefined' ? parseInt(((now - data.date)/(1000*60*60*24))%30) : 0;
-				//console.log("data.date: "+data.date+" ageMonths: "+ageMonths+" ageDays: "+ageDays);
 				var age = '';
 				if (ageMonths > 0) {
 					age += ageMonths+"m ";
@@ -81,7 +80,7 @@ define([
 				if (data.justNew === true) {
 					bgColor = 'bgcolor=#a2dfa3';
 				}
-				else if (data.lost === true) {
+				else if (data.justLost === true) {
 					bgColor = 'bgcolor=#ffaeae';
 				}
 				data.bgColor = bgColor;

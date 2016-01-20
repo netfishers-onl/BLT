@@ -1,9 +1,9 @@
 <tr data-interface="<%- id %>">
 	<td>
-		<%- name %>
+		<%- name.substring(0,32) %>
 		<% if (shutdown) { %> <span class="label label-default">shut</span><% } %>
 	</td>
-	<td><% if (typeof(description) == "string") { %><%- description %><% } %></td>
+	<td><% if (typeof(description) == "string") { %><%- description.substring(0,24) %><% } %></td>
 	<td><% if (typeof(ipv4Address) == "object") { %><%- ipv4Address.ip %>/<%- ipv4Address.prefixLength %><% } %></td>
 	
 </tr>
