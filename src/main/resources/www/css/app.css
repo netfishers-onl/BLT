@@ -82,7 +82,6 @@ body {
 table.simple th {
 	padding-right: 20px;
 }
-
 table.bubbleTab {
   width: 100%;
   font-size:11px;
@@ -106,11 +105,16 @@ table.bubbleTab tbody tr.bubbleLost td {
   background-color:#fcc;
   border: 1px solid #f99; 
 }
+table.bubbleTab tbody tr.bubbleLost:hover td {
+  background-color:#fdd; 
+}
 table.bubbleTab tbody tr.bubbleNew td {
   background-color:#dfd;
-  border: 1px solid #0c0; 
+  border: 1px solid #0b0; 
 }
-
+table.bubbleTab tbody tr.bubbleNew:hover td {
+  background-color:#efe; 
+}
 .navbar-brand {
 	padding-top: 12px;
 }
