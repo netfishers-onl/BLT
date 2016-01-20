@@ -427,7 +427,7 @@ define([
 			this.$("#gmap-toolbar #autorefresh").click(function() {
 				that.$("#gmap-toolbar #autorefresh").prop('disabled', true);
 				that.autoRefresh();
-				that.$("#map-toolbar #autorefresh").prop('disabled', false);
+				that.$("#gmap-toolbar #autorefresh").prop('disabled', false);
 				return false;
 			}).prop('disabled', false);	
 			this.$("#gmap-toolbar #gotoblt").click(function() {
