@@ -6,6 +6,7 @@ package onl.netfishers.blt.rest;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -180,6 +181,62 @@ public class RestService extends Thread {
 			throw new RuntimeException(
 					"Error with the REST service, see logs for more details.");
 		}
+	}
+	
+	public void updateRouterRibState(Router router) {
+		long now = new Date().getTime();
+		boolean newPrefix = false;
+		boolean lostPrefix = false;
+		
+		//Set<Ipv4Route> Routes = router.getIpv4IgpRoutes(); 
+		//Set<Ipv4Route> clone = new CopyOnWriteArrayList<Ipv4Route>();
+		
+		Iterator<Ipv4Route> i = router.getIpv4IgpRoutes().iterator();
+		while(i.hasNext()){
+			Ipv4Route r = i.next();
+			if (r.isJustLost() == true) {
+				if ( (now - r.getDate()) / 1000 > deltaLostIgpRoute) {
+					i.remove();
+				}
+				else {
+					lostPrefix = true;
+				}
+			}
+			else if (r.isJustNew() == true) {
+				if ((now - r.getDate()) / 1000 > deltaNewIgpRoute) {
+					r.setNew(false);
+				}
+				else {
+					newPrefix = true;
+				}
+			}	
+		}
+		synchronized(this) {
+			router.setJustWithdrawnAPrefix(lostPrefix);
+			router.setJustAnnouncedAPrefix(newPrefix);
+		}
+		
+		
+		/*for (Ipv4Route r : clone) {
+			if (r.isJustLost() == true) {
+				lostPrefix = true;
+			}
+			else if (r.isJustNew() == true) {
+				if ((now - r.getDate()) / 1000 > deltaNewIgpRoute) {
+					r.setNew(false);
+				}
+				else {
+					newPrefix = true;
+				}
+				
+			}
+		}
+		synchronized(this) {
+			//router.clearIpv4IgpRoutes();
+			router.setIpv4IgpRoutes(clone);
+			router.setJustWithdrawnAPrefix(lostPrefix);
+			router.setJustAnnouncedAPrefix(newPrefix);
+		}*/
 	}
 
 
@@ -528,32 +585,7 @@ public class RestService extends Thread {
 					BltBadRequestException.UNKNOWN_ROUTER);
 		}
 		
-		long now = new Date().getTime();
-
-		router.setJustWithdrawnAPrefix(false);
-		router.setJustAnnouncedAPrefix(false);
-
-		//first loop to avoid ConcurrentModificationException
-		for (Ipv4Route r : router.getIpv4IgpRoutes()) {
-			if (r.isJustLost() == true && (now - r.getDate()) / 1000 > deltaLostIgpRoute) {
-				router.removeIpv4IgpRoute(r);
-			}
-		}
-		
-		for (Ipv4Route r : router.getIpv4IgpRoutes()) {
-			if (r.isJustLost() == true) {
-				router.setJustWithdrawnAPrefix(true);
-			}
-			else if (r.isJustNew() == true) {
-				if ((now - r.getDate()) / 1000 > deltaNewIgpRoute) {
-					r.setNew(false);
-				}
-				else {
-					router.setJustAnnouncedAPrefix(true);
-				}
-				
-			}
-		}
+		updateRouterRibState(router);
 		
 		return router;
 	}
@@ -568,37 +600,9 @@ public class RestService extends Thread {
 			throw new BltBadRequestException("The network doesn't exist.",
 					BltBadRequestException.UNKNOWN_NETWORK);
 		}
-		long now = new Date().getTime();
 		for (Router router : network.getRouters()){
-			
-			router.setJustWithdrawnAPrefix(false);
-			router.setJustAnnouncedAPrefix(false);
-			
-			//first loop to avoid ConcurrentModificationException
-			for (Ipv4Route r : router.getIpv4IgpRoutes()) {
-				if (r.isJustLost() == true && (now - r.getDate()) / 1000 > deltaLostIgpRoute) {
-					router.removeIpv4IgpRoute(r);
-				}
-			}
+			updateRouterRibState(router);
 		}
-		for (Router router : network.getRouters()){
-			
-			for (Ipv4Route r : router.getIpv4IgpRoutes()) {
-				if (r.isJustLost() == true) {
-					router.setJustWithdrawnAPrefix(true);
-				}
-				else if (r.isJustNew() == true) {
-					if ((now - r.getDate()) / 1000 > deltaNewIgpRoute) {
-						r.setNew(false);
-					}
-					else {
-						router.setJustAnnouncedAPrefix(true);
-					}
-					
-				}
-			}
-		}
-
 		return network.getRouters();
 	}
 
@@ -829,15 +833,7 @@ public class RestService extends Thread {
 			throw new BltBadRequestException("The router doesn't exist.",
 					BltBadRequestException.UNKNOWN_ROUTER);
 		}
-		long now = new Date().getTime();
-		for (Ipv4Route r : router.getIpv4IgpRoutes()) {
-			if (r.isJustLost() && (now - r.getDate()) / 1000 > deltaLostIgpRoute) {
-				router.removeIpv4IgpRoute(r);
-			}
-			else if (r.isJustNew() && (now - r.getDate()) / 1000 > deltaNewIgpRoute) {
-				r.setNew(false);
-			}
-		}
+		updateRouterRibState(router);
 		return router.getIpv4IgpRoutes();
 	}
 

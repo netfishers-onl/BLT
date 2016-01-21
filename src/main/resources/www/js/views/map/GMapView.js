@@ -159,6 +159,9 @@ define([
 					that.$("#gmap-toolbar #refresh").prop('disabled', false);
 					that.routers.each(function(router) {
 						marker = that.markersArray[router.get('id')];
+						if (marker.hasBeenClicked) {
+                          	google.maps.event.trigger(marker, 'click');
+                        }
 						if (router.get("justAnnouncedAPrefix")) {
 							marker.setIcon = this.newRouterIcon;
                           	marker.setAnimation(google.maps.Animation.DROP);
@@ -200,7 +203,8 @@ define([
 				map: this.map,
 				animation: google.maps.Animation.DROP,
 				icon: this.defaultRouterIcon,
-				routerId: router.get('id')
+				routerId: router.get('id'),
+				hasBeenClicked: false
 			});
 			
 			if (router.get("justAnnouncedAPrefix")) {
@@ -217,6 +221,7 @@ define([
 				var marker = this;
 				var router = that.routers.get(this.routerId);
 				if (!router) return;
+				this.hasBeenClicked = true;
 				var ipv4IgpRoutes = new Ipv4IgpRouteCollection([], {
 					network: that.network.get('id'),
 					router: router.get('id')
