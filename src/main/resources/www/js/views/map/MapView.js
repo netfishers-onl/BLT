@@ -28,7 +28,6 @@ define([
 		
 		initialize: function() {
 			var that = this;
-			// this.pathConnections = [];
 			this.network = new NetworkModel({
 				id: this.id
 			});
@@ -50,6 +49,9 @@ define([
 				});
 				that.refresh();
 			});
+			
+			this.gmapsEnable = true;
+			
 			Backbone.history.on("route", function (route, router) {
 				if (that.autoRefreshInt !== false && that.autoRefreshInt != null) {
 					that.autoRefresh();
@@ -96,6 +98,12 @@ define([
 				left: x + 'px',
 				top: y + 'px'
 			});
+			
+			if (router.get('latitude') == 0 && router.get('longitude') == 0) {
+				this.gmapsEnable = false ;
+              	that.$("#map-toolbar #gotogmaps").hide();
+			}
+			
 			this.$("#diagram").append(item);
 			this.instance.draggable(this.$('#diagram .router'));
 			this.$("#diagram .router").unbind('click').click(function() {
@@ -373,7 +381,7 @@ define([
 				window.appRouter.navigate("gmaps/" + that.network.id, { trigger: true });
 				return false;
 			}).prop('disabled', false);
-
+			
 			return this;
 		},
 		

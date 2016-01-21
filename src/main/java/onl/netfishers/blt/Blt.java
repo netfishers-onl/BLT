@@ -33,7 +33,7 @@ import ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy;
 public class Blt {
 
 	/** Blt version. */
-	public static final String VERSION = "0.3.5";
+	public static final String VERSION = "0.4.0";
 	
 	public static final String FEATURES = "Basic";
 
@@ -121,7 +121,7 @@ public class Blt {
 		String logFile = Blt.getConfig("blt.log.file", "/var/log/blt/blt.log");
 		String aaaLogFile = Blt.getConfig("blt.log.auditfile");
 		String pfxLogFile = Blt.getConfig("blt.log.prefixActivityFile");
-		String logLevelCfg = Blt.getConfig("blt.log.level", "INFO");
+		String logLevelCfg = Blt.getConfig("blt.log.level", "WARN");
 		String logCountCfg = Blt.getConfig("blt.log.count", "5");
 		String logMaxSizeCfg = Blt.getConfig("blt.log.maxsize", "2");
 
