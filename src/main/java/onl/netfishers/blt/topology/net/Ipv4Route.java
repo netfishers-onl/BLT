@@ -25,8 +25,8 @@ public class Ipv4Route {
 	private String nextInterface;
 	private BgpLsProtocolId protocolId;
 	private long dateTicks;
-	private boolean isNew;
-	private boolean isLost;
+	private boolean isJustNew;
+	private boolean isJustLost;
 
 	protected Ipv4Route() {
 
@@ -40,8 +40,8 @@ public class Ipv4Route {
 		this.nextInterface = nextInterface;
 		this.protocolId = protocolId;
 		this.dateTicks = dateTicks;
-		this.isLost = isLost;
-		this.isNew = isNew;
+		this.isJustLost = isLost;
+		this.isJustNew = isNew;
 	}
 	
 
@@ -114,21 +114,21 @@ public class Ipv4Route {
 	}
 
 	@XmlElement
-	public boolean isLost() {
-		return isLost;
+	public boolean isJustLost() {
+		return isJustLost;
 	}
 	
 	public void setLost(boolean isLost) {
-		this.isLost = isLost;
+		this.isJustLost = isLost;
 	}
 
 	@XmlElement
-	public boolean isNew() {
-		return isNew;
+	public boolean isJustNew() {
+		return isJustNew;
 	}
 	
 	public void setNew(boolean isNew) {
-		this.isNew = isNew;
+		this.isJustNew = isNew;
 	}
 
 	@Override

@@ -47,8 +47,8 @@ public class SnmpPollingTask extends Task {
 	private static long THROTTLE_TIME = 20000L;
 	private static int SNMP_RETRIES = 10;
 	private static int SNMP_TIMEOUT = 2000;
-	private static boolean LATLONG_ENABLE = false;
-	private static String LATLONG_LOOKUP = "snmp";
+	private static boolean LATLONG_LOOKUP = false;
+	private static String LATLONG_METHOD = "snmp";
 
 	static {
 		try {
@@ -72,17 +72,17 @@ public class SnmpPollingTask extends Task {
 			logger.error("Unable to parse the SNMP timeout option in configuration, using {}.", SNMP_TIMEOUT);
 		}
 		try {
-			LATLONG_ENABLE = Boolean.parseBoolean(Blt.getConfig("blt.coordinates.lookfor"));
+			LATLONG_LOOKUP = Boolean.parseBoolean(Blt.getConfig("blt.coordinates.lookup"));
 		}
 		catch (Exception e) {
-			logger.error("Unable to parse the Google Maps layout option in configuration, using '{}'.", LATLONG_ENABLE);
+			logger.error("Unable to parse the GPS coordinates lookup option in configuration, using '{}'.", LATLONG_LOOKUP);
 		}
-		if (LATLONG_ENABLE) {
+		if (LATLONG_LOOKUP) {
 			try {
-				LATLONG_LOOKUP = String.format(Blt.getConfig("blt.coordinates.collect"));
+				LATLONG_METHOD = String.format(Blt.getConfig("blt.coordinates.collect"));
 			}
 			catch (Exception e) {
-				logger.error("Unable to parse the GPS coordinates fetch method in configuration, using '{}'.", LATLONG_LOOKUP);
+				logger.error("Unable to parse the GPS coordinates fetch method in configuration, using '{}'.", LATLONG_METHOD);
 			}
 		}
 	}
@@ -212,12 +212,12 @@ public class SnmpPollingTask extends Task {
 				}
 				router.setLocation(Location);
 				
-				if ( LATLONG_ENABLE) {
+				if ( LATLONG_LOOKUP) {
 					
 					Double Latitude = null;
 					Double Longitude = null;
 					
-					if (LATLONG_LOOKUP == "snmp") {
+					if (LATLONG_METHOD.equals("snmp")) {
 					   
 						Pattern p = Pattern.compile("((-|)\\d+\\.\\d+)[^\\d-]+((-|)\\d+\\.\\d+)");
 					    Matcher m = p.matcher(Location);
@@ -225,22 +225,18 @@ public class SnmpPollingTask extends Task {
 					    if ( m.find() && m.groupCount() == 4 ) {
 				        	Latitude = Double.parseDouble(m.group(1));
 							Longitude = Double.parseDouble(m.group(3));
-				        	router.setLatitude(Latitude);
+							router.setLatitude(Latitude);
 				        	router.setLongitude(Longitude);
 				        }  else {
-				        	logger.warn("I cannot read valid GPS coordinates from '{}', I pick a random location",Location); 
+				        	logger.warn("Can't get valid GPS coordinates from '{}' on '{}', Google Maps view will be disabled", Location, router); 
 				        }
 					}
-					else if (LATLONG_LOOKUP == "dns"){
-						logger.warn("'{}' method not implemented yet for 'blt.coordinates.collect'",LATLONG_LOOKUP);
+					else if (LATLONG_METHOD.equals("dns")) {
+						logger.warn("'{}' method not implemented yet for 'blt.coordinates.collect'",LATLONG_METHOD);
 						//TODO: try to resolve IP with LOC records 
 					}
-					else if (LATLONG_LOOKUP == "file"){
-						logger.warn("'{}' method not implemented yet for 'blt.coordinates.collect'",LATLONG_LOOKUP);
-						//TODO: try to parse loactions.txt
-					}
 					else {
-						logger.error("'{}' is not a valid option for 'blt.coordinates.collect', please check blt.conf",LATLONG_LOOKUP);
+						logger.warn("'{}' is not a valid option for 'blt.coordinates.collect', please check blt.conf",LATLONG_METHOD);
 					}	
 				}
 				

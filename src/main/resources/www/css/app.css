@@ -82,7 +82,39 @@ body {
 table.simple th {
 	padding-right: 20px;
 }
-
+table.bubbleTab {
+  width: 100%;
+  font-size:11px;
+  background-color:#dcdcdc; 
+  border-spacing: 5px;
+}
+table.bubbleTab thead th {
+  border: 2px solid #eee; 
+  text-align: left;
+  padding-left: 5px;
+}
+table.bubbleTab tbody td {
+  border: 2px solid #fff; 
+  background-color:#eee; 
+  padding-left: 5px;
+}
+table.bubbleTab tbody tr:hover td {
+  background-color:#fff; 
+}
+table.bubbleTab tbody tr.bubbleLost td {
+  background-color:#fcc;
+  border: 1px solid #f99; 
+}
+table.bubbleTab tbody tr.bubbleLost:hover td {
+  background-color:#fdd; 
+}
+table.bubbleTab tbody tr.bubbleNew td {
+  background-color:#dfd;
+  border: 1px solid #0b0; 
+}
+table.bubbleTab tbody tr.bubbleNew:hover td {
+  background-color:#efe; 
+}
 .navbar-brand {
 	padding-top: 12px;
 }
@@ -99,14 +131,19 @@ table.simple th {
 #map-toolbar {
 	position: absolute;
 	top: 72px;
-	/*left: 570px;
-	width: 32px;*/
 	left: 20px;
-	width: 200px;
+	width: 250px;
 }
 
 #map-toolbar .btn-group-vertical {
 	margin-bottom: 5px;
+}
+
+#gmap-toolbar {
+	position: absolute;
+	top: 68px;
+	left: 150px;
+	width: 100px;
 }
 
 #diagrambox {
@@ -115,6 +152,16 @@ table.simple th {
 	bottom: 10px;
 	left: 10px;
 	top: 65px;
+	border: 1px solid #DDD;
+	overflow: auto;
+}
+
+#gmap {
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+	left: 5px;
+	top: 57px;
 	border: 1px solid #DDD;
 	overflow: auto;
 }
@@ -611,4 +658,20 @@ textarea#license {
 .bs-callout-info {
 	background-color: #f0f7fd;
 	border-color: #d0e3f0;
+}
+/*
+ * Let's target IE to respect aspect ratios and sizes for img tags containing SVG files
+ *
+ * [1] IE9
+ * [2] IE10+
+ */
+/* 1 */
+.ie9 img[src*=".svg"] {
+  width: 100%; 
+}
+/* 2 */
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  img[src*=".svg"] {
+    width: 100%; 
+  }
 }

@@ -21,4 +21,9 @@ RELEASE HISTORY:
                    - Fix some bugs:
                      - now routers positions are saved in XML dumpfile as soon as the layout is updated
                      - SnmpPollingTask : we need to retrieve SNMP router hostname at least once when IGP is OSPF
-                     
+0.4.0 - 2016-01-21 - Add support for Google maps layout
+                     The switch from legacy view to Google maps is available in the main view
+                     GPS coordinates from nodes are collected using SNMP OID sysLocation
+                   - Fix some bugs: 
+                     - problem with concurrent access to route history and state
+                     - cosmetic things

@@ -7,9 +7,12 @@ http://www.netfishers.onl/blt
 
 * Retrieves BGP link state information and produces a graph
 * Supports OSPF and ISIS
+* Map options
+  * jsPlumb map customizable layout
+  * Google Maps with GPS nodes coordinates retrieved from SNMP or DNS
 * Real Time Monitoring
   * BGP session provides real time update when a change occurs in IGP domain
-  * routers and links are automatically updated (green/red) on topology graph
+  * routers and links are automatically updated (green/red) on topology graphs, either jsPlumb or Google Maps
 * Backup and storage of IGP database in XML format
 * Northbound Rest API
 * User authentication

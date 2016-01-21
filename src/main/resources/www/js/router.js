@@ -6,11 +6,12 @@ define([
 	'underscore',
 	'backbone',
 	'views/header/HeaderView',
+	'views/map/GMapView',
 	'views/map/MapView',
 	'views/admin/AdminView',
 	'views/LoginView',
-	'views/ReAuthenticateView',
-], function($, _, Backbone, HeaderView, MapView, AdminView, LoginView,
+	'views/ReAuthenticateView'
+], function($, _, Backbone, HeaderView, GMapView, MapView, AdminView, LoginView,
 		ReAuthenticateView) {
 
 	var initPages = function() {
@@ -30,6 +31,7 @@ define([
 		var routes = {
 			'map/:id': 'showMap',
 			'admin': 'showAdmin',
+			'gmaps/:id': 'showGMap',
 			// Default
 			'*actions': 'showMap'
 		};
@@ -54,16 +56,17 @@ define([
 				this.headerView.select(id);
 			}
 		});
+		appRouter.on('route:showGMap', function(id) {
+			var id = parseInt(id);
+			this.currentView = new GMapView({ id: id});
+			this.headerView.select(id);
+		});
 		appRouter.on('route:showAdmin', function() {
 			this.currentView = new AdminView();
 			this.headerView.select("admin");
 		});
 		
-		
 		Backbone.history.start();
-		/*Backbone.history.on("route", function (route, router) {
-			console.log(window.location.hash);
-		});*/
 	};
 
 	var initialize = function() {
