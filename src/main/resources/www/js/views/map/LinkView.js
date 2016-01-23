@@ -34,7 +34,8 @@ define([
 				link1: this.link1.toJSON(),
 				link2: this.link2.toJSON(),
 				router1: this.mapView.routers.findRouterByIdentifier(this.link1.get("localRouter")).toJSON(),
-				router2: this.mapView.routers.findRouterByIdentifier(this.link1.get("remoteRouter")).toJSON()
+				router2: this.mapView.routers.findRouterByIdentifier(this.link1.get("remoteRouter")).toJSON(),
+				gmaps: false
 			};
 			this.$el.html(this.template(data));
 

@@ -13,8 +13,8 @@ define([
 	'text!templates/gmap/gmap.html',
 	'text!templates/gmap/mapRouter.html',
 	'text!templates/gmap/bubbleRouter.html',
-	'text!templates/gmap/link.html',
-	'text!templates/gmap/bubbleLink.html',
+	'text!templates/gmap/infoboxLink.html',
+	'text!templates/map/link.html',
 	'text!templates/gmap/bubbleInterfaces.html',
 	'text!templates/gmap/bubbleIpv4IgpRoutes.html',
 	'text!templates/gmap/bubbleInterfaceRow.html',
@@ -113,7 +113,6 @@ define([
 			animation: google.maps.Animation.DROP
 		},
 		
-		
 		initialize: function(){
 			var that = this ;
 			
@@ -174,6 +173,12 @@ define([
 							marker.setIcon = this.defaultRouterIcon;
                           	marker.setAnimation(google.maps.Animation.DROP);
 						}
+					});
+					that.links.each(function(link) {
+						line = that.linksArray[link.get('id')];
+						if (line.bubbleStillOpen) {
+                          	google.maps.event.trigger(line, 'click',line.bubblePreviousPosition);
+                        }
 					});
 				});
 			});
@@ -350,69 +355,61 @@ define([
 					strokeColor: "#38692C",
 					strokeOpacity: 0.05,
 					strokeWeight: 20,
+					bubbleStillOpen: false,
+					bubblePreviousPosition: null,
 					map: this.map
 				});
 				
-				var linkContent = 
-				'<h6>'+link.get('protocolId')+'<small> link between: '+
-				source.get('name')+' and: '+target.get('name')+'</small></h6>'+
-				'<table style="text-align:left">'+
-				'<tr><th></th><th>'+source.get('name')+'</th><th>'+target.get('name')+'</th></tr>'+
-				'<tr><td>Interface</td><td>'+link.get('localInterfaceName')+'</td><td>'+link.get('remoteInterfaceName')+'</td></tr>'+
-				'<tr><td>Description</td><td>'+link.get('localInterfaceDescription')+'</td><td>'+link.get('remoteInterfaceDescription')+'</td></tr>'+
-				'<tr><td>Address</td><td>'+link.get('localAddress').ip+'</td><td>'+link.get('remoteAddress').ip+'</td></tr>'+                    
-				'</table>';
+				this.linksArray[link.get('id')] = shadowLine;
 				
-				/*shadowLine.addListener('click', function(e) {
-					this.bubble = new InfoBubble(that.defaultLinkBubbleOptions);
-					this.bubble.setContent(that.bubbleLinkTemplate(link.toJSON()));
-					this.bubble.setPosition(e.latLng);
-					this.bubble.open(that.map);
-				});
-				shadowLine.addListener('mouseover', function(e) {
-					this.box = new InfoBox(that.defaultBoxOptions);
-					this.box.setContent(that.linkTemplate(link.toJSON()));
-					this.box.setPosition(e.latLng);
-					this.box.open(that.map);
-				});
-				shadowLine.addListener('mouseout', function() {
-					if (typeof this.box === "object") {
-						this.box.close(true);
-						delete(this.box);
+				this.links.each(function(l) {
+					if ((l.get('localRouter').identifier == target.get('routerId').identifier) &&
+					(l.get('remoteRouter').identifier == source.get('routerId').identifier)) {
+						
+						var data = {
+								link1: link.toJSON(),
+								link2: l.toJSON(),
+								router1: source.toJSON(),
+								router2: target.toJSON(),
+								gmaps: true
+						};
+						shadowLine.addListener('mouseover', function(e) {
+							this.box = new InfoBox(that.defaultBoxOptions);
+							this.box.setContent(that.linkTemplate(data));
+							this.box.setPosition(e.latLng);
+							this.box.open(that.map);
+						});
+						shadowLine.addListener('mouseout', function() {
+							if (typeof this.box === "object") {
+								this.box.close(true);
+								delete(this.box);
+							}
+						});
+						
+						var bubble = new InfoBubble(that.defaultLinkBubbleOptions);
+						
+						shadowLine.addListener('click', function(e) {
+
+							if (shadowLine.bubbleStillOpen) {
+								bubble.close(bubble);
+							}
+							bubble.setContent(that.bubbleLinkTemplate(data));
+							if (e.latLng){
+								bubble.setPosition(e.latLng);
+                              	that.linksArray[link.get('id')].bubblePreviousPosition = e.latLng;
+                            }
+                          	else {
+                            	bubble.setPosition(that.linksArray[link.get('id')].bubblePreviousPosition);
+                            }
+							bubble.addListener('closeclick',function(){
+								shadowLine.bubbleStillOpen = false;
+							});
+							bubble.open(that.map);
+							shadowLine.bubbleStillOpen = true;
+						});
 					}
-				});*/
-				
-				this.mapsInfoBox2Link(
-						shadowLine, 
-						'<small>'+link.get('protocolId')+" link between: <br>"+
-						source.get('name')+" and: "+target.get('name')+'</small>', 
-						this.map
-				);
-				
-				this.mapsInfoBubble2Link(shadowLine,linkContent, this.map);
-			};
-			
-		},
-		
-		mapsInfoBox2Link: function(line, content, map) {
-			var infoBox = new InfoBox(this.defaultBoxOptions);
-			google.maps.event.addListener(line, 'mouseover', function(evt) {
-				infoBox.setContent(content);
-				infoBox.setPosition(evt.latLng);
-				infoBox.open(map);
-			});
-			google.maps.event.addListener(line, 'mouseout', function(evt) {
-				infoBox.close(true);
-			});
-		},
-		
-		mapsInfoBubble2Link: function(line, content, map) {
-			var  infoBubble = new InfoBubble(this.defaultLinkBubbleOptions);
-			google.maps.event.addListener(line, 'click', function(evt) {
-				infoBubble.setContent(content);
-				infoBubble.setPosition(evt.latLng);
-				infoBubble.open(map);
-			});	
+				});
+			}		
 		},
 		
 		onChangedLink: function(link) {

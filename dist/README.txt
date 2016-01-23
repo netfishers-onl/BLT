@@ -27,3 +27,4 @@ RELEASE HISTORY:
                    - Fix some bugs: 
                      - problem with concurrent access to route history and state
                      - cosmetic things
+0.4.1 - 2016-01-23 - Add feature parity for links in Google maps views

@@ -1,5 +1,17 @@
 
-<h4><%- link1.protocolId %> Link <small>between <%- router1.name %> and <%- router2.name %></small></h4>
+<% if ( gmaps === true) { %>
+<p>
+<% } else { %>
+<h4>
+<% } %>
+
+<%- link1.protocolId %> Link <small>between <%- router1.name %> and <%- router2.name %></small>
+
+<% if ( gmaps === true) { %>
+</p>
+<% } else { %>
+</h4>
+<% } %>
 
 <% if ( link1.lost === true) { %>
 
@@ -15,8 +27,12 @@ The link isn't present anymore in the IGP topology.
 
 <% } %>
 
-
+<% if ( gmaps === true) { %>
+<table class="bubbleTab">
+<% } else { %>
 <table class="table table-condensed">
+<% } %>
+
 <thead>
 	<tr>
 		<th></th>
