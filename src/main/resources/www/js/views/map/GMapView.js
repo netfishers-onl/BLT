@@ -159,7 +159,7 @@ define([
 					that.$("#gmap-toolbar #refresh").prop('disabled', false);
 					that.routers.each(function(router) {
 						marker = that.markersArray[router.get('id')];
-						if (marker.hasBeenClicked) {
+						if (marker.bubbleStillOpen) {
                           	google.maps.event.trigger(marker, 'click');
                         }
 						if (router.get("justAnnouncedAPrefix")) {
@@ -204,7 +204,7 @@ define([
 				animation: google.maps.Animation.DROP,
 				icon: this.defaultRouterIcon,
 				routerId: router.get('id'),
-				hasBeenClicked: false
+				bubbleStillOpen: false
 			});
 			
 			if (router.get("justAnnouncedAPrefix")) {
@@ -215,13 +215,17 @@ define([
 			}
 			
 			this.markersArray[router.get('id')] = marker;
+			
 			var bubble = new InfoBubble(that.defaultRouterBubbleOptions);
+			bubble.addListener('closeclick',function(){
+					marker.bubbleStillOpen = false;
+			});
 			
 			marker.addListener('click', function(e) {
 				var marker = this;
 				var router = that.routers.get(this.routerId);
 				if (!router) return;
-				this.hasBeenClicked = true;
+				this.bubbleStillOpen = true;
 				var ipv4IgpRoutes = new Ipv4IgpRouteCollection([], {
 					network: that.network.get('id'),
 					router: router.get('id')
