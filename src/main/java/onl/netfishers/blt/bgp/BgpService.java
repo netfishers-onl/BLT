@@ -4,6 +4,11 @@
 package onl.netfishers.blt.bgp;
 
 import java.net.Inet4Address;
+
+import com.googlecode.ipv6.IPv6Address;
+import com.googlecode.ipv6.IPv6Network;
+import com.googlecode.ipv6.IPv6NetworkMask;
+
 import java.net.InetAddress;
 import java.net.InetSocketAddress;
 import java.util.ArrayList;
@@ -42,6 +47,7 @@ import onl.netfishers.blt.topology.TopologyService;
 import onl.netfishers.blt.topology.net.Ipv4Route;
 import onl.netfishers.blt.topology.net.Ipv4Subnet;
 import onl.netfishers.blt.topology.net.Ipv4Subnet.MalformedIpv4SubnetException;
+import onl.netfishers.blt.topology.net.Ipv6Route;
 import onl.netfishers.blt.topology.net.Link;
 import onl.netfishers.blt.topology.net.Network;
 import onl.netfishers.blt.topology.net.Router;
@@ -374,11 +380,56 @@ public class BgpService {
 											router.setNeedTeRefresh(true);
 										}
 										catch (Exception e) {
-											logger.error("Unable to parse the IP prefix.", e);
+											logger.error("Unable to parse the IPv4 prefix.", e);
+										}
+									}
+									else if (ipPrefix.getPrefix().length <= 16) {
+										try {
+											byte[] prefix = new byte[] { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+											for (int i = 0; i < ipPrefix.getPrefix().length; i++) {
+												prefix[i] = ipPrefix.getPrefix()[i];
+											}
+											long prefixMetric = 0;
+											if (lsAttribute != null
+											    && lsAttribute.isValidPrefixMetric()) {
+												prefixMetric = lsAttribute.getPrefixMetric();
+											}
+											
+											IPv6Address address = IPv6Address.fromByteArray(prefix);
+											IPv6NetworkMask mask = IPv6NetworkMask.fromPrefixLength(ipPrefix.getPrefixLength());
+											IPv6Network subnet = IPv6Network.fromAddressAndMask(address, mask);
+											Ipv6Route route = new Ipv6Route(subnet, prefixMetric, null, null, ipNlri.getProtocolId(), dateTicks, false, false);
+											if (mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE) {
+												logger.info("Router {} ({}) has just withdrawn {}",router.getRouterId(),
+														router.getName(),subnet.toString());
+												if (pfxLogger != null) {
+													pfxLogger.info("Router {} ({}) has just withdrawn {}",router.getRouterId(), 
+														router.getName(),subnet.toString());
+												}
+												route.setLost(true);
+											}
+											else {
+												if (pfxLogger != null) {
+													pfxLogger.info("Router {} ({}) has just announced {}",router.getRouterId(),
+														router.getName(),subnet.toString());
+												}
+												route.setNew(true);
+											}
+											for (Ipv6Route r : router.getIpv6IgpRoutes()) {
+												if (r.equals(route)) {
+													router.removeIpv6IgpRoute(r);
+													break;
+												}
+											}
+											router.addIpv6IgpRoute(route);
+											router.setNeedTeRefresh(true);
+										}
+										catch (Exception e) {
+											logger.error("Unable to parse the IPv6 prefix.", e);
 										}
 									}
 									else {
-										logger.warn("Ignoring non IPv4 prefix");
+										logger.warn("Ignoring non IP prefix");
 									}
 								}
 							}

@@ -264,6 +264,8 @@ public class Router {
 
 	private Set<Ipv4Route> ipv4StaticRoutes = new HashSet<Ipv4Route>();
 	private Set<Ipv4Route> ipv4IgpRoutes = new HashSet<Ipv4Route>();
+	private Set<Ipv6Route> ipv6IgpRoutes = new HashSet<Ipv6Route>();
+	
 	private List<RouterInterface> routerInterfaces = new CopyOnWriteArrayList<RouterInterface>();
 
 	private boolean lost = true;
@@ -338,6 +340,36 @@ public class Router {
 
 	public void addIpv4IgpRoute(Ipv4Route ipv4Route) {
 		this.ipv4IgpRoutes.add(ipv4Route);
+	}
+	
+	public  Set<Ipv6Route> getIpv6IgpRoutes() {
+		return ipv6IgpRoutes;
+	}
+	
+	public void setIpv6IgpRoutes(Set<Ipv6Route> ipv6Routes) {
+		if (ipv6Routes != null && this.ipv6IgpRoutes != null) {
+			for (Ipv6Route route : ipv6Routes) {
+				for (Ipv6Route oldRoute : this.ipv6IgpRoutes) {
+					if (route.equals(oldRoute)) {
+						route.setId(oldRoute.getId());
+						break;
+					}
+				}
+			}
+		}
+		this.ipv6IgpRoutes = ipv6Routes;
+	}
+	
+	public void clearIpv6IgpRoutes() {
+		this.ipv6IgpRoutes.clear();
+	}
+	
+	public void removeIpv6IgpRoute(Ipv6Route route) {
+		this.ipv6IgpRoutes.remove(route);
+	}
+
+	public void addIpv6IgpRoute(Ipv6Route ipv6Route) {
+		this.ipv6IgpRoutes.add(ipv6Route);
 	}
 
 

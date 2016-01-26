@@ -112,11 +112,12 @@ public class BgpLsNLRICodec extends MultiProtocolNLRICodec {
 			ChannelBuffer buffer, SubsequentAddressFamily safi, BgpLsNLRIType family) {
 
 		BgpLsIPTopologyPrefixNLRI nlri = new BgpLsIPTopologyPrefixNLRI(safi, family);
-		AddressFamily addressFamily;
+		AddressFamily addressFamily = null;
 		
 		if (family == BgpLsNLRIType.IPV4_TOPOLOGY_PREFIX_NLRI) {
 			addressFamily = AddressFamily.IPv4;
-		} else {
+		} 
+		else if (family == BgpLsNLRIType.IPV6_TOPOLOGY_PREFIX_NLRI){
 			addressFamily = AddressFamily.IPv6;
 		}
 		

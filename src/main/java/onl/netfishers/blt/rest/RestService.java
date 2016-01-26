@@ -40,6 +40,7 @@ import onl.netfishers.blt.tasks.TaskManager;
 import onl.netfishers.blt.topology.TopologyService;
 import onl.netfishers.blt.topology.net.Ipv4Route;
 import onl.netfishers.blt.topology.net.Ipv4Subnet;
+import onl.netfishers.blt.topology.net.Ipv6Route;
 import onl.netfishers.blt.topology.net.Link;
 import onl.netfishers.blt.topology.net.Network;
 import onl.netfishers.blt.topology.net.Router;
@@ -138,7 +139,7 @@ public class RestService extends Thread {
 			register(new MoxyXmlFeature());
 		}
 	}
-
+	
 	@Override
 	public void run() {
 		logger.info("Starting the Web/REST service.");
@@ -187,10 +188,7 @@ public class RestService extends Thread {
 		long now = new Date().getTime();
 		boolean newPrefix = false;
 		boolean lostPrefix = false;
-		
-		//Set<Ipv4Route> Routes = router.getIpv4IgpRoutes(); 
-		//Set<Ipv4Route> clone = new CopyOnWriteArrayList<Ipv4Route>();
-		
+				
 		Iterator<Ipv4Route> i = router.getIpv4IgpRoutes().iterator();
 		while(i.hasNext()){
 			Ipv4Route r = i.next();
@@ -211,15 +209,16 @@ public class RestService extends Thread {
 				}
 			}	
 		}
-		synchronized(this) {
-			router.setJustWithdrawnAPrefix(lostPrefix);
-			router.setJustAnnouncedAPrefix(newPrefix);
-		}
-		
-		
-		/*for (Ipv4Route r : clone) {
+		Iterator<Ipv6Route> j = router.getIpv6IgpRoutes().iterator();
+		while(j.hasNext()){
+			Ipv6Route r = j.next();
 			if (r.isJustLost() == true) {
-				lostPrefix = true;
+				if ( (now - r.getDate()) / 1000 > deltaLostIgpRoute) {
+					j.remove();
+				}
+				else {
+					lostPrefix = true;
+				}
 			}
 			else if (r.isJustNew() == true) {
 				if ((now - r.getDate()) / 1000 > deltaNewIgpRoute) {
@@ -228,15 +227,12 @@ public class RestService extends Thread {
 				else {
 					newPrefix = true;
 				}
-				
-			}
+			}	
 		}
 		synchronized(this) {
-			//router.clearIpv4IgpRoutes();
-			router.setIpv4IgpRoutes(clone);
 			router.setJustWithdrawnAPrefix(lostPrefix);
 			router.setJustAnnouncedAPrefix(newPrefix);
-		}*/
+		}
 	}
 
 
@@ -835,6 +831,27 @@ public class RestService extends Thread {
 		}
 		updateRouterRibState(router);
 		return router.getIpv4IgpRoutes();
+	}
+	
+	@GET
+	@Path("networks/{nid}/routers/{rid}/ipv6igproutes")
+	@RolesAllowed("readonly")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public Set<Ipv6Route> getRouterIpv6IgpRoutes(@PathParam("nid") Long nid,
+			@PathParam("rid") Long rid) throws WebApplicationException {
+		Network network = TopologyService.getService().getNetworkById(nid);
+		if (network == null) {
+			throw new BltBadRequestException("The network doesn't exist.",
+					BltBadRequestException.UNKNOWN_NETWORK);
+		}
+		Router router = network.getRouterById(rid);
+		if (router == null) {
+			throw new BltBadRequestException("The router doesn't exist.",
+					BltBadRequestException.UNKNOWN_ROUTER);
+		}
+		//updateRouterRibState(router);
+		return router.getIpv6IgpRoutes();
+		
 	}
 
 	@GET

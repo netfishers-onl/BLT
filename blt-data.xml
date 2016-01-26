@@ -1,5 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <topology>
+   <networks>
+      <network id="1">
+         <routers>
+            <router id="1">
+               <isisAreaIds>49</isisAreaIds>
+               <justAnnouncedAPrefix>true</justAnnouncedAPrefix>
+               <justWithdrawnAPrefix>false</justWithdrawnAPrefix>
+               <latitude>48.843375</latitude>
+               <location>[48.843375 2.298836] paris</location>
+               <longitude>2.298836</longitude>
+               <name>xrv1</name>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>0001.0002.0129</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>488</x>
+               <y>180</y>
+            </router>
+            <router id="2">
+               <isisAreaIds>49</isisAreaIds>
+               <justAnnouncedAPrefix>true</justAnnouncedAPrefix>
+               <justWithdrawnAPrefix>false</justWithdrawnAPrefix>
+               <latitude>44.447523</latitude>
+               <location>(44.447523 1.441989) cahors</location>
+               <longitude>1.441989</longitude>
+               <name>xrv3</name>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>0001.0002.0131</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>551</x>
+               <y>356</y>
+            </router>
+            <router id="3">
+               <isisAreaIds>49</isisAreaIds>
+               <justAnnouncedAPrefix>true</justAnnouncedAPrefix>
+               <justWithdrawnAPrefix>false</justWithdrawnAPrefix>
+               <latitude>48.692054</latitude>
+               <location>48.692054 6.184417 Nancy</location>
+               <longitude>6.184417</longitude>
+               <name>xrv2</name>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>0001.0002.0130</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>195</x>
+               <y>226</y>
+            </router>
+            <router id="4">
+               <isisAreaIds>49</isisAreaIds>
+               <justAnnouncedAPrefix>true</justAnnouncedAPrefix>
+               <justWithdrawnAPrefix>false</justWithdrawnAPrefix>
+               <latitude>48.390394</latitude>
+               <location>(48.390394 -4.486076 brest)</location>
+               <longitude>-4.486076</longitude>
+               <name>xrv4</name>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>0001.0002.0132</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>195</x>
+               <y>373</y>
+            </router>
+            <router id="5">
+               <isisAreaIds>49.0001</isisAreaIds>
+               <justAnnouncedAPrefix>false</justAnnouncedAPrefix>
+               <justWithdrawnAPrefix>false</justWithdrawnAPrefix>
+               <latitude>0.0</latitude>
+               <location>Somewhere...</location>
+               <longitude>0.0</longitude>
+               <name>R381</name>
+               <routerId>
+                  <areaId>0</areaId>
+                  <autonomousSystem>1</autonomousSystem>
+                  <identifier>0000.0000.0381</identifier>
+                  <lsIdentifier>0</lsIdentifier>
+               </routerId>
+               <virtual>false</virtual>
+               <x>754</x>
+               <y>418</y>
+            </router>
+         </routers>
+         <bgpAs>1</bgpAs>
+         <bgpPeer>
+            <ip>10.0.0.30</ip>
+            <prefixLength>32</prefixLength>
+         </bgpPeer>
+         <name>test</name>
+         <snmpCommunities>
+            <snmpCommunity id="1">
+               <community>IOX531</community>
+               <subnet>
+                  <ip>10.0.0.0</ip>
+                  <prefixLength>24</prefixLength>
+               </subnet>
+            </snmpCommunity>
+         </snmpCommunities>
+      </network>
+   </networks>
    <users>
       <user id="1">
          <hashedPassword>51PYRYYR1/xUeA86NjYdNn0TuAHCD6+9</hashedPassword>

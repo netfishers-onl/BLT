@@ -215,6 +215,11 @@
 			<artifactId>jul-to-slf4j</artifactId>
 			<version>1.7.7</version>
 		</dependency>
+		<dependency>
+			<groupId>com.googlecode.java-ipv6</groupId>
+			<artifactId>java-ipv6</artifactId>
+			<version>0.16</version>
+		</dependency>
 	</dependencies>
 
 	<repositories>
