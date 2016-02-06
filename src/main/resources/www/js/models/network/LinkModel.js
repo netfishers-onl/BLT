@@ -30,6 +30,15 @@ define([
 				return name;
 			}
 		},
+		getMetric: function() {
+			var name = this.get('metric');
+			if (typeof(name) == "undefined") {
+				return "...";
+			}
+			else {
+				return name.toString();
+			}
+		},
 		
 		isLost: function() {
 			var lost = this.get('lost');

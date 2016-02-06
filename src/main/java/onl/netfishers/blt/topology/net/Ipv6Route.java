@@ -3,8 +3,6 @@
  *******************************************************************************/
 package onl.netfishers.blt.topology.net;
 
-import java.io.Serializable;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -23,9 +21,11 @@ public class Ipv6Route {
 
 	private long id = 0;
 
-	private IPv6Network subnet;
+	private String subnet;
+	private IPv6Network rawSubnet;
 	private long metric;
-	private IPv6Network nextHop;
+	private String nextHop;
+	private IPv6Network rawNextHop;
 	private String nextInterface;
 	private BgpLsProtocolId protocolId;
 	private long dateTicks;
@@ -36,10 +36,12 @@ public class Ipv6Route {
 
 	}
 
-	public Ipv6Route(IPv6Network subnet, long metric, IPv6Network nextHop,
+	public Ipv6Route(IPv6Network rawSubnet, String subnet, long metric, IPv6Network rawNextHop, String nextHop,
 			String nextInterface, BgpLsProtocolId protocolId, long dateTicks, boolean isLost, boolean isNew) {
+		this.rawSubnet = rawSubnet;
 		this.subnet = subnet;
 		this.metric = metric;
+		this.rawNextHop = rawNextHop;
 		this.nextHop = nextHop;
 		this.nextInterface = nextInterface;
 		this.protocolId = protocolId;
@@ -65,14 +67,21 @@ public class Ipv6Route {
 		}
 	}
 
-
+	public IPv6Network getRawSubnet() {
+		return rawSubnet;
+	}
+	public void setRawSubnet(IPv6Network subnet) {
+		this.rawSubnet = subnet;
+	}
+	
 	@XmlElement
-	public IPv6Network getSubnet() {
-		return subnet;
+	public String getSubnet() {
+		return rawSubnet.toString();
 	}
-	public void setSubnet(IPv6Network subnet) {
-		this.subnet = subnet;
+	public void setSubnet(String subnet) {
+		this.subnet = rawSubnet.toString();
 	}
+	
 	@XmlElement
 	public long getMetric() {
 		return metric;
@@ -81,16 +90,22 @@ public class Ipv6Route {
 		this.metric = metric;
 	}
 
-	@XmlElement
-	public IPv6Network getNextHop() {
-		return nextHop;
+	public IPv6Network getRawNextHop() {
+		return rawNextHop;
 	}
 
-	public void setNextHop(IPv6Network nextHop) {
-		this.nextHop = nextHop;
+	public void setRawNextHop(IPv6Network nextHop) {
+		this.rawNextHop = nextHop;
+	}
+	
+	public String getNextHop() {
+		return rawNextHop.toString();
 	}
 
-	@XmlElement
+	public void setNextHop(String nextHop) {
+		this.nextHop = rawNextHop.toString();
+	}
+
 	public String getNextInterface() {
 		return nextInterface;
 	}

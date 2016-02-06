@@ -60,6 +60,25 @@ define([
 			enableEventPropagation: false
 		},
 		
+		defaultLinkBoxOptions: {
+			disableAutoPan: true,
+			maxWidth: 0,
+			zIndex: null,
+			boxStyle: { 
+                background: "#38692C",
+                color: 'rgb(255,255,255)',
+                'font-size': '13px',
+                opacity: 0.9,
+                width: "auto"
+            },
+			closeBoxMargin: "10px 2px 2px 2px",
+			closeBoxURL: "",
+			infoBoxClearance: new google.maps.Size(1, 1),
+			isHidden: false,
+			pane: "floatPane",
+			enableEventPropagation: false
+		},
+		
 		defaultRouterBubbleOptions: {
 			maxHeight: 170,
 			shadowStyle: 1,
@@ -348,6 +367,7 @@ define([
 					strokeColor: "#38692C",
 					strokeOpacity: 1,
 					strokeWeight: 2,
+					geodesic: true,
 					map: this.map
 				});
 				var shadowLine = new google.maps.Polyline({
@@ -357,6 +377,7 @@ define([
 					strokeWeight: 20,
 					bubbleStillOpen: false,
 					bubblePreviousPosition: null,
+					geodesic: true,
 					map: this.map
 				});
 				
@@ -373,16 +394,28 @@ define([
 								router2: target.toJSON(),
 								gmaps: true
 						};
-						shadowLine.addListener('mouseover', function(e) {
-							this.box = new InfoBox(that.defaultBoxOptions);
-							this.box.setContent(that.linkTemplate(data));
-							this.box.setPosition(e.latLng);
-							this.box.open(that.map);
+						shadowLine.addListener('mouseover', function() {
+							this.box1 = new InfoBox(that.defaultLinkBoxOptions);
+                          	this.box1.setContent(link.getMetric());
+							this.box1.setPosition(new google.maps.LatLng(source.get('latitude'), source.get('longitude')));
+                          	this.box1.pixelOffset = new google.maps.Size(20, 20);
+                          	this.box1.open(that.map);
+                          	this.box2 = new InfoBox(that.defaultLinkBoxOptions);
+                          	this.box2.setContent(l.getMetric());
+							this.box2.setPosition(new google.maps.LatLng(target.get('latitude'), target.get('longitude')));
+							this.box2.boxClass = 'linklabel';
+							this.box2.open(that.map);
+                          	
+                          	
 						});
 						shadowLine.addListener('mouseout', function() {
-							if (typeof this.box === "object") {
-								this.box.close(true);
-								delete(this.box);
+							if (typeof this.box1 === "object") {
+								this.box1.close(true);
+								delete(this.box1);
+							};
+                          	if (typeof this.box2 === "object") {
+								this.box2.close(true);
+								delete(this.box2);
 							}
 						});
 						

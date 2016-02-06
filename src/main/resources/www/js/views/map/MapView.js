@@ -180,7 +180,7 @@ define([
 							_.isEqual(connection.getParameter('protocolId'), link.get('protocolId'))) {
 						found = true;
 						connection.addOverlay(
-							[ "Label", { id: 11, label: link.getShortName(), location: 0.95, cssClass: "linklabel" } ]
+							[ "Label", { id: 11, label: link.getMetric(), location: 0.90, cssClass: "linklabel" } ]
 						);
 						connection.setParameter("link2Id", link.get("id"));
 					}
@@ -196,7 +196,7 @@ define([
 						overlays: [
 						  [ "Label", { 
 							  id: 10,
-							  label: link.getShortName(),
+							  label: link.getMetric(),
 							  location: 0.1,
 							  cssClass: "linklabel" 
 						   } ],

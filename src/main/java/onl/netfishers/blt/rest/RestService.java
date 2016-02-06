@@ -849,7 +849,7 @@ public class RestService extends Thread {
 			throw new BltBadRequestException("The router doesn't exist.",
 					BltBadRequestException.UNKNOWN_ROUTER);
 		}
-		//updateRouterRibState(router);
+		updateRouterRibState(router);
 		return router.getIpv6IgpRoutes();
 		
 	}

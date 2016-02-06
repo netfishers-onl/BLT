@@ -301,6 +301,8 @@ public class BgpService {
 							link = network.findOrAddLink(link);
 							
 							link.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
+							
+							link.setMetric(lsAttribute.getMetric());
 								
 							if (lsAttribute != null) {
 								if (lsAttribute.isValidAdminGroup()) {
@@ -398,7 +400,8 @@ public class BgpService {
 											IPv6Address address = IPv6Address.fromByteArray(prefix);
 											IPv6NetworkMask mask = IPv6NetworkMask.fromPrefixLength(ipPrefix.getPrefixLength());
 											IPv6Network subnet = IPv6Network.fromAddressAndMask(address, mask);
-											Ipv6Route route = new Ipv6Route(subnet, prefixMetric, null, null, ipNlri.getProtocolId(), dateTicks, false, false);
+											Ipv6Route route = new Ipv6Route(subnet, subnet.toString(), prefixMetric, null, null, null,
+													ipNlri.getProtocolId(), dateTicks, false, false);
 											if (mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE) {
 												logger.info("Router {} ({}) has just withdrawn {}",router.getRouterId(),
 														router.getName(),subnet.toString());
