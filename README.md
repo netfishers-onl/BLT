@@ -3,7 +3,7 @@ The BGP Linkstate Topographer
 
 http://www.netfishers.onl/blt
 
-[BLT 0.4.2 google maps view](/src/main/resources/www/img/blt-0.4.2.png)
+![BLT 0.4.2 google maps view](/src/main/resources/www/img/blt-0.4.2.png)
 
 ## Features
 
@@ -22,9 +22,11 @@ http://www.netfishers.onl/blt
 
 ## How to start
 
-Go to http://www.netfishers.onl/blt and download the binary package if you are a simple user.
-
+Go to http://www.netfishers.onl/blt
 Installation instructions are included, but you can also consult the blog: http://www.netfishers.onl/blog
+
+[Binary package](https://github.com/netfishers-onl/BLT/releases) and 
+[Source code](https://github.com/netfishers-onl/BLT) available from [Netfishers GitHub space](https://github.com/netfishers-onl)
 
 If you want to contribute to the code, pull it from GitHub and contact us to publish updates.
 
