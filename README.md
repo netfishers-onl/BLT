@@ -1,8 +1,5 @@
 # BLT
-The BGP Linkstate Topographer
-
-http://www.netfishers.onl/blt
-
+The BGP Linkstate Topographer    
 ![BLT 0.4.2 google maps view](/src/main/resources/www/img/blt-0.4.2.png)
 
 ## Features
