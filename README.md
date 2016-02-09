@@ -3,6 +3,8 @@ The BGP Linkstate Topographer
 
 http://www.netfishers.onl/blt
 
+[BLT 0.4.2 google maps view](/src/main/resources/www/img/blt-0.4.2.png)
+
 ## Features
 
 * Retrieves BGP link state information and produces a graph
