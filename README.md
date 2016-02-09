@@ -22,10 +22,11 @@ http://www.netfishers.onl/blt
 
 ## How to start
 
-Go to http://www.netfishers.onl/blt
-Installation instructions are included, but you can also consult the blog: http://www.netfishers.onl/blog
+Go to http://www.netfishers.onl/blt    
+Basic installation instructions are included in the distribution files    
+You can also consult the [blog posts](http://www.netfishers.onl/blog/category/blt)    
 
-[Binary package](https://github.com/netfishers-onl/BLT/releases) and 
+[Binary package](https://github.com/netfishers-onl/BLT/releases) and     
 [Source code](https://github.com/netfishers-onl/BLT) available from [Netfishers GitHub space](https://github.com/netfishers-onl)
 
 If you want to contribute to the code, pull it from GitHub and contact us to publish updates.
