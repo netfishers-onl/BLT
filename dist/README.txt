@@ -28,3 +28,6 @@ RELEASE HISTORY:
                      - problem with concurrent access to route history and state
                      - cosmetic things
 0.4.1 - 2016-01-23 - Add feature parity for links in Google maps views
+0.4.2 - 2016-02-09 - Link cost revealed on mouseHover
+				   - Support for IPv6 prefixes
+				   - Support for GPS coordinates lookup using DNS LOC records (RFC 1876)

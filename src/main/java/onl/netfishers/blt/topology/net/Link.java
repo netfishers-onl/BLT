@@ -159,24 +159,11 @@ public class Link {
 		else if (!protocolId.equals(other.protocolId))
 			return false;
 		
-		if (localAddress == null) {
-			if (other.localAddress != null)
-				return false;
-		}
-		else if (!localAddress.equals(other.localAddress))
-			return false;
-		
 		if (localRouter == null) {
 			if (other.localRouter != null)
 				return false;
 		}
 		else if (!localRouter.equals(other.localRouter))
-			return false;
-		if (remoteAddress == null) {
-			if (other.remoteAddress != null)
-				return false;
-		}
-		else if (!remoteAddress.equals(other.remoteAddress))
 			return false;
 		
 		if (remoteRouter == null) {
@@ -185,6 +172,26 @@ public class Link {
 		}
 		else if (!remoteRouter.equals(other.remoteRouter))
 			return false;
+		
+		/*when TE extensions are activated, BGP LS populates two link objects per link
+		here below we try to avoid link duplication in BLT UI by not considering
+		endpoints addresses mismatch when it is about ISIS link objects*/
+		if (protocolId != BgpLsProtocolId.ISIS_Level1 && protocolId != BgpLsProtocolId.ISIS_Level2 ) {	
+			if (localAddress == null) {
+				if (other.localAddress != null)
+					return false;
+			}
+			else if (!localAddress.equals(other.localAddress))
+				return false;
+			
+			if (remoteAddress == null) {
+				if (other.remoteAddress != null)
+					return false;
+			}
+			else if (!remoteAddress.equals(other.remoteAddress))
+				return false;
+		}
+		
 		return true;
 	}
 	

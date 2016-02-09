@@ -9,6 +9,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.googlecode.ipv6.IPv6Address;
 import com.googlecode.ipv6.IPv6Network;
 
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsProtocolId;
@@ -72,6 +73,19 @@ public class Ipv6Route {
 	}
 	public void setRawSubnet(IPv6Network subnet) {
 		this.rawSubnet = subnet;
+	}
+	
+	public IPv6Address getSubnetFirstAddress() {
+		return this.rawSubnet.getFirst();
+	}
+	
+	public String toHexString(IPv6Address address) {
+		return address.toLongString();
+	}
+	
+	@XmlElement
+	public int getPrefixLength(IPv6Network subnet){
+		return subnet.getNetmask().asPrefixLength();
 	}
 	
 	@XmlElement

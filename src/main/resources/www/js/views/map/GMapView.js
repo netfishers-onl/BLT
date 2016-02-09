@@ -10,6 +10,7 @@ define([
 	'models/network/LinkCollection',
 	'models/network/InterfaceCollection',
 	'models/network/Ipv4IgpRouteCollection',
+	'models/network/Ipv6IgpRouteCollection',
 	'text!templates/gmap/gmap.html',
 	'text!templates/gmap/mapRouter.html',
 	'text!templates/gmap/bubbleRouter.html',
@@ -17,14 +18,16 @@ define([
 	'text!templates/map/link.html',
 	'text!templates/gmap/bubbleInterfaces.html',
 	'text!templates/gmap/bubbleIpv4IgpRoutes.html',
+	'text!templates/gmap/bubbleIpv6IgpRoutes.html',
 	'text!templates/gmap/bubbleInterfaceRow.html',
 	'text!templates/gmap/bubbleIpv4IgpRouteRow.html',
+	'text!templates/gmap/bubbleIpv6IgpRouteRow.html',
 	'bootstrap',
 	'infobox',
 	'infobubble'
-], function($, _, Backbone, NetworkModel, RouterCollection, LinkCollection, InterfaceCollection, Ipv4IgpRouteCollection,  
+], function($, _, Backbone, NetworkModel, RouterCollection, LinkCollection, InterfaceCollection, Ipv4IgpRouteCollection, Ipv6IgpRouteCollection,  
 		gMapTemplate, routerTemplate, bubbleRouterTemplate, linkTemplate, bubbleLinkTemplate, bubbleInterfacesTemplate,
-		bubbleIpv4IgpRoutesTemplate, bubbleInterfaceRowTemplate, bubbleIpv4IgpRouteRowTemplate) {
+		bubbleIpv4IgpRoutesTemplate, bubbleIpv6IgpRoutesTemplate, bubbleInterfaceRowTemplate, bubbleIpv4IgpRouteRowTemplate, bubbleIpv6IgpRouteRowTemplate) {
 	
 	return Backbone.View.extend({
 
@@ -37,8 +40,10 @@ define([
 		bubbleLinkTemplate: _.template(bubbleLinkTemplate),
 		bubbleInterfacesTemplate: _.template(bubbleInterfacesTemplate),
 		bubbleIpv4IgpRoutesTemplate: _.template(bubbleIpv4IgpRoutesTemplate),
+		bubbleIpv6IgpRoutesTemplate: _.template(bubbleIpv6IgpRoutesTemplate),
 		bubbleInterfaceRowTemplate: _.template(bubbleInterfaceRowTemplate),
 		bubbleIpv4IgpRouteRowTemplate: _.template(bubbleIpv4IgpRouteRowTemplate),
+		bubbleIpv6IgpRouteRowTemplate: _.template(bubbleIpv6IgpRouteRowTemplate),
 		
 		defaultBoxOptions: {
 			disableAutoPan: true,
@@ -254,60 +259,103 @@ define([
 					network: that.network.get('id'),
 					router: router.get('id')
 				});
+				var ipv6IgpRoutes = new Ipv6IgpRouteCollection([], {
+					network: that.network.get('id'),
+					router: router.get('id')
+				});
 				
 				var updateBubble = false;
 				
 				ipv4IgpRoutes.fetch().done(function() {
-					if (bubble.isOpen(bubble) || bubble.getContent(bubble)) {updateBubble = true;}
+					ipv6IgpRoutes.fetch().done(function() {
 					
-					if (!updateBubble) {bubble.addTab("Router", that.bubbleRouterTemplate(router.toJSON()));}
-					else {bubble.updateTab(0,"Router", that.bubbleRouterTemplate(router.toJSON()));}
-					
-					var $interfacesTab = $("<div>").append(that.bubbleInterfacesTemplate(router.toJSON()));
-					_.each(router.get("ipv4Interfaces"), function(routerInterface) {
-						$interfacesTab.find("tbody").append($(that.bubbleInterfaceRowTemplate(routerInterface)));
+						if (bubble.isOpen(bubble) || bubble.getContent(bubble)) {updateBubble = true;}
+						
+						if (!updateBubble) {bubble.addTab("Router", that.bubbleRouterTemplate(router.toJSON()));}
+						else {bubble.updateTab(0,"Router", that.bubbleRouterTemplate(router.toJSON()));}
+						
+						var $interfacesTab = $("<div>").append(that.bubbleInterfacesTemplate(router.toJSON()));
+						_.each(router.get("ipv4Interfaces"), function(routerInterface) {
+							$interfacesTab.find("tbody").append($(that.bubbleInterfaceRowTemplate(routerInterface)));
+						});
+						
+						if (!updateBubble) {bubble.addTab("Interfaces", $interfacesTab.html());}
+						else {bubble.updateTab(1,"Interfaces", $interfacesTab.html());}
+						
+						var $routes4Tab = $("<div>").append(that.bubbleIpv4IgpRoutesTemplate(router.toJSON()));
+						var $routes6Tab = $("<div>").append(that.bubbleIpv6IgpRoutesTemplate(router.toJSON()));
+						ipv4IgpRoutes.each(function(route) {
+							var now = Date.now();
+							var data = route.toJSON();
+							
+							var ageMonths = typeof(data.date) != 'undefined' ? parseInt(((now - data.date)/(1000*60*60*24*30))%12) : 0;
+							var ageDays = typeof(data.date) != 'undefined' ? parseInt(((now - data.date)/(1000*60*60*24))%30) : 0;
+							var age = '';
+							if (ageMonths > 0) {
+								age += ageMonths+"m ";
+							}
+							if (ageDays > 0) {
+								age += ageDays+"d ";
+							}
+							age +=
+								("00"+parseInt(((now - data.date)/(1000*60*60))%24)+":").slice(-3)+
+								("00"+parseInt(((now - data.date)/(1000*60))%60)+":").slice(-3)+
+								("00"+parseInt((now - data.date)/1000)%60).slice(-2);
+							data.age = age;
+							
+							var rowClass = '';
+							if (data.justNew === true) {
+								rowClass = 'class=bubbleNew';
+							}
+							else if (data.justLost === true) {
+								rowClass = 'class=bubbleLost';
+							}
+							data.rowClass = rowClass;
+							
+							$routes4Tab.find("tbody").append($(that.bubbleIpv4IgpRouteRowTemplate(data)));
+						});
+						ipv6IgpRoutes.each(function(route) {
+							var now = Date.now();
+							var data = route.toJSON();
+							
+							var ageMonths = typeof(data.date) != 'undefined' ? parseInt(((now - data.date)/(1000*60*60*24*30))%12) : 0;
+							var ageDays = typeof(data.date) != 'undefined' ? parseInt(((now - data.date)/(1000*60*60*24))%30) : 0;
+							var age = '';
+							if (ageMonths > 0) {
+								age += ageMonths+"m ";
+							}
+							if (ageDays > 0) {
+								age += ageDays+"d ";
+							}
+							age +=
+								("00"+parseInt(((now - data.date)/(1000*60*60))%24)+":").slice(-3)+
+								("00"+parseInt(((now - data.date)/(1000*60))%60)+":").slice(-3)+
+								("00"+parseInt((now - data.date)/1000)%60).slice(-2);
+							data.age = age;
+							
+							var rowClass = '';
+							if (data.justNew === true) {
+								rowClass = 'class=bubbleNew';
+							}
+							else if (data.justLost === true) {
+								rowClass = 'class=bubbleLost';
+							}
+							data.rowClass = rowClass;
+							
+							$routes6Tab.find("tbody").append($(that.bubbleIpv6IgpRouteRowTemplate(data)));
+						});
+						if (!updateBubble) {
+							bubble.addTab("IPv4 Prefixes", $routes4Tab.html());
+							bubble.addTab("IPv6 Prefixes", $routes6Tab.html());
+						}
+						else {
+							bubble.updateTab(2,"IPv4 Prefixes", $routes4Tab.html());
+							bubble.updateTab(3,"IPv6 Prefixes", $routes6Tab.html());
+						}
+						
+						bubble.open(that.map, marker);
 					});
-					
-					if (!updateBubble) {bubble.addTab("Interfaces", $interfacesTab.html());}
-					else {bubble.updateTab(1,"Interfaces", $interfacesTab.html());}
-					
-					var $routesTab = $("<div>").append(that.bubbleIpv4IgpRoutesTemplate(router.toJSON()));
-					ipv4IgpRoutes.each(function(route) {
-						var now = Date.now();
-						var data = route.toJSON();
-						
-						var ageMonths = typeof(data.date) != 'undefined' ? parseInt(((now - data.date)/(1000*60*60*24*30))%12) : 0;
-						var ageDays = typeof(data.date) != 'undefined' ? parseInt(((now - data.date)/(1000*60*60*24))%30) : 0;
-						var age = '';
-						if (ageMonths > 0) {
-							age += ageMonths+"m ";
-						}
-						if (ageDays > 0) {
-							age += ageDays+"d ";
-						}
-						age +=
-							("00"+parseInt(((now - data.date)/(1000*60*60))%24)+":").slice(-3)+
-							("00"+parseInt(((now - data.date)/(1000*60))%60)+":").slice(-3)+
-							("00"+parseInt((now - data.date)/1000)%60).slice(-2);
-						data.age = age;
-						
-						var rowClass = '';
-						if (data.justNew === true) {
-							rowClass = 'class=bubbleNew';
-						}
-						else if (data.justLost === true) {
-							rowClass = 'class=bubbleLost';
-						}
-						data.rowClass = rowClass;
-						
-						$routesTab.find("tbody").append($(that.bubbleIpv4IgpRouteRowTemplate(data)));
-					});
-					if (!updateBubble) {bubble.addTab("Prefixes", $routesTab.html());}
-					else {bubble.updateTab(2,"Prefixes", $routesTab.html());}
-					
-					bubble.open(that.map, marker);
-				});
-				
+				});				
 				
 			});
 			marker.addListener('mouseover', function() {

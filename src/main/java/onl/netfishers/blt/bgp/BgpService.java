@@ -274,7 +274,7 @@ public class BgpService {
 										linkNlri.getProtocolId());
 							}	
 							catch (Exception e) {
-								logger.warn("no valid IP address attached to this link\n"+
+								logger.info("no valid IP address attached to this link\n"+
 									"will fall back to BGP LS only mode for the following link:"+
 									"\n<-- localId: "+localId.getIdentifier().toString()+
 									"\n--> remoteId: "+remoteId.getIdentifier().toString()+
@@ -293,17 +293,11 @@ public class BgpService {
 							Router remoteRouter = network.findOrAddRouter(remoteId);
 							remoteRouter.setNeedTeRefresh(true);
 							toSave = true;
-							//TODO : handle properly virtual link between pseudonode and actual router
-							/*if (!(localRouter.isPseudonodeOf(remoteRouter) || remoteRouter.isPseudonodeOf(localRouter))) {
-								link = network.findOrAddLink(link);
-							}*/
-							
+														
 							link = network.findOrAddLink(link);
 							
 							link.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);
 							
-							link.setMetric(lsAttribute.getMetric());
-								
 							if (lsAttribute != null) {
 								if (lsAttribute.isValidAdminGroup()) {
 									link.setAdminGroup(lsAttribute.getAdminGroup());

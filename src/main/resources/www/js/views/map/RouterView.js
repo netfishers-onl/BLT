@@ -9,8 +9,10 @@ define([
 	'text!templates/map/router.html',
 	'views/map/RouterInterfacesView',
 	'views/map/RouterIpv4IgpRoutesView',
+	'views/map/RouterIpv6IgpRoutesView',
 	'bootstrap'
-], function($, _, Backbone, jsPlumb, routerTemplate, RouterInterfacesView, RouterIpv4IgpRoutesView) {
+], function($, _, Backbone, jsPlumb, routerTemplate, RouterInterfacesView, RouterIpv4IgpRoutesView,
+		RouterIpv6IgpRoutesView) {
 
 	return Backbone.View.extend({
 
@@ -65,6 +67,17 @@ define([
 			});
 			this.$("#goto-prefixes").off('click').on('click', function() {
 				that.sectionView = new RouterIpv4IgpRoutesView({
+					network: that.network,
+					router: that.router,
+					mapView: that.mapView
+				});
+				$(this).closest('li').siblings().removeClass("active");
+				$(this).closest('li').addClass("active");
+				that.saveTab();
+				return false;
+			});
+			this.$("#goto-prefixes6").off('click').on('click', function() {
+				that.sectionView = new RouterIpv6IgpRoutesView({
 					network: that.network,
 					router: that.router,
 					mapView: that.mapView

@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import onl.netfishers.blt.Blt;
 import onl.netfishers.blt.tasks.Task;
 import onl.netfishers.blt.topology.net.Ipv4Subnet;
@@ -35,6 +35,11 @@ import org.snmp4j.util.DefaultPDUFactory;
 import org.snmp4j.util.TreeEvent;
 import org.snmp4j.util.TreeUtils;
 
+import org.xbill.DNS.LOCRecord;
+import org.xbill.DNS.Lookup;
+import org.xbill.DNS.Record;
+import org.xbill.DNS.SimpleResolver;
+import org.xbill.DNS.Type;
 import org.quartz.SchedulerException;
 
 public class SnmpPollingTask extends Task {
@@ -49,6 +54,8 @@ public class SnmpPollingTask extends Task {
 	private static int SNMP_TIMEOUT = 2000;
 	private static boolean LATLONG_LOOKUP = false;
 	private static String LATLONG_METHOD = "snmp";
+	private static String LATLONG_RESOLVER = "";
+	private static String LATLONG_DOMAIN_NAME = "";
 
 	static {
 		try {
@@ -83,6 +90,18 @@ public class SnmpPollingTask extends Task {
 			}
 			catch (Exception e) {
 				logger.error("Unable to parse the GPS coordinates fetch method in configuration, using '{}'.", LATLONG_METHOD);
+			}
+			try {
+				LATLONG_RESOLVER = String.format(Blt.getConfig("blt.coordinates.resolver"));
+			}
+			catch (Exception e) {
+				logger.error("Unable to parse the DNS resolver in configuration, using '{}'.", LATLONG_RESOLVER);
+			}
+			try {
+				LATLONG_DOMAIN_NAME = String.format(Blt.getConfig("blt.coordinates.domainname"));
+			}
+			catch (Exception e) {
+				logger.error("Unable to parse the resolver domain name in configuration, using '{}'.", LATLONG_DOMAIN_NAME);
 			}
 		}
 	}
@@ -232,8 +251,34 @@ public class SnmpPollingTask extends Task {
 				        }
 					}
 					else if (LATLONG_METHOD.equals("dns")) {
-						logger.warn("'{}' method not implemented yet for 'blt.coordinates.collect'",LATLONG_METHOD);
-						//TODO: try to resolve IP with LOC records 
+						if (router.getName() != null) {
+							String routerDnsName;
+							if (LATLONG_DOMAIN_NAME != "") {
+								routerDnsName = router.getName()+"."+LATLONG_DOMAIN_NAME;
+							} else {
+								routerDnsName = router.getName();
+							}
+							Lookup lookup = new Lookup(routerDnsName, Type.LOC);
+							try{
+								lookup.setResolver(new SimpleResolver(LATLONG_RESOLVER));
+								Record[] result = lookup.run();
+								LOCRecord locEntry = null;
+								try {
+									locEntry = (LOCRecord) result[0];
+									router.setLatitude(locEntry.getLatitude());
+						        	router.setLongitude(locEntry.getLongitude());
+								} 
+								catch (Exception e) {
+									logger.warn("cannot get a LOC entry from router '{}' using resolver '{}'", router, LATLONG_RESOLVER);
+								}
+							} 
+							catch (Exception e){
+								logger.warn("'{}' does not seem to be a valid DNS resolver", LATLONG_RESOLVER);
+							}
+							
+						} else {
+							logger.warn("Cannot get name of router '{}' and then cannot use DNS, Google Maps view will be disabled", router);
+						}
 					}
 					else {
 						logger.warn("'{}' is not a valid option for 'blt.coordinates.collect', please check blt.conf",LATLONG_METHOD);
