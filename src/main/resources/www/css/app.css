@@ -102,11 +102,12 @@ table.bubbleTab tbody tr:hover td {
   background-color:#fff; 
 }
 table.bubbleTab tbody tr.bubbleLost td {
-  background-color:#fcc;
+  background-color:#f8cfa3;
   border: 1px solid #f99; 
 }
 table.bubbleTab tbody tr.bubbleLost:hover td {
-  background-color:#fdd; 
+  background-color:#EFDB99;
+  border: 1px solid #F3C017;
 }
 table.bubbleTab tbody tr.bubbleNew td {
   background-color:#dfd;

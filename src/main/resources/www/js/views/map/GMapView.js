@@ -129,6 +129,13 @@ define([
 			anchor: new google.maps.Point(20, 20),
 			animation: google.maps.Animation.DROP
 		},
+		withdrawRouterIcon: {
+			url: '../../../img/router_orange.svg',
+			scaledSize: new google.maps.Size(46, 46),
+			origin: new google.maps.Point(0, 0),
+			anchor: new google.maps.Point(20, 20),
+			animation: google.maps.Animation.DROP
+		},
 		lostRouterIcon: {
 			url: '../../../img/router_red.svg',
 			scaledSize: new google.maps.Size(46, 46),
@@ -190,8 +197,12 @@ define([
                           	marker.setAnimation(google.maps.Animation.DROP);
 						}
 						else if (router.get("justWithdrawnAPrefix")) {
-							marker.setIcon = this.lostRouterIcon;
+							marker.setIcon = this.withdrawRouterIcon;
                           	marker.setAnimation(google.maps.Animation.DROP);
+						}
+						else if (router.get("lost")) {
+							marker.setIcon = this.lostRouterIcon;
+                          	marker.setAnimation(google.maps.Animation.BOUNCE);
 						}
 						else {
 							marker.setIcon = this.defaultRouterIcon;
@@ -240,7 +251,7 @@ define([
 				marker.icon = this.newRouterIcon;
 			}
 			if (router.get("justWithdrawnAPrefix")) {
-	           	marker.icon = this.lostRouterIcon;
+	           	marker.icon = this.withdrawRouterIcon;
 			}
 			
 			this.markersArray[router.get('id')] = marker;
@@ -371,6 +382,18 @@ define([
 					delete(this.box);
 				}
 			});
+			if (router.get("lost")) {
+				marker.icon = this.lostRouterIcon;
+              	marker.addListener('dblclick', function() {
+                  	google.maps.event.trigger(marker,'mouseout');
+                  	google.maps.event.clearInstanceListeners(marker);
+                	marker.setMap(null);
+                  	if (marker.bubbleStillOpen) {
+                      	bubble.close();
+                    }
+                  	
+                });
+            }
 		},
 		
 		onChangedRouter: function(router) {
@@ -385,11 +408,6 @@ define([
 			else {
 				marker.icon = this.defaultRouterIcon;
 			}
-		},
-		
-		onDestroyedRouter: function(router) {
-			var marker = this.markersArray[router.get('id')];
-			marker.setMap(null);
 		},
 		
 		onAddedLink: function(link, links) {
