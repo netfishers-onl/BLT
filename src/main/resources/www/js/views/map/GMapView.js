@@ -202,7 +202,6 @@ define([
 						}
 						else if (router.get("lost")) {
 							marker.setIcon = this.lostRouterIcon;
-                          	marker.setAnimation(google.maps.Animation.BOUNCE);
 						}
 						else {
 							marker.setIcon = this.defaultRouterIcon;
