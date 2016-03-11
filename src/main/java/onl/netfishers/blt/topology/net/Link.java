@@ -270,6 +270,7 @@ public class Link {
 	public String getRemoteInterfaceName() {
 		return remoteInterfaceName;
 	}
+		
 	public void setRemoteInterfaceName(String remoteInterfaceName) {
 		this.remoteInterfaceName = remoteInterfaceName;
 	}
@@ -290,6 +291,10 @@ public class Link {
 
 	public void setRemoteInterfaceDescription(String remoteInterfaceDescription) {
 		this.remoteInterfaceDescription = remoteInterfaceDescription;
+	}
+	
+	public String toString() {
+		return "localRouter:"+localRouter+" remoteRouter:"+remoteRouter;
 	}
 
 }

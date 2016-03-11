@@ -26,8 +26,7 @@ import org.slf4j.LoggerFactory;
 @XmlAccessorType(XmlAccessType.NONE)
 public class Network {
 
-	private static Logger logger = LoggerFactory
-			.getLogger(Network.class);
+	private static Logger logger = LoggerFactory.getLogger(Network.class);
 	
 	private static long idGenerator = 0;
 
@@ -99,6 +98,15 @@ public class Network {
 
 	public void setRouters(Set<Router> routers) {
 		this.routers = routers;
+	}
+	
+	public Router findRouterById(RouterIdentifier routerId) {
+		for (Router router : this.routers) {
+			if (router.getRouterId().equals(routerId)) {
+				return router;
+			}
+		}
+		return null;
 	}
 
 	public Router findOrAddRouter(RouterIdentifier routerId) {

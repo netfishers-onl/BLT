@@ -20,7 +20,9 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import jersey.repackaged.com.google.common.collect.Lists;
 import onl.netfishers.blt.Blt;
+import onl.netfishers.blt.topology.DijkstraPath;
 import onl.netfishers.blt.topology.net.RouterInterface.RouterInterfaceType;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsNodeDescriptor;
 
@@ -490,6 +492,18 @@ public class Router {
 		return null;
 	}
 
+	public List<DijkstraPath> getShortestPathTree(Network network) {
+		
+		List<DijkstraPath> tree = Lists.newArrayList();
+
+		for (Router target:network.getRouters()) {
+			if (target.equals(this)) continue;
+			DijkstraPath path = new DijkstraPath(network,this,target);
+			tree.add(path);
+		}
+		return tree;
+	}	
+	
 	@XmlElement
 	public int getX() {
 		return x;

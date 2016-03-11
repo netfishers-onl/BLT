@@ -452,7 +452,7 @@ public class BgpService {
 				}
 				else if ( router.isNeedTeRefresh()) {
 					if ( router.findSnmpCommunity() != null) {
-						Task task = new SnmpPollingTask("Refresh router '{}' state via SNMP (after BGP update)", router); 
+						Task task = new SnmpPollingTask("Refresh router '"+router.getName()+"' state via SNMP (after BGP update)", router); 
 						try {
 							task.schedule(1000);
 						}

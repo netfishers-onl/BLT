@@ -37,6 +37,7 @@ import onl.netfishers.blt.Blt;
 import onl.netfishers.blt.aaa.User;
 import onl.netfishers.blt.tasks.Task;
 import onl.netfishers.blt.tasks.TaskManager;
+import onl.netfishers.blt.topology.DijkstraPath;
 import onl.netfishers.blt.topology.TopologyService;
 import onl.netfishers.blt.topology.net.Ipv4Route;
 import onl.netfishers.blt.topology.net.Ipv4Subnet;
@@ -68,6 +69,7 @@ import org.glassfish.jersey.servlet.ServletProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.MarkerFactory;
+
 
 @Path("/")
 public class RestService extends Thread {
@@ -332,6 +334,7 @@ public class RestService extends Thread {
 		public static final int INVALID_EXPLICITPATH_NAME = 500;
 		public static final int INVALID_EXPLICITPATH_PARAMS = 501;
 		public static final int UNKNOWN_EXPLICITPATH = 502;
+		public static final int INVALID_PATH_PARAMS = 510;
 		public static final int UNKNOWN_IPV4_ACCESS_LIST = 520;
 		public static final int UNKNOWN_INTERFACE = 550;
 		public static final int INVALID_INTERFACE_PARAMS = 560;
@@ -586,6 +589,62 @@ public class RestService extends Thread {
 		return router;
 	}
 
+	@GET
+	@Path("networks/{nid}/routers/{rid}/shortestpathtree")
+	@RolesAllowed("readonly")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public List<DijkstraPath> getRouterShortestPathTree(@PathParam("nid") Long nid,
+			@PathParam("rid") Long rid ) throws WebApplicationException {
+		
+		Network network = TopologyService.getService().getNetworkById(nid);
+		if (network == null) {
+			throw new BltBadRequestException("The network doesn't exist.",
+					BltBadRequestException.UNKNOWN_NETWORK);
+		}
+		
+		Router origin = network.getRouterById(rid);
+		if (origin == null) {
+			throw new BltBadRequestException("The router doesn't exist.",
+					BltBadRequestException.UNKNOWN_ROUTER);
+		}
+		List<DijkstraPath> tree = origin.getShortestPathTree(network);
+	    return tree;
+	}
+	
+	@GET
+	@Path("networks/{nid}/routers/{rid}/shortestpathto/{dstid}")
+	@RolesAllowed("readonly")
+	@Produces({ MediaType.APPLICATION_JSON, MediaType.APPLICATION_XML })
+	public DijkstraPath getRouterShortestPathTo(@PathParam("nid") Long nid,
+			@PathParam("rid") Long rid,  @PathParam("dstid") Long dstid) 
+					throws WebApplicationException {
+		
+		Network network = TopologyService.getService().getNetworkById(nid);
+		if (network == null) {
+			throw new BltBadRequestException("The network doesn't exist.",
+					BltBadRequestException.UNKNOWN_NETWORK);
+		}
+		
+		Router origin = network.getRouterById(rid);
+		if (origin == null) {
+			throw new BltBadRequestException("The router doesn't exist.",
+					BltBadRequestException.UNKNOWN_ROUTER);
+		}
+		
+		Router destination = network.getRouterById(dstid);
+		if (destination == null) {
+			throw new BltBadRequestException("The router doesn't exist.",
+					BltBadRequestException.UNKNOWN_ROUTER);
+		}
+		else if (destination.equals(origin)) {
+			throw new BltBadRequestException("Endpoint routers must be different.",
+					BltBadRequestException.INVALID_PATH_PARAMS);
+		}
+		
+		DijkstraPath path = new DijkstraPath(network,origin,destination);
+	    return path;
+	}
+		
 	@GET
 	@Path("networks/{nid}/routers")
 	@RolesAllowed("readonly")
@@ -853,7 +912,7 @@ public class RestService extends Thread {
 		return router.getIpv6IgpRoutes();
 		
 	}
-
+	
 	@GET
 	@Path("tasks/{id}")
 	@RolesAllowed("readonly")
