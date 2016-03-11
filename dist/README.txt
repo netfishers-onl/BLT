@@ -31,3 +31,8 @@ RELEASE HISTORY:
 0.4.2 - 2016-02-09 - Link cost revealed on mouseHover
 				   - Support for IPv6 prefixes
 				   - Support for GPS coordinates lookup using DNS LOC records (RFC 1876)
+0.4.3 - 2016-03-10 - Dijkstra computation: 
+                     - new REST primitive for shortest path computation towards a single node
+                     - new REST primitive for shortest path tree rooted at a specific node
+                     - shortest path visibility from Google Maps view
+                   
