@@ -1,1 +1,661 @@
-var _0xca33=["\x6A\x71\x75\x65\x72\x79","\x75\x6E\x64\x65\x72\x73\x63\x6F\x72\x65","\x62\x61\x63\x6B\x62\x6F\x6E\x65","\x6D\x6F\x64\x65\x6C\x73\x2F\x6E\x65\x74\x77\x6F\x72\x6B\x2F\x44\x69\x6A\x6B\x73\x74\x72\x61\x50\x61\x74\x68\x43\x6F\x6C\x6C\x65\x63\x74\x69\x6F\x6E","\x6D\x6F\x64\x65\x6C\x73\x2F\x6E\x65\x74\x77\x6F\x72\x6B\x2F\x4E\x65\x74\x77\x6F\x72\x6B\x4D\x6F\x64\x65\x6C","\x6D\x6F\x64\x65\x6C\x73\x2F\x6E\x65\x74\x77\x6F\x72\x6B\x2F\x52\x6F\x75\x74\x65\x72\x43\x6F\x6C\x6C\x65\x63\x74\x69\x6F\x6E","\x6D\x6F\x64\x65\x6C\x73\x2F\x6E\x65\x74\x77\x6F\x72\x6B\x2F\x4C\x69\x6E\x6B\x43\x6F\x6C\x6C\x65\x63\x74\x69\x6F\x6E","\x6D\x6F\x64\x65\x6C\x73\x2F\x6E\x65\x74\x77\x6F\x72\x6B\x2F\x49\x6E\x74\x65\x72\x66\x61\x63\x65\x43\x6F\x6C\x6C\x65\x63\x74\x69\x6F\x6E","\x6D\x6F\x64\x65\x6C\x73\x2F\x6E\x65\x74\x77\x6F\x72\x6B\x2F\x49\x70\x76\x34\x49\x67\x70\x52\x6F\x75\x74\x65\x43\x6F\x6C\x6C\x65\x63\x74\x69\x6F\x6E","\x6D\x6F\x64\x65\x6C\x73\x2F\x6E\x65\x74\x77\x6F\x72\x6B\x2F\x49\x70\x76\x36\x49\x67\x70\x52\x6F\x75\x74\x65\x43\x6F\x6C\x6C\x65\x63\x74\x69\x6F\x6E","\x74\x65\x78\x74\x21\x74\x65\x6D\x70\x6C\x61\x74\x65\x73\x2F\x67\x6D\x61\x70\x2F\x67\x6D\x61\x70\x2E\x68\x74\x6D\x6C","\x74\x65\x78\x74\x21\x74\x65\x6D\x70\x6C\x61\x74\x65\x73\x2F\x67\x6D\x61\x70\x2F\x6D\x61\x70\x52\x6F\x75\x74\x65\x72\x2E\x68\x74\x6D\x6C","\x74\x65\x78\x74\x21\x74\x65\x6D\x70\x6C\x61\x74\x65\x73\x2F\x67\x6D\x61\x70\x2F\x62\x75\x62\x62\x6C\x65\x52\x6F\x75\x74\x65\x72\x2E\x68\x74\x6D\x6C","\x74\x65\x78\x74\x21\x74\x65\x6D\x70\x6C\x61\x74\x65\x73\x2F\x67\x6D\x61\x70\x2F\x69\x6E\x66\x6F\x62\x6F\x78\x4C\x69\x6E\x6B\x2E\x68\x74\x6D\x6C","\x74\x65\x78\x74\x21\x74\x65\x6D\x70\x6C\x61\x74\x65\x73\x2F\x6D\x61\x70\x2F\x6C\x69\x6E\x6B\x2E\x68\x74\x6D\x6C","\x74\x65\x78\x74\x21\x74\x65\x6D\x70\x6C\x61\x74\x65\x73\x2F\x67\x6D\x61\x70\x2F\x62\x75\x62\x62\x6C\x65\x49\x6E\x74\x65\x72\x66\x61\x63\x65\x73\x2E\x68\x74\x6D\x6C","\x74\x65\x78\x74\x21\x74\x65\x6D\x70\x6C\x61\x74\x65\x73\x2F\x67\x6D\x61\x70\x2F\x62\x75\x62\x62\x6C\x65\x49\x70\x76\x34\x49\x67\x70\x52\x6F\x75\x74\x65\x73\x2E\x68\x74\x6D\x6C","\x74\x65\x78\x74\x21\x74\x65\x6D\x70\x6C\x61\x74\x65\x73\x2F\x67\x6D\x61\x70\x2F\x62\x75\x62\x62\x6C\x65\x49\x70\x76\x36\x49\x67\x70\x52\x6F\x75\x74\x65\x73\x2E\x68\x74\x6D\x6C","\x74\x65\x78\x74\x21\x74\x65\x6D\x70\x6C\x61\x74\x65\x73\x2F\x67\x6D\x61\x70\x2F\x62\x75\x62\x62\x6C\x65\x49\x6E\x74\x65\x72\x66\x61\x63\x65\x52\x6F\x77\x2E\x68\x74\x6D\x6C","\x74\x65\x78\x74\x21\x74\x65\x6D\x70\x6C\x61\x74\x65\x73\x2F\x67\x6D\x61\x70\x2F\x62\x75\x62\x62\x6C\x65\x49\x70\x76\x34\x49\x67\x70\x52\x6F\x75\x74\x65\x52\x6F\x77\x2E\x68\x74\x6D\x6C","\x74\x65\x78\x74\x21\x74\x65\x6D\x70\x6C\x61\x74\x65\x73\x2F\x67\x6D\x61\x70\x2F\x62\x75\x62\x62\x6C\x65\x49\x70\x76\x36\x49\x67\x70\x52\x6F\x75\x74\x65\x52\x6F\x77\x2E\x68\x74\x6D\x6C","\x62\x6F\x6F\x74\x73\x74\x72\x61\x70","\x69\x6E\x66\x6F\x62\x6F\x78","\x69\x6E\x66\x6F\x62\x75\x62\x62\x6C\x65","\x23\x70\x61\x67\x65","\x74\x65\x6D\x70\x6C\x61\x74\x65","\x6D\x61\x70\x73","\x72\x67\x62\x28\x32\x35\x35\x2C\x32\x35\x35\x2C\x32\x35\x35\x29","\x72\x67\x62\x28\x31\x30\x2C\x31\x30\x2C\x31\x30\x29","\x31\x33\x70\x78","\x61\x75\x74\x6F","\x31\x30\x70\x78\x20\x32\x70\x78\x20\x32\x70\x78\x20\x32\x70\x78","","\x66\x6C\x6F\x61\x74\x50\x61\x6E\x65","\x23\x36\x36\x36\x36\x36\x36","\x31\x30\x70\x78","\x72\x67\x62\x28\x32\x32\x30\x2C\x32\x32\x30\x2C\x32\x32\x30\x29","\x23\x32\x63\x32\x63\x32\x63","\x69\x6D\x67\x2F\x66\x69\x6C\x65\x63\x6C\x6F\x73\x65\x31\x32\x2E\x70\x6E\x67","\x2E\x2E\x2F\x2E\x2E\x2F\x2E\x2E\x2F\x69\x6D\x67\x2F\x72\x6F\x75\x74\x65\x72\x5F\x67\x72\x65\x79\x2E\x73\x76\x67","\x44\x52\x4F\x50","\x41\x6E\x69\x6D\x61\x74\x69\x6F\x6E","\x2E\x2E\x2F\x2E\x2E\x2F\x2E\x2E\x2F\x69\x6D\x67\x2F\x72\x6F\x75\x74\x65\x72\x5F\x67\x72\x65\x65\x6E\x2E\x73\x76\x67","\x2E\x2E\x2F\x2E\x2E\x2F\x2E\x2E\x2F\x69\x6D\x67\x2F\x72\x6F\x75\x74\x65\x72\x5F\x6F\x72\x61\x6E\x67\x65\x2E\x73\x76\x67","\x2E\x2E\x2F\x2E\x2E\x2F\x2E\x2E\x2F\x69\x6D\x67\x2F\x72\x6F\x75\x74\x65\x72\x5F\x72\x65\x64\x2E\x73\x76\x67","\x6E\x65\x74\x77\x6F\x72\x6B","\x69\x64","\x72\x6F\x75\x74\x65\x72\x73","\x61\x64\x64","\x6F\x6E\x41\x64\x64\x65\x64\x52\x6F\x75\x74\x65\x72","\x6F\x6E","\x63\x68\x61\x6E\x67\x65","\x6F\x6E\x43\x68\x61\x6E\x67\x65\x64\x52\x6F\x75\x74\x65\x72","\x72\x65\x6D\x6F\x76\x65","\x6F\x6E\x44\x65\x73\x74\x72\x6F\x79\x65\x64\x52\x6F\x75\x74\x65\x72","\x6C\x69\x6E\x6B\x73","\x6F\x6E\x41\x64\x64\x65\x64\x4C\x69\x6E\x6B","\x6F\x6E\x43\x68\x61\x6E\x67\x65\x64\x4C\x69\x6E\x6B","\x6F\x6E\x44\x65\x73\x74\x72\x6F\x79\x65\x64\x4C\x69\x6E\x6B","\x72\x6F\x75\x74\x65","\x61\x75\x74\x6F\x52\x65\x66\x72\x65\x73\x68\x49\x6E\x74","\x61\x75\x74\x6F\x52\x65\x66\x72\x65\x73\x68","\x68\x69\x73\x74\x6F\x72\x79","\x62\x6F\x75\x6E\x64\x73","\x6D\x61\x72\x6B\x65\x72\x73\x41\x72\x72\x61\x79","\x6C\x69\x6E\x6B\x73\x41\x72\x72\x61\x79","\x72\x65\x6E\x64\x65\x72","\x72\x65\x66\x72\x65\x73\x68","\x64\x6F\x6E\x65","\x66\x65\x74\x63\x68","\x64\x69\x73\x61\x62\x6C\x65\x64","\x70\x72\x6F\x70","\x23\x67\x6D\x61\x70\x2D\x74\x6F\x6F\x6C\x62\x61\x72\x20\x23\x72\x65\x66\x72\x65\x73\x68","\x67\x65\x74","\x62\x75\x62\x62\x6C\x65\x53\x74\x69\x6C\x6C\x4F\x70\x65\x6E","\x63\x6C\x69\x63\x6B","\x74\x72\x69\x67\x67\x65\x72","\x65\x76\x65\x6E\x74","\x6A\x75\x73\x74\x41\x6E\x6E\x6F\x75\x6E\x63\x65\x64\x41\x50\x72\x65\x66\x69\x78","\x73\x65\x74\x49\x63\x6F\x6E","\x6E\x65\x77\x52\x6F\x75\x74\x65\x72\x49\x63\x6F\x6E","\x73\x65\x74\x41\x6E\x69\x6D\x61\x74\x69\x6F\x6E","\x6A\x75\x73\x74\x57\x69\x74\x68\x64\x72\x61\x77\x6E\x41\x50\x72\x65\x66\x69\x78","\x77\x69\x74\x68\x64\x72\x61\x77\x52\x6F\x75\x74\x65\x72\x49\x63\x6F\x6E","\x6C\x6F\x73\x74","\x6C\x6F\x73\x74\x52\x6F\x75\x74\x65\x72\x49\x63\x6F\x6E","\x64\x65\x66\x61\x75\x6C\x74\x52\x6F\x75\x74\x65\x72\x49\x63\x6F\x6E","\x65\x61\x63\x68","\x62\x75\x62\x62\x6C\x65\x50\x72\x65\x76\x69\x6F\x75\x73\x50\x6F\x73\x69\x74\x69\x6F\x6E","\x6C\x61\x74\x69\x74\x75\x64\x65","\x6C\x6F\x6E\x67\x69\x74\x75\x64\x65","\x65\x78\x74\x65\x6E\x64","\x66\x69\x74\x42\x6F\x75\x6E\x64\x73","\x6D\x61\x70","\x69\x63\x6F\x6E","\x64\x65\x66\x61\x75\x6C\x74\x52\x6F\x75\x74\x65\x72\x42\x75\x62\x62\x6C\x65\x4F\x70\x74\x69\x6F\x6E\x73","\x63\x6C\x6F\x73\x65\x63\x6C\x69\x63\x6B","\x61\x64\x64\x4C\x69\x73\x74\x65\x6E\x65\x72","\x62\x75\x62\x62\x6C\x65\x49\x64","\x72\x6F\x75\x74\x65\x72\x49\x64","\x69\x73\x4F\x70\x65\x6E","\x67\x65\x74\x43\x6F\x6E\x74\x65\x6E\x74","\x52\x6F\x75\x74\x65\x72","\x74\x6F\x4A\x53\x4F\x4E","\x62\x75\x62\x62\x6C\x65\x52\x6F\x75\x74\x65\x72\x54\x65\x6D\x70\x6C\x61\x74\x65","\x61\x64\x64\x54\x61\x62","\x75\x70\x64\x61\x74\x65\x54\x61\x62","\x62\x75\x62\x62\x6C\x65\x49\x6E\x74\x65\x72\x66\x61\x63\x65\x73\x54\x65\x6D\x70\x6C\x61\x74\x65","\x61\x70\x70\x65\x6E\x64","\x3C\x64\x69\x76\x3E","\x69\x70\x76\x34\x49\x6E\x74\x65\x72\x66\x61\x63\x65\x73","\x62\x75\x62\x62\x6C\x65\x49\x6E\x74\x65\x72\x66\x61\x63\x65\x52\x6F\x77\x54\x65\x6D\x70\x6C\x61\x74\x65","\x74\x62\x6F\x64\x79","\x66\x69\x6E\x64","\x49\x6E\x74\x65\x72\x66\x61\x63\x65\x73","\x68\x74\x6D\x6C","\x62\x75\x62\x62\x6C\x65\x49\x70\x76\x34\x49\x67\x70\x52\x6F\x75\x74\x65\x73\x54\x65\x6D\x70\x6C\x61\x74\x65","\x62\x75\x62\x62\x6C\x65\x49\x70\x76\x36\x49\x67\x70\x52\x6F\x75\x74\x65\x73\x54\x65\x6D\x70\x6C\x61\x74\x65","\x6E\x6F\x77","\x64\x61\x74\x65","\x75\x6E\x64\x65\x66\x69\x6E\x65\x64","\x6D\x20","\x64\x20","\x73\x6C\x69\x63\x65","\x30\x30","\x3A","\x61\x67\x65","\x6A\x75\x73\x74\x4E\x65\x77","\x63\x6C\x61\x73\x73\x3D\x62\x75\x62\x62\x6C\x65\x4E\x65\x77","\x6A\x75\x73\x74\x4C\x6F\x73\x74","\x63\x6C\x61\x73\x73\x3D\x62\x75\x62\x62\x6C\x65\x4C\x6F\x73\x74","\x72\x6F\x77\x43\x6C\x61\x73\x73","\x62\x75\x62\x62\x6C\x65\x49\x70\x76\x34\x49\x67\x70\x52\x6F\x75\x74\x65\x52\x6F\x77\x54\x65\x6D\x70\x6C\x61\x74\x65","\x62\x75\x62\x62\x6C\x65\x49\x70\x76\x36\x49\x67\x70\x52\x6F\x75\x74\x65\x52\x6F\x77\x54\x65\x6D\x70\x6C\x61\x74\x65","\x49\x50\x76\x34\x20\x50\x72\x65\x66\x69\x78\x65\x73","\x49\x50\x76\x36\x20\x50\x72\x65\x66\x69\x78\x65\x73","\x6F\x70\x65\x6E","\x72\x69\x67\x68\x74\x63\x6C\x69\x63\x6B","\x74\x61\x72\x67\x65\x74\x49\x64","\x66\x69\x6C\x74\x65\x72","\x6C\x65\x6E\x67\x74\x68","\x72\x61\x6E\x64\x6F\x6D","\x72\x67\x62\x28","\x66\x6C\x6F\x6F\x72","\x2C","\x29","\x76\x65\x72\x74\x69\x63\x65\x73","\x70\x75\x73\x68","\x69\x6E\x74\x65\x72\x70\x6F\x6C\x61\x74\x65","\x73\x70\x68\x65\x72\x69\x63\x61\x6C","\x67\x65\x6F\x6D\x65\x74\x72\x79","\x77\x65\x69\x67\x68\x74","\x46\x4F\x52\x57\x41\x52\x44\x5F\x43\x4C\x4F\x53\x45\x44\x5F\x41\x52\x52\x4F\x57","\x53\x79\x6D\x62\x6F\x6C\x50\x61\x74\x68","\x39\x30\x25","\x73\x65\x74\x4D\x61\x70","\x63\x6C\x6F\x73\x65","\x6D\x6F\x75\x73\x65\x6F\x76\x65\x72","\x62\x6F\x78","\x64\x65\x66\x61\x75\x6C\x74\x42\x6F\x78\x4F\x70\x74\x69\x6F\x6E\x73","\x72\x6F\x75\x74\x65\x72\x54\x65\x6D\x70\x6C\x61\x74\x65","\x73\x65\x74\x43\x6F\x6E\x74\x65\x6E\x74","\x6D\x6F\x75\x73\x65\x6F\x75\x74","\x6F\x62\x6A\x65\x63\x74","\x64\x62\x6C\x63\x6C\x69\x63\x6B","\x63\x6C\x65\x61\x72\x49\x6E\x73\x74\x61\x6E\x63\x65\x4C\x69\x73\x74\x65\x6E\x65\x72\x73","\x69\x64\x65\x6E\x74\x69\x66\x69\x65\x72","\x6C\x6F\x63\x61\x6C\x52\x6F\x75\x74\x65\x72","\x72\x65\x6D\x6F\x74\x65\x52\x6F\x75\x74\x65\x72","\x23\x38\x38\x38\x38\x38\x38","\x62\x6F\x78\x31","\x64\x65\x66\x61\x75\x6C\x74\x4C\x69\x6E\x6B\x42\x6F\x78\x4F\x70\x74\x69\x6F\x6E\x73","\x67\x65\x74\x4D\x65\x74\x72\x69\x63","\x73\x65\x74\x50\x6F\x73\x69\x74\x69\x6F\x6E","\x70\x69\x78\x65\x6C\x4F\x66\x66\x73\x65\x74","\x62\x6F\x78\x32","\x62\x6F\x78\x43\x6C\x61\x73\x73","\x6C\x69\x6E\x6B\x6C\x61\x62\x65\x6C","\x64\x65\x66\x61\x75\x6C\x74\x4C\x69\x6E\x6B\x42\x75\x62\x62\x6C\x65\x4F\x70\x74\x69\x6F\x6E\x73","\x62\x75\x62\x62\x6C\x65\x4C\x69\x6E\x6B\x54\x65\x6D\x70\x6C\x61\x74\x65","\x6C\x61\x74\x4C\x6E\x67","\x73\x68\x6F\x77","\x24\x65\x6C","\x67\x6D\x61\x70","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64","\x6D\x61\x70\x4F\x70\x74\x69\x6F\x6E\x73","\x23\x67\x6D\x61\x70\x2D\x74\x6F\x6F\x6C\x62\x61\x72\x20\x23\x61\x75\x74\x6F\x72\x65\x66\x72\x65\x73\x68","\x23\x67\x6D\x61\x70\x2D\x74\x6F\x6F\x6C\x62\x61\x72\x20\x23\x67\x6F\x74\x6F\x62\x6C\x74","\x6D\x61\x70\x2F","\x6E\x61\x76\x69\x67\x61\x74\x65","\x61\x70\x70\x52\x6F\x75\x74\x65\x72","\x56\x69\x65\x77"];define([_0xca33[0],_0xca33[1],_0xca33[2],_0xca33[3],_0xca33[4],_0xca33[5],_0xca33[6],_0xca33[7],_0xca33[8],_0xca33[9],_0xca33[10],_0xca33[11],_0xca33[12],_0xca33[13],_0xca33[14],_0xca33[15],_0xca33[16],_0xca33[17],_0xca33[18],_0xca33[19],_0xca33[20],_0xca33[21],_0xca33[22],_0xca33[23]],function(_0xbcd5x1,_0xbcd5x2,_0xbcd5x3,_0xbcd5x4,_0xbcd5x5,_0xbcd5x6,_0xbcd5x7,_0xbcd5x8,_0xbcd5x9,_0xbcd5xa,_0xbcd5xb,_0xbcd5xc,_0xbcd5xd,_0xbcd5xe,_0xbcd5xf,_0xbcd5x10,_0xbcd5x11,_0xbcd5x12,_0xbcd5x13,_0xbcd5x14,_0xbcd5x15){return _0xbcd5x3[_0xca33[191]][_0xca33[91]]({el:_0xca33[24],template:_0xbcd5x2[_0xca33[25]](_0xbcd5xb),routerTemplate:_0xbcd5x2[_0xca33[25]](_0xbcd5xc),bubbleRouterTemplate:_0xbcd5x2[_0xca33[25]](_0xbcd5xd),linkTemplate:_0xbcd5x2[_0xca33[25]](_0xbcd5xe),bubbleLinkTemplate:_0xbcd5x2[_0xca33[25]](_0xbcd5xf),bubbleInterfacesTemplate:_0xbcd5x2[_0xca33[25]](_0xbcd5x10),bubbleIpv4IgpRoutesTemplate:_0xbcd5x2[_0xca33[25]](_0xbcd5x11),bubbleIpv6IgpRoutesTemplate:_0xbcd5x2[_0xca33[25]](_0xbcd5x12),bubbleInterfaceRowTemplate:_0xbcd5x2[_0xca33[25]](_0xbcd5x13),bubbleIpv4IgpRouteRowTemplate:_0xbcd5x2[_0xca33[25]](_0xbcd5x14),bubbleIpv6IgpRouteRowTemplate:_0xbcd5x2[_0xca33[25]](_0xbcd5x15),defaultBoxOptions:{disableAutoPan:true,maxWidth:0,pixelOffset: new google[_0xca33[26]].Size(0,-20),zIndex:null,boxStyle:{background:_0xca33[27],color:_0xca33[28],"\x66\x6F\x6E\x74\x2D\x73\x69\x7A\x65":_0xca33[29],opacity:0.9,width:_0xca33[30]},closeBoxMargin:_0xca33[31],closeBoxURL:_0xca33[32],infoBoxClearance: new google[_0xca33[26]].Size(1,1),isHidden:false,pane:_0xca33[33],enableEventPropagation:false},defaultLinkBoxOptions:{disableAutoPan:true,maxWidth:0,zIndex:null,boxStyle:{background:_0xca33[34],color:_0xca33[27],"\x66\x6F\x6E\x74\x2D\x73\x69\x7A\x65":_0xca33[35],opacity:0.9,width:_0xca33[30]},closeBoxMargin:_0xca33[31],closeBoxURL:_0xca33[32],infoBoxClearance: new google[_0xca33[26]].Size(1,1),isHidden:false,pane:_0xca33[33],enableEventPropagation:false},defaultRouterBubbleOptions:{maxHeight:170,shadowStyle:1,padding:5,backgroundColor:_0xca33[36],borderRadius:2,arrowSize:10,borderWidth:1,borderColor:_0xca33[37],disableAutoPan:true,hideCloseButton:false,closeSrc:_0xca33[38],arrowPosition:20,arrowStyle:2},defaultLinkBubbleOptions:{maxHeight:170,shadowStyle:1,padding:5,borderRadius:2,arrowSize:10,borderWidth:1,borderColor:_0xca33[37],disableAutoPan:true,hideCloseButton:false,closeSrc:_0xca33[38],arrowPosition:20,arrowStyle:2},defaultRouterIcon:{url:_0xca33[39],scaledSize: new google[_0xca33[26]].Size(30,30),origin: new google[_0xca33[26]].Point(0,0),anchor: new google[_0xca33[26]].Point(20,20),animation:google[_0xca33[26]][_0xca33[41]][_0xca33[40]]},newRouterIcon:{url:_0xca33[42],scaledSize: new google[_0xca33[26]].Size(46,46),origin: new google[_0xca33[26]].Point(0,0),anchor: new google[_0xca33[26]].Point(20,20),animation:google[_0xca33[26]][_0xca33[41]][_0xca33[40]]},withdrawRouterIcon:{url:_0xca33[43],scaledSize: new google[_0xca33[26]].Size(46,46),origin: new google[_0xca33[26]].Point(0,0),anchor: new google[_0xca33[26]].Point(20,20),animation:google[_0xca33[26]][_0xca33[41]][_0xca33[40]]},lostRouterIcon:{url:_0xca33[44],scaledSize: new google[_0xca33[26]].Size(46,46),origin: new google[_0xca33[26]].Point(0,0),anchor: new google[_0xca33[26]].Point(20,20),animation:google[_0xca33[26]][_0xca33[41]][_0xca33[40]]},initialize:function(){var _0xbcd5x16=this;this[_0xca33[45]]= new _0xbcd5x5({id:this[_0xca33[46]]});this[_0xca33[47]]= new _0xbcd5x6([],{network:this[_0xca33[46]]});this[_0xca33[47]][_0xca33[50]](_0xca33[48],this[_0xca33[49]],this);this[_0xca33[47]][_0xca33[50]](_0xca33[51],this[_0xca33[52]],this);this[_0xca33[47]][_0xca33[50]](_0xca33[53],this[_0xca33[54]],this);this[_0xca33[55]]= new _0xbcd5x7([],{network:this[_0xca33[46]]});this[_0xca33[55]][_0xca33[50]](_0xca33[48],this[_0xca33[56]],this);this[_0xca33[55]][_0xca33[50]](_0xca33[51],this[_0xca33[57]],this);this[_0xca33[55]][_0xca33[50]](_0xca33[53],this[_0xca33[58]],this);_0xbcd5x3[_0xca33[62]][_0xca33[50]](_0xca33[59],function(_0xbcd5x17,_0xbcd5x18){if(_0xbcd5x16[_0xca33[60]]!==false&&_0xbcd5x16[_0xca33[60]]!=null){_0xbcd5x16[_0xca33[61]]()}});this[_0xca33[63]]= new google[_0xca33[26]].LatLngBounds();this[_0xca33[64]]=[];this[_0xca33[65]]=[];this[_0xca33[45]][_0xca33[69]]()[_0xca33[68]](function(){_0xbcd5x16[_0xca33[66]]();_0xbcd5x16[_0xca33[67]]()})},refresh:function(){var _0xbcd5x16=this;_0xbcd5x16[_0xca33[47]][_0xca33[69]]()[_0xca33[68]](function(){_0xbcd5x16[_0xca33[55]][_0xca33[69]]()[_0xca33[68]](function(){_0xbcd5x16.$(_0xca33[72])[_0xca33[71]](_0xca33[70],false);_0xbcd5x16[_0xca33[47]][_0xca33[87]](function(_0xbcd5x18){marker=_0xbcd5x16[_0xca33[64]][_0xbcd5x18[_0xca33[73]](_0xca33[46])];if(marker[_0xca33[74]]){google[_0xca33[26]][_0xca33[77]][_0xca33[76]](marker,_0xca33[75])};if(_0xbcd5x18[_0xca33[73]](_0xca33[78])){marker[_0xca33[79]]=this[_0xca33[80]];marker[_0xca33[81]](google[_0xca33[26]][_0xca33[41]].DROP)}else {if(_0xbcd5x18[_0xca33[73]](_0xca33[82])){marker[_0xca33[79]]=this[_0xca33[83]];marker[_0xca33[81]](google[_0xca33[26]][_0xca33[41]].DROP)}else {if(_0xbcd5x18[_0xca33[73]](_0xca33[84])){marker[_0xca33[79]]=this[_0xca33[85]]}else {marker[_0xca33[79]]=this[_0xca33[86]];marker[_0xca33[81]](google[_0xca33[26]][_0xca33[41]].DROP)}}}});_0xbcd5x16[_0xca33[55]][_0xca33[87]](function(_0xbcd5x19){line=_0xbcd5x16[_0xca33[65]][_0xbcd5x19[_0xca33[73]](_0xca33[46])];if(line[_0xca33[74]]){google[_0xca33[26]][_0xca33[77]][_0xca33[76]](line,_0xca33[75],line[_0xca33[88]])}})})})},autoRefresh:function(){var _0xbcd5x16=this;if(this[_0xca33[60]]===false||this[_0xca33[60]]==null){this[_0xca33[60]]=setInterval(function(){_0xbcd5x16.$(_0xca33[72])[_0xca33[71]](_0xca33[70],true);_0xbcd5x16[_0xca33[67]]()},10000*2)}else {clearInterval(this[_0xca33[60]]);this[_0xca33[60]]=false}},onAddedRouter:function(_0xbcd5x18,_0xbcd5x1a){var _0xbcd5x16=this;var _0xbcd5x1b= new google[_0xca33[26]].LatLng(_0xbcd5x18[_0xca33[73]](_0xca33[89]),_0xbcd5x18[_0xca33[73]](_0xca33[90]));this[_0xca33[63]][_0xca33[91]](_0xbcd5x1b);this[_0xca33[93]][_0xca33[92]](this[_0xca33[63]]);var _0xbcd5x1c= new google[_0xca33[26]].Marker({position:_0xbcd5x1b,map:this[_0xca33[93]],animation:google[_0xca33[26]][_0xca33[41]][_0xca33[40]],icon:this[_0xca33[86]],routerId:_0xbcd5x18[_0xca33[73]](_0xca33[46]),bubbleStillOpen:false});if(_0xbcd5x18[_0xca33[73]](_0xca33[78])){_0xbcd5x1c[_0xca33[94]]=this[_0xca33[80]]};if(_0xbcd5x18[_0xca33[73]](_0xca33[82])){_0xbcd5x1c[_0xca33[94]]=this[_0xca33[83]]};var _0xbcd5x1d= new InfoBubble(_0xbcd5x16[_0xca33[95]]);_0xbcd5x1d[_0xca33[97]](_0xca33[96],function(){_0xbcd5x1c[_0xca33[74]]=false});_0xbcd5x1c[_0xca33[98]]=_0xbcd5x1d;this[_0xca33[64]][_0xbcd5x18[_0xca33[73]](_0xca33[46])]=_0xbcd5x1c;_0xbcd5x1c[_0xca33[97]](_0xca33[75],function(_0xbcd5x1e){var _0xbcd5x1c=this;var _0xbcd5x18=_0xbcd5x16[_0xca33[47]][_0xca33[73]](this[_0xca33[99]]);if(!_0xbcd5x18){return};this[_0xca33[74]]=true;var _0xbcd5x1f= new _0xbcd5x9([],{network:_0xbcd5x16[_0xca33[45]][_0xca33[73]](_0xca33[46]),router:_0xbcd5x18[_0xca33[73]](_0xca33[46])});var _0xbcd5x20= new _0xbcd5xa([],{network:_0xbcd5x16[_0xca33[45]][_0xca33[73]](_0xca33[46]),router:_0xbcd5x18[_0xca33[73]](_0xca33[46])});var _0xbcd5x21=false;_0xbcd5x1f[_0xca33[69]]()[_0xca33[68]](function(){_0xbcd5x20[_0xca33[69]]()[_0xca33[68]](function(){if(_0xbcd5x1d[_0xca33[100]](_0xbcd5x1d)||_0xbcd5x1d[_0xca33[101]](_0xbcd5x1d)){_0xbcd5x21=true};if(!_0xbcd5x21){_0xbcd5x1d[_0xca33[105]](_0xca33[102],_0xbcd5x16[_0xca33[104]](_0xbcd5x18[_0xca33[103]]()))}else {_0xbcd5x1d[_0xca33[106]](0,_0xca33[102],_0xbcd5x16[_0xca33[104]](_0xbcd5x18[_0xca33[103]]()))};var _0xbcd5x22=_0xbcd5x1(_0xca33[109])[_0xca33[108]](_0xbcd5x16[_0xca33[107]](_0xbcd5x18[_0xca33[103]]()));_0xbcd5x2[_0xca33[87]](_0xbcd5x18[_0xca33[73]](_0xca33[110]),function(_0xbcd5x23){_0xbcd5x22[_0xca33[113]](_0xca33[112])[_0xca33[108]](_0xbcd5x1(_0xbcd5x16[_0xca33[111]](_0xbcd5x23)))});if(!_0xbcd5x21){_0xbcd5x1d[_0xca33[105]](_0xca33[114],_0xbcd5x22[_0xca33[115]]())}else {_0xbcd5x1d[_0xca33[106]](1,_0xca33[114],_0xbcd5x22[_0xca33[115]]())};var _0xbcd5x24=_0xbcd5x1(_0xca33[109])[_0xca33[108]](_0xbcd5x16[_0xca33[116]](_0xbcd5x18[_0xca33[103]]()));var _0xbcd5x25=_0xbcd5x1(_0xca33[109])[_0xca33[108]](_0xbcd5x16[_0xca33[117]](_0xbcd5x18[_0xca33[103]]()));_0xbcd5x1f[_0xca33[87]](function(_0xbcd5x17){var _0xbcd5x26=Date[_0xca33[118]]();var _0xbcd5x27=_0xbcd5x17[_0xca33[103]]();var _0xbcd5x28= typeof (_0xbcd5x27[_0xca33[119]])!=_0xca33[120]?parseInt(((_0xbcd5x26-_0xbcd5x27[_0xca33[119]])/(1000*60*60*24*30))%12):0;var _0xbcd5x29= typeof (_0xbcd5x27[_0xca33[119]])!=_0xca33[120]?parseInt(((_0xbcd5x26-_0xbcd5x27[_0xca33[119]])/(1000*60*60*24))%30):0;var _0xbcd5x2a=_0xca33[32];if(_0xbcd5x28>0){_0xbcd5x2a+=_0xbcd5x28+_0xca33[121]};if(_0xbcd5x29>0){_0xbcd5x2a+=_0xbcd5x29+_0xca33[122]};_0xbcd5x2a+=(_0xca33[124]+parseInt(((_0xbcd5x26-_0xbcd5x27[_0xca33[119]])/(1000*60*60))%24)+_0xca33[125])[_0xca33[123]](-3)+(_0xca33[124]+parseInt(((_0xbcd5x26-_0xbcd5x27[_0xca33[119]])/(1000*60))%60)+_0xca33[125])[_0xca33[123]](-3)+(_0xca33[124]+parseInt((_0xbcd5x26-_0xbcd5x27[_0xca33[119]])/1000)%60)[_0xca33[123]](-2);_0xbcd5x27[_0xca33[126]]=_0xbcd5x2a;var _0xbcd5x2b=_0xca33[32];if(_0xbcd5x27[_0xca33[127]]===true){_0xbcd5x2b=_0xca33[128]}else {if(_0xbcd5x27[_0xca33[129]]===true){_0xbcd5x2b=_0xca33[130]}};_0xbcd5x27[_0xca33[131]]=_0xbcd5x2b;_0xbcd5x24[_0xca33[113]](_0xca33[112])[_0xca33[108]](_0xbcd5x1(_0xbcd5x16[_0xca33[132]](_0xbcd5x27)))});_0xbcd5x20[_0xca33[87]](function(_0xbcd5x17){var _0xbcd5x26=Date[_0xca33[118]]();var _0xbcd5x27=_0xbcd5x17[_0xca33[103]]();var _0xbcd5x28= typeof (_0xbcd5x27[_0xca33[119]])!=_0xca33[120]?parseInt(((_0xbcd5x26-_0xbcd5x27[_0xca33[119]])/(1000*60*60*24*30))%12):0;var _0xbcd5x29= typeof (_0xbcd5x27[_0xca33[119]])!=_0xca33[120]?parseInt(((_0xbcd5x26-_0xbcd5x27[_0xca33[119]])/(1000*60*60*24))%30):0;var _0xbcd5x2a=_0xca33[32];if(_0xbcd5x28>0){_0xbcd5x2a+=_0xbcd5x28+_0xca33[121]};if(_0xbcd5x29>0){_0xbcd5x2a+=_0xbcd5x29+_0xca33[122]};_0xbcd5x2a+=(_0xca33[124]+parseInt(((_0xbcd5x26-_0xbcd5x27[_0xca33[119]])/(1000*60*60))%24)+_0xca33[125])[_0xca33[123]](-3)+(_0xca33[124]+parseInt(((_0xbcd5x26-_0xbcd5x27[_0xca33[119]])/(1000*60))%60)+_0xca33[125])[_0xca33[123]](-3)+(_0xca33[124]+parseInt((_0xbcd5x26-_0xbcd5x27[_0xca33[119]])/1000)%60)[_0xca33[123]](-2);_0xbcd5x27[_0xca33[126]]=_0xbcd5x2a;var _0xbcd5x2b=_0xca33[32];if(_0xbcd5x27[_0xca33[127]]===true){_0xbcd5x2b=_0xca33[128]}else {if(_0xbcd5x27[_0xca33[129]]===true){_0xbcd5x2b=_0xca33[130]}};_0xbcd5x27[_0xca33[131]]=_0xbcd5x2b;_0xbcd5x25[_0xca33[113]](_0xca33[112])[_0xca33[108]](_0xbcd5x1(_0xbcd5x16[_0xca33[133]](_0xbcd5x27)))});if(!_0xbcd5x21){_0xbcd5x1d[_0xca33[105]](_0xca33[134],_0xbcd5x24[_0xca33[115]]());_0xbcd5x1d[_0xca33[105]](_0xca33[135],_0xbcd5x25[_0xca33[115]]())}else {_0xbcd5x1d[_0xca33[106]](2,_0xca33[134],_0xbcd5x24[_0xca33[115]]());_0xbcd5x1d[_0xca33[106]](3,_0xca33[135],_0xbcd5x25[_0xca33[115]]())};_0xbcd5x1d[_0xca33[136]](_0xbcd5x16[_0xca33[93]],_0xbcd5x1c)})})});_0xbcd5x1c[_0xca33[97]](_0xca33[137],function(){var _0xbcd5x18=_0xbcd5x16[_0xca33[47]][_0xca33[73]](this[_0xca33[99]]);if(!_0xbcd5x18){return};var _0xbcd5x2c= new _0xbcd5x4([],{network:_0xbcd5x16[_0xca33[45]][_0xca33[73]](_0xca33[46]),router:_0xbcd5x18[_0xca33[73]](_0xca33[46])});_0xbcd5x2c[_0xca33[69]]()[_0xca33[68]](function(){var _0xbcd5x2d=[];_0xbcd5x2c[_0xca33[87]](function(_0xbcd5x2e){_0xbcd5x2d[_0xbcd5x2e[_0xca33[73]](_0xca33[138])]=_0xbcd5x2e[_0xca33[103]]()});_0xbcd5x2d=_0xbcd5x2d[_0xca33[139]](Boolean);for(var _0xbcd5x2f=0;_0xbcd5x2f<_0xbcd5x2d[_0xca33[140]];_0xbcd5x2f++){var _0xbcd5x30=Math[_0xca33[141]]()-0.5;var _0xbcd5x31=_0xca33[142]+(Math[_0xca33[143]](Math[_0xca33[141]]()*180))+_0xca33[144]+(Math[_0xca33[143]](Math[_0xca33[141]]()*180))+_0xca33[144]+(Math[_0xca33[143]](Math[_0xca33[141]]()*180))+_0xca33[145];var _0xbcd5x32=[];for(var _0xbcd5x33=0;_0xbcd5x33<_0xbcd5x2d[_0xbcd5x2f][_0xca33[146]][_0xca33[140]];_0xbcd5x33++){_0xbcd5x32[_0xca33[147]]( new google[_0xca33[26]].LatLng(_0xbcd5x2d[_0xbcd5x2f][_0xca33[146]][_0xbcd5x33][_0xca33[89]]+_0xbcd5x30,_0xbcd5x2d[_0xbcd5x2f][_0xca33[146]][_0xbcd5x33][_0xca33[90]]+_0xbcd5x30))};if(_0xbcd5x16[_0xca33[64]][_0xbcd5x2d[_0xbcd5x2f][_0xca33[138]]][_0xca33[74]]){_0xbcd5x34(_0xbcd5x32,_0xbcd5x31);_0xbcd5x37(google[_0xca33[26]][_0xca33[150]][_0xca33[149]][_0xca33[148]](_0xbcd5x32[_0xbcd5x32[_0xca33[140]]-2],_0xbcd5x32[_0xbcd5x32[_0xca33[140]]-1],0.25),_0xbcd5x31,_0xbcd5x2d[_0xbcd5x2f][_0xca33[151]]);_0xbcd5x3c(_0xbcd5x16[_0xca33[64]][_0xbcd5x2d[_0xbcd5x2f][_0xca33[138]]])};if(_0xbcd5x16[_0xca33[64]][_0xbcd5x18[_0xca33[73]](_0xca33[46])][_0xca33[74]]){_0xbcd5x34(_0xbcd5x32,_0xbcd5x31);_0xbcd5x37(google[_0xca33[26]][_0xca33[150]][_0xca33[149]][_0xca33[148]](_0xbcd5x32[_0xbcd5x32[_0xca33[140]]-2],_0xbcd5x32[_0xbcd5x32[_0xca33[140]]-1],0.25),_0xbcd5x31,_0xbcd5x2d[_0xbcd5x2f][_0xca33[151]]);_0xbcd5x3c(_0xbcd5x16[_0xca33[64]][_0xbcd5x18[_0xca33[73]](_0xca33[46])])}};function _0xbcd5x34(_0xbcd5x32,_0xbcd5x35){var _0xbcd5x36= new google[_0xca33[26]].Polyline({path:_0xbcd5x32,strokeColor:_0xbcd5x35,strokeOpacity:1,strokeWeight:2,icons:[{icon:{path:google[_0xca33[26]][_0xca33[153]][_0xca33[152]]},offset:_0xca33[154]}],map:_0xbcd5x16[_0xca33[93]]});setTimeout(function(){_0xbcd5x36[_0xca33[155]](null);delete _0xbcd5x36},4000);return _0xbcd5x36}function _0xbcd5x37(_0xbcd5x38,_0xbcd5x35,_0xbcd5x39){var _0xbcd5x3a={disableAutoPan:true,maxWidth:0,boxStyle:{background:_0xbcd5x35,color:_0xca33[27],"\x66\x6F\x6E\x74\x2D\x73\x69\x7A\x65":_0xca33[29],opacity:0.9,width:_0xca33[30]},closeBoxMargin:_0xca33[31],closeBoxURL:_0xca33[32],infoBoxClearance: new google[_0xca33[26]].Size(1,1),isHidden:false,enableEventPropagation:false,content:_0xbcd5x39,position:_0xbcd5x38};var _0xbcd5x3b= new InfoBox(_0xbcd5x3a);_0xbcd5x3b[_0xca33[136]](_0xbcd5x16[_0xca33[93]]);setTimeout(function(){_0xbcd5x3b[_0xca33[155]](null);delete _0xbcd5x3b},4000);return _0xbcd5x3b}function _0xbcd5x3c(_0xbcd5x1c){_0xbcd5x1c[_0xca33[98]][_0xca33[156]]();setTimeout(function(){google[_0xca33[26]][_0xca33[77]][_0xca33[76]](_0xbcd5x1c,_0xca33[75])},4000)}})});_0xbcd5x1c[_0xca33[97]](_0xca33[157],function(){var _0xbcd5x18=_0xbcd5x16[_0xca33[47]][_0xca33[73]](this[_0xca33[99]]);if(!_0xbcd5x18){return};this[_0xca33[158]]= new InfoBox(_0xbcd5x16[_0xca33[159]]);this[_0xca33[158]][_0xca33[161]](_0xbcd5x16[_0xca33[160]](_0xbcd5x18[_0xca33[103]]()));this[_0xca33[158]][_0xca33[136]](_0xbcd5x16[_0xca33[93]],this)});_0xbcd5x1c[_0xca33[97]](_0xca33[162],function(){if( typeof this[_0xca33[158]]===_0xca33[163]){this[_0xca33[158]][_0xca33[156]](true);delete (this[_0xca33[158]])}});if(_0xbcd5x18[_0xca33[73]](_0xca33[84])){_0xbcd5x1c[_0xca33[94]]=this[_0xca33[85]];_0xbcd5x1c[_0xca33[97]](_0xca33[164],function(){google[_0xca33[26]][_0xca33[77]][_0xca33[76]](_0xbcd5x1c,_0xca33[162]);google[_0xca33[26]][_0xca33[77]][_0xca33[165]](_0xbcd5x1c);_0xbcd5x1c[_0xca33[155]](null);if(_0xbcd5x1c[_0xca33[74]]){_0xbcd5x1d[_0xca33[156]]()}})}},onChangedRouter:function(_0xbcd5x18){var _0xbcd5x1c=this[_0xca33[64]][_0xbcd5x18[_0xca33[73]](_0xca33[46])];if(_0xbcd5x18[_0xca33[73]](_0xca33[78])){_0xbcd5x1c[_0xca33[94]]=this[_0xca33[80]]}else {if(_0xbcd5x18[_0xca33[73]](_0xca33[82])){_0xbcd5x1c[_0xca33[94]]=this[_0xca33[83]]}else {_0xbcd5x1c[_0xca33[94]]=this[_0xca33[86]]}}},onDestroyedRouter:function(_0xbcd5x18){var _0xbcd5x1c=this[_0xca33[64]][_0xbcd5x18[_0xca33[73]](_0xca33[46])];_0xbcd5x1c[_0xca33[94]]=this[_0xca33[85]]},onAddedLink:function(_0xbcd5x19,_0xbcd5x3d){var _0xbcd5x16=this;var _0xbcd5x3e=null;var _0xbcd5x3f=null;this[_0xca33[47]][_0xca33[87]](function(_0xbcd5x18){if(_0xbcd5x19[_0xca33[73]](_0xca33[167])[_0xca33[166]]==_0xbcd5x18[_0xca33[73]](_0xca33[99])[_0xca33[166]]){_0xbcd5x3e=_0xbcd5x18};if(_0xbcd5x19[_0xca33[73]](_0xca33[168])[_0xca33[166]]==_0xbcd5x18[_0xca33[73]](_0xca33[99])[_0xca33[166]]){_0xbcd5x3f=_0xbcd5x18}});if(_0xbcd5x3e!=null&&_0xbcd5x3f!=null){var _0xbcd5x2e=[{lat:_0xbcd5x3e[_0xca33[73]](_0xca33[89]),lng:_0xbcd5x3e[_0xca33[73]](_0xca33[90])},{lat:_0xbcd5x3f[_0xca33[73]](_0xca33[89]),lng:_0xbcd5x3f[_0xca33[73]](_0xca33[90])}];var _0xbcd5x40= new google[_0xca33[26]].Polyline({path:_0xbcd5x2e,strokeColor:_0xca33[169],strokeOpacity:1,strokeWeight:1,geodesic:true,map:this[_0xca33[93]]});var _0xbcd5x41= new google[_0xca33[26]].Polyline({path:_0xbcd5x2e,strokeColor:_0xca33[169],strokeOpacity:0.05,strokeWeight:15,bubbleStillOpen:false,bubblePreviousPosition:null,geodesic:true,map:this[_0xca33[93]]});this[_0xca33[65]][_0xbcd5x19[_0xca33[73]](_0xca33[46])]=_0xbcd5x41;this[_0xca33[55]][_0xca33[87]](function(_0xbcd5x42){if((_0xbcd5x42[_0xca33[73]](_0xca33[167])[_0xca33[166]]==_0xbcd5x3f[_0xca33[73]](_0xca33[99])[_0xca33[166]])&&(_0xbcd5x42[_0xca33[73]](_0xca33[168])[_0xca33[166]]==_0xbcd5x3e[_0xca33[73]](_0xca33[99])[_0xca33[166]])){var _0xbcd5x27={link1:_0xbcd5x19[_0xca33[103]](),link2:_0xbcd5x42[_0xca33[103]](),router1:_0xbcd5x3e[_0xca33[103]](),router2:_0xbcd5x3f[_0xca33[103]](),gmaps:true};_0xbcd5x41[_0xca33[97]](_0xca33[157],function(){this[_0xca33[170]]= new InfoBox(_0xbcd5x16[_0xca33[171]]);this[_0xca33[170]][_0xca33[161]](_0xbcd5x19[_0xca33[172]]());this[_0xca33[170]][_0xca33[173]]( new google[_0xca33[26]].LatLng(_0xbcd5x3e[_0xca33[73]](_0xca33[89]),_0xbcd5x3e[_0xca33[73]](_0xca33[90])));this[_0xca33[170]][_0xca33[174]]= new google[_0xca33[26]].Size(20,20);this[_0xca33[170]][_0xca33[136]](_0xbcd5x16[_0xca33[93]]);this[_0xca33[175]]= new InfoBox(_0xbcd5x16[_0xca33[171]]);this[_0xca33[175]][_0xca33[161]](_0xbcd5x42[_0xca33[172]]());this[_0xca33[175]][_0xca33[173]]( new google[_0xca33[26]].LatLng(_0xbcd5x3f[_0xca33[73]](_0xca33[89]),_0xbcd5x3f[_0xca33[73]](_0xca33[90])));this[_0xca33[175]][_0xca33[176]]=_0xca33[177];this[_0xca33[175]][_0xca33[136]](_0xbcd5x16[_0xca33[93]])});_0xbcd5x41[_0xca33[97]](_0xca33[162],function(){if( typeof this[_0xca33[170]]===_0xca33[163]){this[_0xca33[170]][_0xca33[156]](true);delete (this[_0xca33[170]])};if( typeof this[_0xca33[175]]===_0xca33[163]){this[_0xca33[175]][_0xca33[156]](true);delete (this[_0xca33[175]])}});var _0xbcd5x1d= new InfoBubble(_0xbcd5x16[_0xca33[178]]);_0xbcd5x41[_0xca33[97]](_0xca33[75],function(_0xbcd5x1e){if(_0xbcd5x41[_0xca33[74]]){_0xbcd5x1d[_0xca33[156]](_0xbcd5x1d)};_0xbcd5x1d[_0xca33[161]](_0xbcd5x16[_0xca33[179]](_0xbcd5x27));if(_0xbcd5x1e[_0xca33[180]]){_0xbcd5x1d[_0xca33[173]](_0xbcd5x1e[_0xca33[180]]);_0xbcd5x16[_0xca33[65]][_0xbcd5x19[_0xca33[73]](_0xca33[46])][_0xca33[88]]=_0xbcd5x1e[_0xca33[180]]}else {_0xbcd5x1d[_0xca33[173]](_0xbcd5x16[_0xca33[65]][_0xbcd5x19[_0xca33[73]](_0xca33[46])][_0xca33[88]])};_0xbcd5x1d[_0xca33[97]](_0xca33[96],function(){_0xbcd5x41[_0xca33[74]]=false});_0xbcd5x1d[_0xca33[136]](_0xbcd5x16[_0xca33[93]]);_0xbcd5x41[_0xca33[74]]=true})}})}},onChangedLink:function(_0xbcd5x19){},onDestroyedLink:function(_0xbcd5x19){},render:function(){var _0xbcd5x16=this;this[_0xca33[182]][_0xca33[181]]()[_0xca33[115]](this[_0xca33[25]]());this[_0xca33[93]]= new google[_0xca33[26]].Map(document[_0xca33[184]](_0xca33[183]),this[_0xca33[185]]);this.$(_0xca33[72])[_0xca33[75]](function(){_0xbcd5x16.$(_0xca33[72])[_0xca33[71]](_0xca33[70],true);_0xbcd5x16[_0xca33[67]]();return false})[_0xca33[71]](_0xca33[70],false);this.$(_0xca33[186])[_0xca33[75]](function(){_0xbcd5x16.$(_0xca33[186])[_0xca33[71]](_0xca33[70],true);_0xbcd5x16[_0xca33[61]]();_0xbcd5x16.$(_0xca33[186])[_0xca33[71]](_0xca33[70],false);return false})[_0xca33[71]](_0xca33[70],false);this.$(_0xca33[187])[_0xca33[75]](function(){_0xbcd5x16.$(_0xca33[187])[_0xca33[71]](_0xca33[70],true);window[_0xca33[190]][_0xca33[189]](_0xca33[188]+_0xbcd5x16[_0xca33[45]][_0xca33[46]],{trigger:true});return false})[_0xca33[71]](_0xca33[70],false);return this}})})
+/*******************************************************************************
+ * Copyright (c) 2015 Netfishers - contact@netfishers.onl
+ *******************************************************************************/
+define([
+	'jquery',
+	'underscore',
+	'backbone',
+	'models/network/DijkstraPathCollection',
+	'models/network/NetworkModel',
+	'models/network/RouterCollection',
+	'models/network/LinkCollection',
+	'models/network/InterfaceCollection',
+	'models/network/Ipv4IgpRouteCollection',
+	'models/network/Ipv6IgpRouteCollection',
+	'text!templates/gmap/gmap.html',
+	'text!templates/gmap/mapRouter.html',
+	'text!templates/gmap/bubbleRouter.html',
+	'text!templates/gmap/infoboxLink.html',
+	'text!templates/map/link.html',
+	'text!templates/gmap/bubbleInterfaces.html',
+	'text!templates/gmap/bubbleIpv4IgpRoutes.html',
+	'text!templates/gmap/bubbleIpv6IgpRoutes.html',
+	'text!templates/gmap/bubbleInterfaceRow.html',
+	'text!templates/gmap/bubbleIpv4IgpRouteRow.html',
+	'text!templates/gmap/bubbleIpv6IgpRouteRow.html',
+	'bootstrap',
+	'infobox',
+	'infobubble'
+], function($, _, Backbone, DijkstraPathCollection, NetworkModel, RouterCollection, 
+		LinkCollection, InterfaceCollection, Ipv4IgpRouteCollection, Ipv6IgpRouteCollection,  
+		gMapTemplate, routerTemplate, bubbleRouterTemplate, linkTemplate, bubbleLinkTemplate, 
+		bubbleInterfacesTemplate, bubbleIpv4IgpRoutesTemplate, bubbleIpv6IgpRoutesTemplate, 
+		bubbleInterfaceRowTemplate, bubbleIpv4IgpRouteRowTemplate, bubbleIpv6IgpRouteRowTemplate) {
+	
+	return Backbone.View.extend({
+
+		el: "#page",
+
+		template: _.template(gMapTemplate),
+		routerTemplate: _.template(routerTemplate),
+		bubbleRouterTemplate: _.template(bubbleRouterTemplate),
+		linkTemplate: _.template(linkTemplate),
+		bubbleLinkTemplate: _.template(bubbleLinkTemplate),
+		bubbleInterfacesTemplate: _.template(bubbleInterfacesTemplate),
+		bubbleIpv4IgpRoutesTemplate: _.template(bubbleIpv4IgpRoutesTemplate),
+		bubbleIpv6IgpRoutesTemplate: _.template(bubbleIpv6IgpRoutesTemplate),
+		bubbleInterfaceRowTemplate: _.template(bubbleInterfaceRowTemplate),
+		bubbleIpv4IgpRouteRowTemplate: _.template(bubbleIpv4IgpRouteRowTemplate),
+		bubbleIpv6IgpRouteRowTemplate: _.template(bubbleIpv6IgpRouteRowTemplate),
+		
+		defaultBoxOptions: {
+			disableAutoPan: true,
+			maxWidth: 0,
+			pixelOffset: new google.maps.Size(0, -20),
+			zIndex: null,
+			boxStyle: { 
+				background: 'rgb(255,255,255)',
+				color: 'rgb(10,10,10)',
+				'font-size': '13px',
+				opacity: 0.9,
+				width: "auto"
+			},
+			closeBoxMargin: "10px 2px 2px 2px",
+			closeBoxURL: "",
+			infoBoxClearance: new google.maps.Size(1, 1),
+			isHidden: false,
+			pane: "floatPane",
+			enableEventPropagation: false
+		},
+		
+		defaultLinkBoxOptions: {
+			disableAutoPan: true,
+			maxWidth: 0,
+			zIndex: null,
+			boxStyle: { 
+                background: "#666666",
+                color: 'rgb(255,255,255)',
+                'font-size': '10px',
+                opacity: 0.9,
+                width: "auto"
+            },
+			closeBoxMargin: "10px 2px 2px 2px",
+			closeBoxURL: "",
+			infoBoxClearance: new google.maps.Size(1, 1),
+			isHidden: false,
+			pane: "floatPane",
+			enableEventPropagation: false
+		},
+		
+		defaultRouterBubbleOptions: {
+			maxHeight: 170,
+			shadowStyle: 1,
+			padding: 5,
+			backgroundColor: 'rgb(220,220,220)',
+			borderRadius: 2,
+			arrowSize: 10,
+			borderWidth: 1,
+			borderColor: '#2c2c2c',
+			disableAutoPan: true,
+			hideCloseButton: false,
+			closeSrc: 'img/fileclose12.png',
+			arrowPosition: 20,
+			arrowStyle: 2
+		},
+      	
+      	defaultLinkBubbleOptions: {
+			maxHeight: 170,
+			shadowStyle: 1,
+			padding: 5,
+			borderRadius: 2,
+			arrowSize: 10,
+			borderWidth: 1,
+			borderColor: '#2c2c2c',
+			disableAutoPan: true,
+			hideCloseButton: false,
+			closeSrc: 'img/fileclose12.png',
+			arrowPosition: 20,
+			arrowStyle: 2
+		},
+		
+		defaultRouterIcon: {
+			url: '../../../img/router_grey.svg',
+			scaledSize: new google.maps.Size(30, 30),
+			origin: new google.maps.Point(0, 0),
+			anchor: new google.maps.Point(20, 20),
+			animation: google.maps.Animation.DROP
+		},
+		newRouterIcon: {
+			url: '../../../img/router_green.svg',
+			scaledSize: new google.maps.Size(46, 46),
+			origin: new google.maps.Point(0, 0),
+			anchor: new google.maps.Point(20, 20),
+			animation: google.maps.Animation.DROP
+		},
+		withdrawRouterIcon: {
+			url: '../../../img/router_orange.svg',
+			scaledSize: new google.maps.Size(46, 46),
+			origin: new google.maps.Point(0, 0),
+			anchor: new google.maps.Point(20, 20),
+			animation: google.maps.Animation.DROP
+		},
+		lostRouterIcon: {
+			url: '../../../img/router_red.svg',
+			scaledSize: new google.maps.Size(46, 46),
+			origin: new google.maps.Point(0, 0),
+			anchor: new google.maps.Point(20, 20),
+			animation: google.maps.Animation.DROP
+		},
+		
+		initialize: function(){
+			var that = this ;
+			
+			this.network = new NetworkModel({
+				id: this.id
+			});
+			this.routers = new RouterCollection([], {
+				network: this.id
+			});
+			this.routers.on("add", this.onAddedRouter, this);
+			this.routers.on("change", this.onChangedRouter, this);
+			this.routers.on("remove", this.onDestroyedRouter, this);
+			this.links = new LinkCollection([], {
+				network: this.id
+			});
+			this.links.on("add", this.onAddedLink, this);
+			this.links.on("change", this.onChangedLink, this);
+			this.links.on("remove", this.onDestroyedLink, this);
+			
+			Backbone.history.on("route", function (route, router) {
+				if (that.autoRefreshInt !== false && that.autoRefreshInt != null) {
+					that.autoRefresh();
+				}
+			});
+			
+			this.bounds = new google.maps.LatLngBounds();
+			
+			this.markersArray = [];
+			this.linksArray = [];
+			
+			this.network.fetch().done(function() {
+				that.render();
+				that.refresh();
+			});
+		},
+		
+		refresh: function() {
+			var that = this;
+			that.routers.fetch().done(function() {
+				that.links.fetch().done(function() {
+					that.$("#gmap-toolbar #refresh").prop('disabled', false);
+					that.routers.each(function(router) {
+						marker = that.markersArray[router.get('id')];
+						if (marker.bubbleStillOpen) {
+                          	google.maps.event.trigger(marker, 'click');
+                        }
+						if (router.get("justAnnouncedAPrefix")) {
+							marker.setIcon = this.newRouterIcon;
+                          	marker.setAnimation(google.maps.Animation.DROP);
+						}
+						else if (router.get("justWithdrawnAPrefix")) {
+							marker.setIcon = this.withdrawRouterIcon;
+                          	marker.setAnimation(google.maps.Animation.DROP);
+						}
+						else if (router.get("lost")) {
+							marker.setIcon = this.lostRouterIcon;
+						}
+						else {
+							marker.setIcon = this.defaultRouterIcon;
+                          	marker.setAnimation(google.maps.Animation.DROP);
+						}
+					});
+					that.links.each(function(link) {
+						line = that.linksArray[link.get('id')];
+						if (line.bubbleStillOpen) {
+                          	google.maps.event.trigger(line, 'click',line.bubblePreviousPosition);
+                        }
+					});
+				});
+			});
+		},
+		
+		autoRefresh: function() {
+			var that = this;
+			if (this.autoRefreshInt === false || this.autoRefreshInt == null) {
+				this.autoRefreshInt = setInterval(function() {
+					that.$("#gmap-toolbar #refresh").prop('disabled', true);
+					that.refresh();
+				}, 10000 * 2);
+			} else {
+				clearInterval(this.autoRefreshInt);
+				this.autoRefreshInt = false;
+			}
+		},
+		
+		onAddedRouter: function(router, routers) {
+			var that = this;
+			var position = new google.maps.LatLng(router.get('latitude'), router.get('longitude'));
+			this.bounds.extend(position);
+			this.map.fitBounds(this.bounds);
+			
+			var marker = new google.maps.Marker({
+				position: position,
+				map: this.map,
+				animation: google.maps.Animation.DROP,
+				icon: this.defaultRouterIcon,
+				routerId: router.get('id'),
+				bubbleStillOpen: false
+			});
+			
+			if (router.get("justAnnouncedAPrefix")) {
+				marker.icon = this.newRouterIcon;
+			}
+			if (router.get("justWithdrawnAPrefix")) {
+	           	marker.icon = this.withdrawRouterIcon;
+			}
+			
+			var bubble = new InfoBubble(that.defaultRouterBubbleOptions);
+			bubble.addListener('closeclick',function(){
+					marker.bubbleStillOpen = false;
+			});
+			marker.bubbleId = bubble;
+          	this.markersArray[router.get('id')] = marker;
+			
+			marker.addListener('click', function(e) {
+				var marker = this;
+				var router = that.routers.get(this.routerId);
+				if (!router) return;
+				this.bubbleStillOpen = true;
+				var ipv4IgpRoutes = new Ipv4IgpRouteCollection([], {
+					network: that.network.get('id'),
+					router: router.get('id')
+				});
+				var ipv6IgpRoutes = new Ipv6IgpRouteCollection([], {
+					network: that.network.get('id'),
+					router: router.get('id')
+				});
+				
+				var updateBubble = false;
+				
+				ipv4IgpRoutes.fetch().done(function() {
+					ipv6IgpRoutes.fetch().done(function() {
+					
+						if (bubble.isOpen(bubble) || bubble.getContent(bubble)) {updateBubble = true;}
+						
+						if (!updateBubble) {bubble.addTab("Router", that.bubbleRouterTemplate(router.toJSON()));}
+						else {bubble.updateTab(0,"Router", that.bubbleRouterTemplate(router.toJSON()));}
+						
+						var $interfacesTab = $("<div>").append(that.bubbleInterfacesTemplate(router.toJSON()));
+						_.each(router.get("ipv4Interfaces"), function(routerInterface) {
+							$interfacesTab.find("tbody").append($(that.bubbleInterfaceRowTemplate(routerInterface)));
+						});
+						
+						if (!updateBubble) {bubble.addTab("Interfaces", $interfacesTab.html());}
+						else {bubble.updateTab(1,"Interfaces", $interfacesTab.html());}
+						
+						var $routes4Tab = $("<div>").append(that.bubbleIpv4IgpRoutesTemplate(router.toJSON()));
+						var $routes6Tab = $("<div>").append(that.bubbleIpv6IgpRoutesTemplate(router.toJSON()));
+						ipv4IgpRoutes.each(function(route) {
+							var now = Date.now();
+							var data = route.toJSON();
+							
+							var ageMonths = typeof(data.date) != 'undefined' ? parseInt(((now - data.date)/(1000*60*60*24*30))%12) : 0;
+							var ageDays = typeof(data.date) != 'undefined' ? parseInt(((now - data.date)/(1000*60*60*24))%30) : 0;
+							var age = '';
+							if (ageMonths > 0) {
+								age += ageMonths+"m ";
+							}
+							if (ageDays > 0) {
+								age += ageDays+"d ";
+							}
+							age +=
+								("00"+parseInt(((now - data.date)/(1000*60*60))%24)+":").slice(-3)+
+								("00"+parseInt(((now - data.date)/(1000*60))%60)+":").slice(-3)+
+								("00"+parseInt((now - data.date)/1000)%60).slice(-2);
+							data.age = age;
+							
+							var rowClass = '';
+							if (data.justNew === true) {
+								rowClass = 'class=bubbleNew';
+							}
+							else if (data.justLost === true) {
+								rowClass = 'class=bubbleLost';
+							}
+							data.rowClass = rowClass;
+							
+							$routes4Tab.find("tbody").append($(that.bubbleIpv4IgpRouteRowTemplate(data)));
+						});
+						ipv6IgpRoutes.each(function(route) {
+							var now = Date.now();
+							var data = route.toJSON();
+							
+							var ageMonths = typeof(data.date) != 'undefined' ? parseInt(((now - data.date)/(1000*60*60*24*30))%12) : 0;
+							var ageDays = typeof(data.date) != 'undefined' ? parseInt(((now - data.date)/(1000*60*60*24))%30) : 0;
+							var age = '';
+							if (ageMonths > 0) {
+								age += ageMonths+"m ";
+							}
+							if (ageDays > 0) {
+								age += ageDays+"d ";
+							}
+							age +=
+								("00"+parseInt(((now - data.date)/(1000*60*60))%24)+":").slice(-3)+
+								("00"+parseInt(((now - data.date)/(1000*60))%60)+":").slice(-3)+
+								("00"+parseInt((now - data.date)/1000)%60).slice(-2);
+							data.age = age;
+							
+							var rowClass = '';
+							if (data.justNew === true) {
+								rowClass = 'class=bubbleNew';
+							}
+							else if (data.justLost === true) {
+								rowClass = 'class=bubbleLost';
+							}
+							data.rowClass = rowClass;
+							
+							$routes6Tab.find("tbody").append($(that.bubbleIpv6IgpRouteRowTemplate(data)));
+						});
+						if (!updateBubble) {
+							bubble.addTab("IPv4 Prefixes", $routes4Tab.html());
+							bubble.addTab("IPv6 Prefixes", $routes6Tab.html());
+						}
+						else {
+							bubble.updateTab(2,"IPv4 Prefixes", $routes4Tab.html());
+							bubble.updateTab(3,"IPv6 Prefixes", $routes6Tab.html());
+						}
+						
+						bubble.open(that.map, marker);
+					});
+				});				
+				
+			});
+			marker.addListener('rightclick', function() {
+				var router = that.routers.get(this.routerId);
+				if (!router) return;
+				var dijkstraTree = new DijkstraPathCollection([], {
+					network: that.network.get('id'),
+					router: router.get('id')
+				});
+				dijkstraTree.fetch().done(function() {
+					var tree = [];
+					dijkstraTree.each(function(path) {
+						tree[path.get('targetId')] = path.toJSON();
+					});
+					tree = tree.filter(Boolean)
+                  	for (var i=0; i<tree.length; i++){
+                  		var entropy = Math.random() - 0.5;
+                      	var randColor = 'rgb(' + (Math.floor(Math.random() * 180)) + 
+                      		',' + (Math.floor(Math.random() * 180)) + 
+                      		',' + (Math.floor(Math.random() * 180)) + ')';
+                      	var pathCoordinates = [];
+                      	for (var j=0;j<tree[i].vertices.length; j++){
+                      		if (j==0 || j==tree[i].vertices.length - 1) {
+                      			pathCoordinates.push(new google.maps.LatLng(
+                              			tree[i].vertices[j].latitude,
+                              			tree[i].vertices[j].longitude)
+                              	);
+                      		}
+                      		else {
+                      			pathCoordinates.push(new google.maps.LatLng(
+                              			tree[i].vertices[j].latitude + entropy,
+                              			tree[i].vertices[j].longitude + entropy)
+                              	);
+                      		}
+                        }
+                      	if (that.markersArray[tree[i].targetId].bubbleStillOpen) {
+	                      	addDynamicDijkstraPath(pathCoordinates,randColor,4000);
+	                      	addDynamicWeightLabel(
+	                          google.maps.geometry.spherical.interpolate(
+	                            	pathCoordinates[pathCoordinates.length - 2], 
+	                            	pathCoordinates[pathCoordinates.length - 1], 0.25),
+	                            	randColor,tree[i].weight,4000
+	                        );
+                          	hideBubble(that.markersArray[tree[i].targetId],4000);
+                      	}
+                      	if (that.markersArray[router.get('id')].bubbleStillOpen) {
+	                      	addDynamicDijkstraPath(pathCoordinates,randColor,8000);
+	                      	addDynamicWeightLabel(
+	                          google.maps.geometry.spherical.interpolate(
+	                            	pathCoordinates[pathCoordinates.length - 2], 
+	                            	pathCoordinates[pathCoordinates.length - 1], 0.25),
+	                            	randColor,tree[i].weight,8000
+	                        );
+                          	hideBubble(that.markersArray[router.get('id')],8000);
+                      	}
+   	 				}
+					function addDynamicDijkstraPath(pathCoordinates,pathColor,timeout) {
+                  		var dijkstraPath = new google.maps.Polyline({
+							path: pathCoordinates,
+							strokeColor: pathColor,
+							strokeOpacity: 1,
+							strokeWeight: 2,
+                      		icons: [{
+            					icon: {path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW},
+            					offset: '90%'
+        					}],
+							map: that.map
+                  		});
+                  	    setTimeout(function () {
+                  	    	dijkstraPath.setMap(null);
+                  	        delete dijkstraPath;
+                  	    }, timeout);
+                  	    return dijkstraPath;
+                  	}
+					function addDynamicWeightLabel(coordinates,pathColor,weight,timeout) {
+                        var myOptions = {
+							disableAutoPan: true,
+							maxWidth: 0,
+							boxStyle: { 
+                				background: pathColor,
+                				color: 'rgb(255,255,255)',
+                				'font-size': '13px',
+               					 opacity: 0.9,
+               					 width: "auto"
+            				},
+							closeBoxMargin: "10px 2px 2px 2px",
+							closeBoxURL: "",
+							infoBoxClearance: new google.maps.Size(1, 1),
+							isHidden: false,
+							enableEventPropagation: false,
+                            content: weight,
+                            position: coordinates,
+                        };
+                        
+                        var weightLabel = new InfoBox(myOptions);
+                        weightLabel.open(that.map);
+	
+                      	setTimeout(function () {
+                      		weightLabel.setMap(null);
+                  	        delete weightLabel;
+                  	    }, timeout);
+                  	    return weightLabel;
+					}
+					function hideBubble(marker,timeout) {
+						marker.bubbleId.close();
+                      	setTimeout(function () {
+                      		google.maps.event.trigger(marker, 'click');
+                  	    }, timeout);
+                    }
+				});
+			});
+			marker.addListener('mouseover', function() {
+				var router = that.routers.get(this.routerId);
+				if (!router) return;
+				this.box = new InfoBox(that.defaultBoxOptions);
+				this.box.setContent(that.routerTemplate(router.toJSON()));
+				this.box.open(that.map, this);
+			});
+			marker.addListener('mouseout', function() {
+				if (typeof this.box === "object") {
+					this.box.close(true);
+					delete(this.box);
+				}
+			});
+			if (router.get("lost")) {
+				marker.icon = this.lostRouterIcon;
+              	marker.addListener('dblclick', function() {
+                  	google.maps.event.trigger(marker,'mouseout');
+                  	google.maps.event.clearInstanceListeners(marker);
+                	marker.setMap(null);
+                  	if (marker.bubbleStillOpen) {
+                      	bubble.close();
+                    }
+                  	
+                });
+            }
+		},
+		
+		onChangedRouter: function(router) {
+			var marker = this.markersArray[router.get('id')];
+			
+			if (router.get("justAnnouncedAPrefix")) {
+				marker.icon = this.newRouterIcon;
+			}
+			else if (router.get("justWithdrawnAPrefix")) {
+				marker.icon = this.withdrawRouterIcon;
+			}
+			else {
+				marker.icon = this.defaultRouterIcon;
+			}
+		},
+		
+		onDestroyedRouter: function(router) {
+			var marker = this.markersArray[router.get('id')];
+          	marker.icon = this.lostRouterIcon;
+        },
+		
+		onAddedLink: function(link, links) {
+			var that = this;
+			var source = null;
+			var target = null;
+			
+			this.routers.each(function(router) {
+				if (link.get('localRouter').identifier == router.get('routerId').identifier) {
+					source = router;
+				}
+				if (link.get('remoteRouter').identifier == router.get('routerId').identifier) {
+					target = router;
+				}
+			});
+			if (source != null && target != null) {
+				var path = [
+					{lat: source.get('latitude'), lng: source.get('longitude')},
+					{lat: target.get('latitude'), lng: target.get('longitude')}
+				];
+				var line = new google.maps.Polyline({
+					path: path,
+					strokeColor: "#888888",
+					strokeOpacity: 1,
+					strokeWeight: 1,
+					geodesic: true,
+					map: this.map
+				});
+				var shadowLine = new google.maps.Polyline({
+					path: path,
+					strokeColor: "#888888",
+					strokeOpacity: 0.05,
+					strokeWeight: 15,
+					bubbleStillOpen: false,
+					bubblePreviousPosition: null,
+					geodesic: true,
+					map: this.map
+				});
+				
+				this.linksArray[link.get('id')] = shadowLine;
+				
+				this.links.each(function(l) {
+					if ((l.get('localRouter').identifier == target.get('routerId').identifier) &&
+					(l.get('remoteRouter').identifier == source.get('routerId').identifier)) {
+						
+						var data = {
+								link1: link.toJSON(),
+								link2: l.toJSON(),
+								router1: source.toJSON(),
+								router2: target.toJSON(),
+								gmaps: true
+						};
+						shadowLine.addListener('mouseover', function() {
+							this.box1 = new InfoBox(that.defaultLinkBoxOptions);
+                          	this.box1.setContent(link.getMetric());
+							this.box1.setPosition(new google.maps.LatLng(source.get('latitude'), source.get('longitude')));
+                          	this.box1.pixelOffset = new google.maps.Size(20, 20);
+                          	this.box1.open(that.map);
+                          	this.box2 = new InfoBox(that.defaultLinkBoxOptions);
+                          	this.box2.setContent(l.getMetric());
+							this.box2.setPosition(new google.maps.LatLng(target.get('latitude'), target.get('longitude')));
+							this.box2.boxClass = 'linklabel';
+							this.box2.open(that.map);
+                          	
+                          	
+						});
+						shadowLine.addListener('mouseout', function() {
+							if (typeof this.box1 === "object") {
+								this.box1.close(true);
+								delete(this.box1);
+							};
+                          	if (typeof this.box2 === "object") {
+								this.box2.close(true);
+								delete(this.box2);
+							}
+						});
+						
+						var bubble = new InfoBubble(that.defaultLinkBubbleOptions);
+						
+						shadowLine.addListener('click', function(e) {
+
+							if (shadowLine.bubbleStillOpen) {
+								bubble.close(bubble);
+							}
+							bubble.setContent(that.bubbleLinkTemplate(data));
+							if (e.latLng){
+								bubble.setPosition(e.latLng);
+                              	that.linksArray[link.get('id')].bubblePreviousPosition = e.latLng;
+                            }
+                          	else {
+                            	bubble.setPosition(that.linksArray[link.get('id')].bubblePreviousPosition);
+                            }
+							bubble.addListener('closeclick',function(){
+								shadowLine.bubbleStillOpen = false;
+							});
+							bubble.open(that.map);
+							shadowLine.bubbleStillOpen = true;
+						});
+					}
+				});
+			}		
+		},
+		
+		onChangedLink: function(link) {
+		},
+		
+		onDestroyedLink: function(link) {
+		},
+		
+		render: function(){
+			var that = this;
+			
+			this.$el.show().html(this.template());
+			
+			this.map = new google.maps.Map(document.getElementById('gmap'), this.mapOptions);
+			
+			this.$("#gmap-toolbar #refresh").click(function() {
+				that.$("#gmap-toolbar #refresh").prop('disabled', true);
+				that.refresh();
+				return false;
+			}).prop('disabled', false);
+			this.$("#gmap-toolbar #autorefresh").click(function() {
+				that.$("#gmap-toolbar #autorefresh").prop('disabled', true);
+				that.autoRefresh();
+				that.$("#gmap-toolbar #autorefresh").prop('disabled', false);
+				return false;
+			}).prop('disabled', false);	
+			this.$("#gmap-toolbar #gotoblt").click(function() {
+				that.$("#gmap-toolbar #gotoblt").prop('disabled', true);
+				window.appRouter.navigate("map/" + that.network.id, { trigger: true });
+				return false;
+			}).prop('disabled', false);
+			
+			return this;
+		}
+	});
+});
