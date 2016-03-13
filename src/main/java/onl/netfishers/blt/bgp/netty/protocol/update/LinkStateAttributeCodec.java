@@ -388,6 +388,10 @@ public class LinkStateAttributeCodec {
 				teDefaultMetric = (teDefaultMetric << 8) | buffer.readUnsignedByte();
 				attr.setTeDefaultMetric(teDefaultMetric);
 			}
+			else if (length == 4) {
+				int teDefaultMetric = (int) buffer.readUnsignedInt();
+				attr.setTeDefaultMetric(teDefaultMetric);
+			}
 			else {
 				log.error("Invalid length ({}) for teDefaultMetric", buffer.readableBytes());
 				throw new OptionalAttributeErrorException();
