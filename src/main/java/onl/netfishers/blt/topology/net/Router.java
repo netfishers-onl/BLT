@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import jersey.repackaged.com.google.common.collect.Lists;
 import onl.netfishers.blt.Blt;
 import onl.netfishers.blt.topology.DijkstraPath;
+import onl.netfishers.blt.topology.net.Ipv4Subnet.MalformedIpv4SubnetException;
 import onl.netfishers.blt.topology.net.RouterInterface.RouterInterfaceType;
 import onl.netfishers.blt.bgp.net.attributes.bgplsnlri.BgpLsNodeDescriptor;
 
@@ -481,10 +482,25 @@ public class Router {
 		List<SnmpCommunity> communities = new ArrayList<SnmpCommunity>(network.getSnmpCommunities());
 		Collections.sort(communities);
 		for (SnmpCommunity community : communities) {
-			for (Ipv4Route prefix : ipv4IgpRoutes) {
-				if (community.getSubnet().contains(prefix.getSubnet())) {
-					if (prefix.getMetric() <= igpLocalMetric && prefix.getSubnet().getPrefixLength() == 32){
-						return new SnmpCommunity(prefix.getSubnet(), community.getCommunity());
+			if (ipv4IgpRoutes.size() == 0){
+				if (this.getRouterId().getData().length == BgpLsNodeDescriptor.IGPROUTERID_OSPFROUTERID_LENGTH) {	
+					Ipv4Subnet rid = null;
+					try {
+						rid = new Ipv4Subnet(ByteBuffer.wrap(this.getRouterId().getData()).getInt(),32);
+					} catch (MalformedIpv4SubnetException e) {
+						logger.error("router '{}' RID cannot be used for SNMP polling", this, e);
+					}
+					if (community.getSubnet().contains(rid)) {
+						return new SnmpCommunity(rid, community.getCommunity());
+					}	
+				}	
+			}
+			else {
+				for (Ipv4Route prefix : ipv4IgpRoutes) {
+					if (community.getSubnet().contains(prefix.getSubnet())) {
+						if (prefix.getMetric() <= igpLocalMetric && prefix.getSubnet().getPrefixLength() == 32){
+							return new SnmpCommunity(prefix.getSubnet(), community.getCommunity());
+						}
 					}
 				}
 			}

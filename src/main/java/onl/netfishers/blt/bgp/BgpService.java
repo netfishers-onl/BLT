@@ -274,11 +274,10 @@ public class BgpService {
 										linkNlri.getProtocolId());
 							}	
 							catch (Exception e) {
-								logger.info("no valid IP address attached to this link\n"+
-									"will fall back to BGP LS only mode for the following link:"+
-									"\n<-- localId: "+localId.getIdentifier().toString()+
-									"\n--> remoteId: "+remoteId.getIdentifier().toString()+
-									" protocolId: "+linkNlri.getProtocolId());
+								logger.info("no IP address attached to this link:"
+									+" localId: "+localId.getIdentifier().toString()
+									+" remoteId: "+remoteId.getIdentifier().toString()
+									+" protocolId: "+linkNlri.getProtocolId());
 								try {
 									link = new Link(localId, remoteId,new Ipv4Subnet(0,32),new Ipv4Subnet(0,32),linkNlri.getProtocolId());
 								}
@@ -293,7 +292,7 @@ public class BgpService {
 							Router remoteRouter = network.findOrAddRouter(remoteId);
 							remoteRouter.setNeedTeRefresh(true);
 							toSave = true;
-														
+							
 							link = network.findOrAddLink(link);
 							
 							link.setLost(mpNlriAttribute.getPathAttributeType() == PathAttributeType.MULTI_PROTOCOL_UNREACHABLE);

@@ -236,6 +236,26 @@ public class RestService extends Thread {
 			router.setJustAnnouncedAPrefix(newPrefix);
 		}
 	}
+	
+	public void removeDuplicatedLinks(Network network){
+		Set<Link> links1 = network.getLinks();
+		Set<Link> links2 = network.getLinks();
+		for ( Link l1: links1) {
+			for ( Link l2: links2) {
+				if (l1.getLocalAddress().getAddress() == 0
+					&& l1.getRemoteAddress().getAddress() == 0) {
+					if (l1.getLocalRouter().equals(l2.getLocalRouter())
+							&& l1.getRemoteRouter().equals(l2.getRemoteRouter())
+							&& l1.getProtocolId().equals(l2.getProtocolId())
+							&& ! l1.getLocalAddress().equals(l2.getLocalAddress())
+							&& ! l1.getRemoteAddress().equals(l2.getRemoteAddress())) {
+						links1.remove(l1);
+						break;
+					}
+				}
+			}
+		}
+	}
 
 
 	@XmlRootElement(name = "error")
@@ -781,6 +801,7 @@ public class RestService extends Thread {
 						BltBadRequestException.UNKNOWN_NETWORK);
 			}
 			network.fillLinkInterfaceNames();
+			removeDuplicatedLinks(network);
 			return network.getLinks();
 		}
 		catch (BltBadRequestException e) {

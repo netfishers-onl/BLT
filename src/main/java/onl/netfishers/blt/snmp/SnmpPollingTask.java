@@ -220,7 +220,7 @@ public class SnmpPollingTask extends Task {
 					router.setName(Name);
 				}
 				else {
-					logger.warn("We already know {} NodeName, no need to SNMP Get for it...", router);
+					logger.warn("We already know {}, skippping polling task", router);
 				}
 				
 				String Location = null ;

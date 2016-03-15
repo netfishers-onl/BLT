@@ -193,11 +193,6 @@ public class Ipv4Subnet implements Comparable<Ipv4Subnet> {
 		return null;
 	}
 
-	public int getIntAddress() {
-		return address;
-	}
-
-
 	@XmlElement
 	public String getIp() {
 		return intToIP(this.address);
@@ -284,7 +279,7 @@ public class Ipv4Subnet implements Comparable<Ipv4Subnet> {
 	}
 
 	public int getSubnetMin() {
-		return this.getIntAddress()
+		return this.getAddress()
 				& Ipv4Subnet.prefixLengthToIntAddress(this.getPrefixLength());
 	}
 
@@ -295,7 +290,7 @@ public class Ipv4Subnet implements Comparable<Ipv4Subnet> {
 
 	public boolean contains(Ipv4Subnet otherAddress) {
 		return (this.address >> (32 - this.prefixLength)) == (otherAddress
-				.getIntAddress() >> (32 - this.prefixLength));
+				.getAddress() >> (32 - this.prefixLength));
 	}
 
 	@Override

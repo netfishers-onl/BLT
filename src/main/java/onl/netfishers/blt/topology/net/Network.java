@@ -4,6 +4,7 @@
 
 package onl.netfishers.blt.topology.net;
 
+import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -178,10 +179,24 @@ public class Network {
 		this.links = links;
 	}
 
-	public void addLink(Link link) {
+	public Link addLink(Link link) {
 		this.links.add(link);
+		return link;
 	}
-
+	
+	public Link findSimilarLink(Link link) {
+		for (Link l : this.links) {
+			if (l.getLocalRouter().equals(link.getLocalRouter())
+					&& l.getRemoteRouter().equals(link.getRemoteRouter())
+					&& l.getProtocolId().equals(link.getProtocolId())
+					&& ! l.getLocalAddress().equals(link.getLocalAddress())
+					&& ! l.getRemoteAddress().equals(link.getRemoteAddress())) {
+				return l;
+			}
+		}
+		return null;
+	}
+	
 	public Link findOrAddLink(Link link) {
 		for (Link l : this.links) {
 			if (l.equals(link)) {
@@ -199,6 +214,17 @@ public class Network {
 			}
 		}
 		return null;
+	}
+	
+	public void removeLink(Link link) {
+		Iterator<Link> iterator = this.links.iterator();
+		while (iterator.hasNext()) {
+		    Link l = iterator.next();
+		    if (l.equals(link)) {
+		        iterator.remove();
+				System.out.println("removed link:"+l.toString());
+		    }
+		}
 	}
 
 	public boolean isDeleted() {
