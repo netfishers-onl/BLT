@@ -31,12 +31,20 @@ define([
 			}
 		},
 		getMetric: function() {
-			var name = this.get('metric');
-			if (typeof(name) == "undefined") {
-				return "...";
+			var metric = this.get('metric');
+			if (typeof(metric) == "undefined") {
+				//JunOS implementation does not carry metric TLV
+				//thus we try to see if teDefaultMetric can replace a null metric
+				var teDefaultMetric = this.get('teDefaultMetric');
+				if (typeof(teDefaultMetric) != "undefined") {
+					return teDefaultMetric.toString();
+				}
+				else {
+					return "...";
+				}
 			}
 			else {
-				return name.toString();
+				return metric.toString();
 			}
 		},
 		

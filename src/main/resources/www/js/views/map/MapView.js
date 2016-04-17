@@ -6,6 +6,7 @@ define([
 	'underscore',
 	'backbone',
 	'jsplumb',
+	'models/network/DijkstraSinglePathCollection',
 	'models/network/NetworkModel',
 	'models/network/RouterCollection',
 	'models/network/LinkCollection',
@@ -15,7 +16,7 @@ define([
 	'views/map/RouterView',
 	'views/map/LinkView',
 	'bootstrap'
-], function($, _, Backbone, jsPlumb, NetworkModel, RouterCollection, LinkCollection,
+], function($, _, Backbone, jsPlumb, DijkstraSinglePathCollection, NetworkModel, RouterCollection, LinkCollection,
 		RouterPositions, mapTemplate, routerTemplate, RouterView,
 		LinkView) {
 	
@@ -28,6 +29,7 @@ define([
 		
 		initialize: function() {
 			var that = this;
+			this.pathConnections = [];
 			this.network = new NetworkModel({
 				id: this.id
 			});
@@ -70,6 +72,11 @@ define([
 					}
 				});
 			});
+			that.$("#diagrambox #legend").html("").hide();
+			for (c in that.pathConnections) {
+				that.instance.detach(that.pathConnections[c]);
+			}
+			that.pathConnections = [];
 		},
 		
 		autoRefresh: function() {
@@ -110,6 +117,11 @@ define([
 				that.$("#diagram .router").removeClass("selected");
 				that.instance.select().removeClass("selected");
 				that.$('#routerbox').hide();
+				that.$("#diagrambox #legend").html("").hide();
+				for (c in that.pathConnections) {
+					that.instance.detach(that.pathConnections[c]);
+				}
+				that.pathConnections = [];
 				$(this).addClass("selected");
 				that.routerView = new RouterView({
 					network: that.network,
@@ -123,6 +135,94 @@ define([
 				});
 				return false;
 			});
+			this.$("#diagram .router").unbind('contextmenu').contextmenu(function() {
+				that.$('#routerbox').hide();
+              	var target = null;
+              	$.each(that.$("#diagram .router"),function(item,div){
+                  	var id = '#router'+ parseInt(item+1);
+                  	if ($(id).hasClass("selected")) {target = parseInt(item+1);}
+                });
+              	if (target == null || target == that.routers.get($(this).data('router')).id) { 
+                  return false;
+                }
+              	var dijkstraPath = new DijkstraSinglePathCollection([], {
+					network: that.network.get('id'),
+					origin: that.routers.get($(this).data('router')).id,
+					target: target
+				});
+				
+				dijkstraPath.fetch().done(function() {
+					var randColor = 'rgb(' + (Math.floor(Math.random() * 155 + 100)) + 
+      				',' + (Math.floor(Math.random() * 155 + 100)) + 
+                    ',' + (Math.floor(Math.random() * 155 + 100)) + ')';
+					var previousVertex = null;
+                  	var path = dijkstraPath.toJSON();
+                  	$.each(path[0].vertices,function(index,vertex) {
+						if (vertex != null && previousVertex != null) {
+							var common = {
+								id: "dijkstraPath",
+								source: "router" + previousVertex.id,
+								target: "router" + vertex.id,
+								anchor: "Continuous",
+								connector: [ "StateMachine", { curviness: 10 } ],
+								paintStyle:{ 
+	                                  outlineColor:"#000000", outlineWidth:1,
+	                                  strokeStyle:randColor, lineWidth:2 
+	                            },
+	                            hoverPaintStyle:{},
+	                            overlays: [
+	                                 		[ "Label", {
+	   											id: "metric",
+	   											label: ''+path[0].weight,
+	   											location: 0.2 + (1 % 6) * 0.1,
+	                                            cssClass: "linklabel",
+	                                            labelStyle: {
+	                                                 fillStyle: randColor,
+	                                                 color: "#000000",
+	                                                 padding: '0.3',
+	                                                 borderWidth: 1
+	                                            },
+	   										}]
+	                                   ],
+	                            parameters: { }
+							}
+							if (index == path[0].vertices.length - 1 ) {
+                              	var connection = that.instance.connect(
+                                  	common,
+                                  	{ overlays: [
+										[ "Arrow", { id: 0, location: 0.5, direction: 1, width: 18, length: 18, 
+											paintStyle: {lineWidth:1,strokeStyle: "#000000", fillStyle: randColor},
+                                         } ],
+                                         [ "Label", {
+	   											id: "metric",
+	   											label: ''+path[0].weight,
+	   											location: 0.2 + (1 % 6) * 0.1,
+	                                            cssClass: "linklabel",
+	                                            labelStyle: {
+	                                                 fillStyle: randColor,
+	                                                 color: "#000000",
+	                                                 padding: '0.3',
+	                                                 borderWidth: 1
+	                                            },
+	   									}] 
+									]}
+                                );
+							}
+							else {
+								var connection = that.instance.connect(common);
+							}
+                          	that.pathConnections.push(connection);
+                        }
+						previousVertex = vertex;	
+                    });
+					that.$("#diagrambox #legend").html(that.$("#diagrambox #legend").html() +
+							'<div class="legend" style="color:' + randColor + 
+							'"> Dijkstra shortest path from ' + 
+                            path[0].vertices[0].name + ' to ' + path[0].targetname +
+							" (" + path[0].weight + ")" + "</div>").show();
+				});
+				return false ;
+			});	  
 		},
 		
 		onChangedRouter: function(router) {

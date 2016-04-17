@@ -428,10 +428,10 @@ define([
 							path: pathCoordinates,
 							strokeColor: pathColor,
 							strokeOpacity: 1,
-							strokeWeight: 2,
+							strokeWeight: 3,
                       		icons: [{
             					icon: {path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW},
-            					offset: '90%'
+            					offset: '95%'
         					}],
 							map: that.map
                   		});

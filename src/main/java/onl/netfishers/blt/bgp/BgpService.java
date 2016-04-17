@@ -315,7 +315,8 @@ public class BgpService {
 								}
 								if (lsAttribute.isValidMetric()) {
 									link.setMetric(lsAttribute.getMetric());
-								}
+								} 
+								
 								if (lsAttribute.isValidSharedRiskLinkGroups()) {
 									link.getSharedRiskLinkGroups().clear();
 									link.getSharedRiskLinkGroups().addAll(lsAttribute.getSharedRiskLinkGroups());

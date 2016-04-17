@@ -317,7 +317,7 @@ table.bubbleTab tbody tr.bubbleNew:hover td {
 
 #diagram .link._jsPlumb_hover path {
 	stroke: #1e8151;
-	stroke-width: 3;
+	stroke-width: 2;
 }
 
 #diagram .link.selected path {
@@ -347,7 +347,7 @@ table.bubbleTab tbody tr.bubbleNew:hover td {
 	transition: background-color 0.25s ease-in;
 	display: none;
 	background-color: white;
-	opacity: 0.8;
+	opacity: 1;
 	padding: 0.3em;
 	border-radius: 0.5em;
 	border: 1px solid #346789;
@@ -373,30 +373,6 @@ table.bubbleTab tbody tr.bubbleNew:hover td {
 	stroke: #3498db;
 }
 
-#diagram .path1 path {
-	stroke: #3498db;
-}
-
-#diagram .path2 path {
-	stroke: #8e44ad;
-}
-
-#diagram .path3 path {
-	stroke: #16a085;
-}
-
-#diagram .path4 path {
-	stroke: #6080A0;
-}
-
-#diagram .path5 path {
-	stroke: #008020;
-}
-
-#diagram .path6 path {
-	stroke: #A0A010;
-}
-
 #diagram .path path.patharrow {
 	stroke-width: 2;
 	stroke: none
@@ -404,30 +380,6 @@ table.bubbleTab tbody tr.bubbleNew:hover td {
 
 #diagram .path0 path.patharrow {
 	fill: #3498db;
-}
-
-#diagram .path1 path.patharrow {
-	fill: #3498db;
-}
-
-#diagram .path2 path.patharrow {
-	fill: #8e44ad;
-}
-
-#diagram .path3 path.patharrow {
-	fill: #16a085;
-}
-
-#diagram .path4 path.patharrow {
-	fill: #6080A0;
-}
-
-#diagram .path5 path.patharrow {
-	fill: #008020;
-}
-
-#diagram .path6 path.patharrow {
-	fill: #A0A010;
 }
 
 #diagram .pathlabel {
@@ -443,36 +395,6 @@ table.bubbleTab tbody tr.bubbleNew:hover td {
 	border: 1px solid #3498db;
 }
 
-#diagram .pathlabel1 {
-	background-color: #3498db;
-	border: 1px solid #3498db;
-}
-
-#diagram .pathlabel2 {
-	background-color: #8e44ad;
-	border: 1px solid #8e44ad;
-}
-
-#diagram .pathlabel3 {
-	background-color: #16a085;
-	border: 1px solid #16a085;
-}
-
-#diagram .pathlabel4 {
-	background-color: #6080A0;
-	border: 1px solid #6080A0;
-}
-
-#diagram .pathlabel5 {
-	background-color: #008020;
-	border: 1px solid #008020;
-}
-
-#diagram .pathlabel6 {
-	background-color: #A0A010;
-	border: 1px solid #A0A010;
-}
-
 #diagram ._jsPlumb_endpoint {
 	z-index: 3;
 }
@@ -484,6 +406,15 @@ table.bubbleTab tbody tr.bubbleNew:hover td {
 #diagram path {
 	cursor: pointer;
 }
+
+.jsplumb-drag-select * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;    
+}    
 
 #routerbox {
 	position: absolute;

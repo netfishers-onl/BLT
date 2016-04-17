@@ -2,6 +2,9 @@
 The BGP Linkstate Topographer    
 ![BLT 0.4.3 google maps view boxes](/src/main/resources/www/img/blt-0.4.3_1.png)
 ![BLT 0.4.3 google maps view dijkstra](/src/main/resources/www/img/blt-0.4.3_2.png)
+![BLT 0.4.3 google maps view dijkstra](/src/main/resources/www/img/blt-0.4.4-dijkstrapath-legacyview.png)
+![BLT 0.4.3 google maps view dijkstra](/src/main/resources/www/img/blt-0.4.4-dijkstrapath-legacyview_2.png)
+
 
 ## Features
 
