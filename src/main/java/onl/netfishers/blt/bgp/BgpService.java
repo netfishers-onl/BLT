@@ -316,6 +316,10 @@ public class BgpService {
 								if (lsAttribute.isValidMetric()) {
 									link.setMetric(lsAttribute.getMetric());
 								} 
+								//JunOS do not carry metric TLV
+								else if (lsAttribute.isValidTeDefaultMetric()) {
+									link.setMetric(lsAttribute.getTeDefaultMetric());
+								}
 								
 								if (lsAttribute.isValidSharedRiskLinkGroups()) {
 									link.getSharedRiskLinkGroups().clear();
