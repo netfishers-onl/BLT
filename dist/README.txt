@@ -35,4 +35,5 @@ RELEASE HISTORY:
                      - new REST primitive for shortest path computation towards a single node
                      - new REST primitive for shortest path tree rooted at a specific node
                      - shortest path visibility from Google Maps view
-                   
+0.4.4 - 2016-04-16 - Dijkstra shortest path visibility in legacy jsPlumb UI
+                     - Fix some bugs
