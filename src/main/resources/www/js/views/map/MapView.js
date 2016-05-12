@@ -422,12 +422,30 @@ define([
 				return false;
 			}).prop('disabled', false);
 			
-			this.$("#map-toolbar #autorefresh").click(function() {
+			this.$("#map-toolbar #autorefresh-on").click(function() {
+				that.$("#map-toolbar #autorefresh-on").prop('disabled', true);
+				that.$("#map-toolbar #autorefresh-on").hide();
+				that.$("#map-toolbar #autorefresh-off").show();
+				that.autoRefresh();
+				that.$("#map-toolbar #autorefresh-off").prop('disabled', false);
+				return false;
+			}).prop('disabled', false);
+			
+			this.$("#map-toolbar #autorefresh-off").click(function() {
+				that.$("#map-toolbar #autorefresh-off").prop('disabled', true);
+				that.$("#map-toolbar #autorefresh-off").hide();
+				that.$("#map-toolbar #autorefresh-on").show();
+				that.autoRefresh();
+				that.$("#map-toolbar #autorefresh-on").prop('disabled', false);
+				return false;
+			}).prop('disabled', false);
+			
+			/*this.$("#map-toolbar #autorefresh").click(function() {
 				that.$("#map-toolbar #autorefresh").prop('disabled', true);
 				that.autoRefresh();
 				that.$("#map-toolbar #autorefresh").prop('disabled', false);
 				return false;
-			}).prop('disabled', false);
+			}).prop('disabled', false);*/
 			
 			this.$("#map-toolbar #zoomin").click(function() {
 				that.setZoom(that.zoom * 1.1);
@@ -475,6 +493,7 @@ define([
 				return false;
 			});
 			that.$("#map-toolbar #group-savemap").hide();
+			that.$("#map-toolbar #autorefresh-off").hide();
 			
 			this.$("#map-toolbar #gotogmaps").click(function() {
 				that.$("#map-toolbar #gotogmaps").prop('disabled', true);

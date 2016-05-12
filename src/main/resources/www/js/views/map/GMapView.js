@@ -643,10 +643,26 @@ define([
 				that.refresh();
 				return false;
 			}).prop('disabled', false);
-			this.$("#gmap-toolbar #autorefresh").click(function() {
+			/*this.$("#gmap-toolbar #autorefresh").click(function() {
 				that.$("#gmap-toolbar #autorefresh").prop('disabled', true);
 				that.autoRefresh();
 				that.$("#gmap-toolbar #autorefresh").prop('disabled', false);
+				return false;
+			}).prop('disabled', false);*/	
+			this.$("#gmap-toolbar #autorefresh-on").click(function() {
+				that.$("#gmap-toolbar #autorefresh-on").prop('disabled', true);
+				that.$("#gmap-toolbar #autorefresh-on").hide();
+				that.autoRefresh();
+				that.$("#gmap-toolbar #autorefresh-off").prop('disabled', false);
+				that.$("#gmap-toolbar #autorefresh-off").show();
+				return false;
+			}).prop('disabled', false);	
+			this.$("#gmap-toolbar #autorefresh-off").click(function() {
+				that.$("#gmap-toolbar #autorefresh-off").prop('disabled', true);
+				that.$("#gmap-toolbar #autorefresh-off").hide();
+				that.autoRefresh();
+				that.$("#gmap-toolbar #autorefresh-on").prop('disabled', false);
+				that.$("#gmap-toolbar #autorefresh-on").show();
 				return false;
 			}).prop('disabled', false);	
 			this.$("#gmap-toolbar #gotoblt").click(function() {
@@ -654,6 +670,7 @@ define([
 				window.appRouter.navigate("map/" + that.network.id, { trigger: true });
 				return false;
 			}).prop('disabled', false);
+			this.$("#gmap-toolbar #autorefresh-off").hide();
 			
 			return this;
 		}
