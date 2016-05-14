@@ -398,7 +398,52 @@ define([
 		render: function() {
 			var that = this;
 			
+			$('body').on('contextmenu', '#diagrambox', function(e){ return false; });
+			
 			this.$el.show().html(this.template(this.network.toJSON()));
+          
+          	var theThing = document.querySelector("#routerbox");
+			var container = document.querySelector("#diagrambox");
+ 
+			container.addEventListener("contextmenu", getClickPosition, false);
+ 
+			function getClickPosition(e) {
+    			var parentPosition = getPosition(container);
+    			var xPosition = e.clientX - parentPosition.x ;//- (theThing.clientWidth / 2);
+   	 			var yPosition = e.clientY - parentPosition.y ;//- (theThing.clientHeight / 2);
+     
+    			theThing.style.left = xPosition + "px";
+    			theThing.style.top = yPosition + "px";
+			}
+ 
+			// Helper function to get an element's exact position
+			function getPosition(el) {
+ 			 	var xPos = 0;
+  				var yPos = 0;
+ 
+  				while (el) {
+    				if (el.tagName == "BODY") {
+      					// deal with browser quirks with body/window/document and page scroll
+      					var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+      					var yScroll = el.scrollTop || document.documentElement.scrollTop;
+ 	
+      					xPos += (el.offsetLeft - xScroll + el.clientLeft);
+      					yPos += (el.offsetTop - yScroll + el.clientTop);
+    				} else {
+      					// for all other non-BODY elements
+      					xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+      					yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+    				}
+ 
+    				el = el.offsetParent;
+  				}
+  				return {
+    				x: xPos,
+    				y: yPos
+  				};
+			}
+          
+			
 			this.$el.on('click', function() {
 				that.$("#diagram .router").removeClass("selected");
 				that.instance.select().removeClass("selected");
@@ -439,13 +484,6 @@ define([
 				that.$("#map-toolbar #autorefresh-on").prop('disabled', false);
 				return false;
 			}).prop('disabled', false);
-			
-			/*this.$("#map-toolbar #autorefresh").click(function() {
-				that.$("#map-toolbar #autorefresh").prop('disabled', true);
-				that.autoRefresh();
-				that.$("#map-toolbar #autorefresh").prop('disabled', false);
-				return false;
-			}).prop('disabled', false);*/
 			
 			this.$("#map-toolbar #zoomin").click(function() {
 				that.setZoom(that.zoom * 1.1);

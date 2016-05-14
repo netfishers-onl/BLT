@@ -643,12 +643,7 @@ define([
 				that.refresh();
 				return false;
 			}).prop('disabled', false);
-			/*this.$("#gmap-toolbar #autorefresh").click(function() {
-				that.$("#gmap-toolbar #autorefresh").prop('disabled', true);
-				that.autoRefresh();
-				that.$("#gmap-toolbar #autorefresh").prop('disabled', false);
-				return false;
-			}).prop('disabled', false);*/	
+			
 			this.$("#gmap-toolbar #autorefresh-on").click(function() {
 				that.$("#gmap-toolbar #autorefresh-on").prop('disabled', true);
 				that.$("#gmap-toolbar #autorefresh-on").hide();

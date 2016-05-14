@@ -173,9 +173,9 @@ table.bubbleTab tbody tr.bubbleNew:hover td {
 
 #diagrambox #legend {
 	position: absolute;
-	width: 500px;
-	bottom: 20px;
-	left: 50px;
+	/*width: 500px;*/
+	bottom: 10px;
+	left: 10px;
 	background-color: #2c3e50;
 	-moz-border-radius: 8px;
 	border-radius: 8px;
@@ -185,6 +185,7 @@ table.bubbleTab tbody tr.bubbleNew:hover td {
 	-webkit-transition: background-color 0.25s ease-in;
 	-moz-transition: background-color 0.25s ease-in;
 	display: none;
+	z-index: 100;
 }
 
 #diagrambox #legend .title {
@@ -417,9 +418,13 @@ table.bubbleTab tbody tr.bubbleNew:hover td {
 }    
 
 #routerbox {
-	position: absolute;
+	position: relative;
 	width: 500px;
-	top: 20px;
+	/*top: 20px;*/
+  	left: 50px;
+    top: 50px;
+    transition: left .5s cubic-bezier(.42,-0.3,.78,1.25), 
+                top .5s cubic-bezier(.42,-0.3,.78,1.25);
 	right: 20px;
 	height: 400px;
 	overflow: auto;
@@ -434,9 +439,9 @@ table.bubbleTab tbody tr.bubbleNew:hover td {
 	z-index: 100;
 }
 
-#routerbox h4 {
+/* #routerbox h4 {
 	cursor: move;
-}
+} */
 
 #editbox {
 	position: absolute;
