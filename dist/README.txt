@@ -37,3 +37,6 @@ RELEASE HISTORY:
                      - shortest path visibility from Google Maps view
 0.4.4 - 2016-04-16 - Dijkstra shortest path visibility in legacy jsPlumb UI
                      - Fix some bugs
+0.4.5 - 2016-05-17 - Autorefresh button color changes when the function is activated
+                   - The "routerbox" in legacy view becomes easier to drag (right click to relocate)
+                   - Handles a JunOS discrepancy: lack of metric TLV
