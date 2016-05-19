@@ -225,7 +225,7 @@ define([
 				this.autoRefreshInt = setInterval(function() {
 					that.$("#gmap-toolbar #refresh").prop('disabled', true);
 					that.refresh();
-				}, 10000 * 2);
+				}, 1000 * 10);
 			} else {
 				clearInterval(this.autoRefreshInt);
 				this.autoRefreshInt = false;

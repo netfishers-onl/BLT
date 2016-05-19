@@ -40,3 +40,4 @@ RELEASE HISTORY:
 0.4.5 - 2016-05-17 - Autorefresh button color changes when the function is activated
                    - The "routerbox" in legacy view becomes easier to drag (right click to relocate)
                    - Handles a JunOS discrepancy: lack of metric TLV
+                   - Autorefresh timer is consistent in both views : 10 s

@@ -104,12 +104,10 @@ public class RestService extends Thread {
 		httpSslKeystorePass = Blt.getConfig("blt.http.ssl.keystore.pass", "password");
 		httpBasePort = 8443;
 		try {
-			httpBasePort = Integer.parseInt(Blt.getConfig("blt.http.baseport",
-					Integer.toString(httpBasePort)));
+			httpBasePort = Integer.parseInt(Blt.getConfig("blt.http.baseport", Integer.toString(httpBasePort)));
 		}
 		catch (Exception e) {
-			logger.warn("Unable to understand the HTTP base port configuration, using {}.",
-					httpBasePort);
+			logger.warn("Unable to understand the HTTP base port configuration, using {}.", httpBasePort);
 		}
 		
 		try {

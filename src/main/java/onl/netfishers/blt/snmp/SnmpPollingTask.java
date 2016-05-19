@@ -53,6 +53,7 @@ public class SnmpPollingTask extends Task {
 	private static int SNMP_RETRIES = 10;
 	private static int SNMP_TIMEOUT = 2000;
 	private static boolean LATLONG_LOOKUP = false;
+	private static boolean SNMP_SKIP_INTERFACES = false;
 	private static String LATLONG_METHOD = "snmp";
 	private static String LATLONG_RESOLVER = "";
 	private static String LATLONG_DOMAIN_NAME = "";
@@ -77,6 +78,12 @@ public class SnmpPollingTask extends Task {
 		}
 		catch (Exception e) {
 			logger.error("Unable to parse the SNMP timeout option in configuration, using {}.", SNMP_TIMEOUT);
+		}
+		try {
+			SNMP_SKIP_INTERFACES = Boolean.parseBoolean(Blt.getConfig("blt.snmp.skipinterfaces"));
+		}
+		catch (Exception e){
+			logger.error("Unable to parse the SNMP skip interfaces option in configuration, using '{}'.", SNMP_SKIP_INTERFACES);
 		}
 		try {
 			LATLONG_LOOKUP = Boolean.parseBoolean(Blt.getConfig("blt.coordinates.lookup"));
@@ -286,37 +293,40 @@ public class SnmpPollingTask extends Task {
 				}
 				
 				router.setNeedTeRefresh(true);
-							
-				Map<String, String> ifIndices = walk(ifIndex);
-				Map<String, String> ifNames = walk(ifName);
-				Map<String, String> ifDescriptions = walk(ifAlias);
-				Map<String, String> ipAddresses = walk(ipAdEntAddr);
-				Map<String, String> ipAddIfIndices = walk(ipAdEntIfIndex);
-				Map<String, String> ipAddNetMasks = walk(ipAdEntNetMask);
 				
-				for (String PrefixOid : ifIndices.keySet()) {
-					RouterInterface itf = new RouterInterface();
+				if (! SNMP_SKIP_INTERFACES) {
+				
+					Map<String, String> ifIndices = walk(ifIndex);
+					Map<String, String> ifNames = walk(ifName);
+					Map<String, String> ifDescriptions = walk(ifAlias);
+					Map<String, String> ipAddresses = walk(ipAdEntAddr);
+					Map<String, String> ipAddIfIndices = walk(ipAdEntIfIndex);
+					Map<String, String> ipAddNetMasks = walk(ipAdEntNetMask);
+					
+					for (String PrefixOid : ifIndices.keySet()) {
+						RouterInterface itf = new RouterInterface();
+							
+						if (ifNames.get(PrefixOid) == null) {
+							logger.warn("No name for interface {} on {}... skipping it.", PrefixOid, router);
+							continue;
+						}
+						itf.setName(ifNames.get(PrefixOid));
 						
-					if (ifNames.get(PrefixOid) == null) {
-						logger.warn("No name for interface {} on {}... skipping it.", PrefixOid, router);
-						continue;
-					}
-					itf.setName(ifNames.get(PrefixOid));
-					
-					if (ifDescriptions.get(PrefixOid) == null) {
-						logger.warn("No description for interface {} on {}... ", PrefixOid, router);
-					}
-					itf.setDescription(ifDescriptions.get(PrefixOid));
-					
-					for (String ipaddindex : ipAddIfIndices.keySet()) {
-						if (ipAddIfIndices.get(ipaddindex).equals(PrefixOid)) {
-							itf.setIpv4Address(new Ipv4Subnet((ipAddresses.get(ipaddindex)),(ipAddNetMasks.get(ipaddindex))));
-							break ;
-						}	
-					}
-					if ( ! itf.getName().isEmpty() && itf.getIpv4Address() != null) {
-						if (router.getRouterInterfaceBySubnet(itf.getIpv4Address()) == null) {
-							router.addRouterInterface(itf);
+						if (ifDescriptions.get(PrefixOid) == null) {
+							logger.warn("No description for interface {} on {}... ", PrefixOid, router);
+						}
+						itf.setDescription(ifDescriptions.get(PrefixOid));
+						
+						for (String ipaddindex : ipAddIfIndices.keySet()) {
+							if (ipAddIfIndices.get(ipaddindex).equals(PrefixOid)) {
+								itf.setIpv4Address(new Ipv4Subnet((ipAddresses.get(ipaddindex)),(ipAddNetMasks.get(ipaddindex))));
+								break ;
+							}	
+						}
+						if ( ! itf.getName().isEmpty() && itf.getIpv4Address() != null) {
+							if (router.getRouterInterfaceBySubnet(itf.getIpv4Address()) == null) {
+								router.addRouterInterface(itf);
+							}
 						}
 					}
 				}

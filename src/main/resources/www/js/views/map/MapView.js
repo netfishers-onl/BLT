@@ -85,7 +85,7 @@ define([
 				this.autoRefreshInt = setInterval(function() {
 				  that.$("#map-toolbar #refresh").prop('disabled', true);
 				  that.refresh();
-				}, 1000 * 3);
+				}, 1000 * 10);
 			} else {
 			clearInterval(this.autoRefreshInt);
 				this.autoRefreshInt = false;
